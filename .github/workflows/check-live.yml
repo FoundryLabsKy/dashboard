@@ -14,7 +14,7 @@ jobs:
           [ "$code" = "200" ]
           grep -q "Foundry Dashboard" /tmp/page.html && echo "App markup present"
           for path in todo built income archived company; do
-            sub=$(curl -s -o /dev/null -w "%{http_code}" "${url}${path}/")
+            sub=$(curl -sL -o /dev/null -w "%{http_code}" "${url}${path}/")
             echo "HTTP $sub from ${url}${path}/"
             [ "$sub" = "200" ]
           done
