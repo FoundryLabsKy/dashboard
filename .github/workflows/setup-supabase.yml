@@ -1,0 +1,55 @@
+name: Setup Supabase
+on:
+  workflow_dispatch:
+    inputs:
+      sb_token:
+        description: Supabase personal access token
+        required: true
+
+jobs:
+  setup:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Provision database and storage
+        env:
+          SB_TOKEN: ${{ inputs.sb_token }}
+        run: |
+          set -euo pipefail
+          echo "::add-mask::$SB_TOKEN"
+          auth=(-H "Authorization: Bearer $SB_TOKEN")
+
+          projects=$(curl -sf "${auth[@]}" https://api.supabase.com/v1/projects)
+          ref=$(echo "$projects" | jq -r 'sort_by(.created_at) | last | .id')
+          name=$(echo "$projects" | jq -r 'sort_by(.created_at) | last | .name')
+          echo "Project: $name ($ref)"
+
+          for i in $(seq 1 30); do
+            status=$(curl -sf "${auth[@]}" "https://api.supabase.com/v1/projects/$ref" | jq -r .status)
+            echo "Status: $status"
+            [ "$status" = "ACTIVE_HEALTHY" ] && break
+            sleep 10
+          done
+
+          echo "Running schema..."
+          jq -Rs '{query: .}' supabase/schema.sql > /tmp/query.json
+          curl -s -X POST "${auth[@]}" -H "Content-Type: application/json" \
+            -d @/tmp/query.json "https://api.supabase.com/v1/projects/$ref/database/query" \
+            -w "\nHTTP %{http_code}\n"
+
+          echo "Verifying tables..."
+          echo '{"query":"select table_name from information_schema.tables where table_schema = '\''public'\'' order by 1"}' > /tmp/verify.json
+          curl -s -X POST "${auth[@]}" -H "Content-Type: application/json" \
+            -d @/tmp/verify.json "https://api.supabase.com/v1/projects/$ref/database/query"
+          echo
+
+          echo "Verifying storage bucket..."
+          echo '{"query":"select id, public from storage.buckets"}' > /tmp/bucket.json
+          curl -s -X POST "${auth[@]}" -H "Content-Type: application/json" \
+            -d @/tmp/bucket.json "https://api.supabase.com/v1/projects/$ref/database/query"
+          echo
+
+          echo "PROJECT_URL=https://$ref.supabase.co"
+          echo "API keys:"
+          curl -s "${auth[@]}" "https://api.supabase.com/v1/projects/$ref/api-keys?reveal=true" \
+            | jq -r '.[] | select(.name == "anon" or .type == "publishable") | "\(.name): \(.api_key)"'
