@@ -24,7 +24,7 @@ export function BuiltCard({ company, onEdit, onMarkSold, onArchive }: BuiltCardP
   const stage = deriveStage(company);
   const previewSrc = useBuildPreview(company);
 
-  const open = () => router.push(`/company/${company.id}`);
+  const open = () => router.push(`/company?id=${company.id}`);
 
   return (
     <motion.article

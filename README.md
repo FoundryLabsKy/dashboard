@@ -41,12 +41,14 @@ for trying the workflow — but data never leaves that browser.
 
 4. Restart the dev server. The demo-mode badge disappears and all data reads/writes go to Supabase. (Demo-mode data is not migrated.)
 
-## Deploying to Vercel
+## Hosting
 
-1. Import this repository in Vercel.
-2. Set **Root Directory** to `foundry-dashboard` (the repo also contains static sites).
-3. Add the two `NEXT_PUBLIC_SUPABASE_*` environment variables.
-4. Deploy.
+Every push to `main` builds a static export and deploys it to **GitHub Pages**
+automatically (`.github/workflows/deploy-pages.yml`). The Supabase credentials
+live in `.env.production` (public client values by design), so the deployed
+site is cloud-synced with zero configuration.
+
+The app also works on Vercel unchanged: import the repo, no settings needed.
 
 ## Development notes
 

@@ -49,7 +49,7 @@ export function AddCompanyModal({ open, onClose }: AddCompanyModalProps) {
       toast(`Added ${company.name}`, "success");
       reset();
       onClose();
-      router.push(`/company/${company.id}`);
+      router.push(`/company?id=${company.id}`);
     }
   };
 

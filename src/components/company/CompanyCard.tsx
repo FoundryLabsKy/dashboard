@@ -29,9 +29,9 @@ export function CompanyCard({ company, onArchive }: CompanyCardProps) {
       animate="animate"
       exit="exit"
       whileHover={reduced ? undefined : { y: -4 }}
-      onClick={() => router.push(`/company/${company.id}`)}
+      onClick={() => router.push(`/company?id=${company.id}`)}
       onKeyDown={(e) => {
-        if (e.key === "Enter") router.push(`/company/${company.id}`);
+        if (e.key === "Enter") router.push(`/company?id=${company.id}`);
       }}
       tabIndex={0}
       role="link"

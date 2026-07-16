@@ -1,6 +1,6 @@
 "use client";
 
-import { use, useState } from "react";
+import { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { motion, useReducedMotion } from "framer-motion";
@@ -31,8 +31,7 @@ import {
   IconTrash,
 } from "@/components/ui/Icons";
 
-export default function CompanyPage({ params }: { params: Promise<{ id: string }> }) {
-  const { id } = use(params);
+export function CompanyWorkspace({ id }: { id: string }) {
   const { loading, updateCompany, deleteCompany } = useCompanies();
   const company = useCompany(id);
   const files = useCompanyFiles(id);
