@@ -159,3 +159,18 @@ export const IconChevronDown = ({ className }: IconProps) => (
     <path d="M6 9l6 6 6-6" />
   </svg>
 );
+
+export const IconSpark = ({ className }: IconProps) => (
+  <svg {...base(className)}>
+    <path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9z" />
+    <path d="M18.5 15.5l.9 2.1 2.1.9-2.1.9-.9 2.1-.9-2.1-2.1-.9 2.1-.9z" />
+  </svg>
+);
+
+export const IconSliders = ({ className }: IconProps) => (
+  <svg {...base(className)}>
+    <path d="M4 7h10M18 7h2M4 17h2M10 17h10" />
+    <circle cx="16" cy="7" r="2" />
+    <circle cx="8" cy="17" r="2" />
+  </svg>
+);

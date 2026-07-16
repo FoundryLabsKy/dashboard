@@ -12,6 +12,7 @@ import {
   IconGrid,
   IconHammer,
   IconLock,
+  IconSliders,
   IconX,
 } from "@/components/ui/Icons";
 
@@ -21,6 +22,7 @@ const NAV_ITEMS = [
   { href: "/built", label: "Built", icon: IconHammer },
   { href: "/income", label: "Income", icon: IconDollar },
   { href: "/archived", label: "Archived", icon: IconArchive },
+  { href: "/settings", label: "Settings", icon: IconSliders },
 ];
 
 const FUTURE_MODULES = [
@@ -35,7 +37,6 @@ const FUTURE_MODULES = [
   "Team Management",
   "Invoicing",
   "Calendar",
-  "Settings",
 ];
 
 function isActive(pathname: string, href: string): boolean {

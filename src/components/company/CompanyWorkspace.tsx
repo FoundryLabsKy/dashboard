@@ -15,6 +15,7 @@ import { StageRail } from "@/components/ui/StageRail";
 import { EmptyState } from "@/components/ui/EmptyState";
 import { Skeleton } from "@/components/ui/Skeleton";
 import { ConfirmDialog } from "@/components/ui/ConfirmDialog";
+import { AutofillButton } from "@/components/company/AutofillButton";
 import { EditCompanyModal } from "@/components/company/EditCompanyModal";
 import { NotesAutosave } from "@/components/company/NotesAutosave";
 import { DomainList } from "@/components/company/DomainList";
@@ -41,6 +42,9 @@ export function CompanyWorkspace({ id }: { id: string }) {
   const reduced = useReducedMotion() ?? false;
   const [editOpen, setEditOpen] = useState(false);
   const [confirmDelete, setConfirmDelete] = useState(false);
+  // Bumped when autofill writes notes so the autosaving textarea remounts
+  // with the new content (it otherwise owns its own state).
+  const [notesVersion, setNotesVersion] = useState(0);
 
   if (loading) {
     return (
@@ -125,6 +129,25 @@ export function CompanyWorkspace({ id }: { id: string }) {
         </div>
         <div className="flex items-center gap-3">
           <StageRail stage={stage} />
+          <AutofillButton
+            name={company.name}
+            size="sm"
+            onResult={(r) => {
+              const patch: Partial<typeof company> = {};
+              if (!company.industry && r.industry) patch.industry = r.industry;
+              if (!company.contact && r.contact) patch.contact = r.contact;
+              if (!company.website && r.website) patch.website = r.website;
+              if (!company.notes.trim() && r.summary) patch.notes = r.summary;
+              const filled = Object.keys(patch);
+              if (filled.length) {
+                void updateCompany(company.id, patch);
+                if (patch.notes !== undefined) setNotesVersion((v) => v + 1);
+                toast(`Filled in: ${filled.join(", ")}`, "success");
+              } else {
+                toast("Everything is already filled in — nothing new found.", "info");
+              }
+            }}
+          />
           <Button variant="ghost" size="sm" onClick={() => setEditOpen(true)}>
             <IconPencil className="h-4 w-4" />
             Edit
@@ -164,7 +187,11 @@ export function CompanyWorkspace({ id }: { id: string }) {
           </div>
 
           <div className="glass p-5">
-            <NotesAutosave key={company.id} companyId={company.id} initialNotes={company.notes} />
+            <NotesAutosave
+              key={`${company.id}:${notesVersion}`}
+              companyId={company.id}
+              initialNotes={company.notes}
+            />
           </div>
         </div>
 

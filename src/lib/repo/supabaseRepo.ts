@@ -105,4 +105,27 @@ export const supabaseRepo: CompanyRepo = {
       .getPublicUrl(file.storage_path);
     return data.publicUrl;
   },
+
+  async getSetting(key: string) {
+    const { data, error } = await getSupabase()
+      .from("settings")
+      .select("value")
+      .eq("key", key)
+      .maybeSingle();
+    if (error) throw error;
+    return data?.value ?? null;
+  },
+
+  async setSetting(key: string, value: string | null) {
+    const supabase = getSupabase();
+    if (value === null) {
+      const { error } = await supabase.from("settings").delete().eq("key", key);
+      if (error) throw error;
+      return;
+    }
+    const { error } = await supabase
+      .from("settings")
+      .upsert({ key, value, updated_at: new Date().toISOString() });
+    if (error) throw error;
+  },
 };

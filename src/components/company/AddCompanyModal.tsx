@@ -8,6 +8,7 @@ import { Input, Textarea } from "@/components/ui/Input";
 import { useCompanies } from "@/hooks/useCompanies";
 import { useToast } from "@/components/ui/Toast";
 import { normalizeUrl } from "@/lib/format";
+import { AutofillButton } from "./AutofillButton";
 
 interface AddCompanyModalProps {
   open: boolean;
@@ -56,13 +57,26 @@ export function AddCompanyModal({ open, onClose }: AddCompanyModalProps) {
   return (
     <Modal open={open} onClose={onClose} title="Add company">
       <form onSubmit={submit} className="flex flex-col gap-4">
-        <Input
-          label="Company name"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-          placeholder="Coral Reef Dive Shop"
-          required
-        />
+        <div className="flex items-end gap-2">
+          <Input
+            label="Company name"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            placeholder="Coral Reef Dive Shop"
+            required
+            className="min-w-0 flex-1"
+          />
+          <AutofillButton
+            name={name}
+            className="shrink-0"
+            onResult={(r) => {
+              if (r.industry) setIndustry(r.industry);
+              if (r.contact) setContact(r.contact);
+              if (r.website) setWebsite(r.website);
+              if (r.summary) setNotes(r.summary);
+            }}
+          />
+        </div>
         <Input
           label="Industry"
           value={industry}

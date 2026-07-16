@@ -5,6 +5,7 @@ import { deleteBlob, getBlob, putBlob } from "./idb";
 const COMPANIES_KEY = "foundry:companies";
 const FILES_KEY = "foundry:files";
 const SEEDED_KEY = "foundry:seeded";
+const SETTINGS_KEY = "foundry:settings";
 
 function readJson<T>(key: string, fallback: T): T {
   try {
@@ -223,5 +224,17 @@ export const localRepo: CompanyRepo = {
     const url = URL.createObjectURL(blob);
     objectUrls.set(file.storage_path, url);
     return url;
+  },
+
+  async getSetting(key: string) {
+    const settings = readJson<Record<string, string>>(SETTINGS_KEY, {});
+    return settings[key] ?? null;
+  },
+
+  async setSetting(key: string, value: string | null) {
+    const settings = readJson<Record<string, string>>(SETTINGS_KEY, {});
+    if (value === null) delete settings[key];
+    else settings[key] = value;
+    writeJson(SETTINGS_KEY, settings);
   },
 };

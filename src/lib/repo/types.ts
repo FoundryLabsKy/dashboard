@@ -10,4 +10,6 @@ export interface CompanyRepo {
   uploadFile(companyId: string, file: File, kind?: "pitch"): Promise<CompanyFile>;
   deleteFile(file: CompanyFile): Promise<void>;
   getFileUrl(file: CompanyFile): Promise<string>;
+  getSetting(key: string): Promise<string | null>;
+  setSetting(key: string, value: string | null): Promise<void>;
 }
