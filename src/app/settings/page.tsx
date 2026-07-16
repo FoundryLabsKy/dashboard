@@ -10,14 +10,14 @@ import { testGeminiKey } from "@/lib/ai";
 import { IconCheck, IconSpark } from "@/components/ui/Icons";
 
 export default function SettingsPage() {
-  const { loaded, key, save } = useGeminiKey();
+  const { loaded, key, stored, isDefault, save } = useGeminiKey();
   const { toast } = useToast();
   const [draft, setDraft] = useState("");
   const [touched, setTouched] = useState(false);
   const [saving, setSaving] = useState(false);
   const [testing, setTesting] = useState(false);
-  // Until the user types, the field shows whatever key is stored.
-  const shown = touched ? draft : (key ?? "");
+  // Until the user types, the field shows whatever custom key is stored.
+  const shown = touched ? draft : (stored ?? "");
 
   const saveKey = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -99,20 +99,19 @@ export default function SettingsPage() {
                 type="button"
                 variant="ghost"
                 onClick={() => void runTest()}
-                disabled={testing || !shown.trim()}
+                disabled={testing}
               >
                 {testing ? "Testing…" : "Test key"}
               </Button>
-              {key && (
-                <span className="inline-flex items-center gap-1.5 text-xs text-stage-sold">
-                  <IconCheck className="h-3.5 w-3.5" />
-                  Key on file
-                </span>
-              )}
+              <span className="inline-flex items-center gap-1.5 text-xs text-stage-sold">
+                <IconCheck className="h-3.5 w-3.5" />
+                {isDefault ? "Using the built-in key" : "Custom key on file"}
+              </span>
             </div>
             <p className="mt-3 text-xs text-faint">
-              Stored in your cloud database so autofill works on every device. Anyone with
-              dashboard access can use it — keep the key on Google&apos;s free tier.
+              A built-in key ships with the app, so autofill works everywhere out of the box.
+              Save a key here to override it (synced to every device) — useful if the built-in
+              one ever hits its limit. Keep keys on Google&apos;s free tier.
             </p>
           </form>
         )}
