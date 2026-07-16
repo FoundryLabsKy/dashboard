@@ -27,6 +27,7 @@ function seedCompanies(): Company[] {
   const base = {
     contact: null,
     preview_url: null,
+    pitch_url: null,
     final_domain: null,
     final_url: null,
     sale_price: null,
@@ -139,6 +140,7 @@ export const localRepo: CompanyRepo = {
       contact: input.contact?.trim() || null,
       website: input.website?.trim() || null,
       preview_url: null,
+      pitch_url: null,
       notes: input.notes ?? "",
       potential_domains: [],
       built: false,
@@ -184,13 +186,13 @@ export const localRepo: CompanyRepo = {
     );
   },
 
-  async uploadFile(companyId: string, file: File) {
+  async uploadFile(companyId: string, file: File, kind?: "pitch") {
     const id = crypto.randomUUID();
     const record: CompanyFile = {
       id,
       company_id: companyId,
       filename: file.name,
-      storage_path: id,
+      storage_path: kind === "pitch" ? `pitch-${id}` : id,
       mime_type: file.type || null,
       size_bytes: file.size,
       uploaded_at: new Date().toISOString(),

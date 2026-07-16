@@ -1,0 +1,30 @@
+name: Migrate Supabase
+on:
+  workflow_dispatch:
+    inputs:
+      sb_token:
+        description: Supabase personal access token
+        required: true
+
+jobs:
+  migrate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Apply schema (idempotent)
+        env:
+          SB_TOKEN: ${{ inputs.sb_token }}
+        run: |
+          set -euo pipefail
+          echo "::add-mask::$SB_TOKEN"
+          auth=(-H "Authorization: Bearer $SB_TOKEN")
+          ref=$(curl -sf "${auth[@]}" https://api.supabase.com/v1/projects | jq -r 'sort_by(.created_at) | last | .id')
+          echo "Project: $ref"
+          echo '{"query":"alter table companies add column if not exists pitch_url text"}' > /tmp/migrate.json
+          curl -s -X POST "${auth[@]}" -H "Content-Type: application/json" \
+            -d @/tmp/migrate.json "https://api.supabase.com/v1/projects/$ref/database/query" \
+            -w "\nHTTP %{http_code}\n"
+          echo '{"query":"select column_name from information_schema.columns where table_name = '\''companies'\'' order by 1"}' > /tmp/verify.json
+          curl -s -X POST "${auth[@]}" -H "Content-Type: application/json" \
+            -d @/tmp/verify.json "https://api.supabase.com/v1/projects/$ref/database/query"
+          echo

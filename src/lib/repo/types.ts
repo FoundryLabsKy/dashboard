@@ -7,7 +7,7 @@ export interface CompanyRepo {
   updateCompany(id: string, patch: Partial<Company>): Promise<Company>;
   deleteCompany(id: string): Promise<void>;
   listFiles(companyId: string): Promise<CompanyFile[]>;
-  uploadFile(companyId: string, file: File): Promise<CompanyFile>;
+  uploadFile(companyId: string, file: File, kind?: "pitch"): Promise<CompanyFile>;
   deleteFile(file: CompanyFile): Promise<void>;
   getFileUrl(file: CompanyFile): Promise<string>;
 }

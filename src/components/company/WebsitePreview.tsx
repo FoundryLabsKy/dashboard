@@ -5,7 +5,7 @@ import type { Company } from "@/lib/types";
 import type { useCompanyFiles } from "@/hooks/useCompanyFiles";
 import { useCompanies } from "@/hooks/useCompanies";
 import { useToast } from "@/components/ui/Toast";
-import { isHtmlFile, normalizeUrl } from "@/lib/format";
+import { isHtmlFile, isPitchFile, normalizeUrl } from "@/lib/format";
 import { Button } from "@/components/ui/Button";
 import { IconExternal, IconUpload } from "@/components/ui/Icons";
 
@@ -58,7 +58,10 @@ export function WebsitePreview({ company, files }: WebsitePreviewProps) {
   // The newest uploaded HTML build doubles as the preview when no hosted URL
   // is set — this is what makes single-file HTML uploads instantly viewable.
   const latestHtmlFile = useMemo(
-    () => files.files.find((f) => isHtmlFile(f.filename, f.mime_type)) ?? null,
+    () =>
+      files.files.find(
+        (f) => isHtmlFile(f.filename, f.mime_type) && !isPitchFile(f.storage_path)
+      ) ?? null,
     [files.files]
   );
 

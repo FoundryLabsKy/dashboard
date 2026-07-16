@@ -2,34 +2,53 @@
 
 import { useEffect, useState } from "react";
 import type { Company } from "@/lib/types";
-import { isHtmlFile } from "@/lib/format";
+import { isHtmlFile, isPitchFile } from "@/lib/format";
 import { useCompanies } from "./useCompanies";
 
+interface CompanyAssets {
+  previewUrl: string | null;
+  pitchUrl: string | null;
+}
+
 /**
- * Resolve the preview URL a card should show: the hosted preview_url when
- * set, otherwise the newest uploaded HTML build (resolved once per company).
+ * Resolve the URLs a card needs: the website preview (hosted preview_url or
+ * the newest uploaded HTML build) and the pitch deck (pitch_url or the
+ * newest uploaded deck). One file listing per company covers both.
  */
-export function useBuildPreview(company: Company): string | null {
+export function useBuildPreview(company: Company): CompanyAssets {
   const { repo } = useCompanies();
-  const [resolved, setResolved] = useState<{ key: string; url: string | null } | null>(null);
+  const [resolved, setResolved] = useState<{ key: string; assets: CompanyAssets } | null>(null);
+  const needsFiles = !company.preview_url || !company.pitch_url;
 
   useEffect(() => {
-    if (company.preview_url) return;
+    if (!needsFiles) return;
     let cancelled = false;
     repo
       .listFiles(company.id)
       .then(async (files) => {
-        const html = files.find((f) => isHtmlFile(f.filename, f.mime_type));
-        const url = html ? await repo.getFileUrl(html) : null;
-        if (!cancelled) setResolved({ key: company.id, url });
+        const build = files.find(
+          (f) => isHtmlFile(f.filename, f.mime_type) && !isPitchFile(f.storage_path)
+        );
+        const pitch = files.find((f) => isPitchFile(f.storage_path));
+        const assets: CompanyAssets = {
+          previewUrl: build ? await repo.getFileUrl(build) : null,
+          pitchUrl: pitch ? await repo.getFileUrl(pitch) : null,
+        };
+        if (!cancelled) setResolved({ key: company.id, assets });
       })
       .catch(() => {
-        if (!cancelled) setResolved({ key: company.id, url: null });
+        if (!cancelled) {
+          setResolved({ key: company.id, assets: { previewUrl: null, pitchUrl: null } });
+        }
       });
     return () => {
       cancelled = true;
     };
-  }, [repo, company.id, company.preview_url]);
+  }, [repo, company.id, needsFiles]);
 
-  return company.preview_url || (resolved?.key === company.id ? resolved.url : null);
+  const fromFiles = resolved?.key === company.id ? resolved.assets : null;
+  return {
+    previewUrl: company.preview_url || fromFiles?.previewUrl || null,
+    pitchUrl: company.pitch_url || fromFiles?.pitchUrl || null,
+  };
 }

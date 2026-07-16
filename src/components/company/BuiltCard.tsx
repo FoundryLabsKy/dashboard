@@ -8,7 +8,7 @@ import { formatCurrency } from "@/lib/format";
 import { listItemVariants } from "@/lib/motion";
 import { StatusBadge } from "@/components/ui/StatusBadge";
 import { Button } from "@/components/ui/Button";
-import { IconArchive, IconGlobe, IconPencil } from "@/components/ui/Icons";
+import { IconArchive, IconExternal, IconGlobe, IconPencil } from "@/components/ui/Icons";
 import { useBuildPreview } from "@/hooks/useBuildPreview";
 
 interface BuiltCardProps {
@@ -22,7 +22,7 @@ export function BuiltCard({ company, onEdit, onMarkSold, onArchive }: BuiltCardP
   const router = useRouter();
   const reduced = useReducedMotion() ?? false;
   const stage = deriveStage(company);
-  const previewSrc = useBuildPreview(company);
+  const { previewUrl: previewSrc, pitchUrl } = useBuildPreview(company);
 
   const open = () => router.push(`/company?id=${company.id}`);
 
@@ -116,17 +116,31 @@ export function BuiltCard({ company, onEdit, onMarkSold, onArchive }: BuiltCardP
         )}
 
         <div className="mt-auto flex items-center justify-between gap-2 pt-2">
-          {company.sold ? (
-            <span className="font-mono text-xs text-stage-sold">
-              {company.sale_price != null && formatCurrency(company.sale_price)}
-              {company.monthly_fee != null &&
-                ` + ${formatCurrency(company.monthly_fee)}/mo`}
-            </span>
-          ) : (
-            <Button variant="primary" size="sm" onClick={() => onMarkSold(company)}>
-              Mark sold
-            </Button>
-          )}
+          <div className="flex items-center gap-2">
+            {company.sold ? (
+              <span className="font-mono text-xs text-stage-sold">
+                {company.sale_price != null && formatCurrency(company.sale_price)}
+                {company.monthly_fee != null &&
+                  ` + ${formatCurrency(company.monthly_fee)}/mo`}
+              </span>
+            ) : (
+              <Button variant="primary" size="sm" onClick={() => onMarkSold(company)}>
+                Mark sold
+              </Button>
+            )}
+            {pitchUrl && (
+              <a
+                href={pitchUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={(e) => e.stopPropagation()}
+                className="inline-flex items-center gap-1.5 rounded-lg border border-white/10 bg-white/[0.04] px-3 py-1.5 text-[13px] font-medium text-ink transition-colors hover:border-white/20 hover:bg-white/[0.08]"
+              >
+                Pitch
+                <IconExternal className="h-3.5 w-3.5" />
+              </a>
+            )}
+          </div>
           <div className="flex items-center gap-1">
             <Button
               variant="subtle"

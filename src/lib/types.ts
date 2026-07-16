@@ -5,6 +5,7 @@ export interface Company {
   contact: string | null;
   website: string | null;
   preview_url: string | null;
+  pitch_url: string | null;
   notes: string;
   potential_domains: string[];
   built: boolean;

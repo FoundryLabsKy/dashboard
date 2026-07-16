@@ -43,14 +43,14 @@ export function useCompanyFiles(companyId: string) {
   }, [repo, companyId, toast]);
 
   const upload = useCallback(
-    async (fileList: FileList | File[]) => {
+    async (fileList: FileList | File[], kind?: "pitch") => {
       const items = Array.from(fileList);
       if (!items.length) return [] as CompanyFile[];
       setUploading(true);
       const uploaded: CompanyFile[] = [];
       try {
         for (const file of items) {
-          const record = await repo.uploadFile(companyId, file);
+          const record = await repo.uploadFile(companyId, file, kind);
           uploaded.push(record);
         }
         setFiles((prev) => [...uploaded, ...prev]);

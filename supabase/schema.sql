@@ -12,6 +12,7 @@ create table if not exists companies (
   contact text,
   website text,
   preview_url text,
+  pitch_url text,
   notes text not null default '',
   potential_domains jsonb not null default '[]',
   built boolean not null default false,
@@ -23,6 +24,9 @@ create table if not exists companies (
   monthly_fee numeric,
   created_at timestamptz not null default now()
 );
+
+-- Safe to re-run on an existing project.
+alter table companies add column if not exists pitch_url text;
 
 create table if not exists files (
   id uuid primary key default gen_random_uuid(),

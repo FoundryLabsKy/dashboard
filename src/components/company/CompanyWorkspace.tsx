@@ -19,6 +19,7 @@ import { EditCompanyModal } from "@/components/company/EditCompanyModal";
 import { NotesAutosave } from "@/components/company/NotesAutosave";
 import { DomainList } from "@/components/company/DomainList";
 import { FileSection } from "@/components/company/FileSection";
+import { PitchDeckSection } from "@/components/company/PitchDeckSection";
 import { WebsitePreview } from "@/components/company/WebsitePreview";
 import { SoldToggleSection } from "@/components/company/SoldToggleSection";
 import {
@@ -156,6 +157,10 @@ export function CompanyWorkspace({ id }: { id: string }) {
 
           <div className="glass p-5">
             <WebsitePreview company={company} files={files} />
+          </div>
+
+          <div className="glass p-5">
+            <PitchDeckSection company={company} files={files} />
           </div>
 
           <div className="glass p-5">

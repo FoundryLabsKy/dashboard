@@ -69,9 +69,10 @@ export const supabaseRepo: CompanyRepo = {
     return (data ?? []) as CompanyFile[];
   },
 
-  async uploadFile(companyId: string, file: File) {
+  async uploadFile(companyId: string, file: File, kind?: "pitch") {
     const supabase = getSupabase();
-    const path = `${companyId}/${crypto.randomUUID()}-${file.name}`;
+    const folder = kind === "pitch" ? `${companyId}/pitch` : companyId;
+    const path = `${folder}/${crypto.randomUUID()}-${file.name}`;
     const { error: uploadError } = await supabase.storage
       .from(BUCKET)
       .upload(path, file, { contentType: file.type || undefined });

@@ -33,6 +33,11 @@ export function isHtmlFile(filename: string, mime: string | null): boolean {
   return /\.html?$/i.test(filename) || mime === "text/html";
 }
 
+// Pitch decks live under a dedicated storage prefix in both storage modes.
+export function isPitchFile(storagePath: string): boolean {
+  return storagePath.includes("/pitch/") || storagePath.startsWith("pitch-");
+}
+
 export function normalizeUrl(value: string): string {
   const trimmed = value.trim();
   if (!trimmed) return "";
