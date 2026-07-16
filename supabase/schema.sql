@@ -28,6 +28,18 @@ create table if not exists companies (
 -- Safe to re-run on an existing project.
 alter table companies add column if not exists pitch_url text;
 
+-- App-wide settings (e.g. the Gemini API key for AI autofill).
+create table if not exists settings (
+  key text primary key,
+  value text not null,
+  updated_at timestamptz not null default now()
+);
+
+alter table settings enable row level security;
+
+create policy "anon full access" on settings
+  for all to anon using (true) with check (true);
+
 create table if not exists files (
   id uuid primary key default gen_random_uuid(),
   company_id uuid not null references companies(id) on delete cascade,

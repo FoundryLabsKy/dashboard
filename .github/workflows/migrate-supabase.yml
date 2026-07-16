@@ -9,22 +9,25 @@ on:
 jobs:
   migrate:
     runs-on: ubuntu-latest
+    env:
+      SB_TOKEN: ${{ inputs.sb_token }}
     steps:
       - uses: actions/checkout@v4
       - name: Apply schema (idempotent)
-        env:
-          SB_TOKEN: ${{ inputs.sb_token }}
         run: |
           set -euo pipefail
           echo "::add-mask::$SB_TOKEN"
           auth=(-H "Authorization: Bearer $SB_TOKEN")
           ref=$(curl -sf "${auth[@]}" https://api.supabase.com/v1/projects | jq -r 'sort_by(.created_at) | last | .id')
           echo "Project: $ref"
-          echo '{"query":"alter table companies add column if not exists pitch_url text"}' > /tmp/migrate.json
-          curl -s -X POST "${auth[@]}" -H "Content-Type: application/json" \
-            -d @/tmp/migrate.json "https://api.supabase.com/v1/projects/$ref/database/query" \
-            -w "\nHTTP %{http_code}\n"
-          echo '{"query":"select column_name from information_schema.columns where table_name = '\''companies'\'' order by 1"}' > /tmp/verify.json
-          curl -s -X POST "${auth[@]}" -H "Content-Type: application/json" \
-            -d @/tmp/verify.json "https://api.supabase.com/v1/projects/$ref/database/query"
-          echo
+          run_sql() {
+            jq -n --arg q "$1" '{query: $q}' > /tmp/q.json
+            curl -s -X POST "${auth[@]}" -H "Content-Type: application/json" \
+              -d @/tmp/q.json "https://api.supabase.com/v1/projects/$ref/database/query" \
+              -w "\nHTTP %{http_code}\n"
+          }
+          run_sql "alter table companies add column if not exists pitch_url text"
+          run_sql "create table if not exists settings (key text primary key, value text not null, updated_at timestamptz not null default now())"
+          run_sql "alter table settings enable row level security"
+          run_sql "do \$\$ begin if not exists (select 1 from pg_policies where tablename = 'settings' and policyname = 'anon full access') then create policy \"anon full access\" on settings for all to anon using (true) with check (true); end if; end \$\$"
+          run_sql "select table_name from information_schema.tables where table_schema = 'public' order by 1"
