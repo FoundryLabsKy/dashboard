@@ -1,0 +1,29 @@
+name: Check Live Site
+on: workflow_dispatch
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Live site responds and serves the app
+        run: |
+          set -euo pipefail
+          url="https://foundrylabsky.github.io/dashboard/"
+          code=$(curl -s -o /tmp/page.html -w "%{http_code}" "$url")
+          echo "HTTP $code from $url"
+          [ "$code" = "200" ]
+          grep -q "Foundry Dashboard" /tmp/page.html && echo "App markup present"
+          for path in todo built income archived company; do
+            sub=$(curl -s -o /dev/null -w "%{http_code}" "${url}${path}/")
+            echo "HTTP $sub from ${url}${path}/"
+            [ "$sub" = "200" ]
+          done
+      - name: Supabase reachable with app credentials
+        run: |
+          set -euo pipefail
+          code=$(curl -s -o /dev/null -w "%{http_code}" \
+            -H "apikey: sb_publishable_wFjOh8cogARpOPpXcZ4nww_SZaG90np" \
+            "https://lcgqzvfeqynzfwpmcoye.supabase.co/rest/v1/companies?select=id&limit=1")
+          echo "Supabase REST HTTP $code"
+          [ "$code" = "200" ]
+          echo "ALL LIVE CHECKS PASSED"
