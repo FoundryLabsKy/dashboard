@@ -1,0 +1,47 @@
+name: Verify Supabase
+on: workflow_dispatch
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: End-to-end read/write test with the app's public credentials
+        run: |
+          set -euo pipefail
+          npm install --no-save @supabase/supabase-js > /dev/null 2>&1
+          set -a; source .env.production; set +a
+          node - <<'EOF'
+          const { createClient } = require("@supabase/supabase-js");
+          const supabase = createClient(
+            process.env.NEXT_PUBLIC_SUPABASE_URL,
+            process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
+          );
+          (async () => {
+            const ins = await supabase.from("companies").insert({ name: "__ci_test__" }).select().single();
+            if (ins.error) throw new Error("insert: " + ins.error.message);
+            console.log("INSERT ok:", ins.data.id);
+
+            const upd = await supabase.from("companies").update({ notes: "hi" }).eq("id", ins.data.id).select().single();
+            if (upd.error) throw new Error("update: " + upd.error.message);
+            console.log("UPDATE ok");
+
+            const blob = new Blob(["<h1>ci</h1>"], { type: "text/html" });
+            const up = await supabase.storage.from("company-files").upload(`${ins.data.id}/ci.html`, blob);
+            if (up.error) throw new Error("storage upload: " + up.error.message);
+            console.log("STORAGE upload ok");
+            const pub = supabase.storage.from("company-files").getPublicUrl(up.data.path);
+            const res = await fetch(pub.data.publicUrl);
+            if (!res.ok) throw new Error("public fetch: HTTP " + res.status);
+            console.log("STORAGE public read ok");
+
+            await supabase.storage.from("company-files").remove([up.data.path]);
+            const del = await supabase.from("companies").delete().eq("id", ins.data.id);
+            if (del.error) throw new Error("delete: " + del.error.message);
+            console.log("DELETE ok");
+            console.log("ALL CHECKS PASSED");
+          })().catch((e) => { console.error("FAILED:", e.message); process.exit(1); });
+          EOF
