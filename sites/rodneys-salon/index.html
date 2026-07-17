@@ -1,0 +1,1553 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Rodney's Salon and Barber | Haircuts, Braids, Wigs & Nails — George Town, Grand Cayman</title>
+<meta name="description" content="Rodney's Salon and Barber in George Town, Grand Cayman. Fresh fades, clean cuts, braids, wigs, installs, locs, nails & makeup for men, women and kids. Rated 4.8 stars. Call or WhatsApp +1 345-769-1248 to book.">
+<meta property="og:title" content="Rodney's Salon and Barber — George Town, Grand Cayman">
+<meta property="og:description" content="Walk in confident. Walk out legendary. Fades, braids, wigs, locs, nails & makeup. Book on WhatsApp: +1 345-769-1248.">
+<meta property="og:type" content="website">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "HairSalon",
+  "name": "Rodney's Salon and Barber",
+  "description": "Hair salon and barbershop in George Town, Grand Cayman. Haircuts and fades, braids, wigs, frontal and closure installs, weaves, natural hairstyles, kids hair, locs grooming, manicure, pedicure and makeup.",
+  "telephone": "+1-345-769-1248",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "George Town",
+    "addressRegion": "Grand Cayman",
+    "addressCountry": "KY"
+  },
+  "priceRange": "KYD",
+  "sameAs": ["https://www.instagram.com/rodneys_salon"]
+}
+</script>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Sora:wght@400;500;600;700;800&display=swap');
+
+:root {
+  --ink: #0a0d10;
+  --coal: #12161c;
+  --coal-2: #171c23;
+  --line: rgba(246, 243, 236, 0.09);
+  --paper: #f6f3ec;
+  --mute: #9aa4ad;
+  --teal: #17e5bd;
+  --teal-deep: #0b9c80;
+  --gold: #f2b63c;
+  --coral: #ff5e5b;
+  --wa: #25d366;
+  --radius: 18px;
+  --bar-h: 66px;
+  --display: 'Anton', 'Arial Narrow', Impact, sans-serif;
+  --body: 'Sora', -apple-system, 'Segoe UI', Roboto, sans-serif;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; overflow-x: clip; }
+
+body {
+  font-family: var(--body);
+  background: var(--ink);
+  color: var(--paper);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+::selection { background: var(--teal); color: var(--ink); }
+
+a { color: inherit; }
+img { max-width: 100%; display: block; }
+button { font-family: inherit; }
+
+.wrap { width: min(1120px, 100% - 40px); margin-inline: auto; }
+@media (max-width: 560px) { .wrap { width: calc(100% - 32px); } }
+
+/* ---------- Type ---------- */
+.display {
+  font-family: var(--display);
+  font-weight: 400;
+  text-transform: uppercase;
+  line-height: 0.96;
+  letter-spacing: 0.01em;
+}
+.kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--teal);
+}
+.kicker::before {
+  content: "";
+  width: 26px; height: 2px;
+  background: var(--teal);
+}
+
+/* ---------- Header ---------- */
+.site-header {
+  position: fixed;
+  inset: 0 0 auto 0;
+  z-index: 60;
+  background: rgba(10, 13, 16, 0.86);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--line);
+}
+.header-in {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  height: 64px;
+}
+.logo {
+  font-family: var(--display);
+  font-size: 21px;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  white-space: nowrap;
+}
+.logo .mark {
+  width: 30px; height: 30px;
+  border-radius: 8px;
+  background: linear-gradient(135deg, var(--teal), var(--teal-deep));
+  display: grid;
+  place-items: center;
+  color: var(--ink);
+  flex: none;
+}
+.logo .mark svg { width: 17px; height: 17px; }
+.logo em { font-style: normal; color: var(--teal); }
+
+.main-nav { display: flex; align-items: center; gap: 4px; }
+.main-nav a {
+  text-decoration: none;
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--mute);
+  padding: 8px 13px;
+  border-radius: 999px;
+  transition: color .2s, background .2s;
+}
+.main-nav a:hover { color: var(--paper); }
+.main-nav a.active { color: var(--ink); background: var(--teal); }
+
+.header-actions { display: flex; align-items: center; gap: 10px; }
+.header-phone {
+  text-decoration: none;
+  font-size: 13.5px;
+  font-weight: 700;
+  color: var(--paper);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 14px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  transition: border-color .2s;
+}
+.header-phone:hover { border-color: var(--teal); }
+.header-phone svg { width: 14px; height: 14px; color: var(--teal); }
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  text-decoration: none;
+  border: 0;
+  cursor: pointer;
+  font-family: var(--body);
+  font-weight: 800;
+  font-size: 14.5px;
+  letter-spacing: 0.01em;
+  padding: 14px 24px;
+  border-radius: 999px;
+  transition: transform .15s, box-shadow .2s, background .2s, color .2s, border-color .2s;
+}
+.btn:active { transform: scale(0.97); }
+.btn svg { width: 17px; height: 17px; flex: none; }
+.btn-primary {
+  background: var(--teal);
+  color: var(--ink);
+  box-shadow: 0 6px 24px rgba(23, 229, 189, 0.28);
+}
+.btn-primary:hover { background: #3cf0cd; }
+.btn-wa {
+  background: var(--wa);
+  color: #06130a;
+  box-shadow: 0 6px 24px rgba(37, 211, 102, 0.25);
+}
+.btn-wa:hover { background: #3fe07c; }
+.btn-ghost {
+  background: transparent;
+  color: var(--paper);
+  border: 1.5px solid rgba(246, 243, 236, 0.28);
+}
+.btn-ghost:hover { border-color: var(--teal); color: var(--teal); }
+.btn-sm { padding: 10px 18px; font-size: 13.5px; }
+
+.burger {
+  display: none;
+  width: 42px; height: 42px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: transparent;
+  color: var(--paper);
+  cursor: pointer;
+  place-items: center;
+}
+.burger svg { width: 20px; height: 20px; }
+
+@media (max-width: 920px) {
+  .main-nav, .header-phone { display: none; }
+  .burger { display: grid; }
+  .header-book { display: none; }
+}
+
+/* Mobile menu */
+.mobile-menu {
+  position: fixed;
+  inset: 64px 0 auto 0;
+  z-index: 59;
+  background: rgba(10, 13, 16, 0.97);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--line);
+  padding: 10px 20px 24px;
+  display: none;
+}
+.mobile-menu.open { display: block; }
+.mobile-menu a {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  text-decoration: none;
+  font-family: var(--display);
+  text-transform: uppercase;
+  font-size: 27px;
+  letter-spacing: 0.02em;
+  padding: 13px 4px;
+  border-bottom: 1px solid var(--line);
+  color: var(--paper);
+}
+.mobile-menu a.active { color: var(--teal); }
+.mobile-menu a .arr { color: var(--teal); font-family: var(--body); font-size: 18px; }
+.mobile-menu .menu-cta { display: flex; gap: 10px; margin-top: 18px; }
+.mobile-menu .menu-cta .btn { flex: 1; }
+
+/* ---------- Views (pages) ---------- */
+.view { display: none; padding-top: 64px; }
+.view.active { display: block; animation: viewIn .35s ease both; }
+@keyframes viewIn {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: none; }
+}
+
+/* ---------- Hero ---------- */
+.hero {
+  position: relative;
+  padding: 56px 0 40px;
+  overflow: hidden;
+}
+.hero::before {
+  content: "";
+  position: absolute;
+  top: -220px; right: -180px;
+  width: 560px; height: 560px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(23, 229, 189, 0.16), transparent 65%);
+  pointer-events: none;
+}
+.hero::after {
+  content: "";
+  position: absolute;
+  bottom: -260px; left: -200px;
+  width: 520px; height: 520px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(242, 182, 60, 0.1), transparent 65%);
+  pointer-events: none;
+}
+.hero-in { position: relative; z-index: 1; }
+
+.rating-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  background: var(--coal);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 8px 15px;
+  font-size: 13px;
+  font-weight: 600;
+  margin-bottom: 22px;
+}
+.rating-pill .stars { display: inline-flex; gap: 1.5px; }
+.rating-pill .stars svg { width: 14px; height: 14px; color: var(--gold); }
+.rating-pill b { color: var(--gold); font-weight: 800; }
+.rating-pill span { color: var(--mute); }
+
+.hero h1 {
+  font-size: clamp(46px, 9.5vw, 108px);
+  max-width: 11ch;
+}
+.hero h1 .t { color: var(--teal); }
+.hero h1 .o {
+  -webkit-text-stroke: 1.5px rgba(246, 243, 236, 0.75);
+  color: transparent;
+}
+.hero-sub {
+  margin-top: 20px;
+  max-width: 46ch;
+  color: var(--mute);
+  font-size: clamp(15px, 2.4vw, 17.5px);
+}
+.hero-sub b { color: var(--paper); }
+.hero-cta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 30px;
+}
+.hero-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 22px;
+  margin-top: 26px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--mute);
+}
+.hero-meta span { display: inline-flex; align-items: center; gap: 7px; }
+.hero-meta svg { width: 14px; height: 14px; color: var(--teal); }
+@media (max-width: 560px) {
+  .hero { padding: 40px 0 34px; }
+  .hero-cta .btn { flex: 1 1 100%; }
+}
+
+/* ---------- Marquee ---------- */
+.marquee {
+  background: var(--teal);
+  color: var(--ink);
+  transform: rotate(-1.2deg) scale(1.02);
+  padding: 11px 0;
+  overflow: hidden;
+  margin: 26px 0;
+  user-select: none;
+}
+.marquee-track {
+  display: flex;
+  gap: 0;
+  width: max-content;
+  animation: slide 26s linear infinite;
+}
+.marquee-track span {
+  font-family: var(--display);
+  text-transform: uppercase;
+  font-size: 17px;
+  letter-spacing: 0.06em;
+  white-space: nowrap;
+  padding-right: 14px;
+}
+@keyframes slide { to { transform: translateX(-50%); } }
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track { animation: none; }
+  .view.active { animation: none; }
+}
+
+/* ---------- Sections ---------- */
+.section { padding: 58px 0; }
+.section-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 34px;
+}
+.section-head h2 {
+  font-size: clamp(32px, 6vw, 54px);
+  margin-top: 10px;
+}
+.section-head p { color: var(--mute); max-width: 52ch; margin-top: 10px; font-size: 15px; }
+
+.reveal { opacity: 0; transform: translateY(18px); transition: opacity .6s ease, transform .6s ease; }
+.reveal.in { opacity: 1; transform: none; }
+
+/* ---------- Service preview cards (home) ---------- */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+}
+@media (max-width: 920px) { .card-grid { grid-template-columns: repeat(2, 1fr); } }
+.svc-card {
+  position: relative;
+  display: block;
+  text-decoration: none;
+  background: var(--coal);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 22px 20px 20px;
+  overflow: hidden;
+  transition: transform .2s, border-color .2s;
+}
+.svc-card:hover { transform: translateY(-4px); border-color: rgba(23, 229, 189, 0.5); }
+.svc-card .ico {
+  width: 44px; height: 44px;
+  border-radius: 12px;
+  display: grid;
+  place-items: center;
+  margin-bottom: 40px;
+  color: var(--ink);
+}
+.svc-card .ico svg { width: 22px; height: 22px; }
+.svc-card h3 {
+  font-family: var(--display);
+  font-weight: 400;
+  text-transform: uppercase;
+  font-size: 21px;
+  letter-spacing: 0.02em;
+}
+.svc-card p { font-size: 13px; color: var(--mute); margin-top: 6px; }
+.svc-card .go {
+  position: absolute;
+  top: 18px; right: 18px;
+  color: var(--mute);
+  font-size: 18px;
+  transition: color .2s, transform .2s;
+}
+.svc-card:hover .go { color: var(--teal); transform: translate(2px, -2px); }
+.ico-teal { background: linear-gradient(135deg, var(--teal), var(--teal-deep)); }
+.ico-gold { background: linear-gradient(135deg, var(--gold), #c98a12); }
+.ico-coral { background: linear-gradient(135deg, var(--coral), #d13734); }
+.ico-paper { background: linear-gradient(135deg, var(--paper), #c9c2b4); }
+
+/* ---------- Why band ---------- */
+.why {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+}
+@media (max-width: 820px) { .why { grid-template-columns: 1fr; } }
+.why-item {
+  background: var(--coal);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 24px 22px;
+}
+.why-item .n {
+  font-family: var(--display);
+  font-size: 15px;
+  color: var(--teal);
+  letter-spacing: 0.12em;
+}
+.why-item h3 {
+  font-family: var(--display);
+  font-weight: 400;
+  text-transform: uppercase;
+  font-size: 23px;
+  margin: 10px 0 8px;
+}
+.why-item p { color: var(--mute); font-size: 14px; }
+
+/* ---------- Big CTA band ---------- */
+.cta-band {
+  background: linear-gradient(120deg, var(--teal) 0%, #0fd0aa 55%, var(--teal-deep) 100%);
+  color: var(--ink);
+  border-radius: 24px;
+  padding: clamp(30px, 6vw, 56px);
+  position: relative;
+  overflow: hidden;
+}
+.cta-band::after {
+  content: "";
+  position: absolute;
+  top: -60px; right: -60px;
+  width: 240px; height: 240px;
+  border: 26px solid rgba(10, 13, 16, 0.12);
+  border-radius: 50%;
+}
+.cta-band h2 { font-size: clamp(32px, 6.5vw, 60px); max-width: 14ch; position: relative; z-index: 1; }
+.cta-band p { margin-top: 12px; font-weight: 600; max-width: 42ch; position: relative; z-index: 1; }
+.cta-band .row { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 24px; position: relative; z-index: 1; }
+.cta-band .btn-dark { background: var(--ink); color: var(--paper); }
+.cta-band .btn-dark:hover { background: #1c232b; }
+.cta-band .btn-line { background: transparent; border: 2px solid rgba(10, 13, 16, 0.6); color: var(--ink); }
+.cta-band .btn-line:hover { background: rgba(10, 13, 16, 0.08); }
+@media (max-width: 560px) { .cta-band .row .btn { flex: 1 1 100%; } }
+
+/* ---------- Services menu page ---------- */
+.menu-group { margin-bottom: 42px; }
+.menu-group-head {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 8px;
+}
+.menu-group-head h3 {
+  font-family: var(--display);
+  font-weight: 400;
+  text-transform: uppercase;
+  font-size: clamp(23px, 4vw, 30px);
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+}
+.menu-group-head .rule { flex: 1; height: 1px; background: var(--line); }
+.menu-group-head .tag {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink);
+  background: var(--gold);
+  padding: 4px 10px;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+.menu-group-head .tag.t { background: var(--teal); }
+.menu-group-head .tag.c { background: var(--coral); color: var(--paper); }
+
+.menu-list { display: grid; grid-template-columns: 1fr 1fr; gap: 0 40px; }
+@media (max-width: 820px) { .menu-list { grid-template-columns: 1fr; } }
+.menu-item {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 4px 16px;
+  padding: 17px 2px;
+  border-bottom: 1px solid var(--line);
+  align-items: baseline;
+}
+.menu-item .name {
+  font-weight: 700;
+  font-size: 15.5px;
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  min-width: 0;
+}
+.menu-item .name::after {
+  content: "";
+  flex: 1;
+  border-bottom: 1.5px dotted rgba(246, 243, 236, 0.22);
+  transform: translateY(-4px);
+  min-width: 20px;
+}
+.menu-item .price {
+  font-family: var(--display);
+  font-size: 16px;
+  letter-spacing: 0.04em;
+  color: var(--teal);
+  white-space: nowrap;
+}
+.menu-item .desc {
+  grid-column: 1 / -1;
+  font-size: 13px;
+  color: var(--mute);
+}
+.menu-note {
+  margin-top: 26px;
+  background: var(--coal);
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--gold);
+  border-radius: 12px;
+  padding: 16px 18px;
+  font-size: 14px;
+  color: var(--mute);
+}
+.menu-note b { color: var(--paper); }
+.menu-note a { color: var(--teal); font-weight: 700; text-decoration: none; }
+.menu-note a:hover { text-decoration: underline; }
+
+/* ---------- Gallery ---------- */
+.ig-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  background: var(--coal);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 16px 20px;
+  margin-bottom: 22px;
+}
+.ig-bar .who { display: flex; align-items: center; gap: 13px; }
+.ig-bar .av {
+  width: 46px; height: 46px;
+  border-radius: 50%;
+  background: conic-gradient(from 210deg, #feda75, #fa7e1e, #d62976, #962fbf, #4f5bd5, #feda75);
+  display: grid;
+  place-items: center;
+}
+.ig-bar .av .in {
+  width: 40px; height: 40px;
+  border-radius: 50%;
+  background: var(--ink);
+  display: grid;
+  place-items: center;
+  font-family: var(--display);
+  font-size: 17px;
+  color: var(--teal);
+}
+.ig-bar .handle { font-weight: 800; font-size: 15px; }
+.ig-bar .sub { font-size: 12.5px; color: var(--mute); }
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+}
+@media (max-width: 920px) { .gallery-grid { grid-template-columns: repeat(3, 1fr); } }
+@media (max-width: 620px) { .gallery-grid { grid-template-columns: repeat(2, 1fr); gap: 8px; } }
+.g-tile {
+  position: relative;
+  aspect-ratio: 1;
+  border-radius: 14px;
+  overflow: hidden;
+  display: flex;
+  align-items: flex-end;
+  padding: 14px;
+  text-decoration: none;
+  border: 1px solid var(--line);
+  transition: transform .2s;
+}
+.g-tile:hover { transform: scale(1.02); }
+.g-tile .wm {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -58%);
+  width: 44%;
+  opacity: 0.5;
+  color: rgba(246, 243, 236, 0.85);
+}
+.g-tile .lab {
+  position: relative;
+  z-index: 1;
+  font-family: var(--display);
+  text-transform: uppercase;
+  font-size: 15px;
+  letter-spacing: 0.05em;
+  color: var(--paper);
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+}
+.g-tile .cam {
+  position: absolute;
+  top: 10px; right: 10px;
+  width: 26px; height: 26px;
+  border-radius: 8px;
+  background: rgba(10, 13, 16, 0.45);
+  display: grid;
+  place-items: center;
+  color: var(--paper);
+}
+.g-tile .cam svg { width: 14px; height: 14px; }
+.bg1 { background: linear-gradient(150deg, #0e3b34, #17e5bd66), var(--coal-2); }
+.bg2 { background: linear-gradient(150deg, #4a2c07, #f2b63c55), var(--coal-2); }
+.bg3 { background: linear-gradient(150deg, #4b1615, #ff5e5b55), var(--coal-2); }
+.bg4 { background: linear-gradient(150deg, #1d2b45, #5b8cff55), var(--coal-2); }
+.bg5 { background: linear-gradient(150deg, #2f1d45, #a45bff55), var(--coal-2); }
+.bg6 { background: linear-gradient(150deg, #103c2c, #2fe07c55), var(--coal-2); }
+.gallery-note { margin-top: 18px; font-size: 13.5px; color: var(--mute); text-align: center; }
+.gallery-note a { color: var(--teal); font-weight: 700; text-decoration: none; }
+
+/* ---------- Team ---------- */
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+}
+@media (max-width: 920px) { .team-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 520px) { .team-grid { grid-template-columns: 1fr; } }
+.team-card {
+  background: var(--coal);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  overflow: hidden;
+  transition: transform .2s, border-color .2s;
+}
+.team-card:hover { transform: translateY(-4px); border-color: rgba(23, 229, 189, 0.4); }
+.team-card .ph {
+  aspect-ratio: 1 / 0.85;
+  display: grid;
+  place-items: center;
+  position: relative;
+}
+.team-card .ph .init {
+  font-family: var(--display);
+  font-size: 64px;
+  color: rgba(10, 13, 16, 0.8);
+}
+.team-card .bio { padding: 18px 18px 20px; }
+.team-card h3 {
+  font-family: var(--display);
+  font-weight: 400;
+  text-transform: uppercase;
+  font-size: 22px;
+}
+.team-card .role {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--teal);
+  margin: 4px 0 8px;
+}
+.team-card p { font-size: 13.5px; color: var(--mute); }
+.ph-teal { background: linear-gradient(140deg, var(--teal), var(--teal-deep)); }
+.ph-gold { background: linear-gradient(140deg, var(--gold), #c98a12); }
+.ph-coral { background: linear-gradient(140deg, var(--coral), #c23431); }
+.ph-paper { background: linear-gradient(140deg, var(--paper), #b9b1a0); }
+
+/* ---------- Book page ---------- */
+.book-grid {
+  display: grid;
+  grid-template-columns: 1.15fr 1fr;
+  gap: 18px;
+  align-items: start;
+}
+@media (max-width: 880px) { .book-grid { grid-template-columns: 1fr; } }
+.book-main {
+  background: var(--coal);
+  border: 1px solid var(--line);
+  border-radius: 22px;
+  padding: clamp(24px, 4.5vw, 40px);
+}
+.book-main h3 {
+  font-family: var(--display);
+  font-weight: 400;
+  text-transform: uppercase;
+  font-size: clamp(26px, 5vw, 38px);
+}
+.book-main > p { color: var(--mute); margin-top: 10px; font-size: 15px; }
+.book-btns { display: grid; gap: 11px; margin-top: 24px; }
+.book-btns .btn { width: 100%; padding: 17px 24px; font-size: 15.5px; }
+.book-alt {
+  margin-top: 18px;
+  text-align: center;
+  font-size: 13.5px;
+  color: var(--mute);
+}
+.book-alt a { color: var(--teal); font-weight: 700; text-decoration: none; }
+
+.steps { display: grid; gap: 0; margin-top: 26px; }
+.step {
+  display: flex;
+  gap: 15px;
+  padding: 14px 0;
+  border-top: 1px solid var(--line);
+}
+.step .num {
+  font-family: var(--display);
+  font-size: 20px;
+  color: var(--gold);
+  flex: none;
+  width: 28px;
+}
+.step b { display: block; font-size: 14.5px; }
+.step span { font-size: 13px; color: var(--mute); }
+
+.info-card {
+  background: var(--coal);
+  border: 1px solid var(--line);
+  border-radius: 22px;
+  padding: 24px;
+  margin-bottom: 18px;
+}
+.info-card h4 {
+  font-family: var(--display);
+  font-weight: 400;
+  text-transform: uppercase;
+  font-size: 19px;
+  letter-spacing: 0.04em;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+.info-card h4 svg { width: 17px; height: 17px; color: var(--teal); }
+.hours { width: 100%; font-size: 14px; border-collapse: collapse; }
+.hours td { padding: 8px 0; border-bottom: 1px solid var(--line); }
+.hours tr:last-child td { border-bottom: 0; }
+.hours td:last-child { text-align: right; color: var(--mute); }
+.hours .today td { color: var(--teal); font-weight: 700; }
+.info-card p { font-size: 14px; color: var(--mute); }
+.info-card p b { color: var(--paper); }
+.walkin {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 12px;
+  font-size: 12.5px;
+  font-weight: 700;
+  color: var(--gold);
+  background: rgba(242, 182, 60, 0.1);
+  border: 1px solid rgba(242, 182, 60, 0.3);
+  padding: 7px 13px;
+  border-radius: 999px;
+}
+
+/* ---------- Footer ---------- */
+.site-footer {
+  border-top: 1px solid var(--line);
+  padding: 44px 0 30px;
+  margin-top: 30px;
+}
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr;
+  gap: 30px;
+}
+@media (max-width: 760px) { .footer-grid { grid-template-columns: 1fr; } }
+.site-footer .fl {
+  font-family: var(--display);
+  text-transform: uppercase;
+  font-size: 24px;
+}
+.site-footer .fl em { font-style: normal; color: var(--teal); }
+.site-footer .tag { color: var(--mute); font-size: 13.5px; margin-top: 8px; max-width: 34ch; }
+.site-footer h5 {
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--mute);
+  margin-bottom: 12px;
+}
+.site-footer ul { list-style: none; display: grid; gap: 9px; }
+.site-footer ul a {
+  text-decoration: none;
+  font-size: 14px;
+  color: var(--paper);
+  opacity: 0.85;
+}
+.site-footer ul a:hover { color: var(--teal); opacity: 1; }
+.footer-base {
+  margin-top: 34px;
+  padding-top: 18px;
+  border-top: 1px solid var(--line);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 10px;
+  font-size: 12.5px;
+  color: var(--mute);
+}
+.footer-base .stars { color: var(--gold); }
+
+/* ---------- Mobile action bar ---------- */
+.action-bar {
+  position: fixed;
+  z-index: 70;
+  left: 0; right: 0; bottom: 0;
+  height: calc(var(--bar-h) + env(safe-area-inset-bottom));
+  padding: 9px 12px calc(9px + env(safe-area-inset-bottom));
+  background: rgba(10, 13, 16, 0.92);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-top: 1px solid var(--line);
+  display: flex;
+  gap: 9px;
+}
+.action-bar .btn { flex: 1; padding: 12px 10px; font-size: 13.5px; border-radius: 14px; }
+.action-bar .btn-ghost { flex: 0 0 auto; width: 52px; padding: 12px 0; }
+@media (min-width: 921px) { .action-bar { display: none; } }
+@media (max-width: 920px) { body { padding-bottom: calc(var(--bar-h) + env(safe-area-inset-bottom)); } }
+</style>
+</head>
+<body>
+
+<!-- ============ HEADER ============ -->
+<header class="site-header">
+  <div class="wrap header-in">
+    <a href="#home" class="logo" data-nav>
+      <span class="mark" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M20 4 8.6 15.4M14.5 9.5 20 15M8.6 8.6 12 12"/></svg>
+      </span>
+      Rodney's <em>Salon&nbsp;&amp;&nbsp;Barber</em>
+    </a>
+
+    <nav class="main-nav" aria-label="Main">
+      <a href="#home" data-nav data-view="home">Home</a>
+      <a href="#services" data-nav data-view="services">Services &amp; Prices</a>
+      <a href="#gallery" data-nav data-view="gallery">Gallery</a>
+      <a href="#team" data-nav data-view="team">Team</a>
+      <a href="#book" data-nav data-view="book">Book</a>
+    </nav>
+
+    <div class="header-actions">
+      <a class="header-phone" href="tel:+13457691248" aria-label="Call Rodney's Salon and Barber">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M6.62 10.79a15.05 15.05 0 0 0 6.59 6.59l2.2-2.2a1 1 0 0 1 1.02-.24c1.12.37 2.33.57 3.57.57a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1C10.85 21 3 13.15 3 3.5a1 1 0 0 1 1-1H7.5a1 1 0 0 1 1 1c0 1.24.2 2.45.57 3.57a1 1 0 0 1-.24 1.02l-2.21 2.2Z"/></svg>
+        +1 345-769-1248
+      </a>
+      <a class="btn btn-primary btn-sm header-book" href="#book" data-nav>Book Now</a>
+      <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h10"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- Mobile menu -->
+<nav class="mobile-menu" id="mobileMenu" aria-label="Mobile">
+  <a href="#home" data-nav data-view="home">Home <span class="arr">→</span></a>
+  <a href="#services" data-nav data-view="services">Services &amp; Prices <span class="arr">→</span></a>
+  <a href="#gallery" data-nav data-view="gallery">Gallery <span class="arr">→</span></a>
+  <a href="#team" data-nav data-view="team">Team <span class="arr">→</span></a>
+  <a href="#book" data-nav data-view="book">Book <span class="arr">→</span></a>
+  <div class="menu-cta">
+    <a class="btn btn-wa" href="https://wa.me/13457691248?text=Hi%20Rodney%27s!%20I%27d%20like%20to%20book%20an%20appointment." target="_blank" rel="noopener">WhatsApp</a>
+    <a class="btn btn-ghost" href="tel:+13457691248">Call</a>
+  </div>
+</nav>
+
+<main>
+
+<!-- ============ HOME ============ -->
+<section class="view" id="view-home">
+  <div class="hero">
+    <div class="wrap hero-in">
+      <div class="rating-pill">
+        <span class="stars" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        </span>
+        <b>4.8</b><span>· Rated by our clients · George Town</span>
+      </div>
+
+      <h1 class="display">
+        Walk in <span class="t">confident.</span><br>
+        Walk out <span class="o">legendary.</span>
+      </h1>
+
+      <p class="hero-sub">
+        <b>Fresh fades, clean cuts, and sharp styles</b> — plus braids, wigs, installs,
+        locs, nails and makeup. One shop for men, women and kids in the heart of
+        George Town, Grand Cayman.
+      </p>
+
+      <div class="hero-cta">
+        <a class="btn btn-wa" href="https://wa.me/13457691248?text=Hi%20Rodney%27s!%20I%27d%20like%20to%20book%20an%20appointment." target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2a9.9 9.9 0 0 0-8.4 15.16L2.05 22l4.99-1.56A9.9 9.9 0 1 0 12.04 2Zm5.77 14.06c-.24.68-1.4 1.3-1.93 1.35-.52.05-1.01.24-3.4-.7-2.87-1.14-4.7-4.06-4.84-4.25-.14-.19-1.16-1.55-1.16-2.96 0-1.4.73-2.09 1-2.38.26-.28.57-.35.76-.35h.55c.18 0 .42-.06.65.5.24.57.8 1.97.88 2.11.07.14.12.31.02.5-.1.19-.15.3-.29.47-.14.17-.3.38-.43.5-.14.15-.29.3-.12.58.16.28.73 1.2 1.57 1.95 1.08.96 1.99 1.26 2.27 1.4.28.14.45.12.61-.07.17-.19.7-.82.89-1.1.19-.28.38-.24.64-.14.26.09 1.66.78 1.94.92.29.14.48.21.55.33.07.12.07.68-.16 1.34Z"/></svg>
+          Book on WhatsApp
+        </a>
+        <a class="btn btn-ghost" href="tel:+13457691248">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M6.62 10.79a15.05 15.05 0 0 0 6.59 6.59l2.2-2.2a1 1 0 0 1 1.02-.24c1.12.37 2.33.57 3.57.57a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1C10.85 21 3 13.15 3 3.5a1 1 0 0 1 1-1H7.5a1 1 0 0 1 1 1c0 1.24.2 2.45.57 3.57a1 1 0 0 1-.24 1.02l-2.21 2.2Z"/></svg>
+          Call +1 345-769-1248
+        </a>
+      </div>
+
+      <div class="hero-meta">
+        <span>
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7Zm0 9.5A2.5 2.5 0 1 1 12 6a2.5 2.5 0 0 1 0 5.5Z"/></svg>
+          George Town, Grand Cayman
+        </span>
+        <span>
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 3.25.15 4.77 1.69 4.92 4.92.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.15 3.23-1.66 4.77-4.92 4.92-1.27.06-1.64.07-4.85.07-3.2 0-3.58-.01-4.85-.07-3.26-.15-4.77-1.7-4.92-4.92-.06-1.27-.07-1.64-.07-4.85s.01-3.58.07-4.85C2.38 3.92 3.9 2.38 7.15 2.23 8.42 2.18 8.8 2.16 12 2.16Zm0 3.68a6.16 6.16 0 1 0 0 12.32 6.16 6.16 0 0 0 0-12.32ZM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8Zm6.4-10.85a1.44 1.44 0 1 0 0 2.88 1.44 1.44 0 0 0 0-2.88Z"/></svg>
+          @rodneys_salon
+        </span>
+        <span>
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 22a10 10 0 1 1 0-20 10 10 0 0 1 0 20Zm1-10.41V7a1 1 0 1 0-2 0v5a1 1 0 0 0 .29.7l3 3a1 1 0 0 0 1.42-1.4L13 11.59Z"/></svg>
+          Walk-ins welcome
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee-track">
+      <span>Fades ✦ Braids ✦ Wigs ✦ Installs ✦ Weaves ✦ Locs ✦ Kids ✦ Nails ✦ Makeup ✦ Barbering ✦&nbsp;</span>
+      <span>Fades ✦ Braids ✦ Wigs ✦ Installs ✦ Weaves ✦ Locs ✦ Kids ✦ Nails ✦ Makeup ✦ Barbering ✦&nbsp;</span>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div>
+          <span class="kicker">What we do</span>
+          <h2 class="display">Every chair, every style</h2>
+        </div>
+        <a class="btn btn-ghost btn-sm" href="#services" data-nav>Full menu &amp; prices →</a>
+      </div>
+
+      <div class="card-grid">
+        <a class="svc-card reveal" href="#services" data-nav>
+          <span class="ico ico-teal" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M20 4 8.6 15.4M14.5 9.5 20 15M8.6 8.6 12 12"/></svg>
+          </span>
+          <h3>Cuts &amp; Fades</h3>
+          <p>Skin fades, tapers, line-ups and beard work with barbershop precision.</p>
+          <span class="go" aria-hidden="true">↗</span>
+        </a>
+        <a class="svc-card reveal" href="#services" data-nav>
+          <span class="ico ico-gold" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 3v7a8 8 0 0 0 16 0V3"/><path d="M8 3v7M12 3v8M16 3v7"/></svg>
+          </span>
+          <h3>Braids &amp; Natural</h3>
+          <p>Knotless, box braids, cornrows, silk press and defined natural styles.</p>
+          <span class="go" aria-hidden="true">↗</span>
+        </a>
+        <a class="svc-card reveal" href="#services" data-nav>
+          <span class="ico ico-coral" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3c-4 0-7 3-7 8 0 4 1 7 2 9h10c1-2 2-5 2-9 0-5-3-8-7-8Z"/><path d="M12 3v6M9 20v-4M15 20v-4"/></svg>
+          </span>
+          <h3>Wigs &amp; Installs</h3>
+          <p>Custom units, melted frontals, closures and full sew-in weaves.</p>
+          <span class="go" aria-hidden="true">↗</span>
+        </a>
+        <a class="svc-card reveal" href="#services" data-nav>
+          <span class="ico ico-paper" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11V6a3 3 0 0 1 6 0v5"/><path d="M5 11h14l-1.4 8.4a2 2 0 0 1-2 1.6H8.4a2 2 0 0 1-2-1.6L5 11Z"/></svg>
+          </span>
+          <h3>Nails &amp; Makeup</h3>
+          <p>Manicures, pedicures and event-ready glam to finish the look.</p>
+          <span class="go" aria-hidden="true">↗</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" style="padding-top: 0;">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div>
+          <span class="kicker">Why Rodney's</span>
+          <h2 class="display">The shop George Town talks about</h2>
+        </div>
+      </div>
+      <div class="why">
+        <div class="why-item reveal">
+          <div class="n">01</div>
+          <h3>Barbershop meets salon</h3>
+          <p>Fades on one chair, frontals on the next. Bring the whole family — men, women and kids all leave sharp.</p>
+        </div>
+        <div class="why-item reveal">
+          <div class="n">02</div>
+          <h3>4.8-star reputation</h3>
+          <p>Our clients keep coming back — and keep posting the results. The reviews and the mirror don't lie.</p>
+        </div>
+        <div class="why-item reveal">
+          <div class="n">03</div>
+          <h3>Easy to book</h3>
+          <p>No apps, no accounts. One WhatsApp message or a quick call and your chair is waiting.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" style="padding-top: 0;">
+    <div class="wrap">
+      <div class="cta-band reveal">
+        <h2 class="display">Your next look is one message away</h2>
+        <p>Tell us the style and the day — we'll handle the rest. Walk-ins welcome when a chair is free.</p>
+        <div class="row">
+          <a class="btn btn-dark" href="https://wa.me/13457691248?text=Hi%20Rodney%27s!%20I%27d%20like%20to%20book%20an%20appointment." target="_blank" rel="noopener">Book on WhatsApp</a>
+          <a class="btn btn-line" href="tel:+13457691248">Call +1 345-769-1248</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SERVICES ============ -->
+<section class="view" id="view-services">
+  <div class="section">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <span class="kicker">Services &amp; Prices</span>
+          <h2 class="display">The menu</h2>
+          <p>All prices in KYD. Final quotes depend on hair length, density and style — message us on WhatsApp for an exact price before you book.</p>
+        </div>
+        <a class="btn btn-primary btn-sm" href="#book" data-nav>Book Now</a>
+      </div>
+
+      <div class="menu-group reveal">
+        <div class="menu-group-head">
+          <h3>The Chair — Barbering</h3>
+          <span class="rule"></span>
+          <span class="tag t">Men · Women · Kids</span>
+        </div>
+        <div class="menu-list">
+          <div class="menu-item">
+            <span class="name">Haircut &amp; Fade</span>
+            <span class="price">[PLACEHOLDER] KYD</span>
+            <span class="desc">Skin fades, tapers, scissor cuts — finished with a crisp line-up.</span>
+          </div>
+          <div class="menu-item">
+            <span class="name">Barbering &amp; Beard Work</span>
+            <span class="price">[PLACEHOLDER] KYD</span>
+            <span class="desc">Beard sculpt, hot towel and razor edging for a clean finish.</span>
+          </div>
+          <div class="menu-item">
+            <span class="name">Kids' Haircut</span>
+            <span class="price">[PLACEHOLDER] KYD</span>
+            <span class="desc">Patient chairs and fresh cuts for the little ones (12 &amp; under).</span>
+          </div>
+          <div class="menu-item">
+            <span class="name">Locs Grooming</span>
+            <span class="price">[PLACEHOLDER] KYD</span>
+            <span class="desc">Retwist, root maintenance and styling to keep locs tight and healthy.</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="menu-group reveal">
+        <div class="menu-group-head">
+          <h3>Braids &amp; Styling</h3>
+          <span class="rule"></span>
+          <span class="tag">Protective styles</span>
+        </div>
+        <div class="menu-list">
+          <div class="menu-item">
+            <span class="name">Braids</span>
+            <span class="price">[PLACEHOLDER] KYD</span>
+            <span class="desc">Knotless, box braids, cornrows and feed-ins — neat parts, long wear.</span>
+          </div>
+          <div class="menu-item">
+            <span class="name">Natural Hairstyles</span>
+            <span class="price">[PLACEHOLDER] KYD</span>
+            <span class="desc">Silk press, twist-outs and defined curls that celebrate your texture.</span>
+          </div>
+          <div class="menu-item">
+            <span class="name">Weaves</span>
+            <span class="price">[PLACEHOLDER] KYD</span>
+            <span class="desc">Full sew-ins and partials, blended flat and styled to finish.</span>
+          </div>
+          <div class="menu-item">
+            <span class="name">Kids' Hair</span>
+            <span class="price">[PLACEHOLDER] KYD</span>
+            <span class="desc">Gentle braids and styles for school days and special occasions.</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="menu-group reveal">
+        <div class="menu-group-head">
+          <h3>Wigs &amp; Installs</h3>
+          <span class="rule"></span>
+          <span class="tag c">Lace game strong</span>
+        </div>
+        <div class="menu-list">
+          <div class="menu-item">
+            <span class="name">Wigs</span>
+            <span class="price">[PLACEHOLDER] KYD</span>
+            <span class="desc">Custom units, fitting, styling and revamps.</span>
+          </div>
+          <div class="menu-item">
+            <span class="name">Frontal Install</span>
+            <span class="price">[PLACEHOLDER] KYD</span>
+            <span class="desc">Melted lace and a hairline they'll have to ask about.</span>
+          </div>
+          <div class="menu-item">
+            <span class="name">Closure Install</span>
+            <span class="price">[PLACEHOLDER] KYD</span>
+            <span class="desc">Secure, seamless and made to last through island weather.</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="menu-group reveal">
+        <div class="menu-group-head">
+          <h3>The Glow-Up — Beauty</h3>
+          <span class="rule"></span>
+          <span class="tag">Finish the look</span>
+        </div>
+        <div class="menu-list">
+          <div class="menu-item">
+            <span class="name">Manicure</span>
+            <span class="price">[PLACEHOLDER] KYD</span>
+            <span class="desc">Shape, cuticle care and polish — clean hands, sharp look.</span>
+          </div>
+          <div class="menu-item">
+            <span class="name">Pedicure</span>
+            <span class="price">[PLACEHOLDER] KYD</span>
+            <span class="desc">Soak, scrub and shine. Sandal-season ready, all year round.</span>
+          </div>
+          <div class="menu-item">
+            <span class="name">Makeup</span>
+            <span class="price">[PLACEHOLDER] KYD</span>
+            <span class="desc">Soft glam to full glam for events, photos and nights out.</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="menu-note reveal">
+        <b>Not sure what to book?</b> Send us a photo of the style you want on
+        <a href="https://wa.me/13457691248?text=Hi%20Rodney%27s!%20Can%20I%20get%20a%20quote%20for%20this%20style%3F" target="_blank" rel="noopener">WhatsApp</a>
+        and we'll confirm the price and how long to set aside.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ GALLERY ============ -->
+<section class="view" id="view-gallery">
+  <div class="section">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <span class="kicker">Gallery</span>
+          <h2 class="display">Fresh off the chair</h2>
+          <p>The proof is on the feed. Follow @rodneys_salon for daily cuts, transformations and chair-side energy.</p>
+        </div>
+      </div>
+
+      <div class="ig-bar reveal">
+        <div class="who">
+          <span class="av" aria-hidden="true"><span class="in">R</span></span>
+          <div>
+            <div class="handle">@rodneys_salon</div>
+            <div class="sub">Rodney's Salon and Barber · George Town, Grand Cayman</div>
+          </div>
+        </div>
+        <a class="btn btn-primary btn-sm" href="https://www.instagram.com/rodneys_salon" target="_blank" rel="noopener">Follow on Instagram</a>
+      </div>
+
+      <div class="gallery-grid">
+        <a class="g-tile bg1 reveal" href="https://www.instagram.com/rodneys_salon" target="_blank" rel="noopener" aria-label="Skin fade — see on Instagram">
+          <svg class="wm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M20 4 8.6 15.4M14.5 9.5 20 15M8.6 8.6 12 12"/></svg>
+          <span class="cam" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 3.25.15 4.77 1.69 4.92 4.92.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.15 3.23-1.66 4.77-4.92 4.92-1.27.06-1.64.07-4.85.07-3.2 0-3.58-.01-4.85-.07-3.26-.15-4.77-1.7-4.92-4.92-.06-1.27-.07-1.64-.07-4.85s.01-3.58.07-4.85C2.38 3.92 3.9 2.38 7.15 2.23 8.42 2.18 8.8 2.16 12 2.16Zm0 3.68a6.16 6.16 0 1 0 0 12.32 6.16 6.16 0 0 0 0-12.32ZM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8Zm6.4-10.85a1.44 1.44 0 1 0 0 2.88 1.44 1.44 0 0 0 0-2.88Z"/></svg></span>
+          <span class="lab">Skin fade</span>
+        </a>
+        <a class="g-tile bg2 reveal" href="https://www.instagram.com/rodneys_salon" target="_blank" rel="noopener" aria-label="Knotless braids — see on Instagram">
+          <svg class="wm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 3v7a8 8 0 0 0 16 0V3"/><path d="M8 3v7M12 3v8M16 3v7"/></svg>
+          <span class="cam" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 3.25.15 4.77 1.69 4.92 4.92.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.15 3.23-1.66 4.77-4.92 4.92-1.27.06-1.64.07-4.85.07-3.2 0-3.58-.01-4.85-.07-3.26-.15-4.77-1.7-4.92-4.92-.06-1.27-.07-1.64-.07-4.85s.01-3.58.07-4.85C2.38 3.92 3.9 2.38 7.15 2.23 8.42 2.18 8.8 2.16 12 2.16Zm0 3.68a6.16 6.16 0 1 0 0 12.32 6.16 6.16 0 0 0 0-12.32ZM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8Zm6.4-10.85a1.44 1.44 0 1 0 0 2.88 1.44 1.44 0 0 0 0-2.88Z"/></svg></span>
+          <span class="lab">Knotless braids</span>
+        </a>
+        <a class="g-tile bg3 reveal" href="https://www.instagram.com/rodneys_salon" target="_blank" rel="noopener" aria-label="Frontal install — see on Instagram">
+          <svg class="wm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3c-4 0-7 3-7 8 0 4 1 7 2 9h10c1-2 2-5 2-9 0-5-3-8-7-8Z"/><path d="M12 3v6"/></svg>
+          <span class="cam" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 3.25.15 4.77 1.69 4.92 4.92.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.15 3.23-1.66 4.77-4.92 4.92-1.27.06-1.64.07-4.85.07-3.2 0-3.58-.01-4.85-.07-3.26-.15-4.77-1.7-4.92-4.92-.06-1.27-.07-1.64-.07-4.85s.01-3.58.07-4.85C2.38 3.92 3.9 2.38 7.15 2.23 8.42 2.18 8.8 2.16 12 2.16Zm0 3.68a6.16 6.16 0 1 0 0 12.32 6.16 6.16 0 0 0 0-12.32ZM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8Zm6.4-10.85a1.44 1.44 0 1 0 0 2.88 1.44 1.44 0 0 0 0-2.88Z"/></svg></span>
+          <span class="lab">Frontal install</span>
+        </a>
+        <a class="g-tile bg4 reveal" href="https://www.instagram.com/rodneys_salon" target="_blank" rel="noopener" aria-label="Locs retwist — see on Instagram">
+          <svg class="wm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 3c2 3 2 6 0 9s-2 6 0 9M12 3c2 3 2 6 0 9s-2 6 0 9M17 3c2 3 2 6 0 9s-2 6 0 9"/></svg>
+          <span class="cam" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 3.25.15 4.77 1.69 4.92 4.92.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.15 3.23-1.66 4.77-4.92 4.92-1.27.06-1.64.07-4.85.07-3.2 0-3.58-.01-4.85-.07-3.26-.15-4.77-1.7-4.92-4.92-.06-1.27-.07-1.64-.07-4.85s.01-3.58.07-4.85C2.38 3.92 3.9 2.38 7.15 2.23 8.42 2.18 8.8 2.16 12 2.16Zm0 3.68a6.16 6.16 0 1 0 0 12.32 6.16 6.16 0 0 0 0-12.32ZM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8Zm6.4-10.85a1.44 1.44 0 1 0 0 2.88 1.44 1.44 0 0 0 0-2.88Z"/></svg></span>
+          <span class="lab">Locs retwist</span>
+        </a>
+        <a class="g-tile bg5 reveal" href="https://www.instagram.com/rodneys_salon" target="_blank" rel="noopener" aria-label="Silk press — see on Instagram">
+          <svg class="wm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20c4-2 4-14 8-14s4 12 8 14"/><path d="M4 14h16" opacity=".4"/></svg>
+          <span class="cam" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 3.25.15 4.77 1.69 4.92 4.92.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.15 3.23-1.66 4.77-4.92 4.92-1.27.06-1.64.07-4.85.07-3.2 0-3.58-.01-4.85-.07-3.26-.15-4.77-1.7-4.92-4.92-.06-1.27-.07-1.64-.07-4.85s.01-3.58.07-4.85C2.38 3.92 3.9 2.38 7.15 2.23 8.42 2.18 8.8 2.16 12 2.16Zm0 3.68a6.16 6.16 0 1 0 0 12.32 6.16 6.16 0 0 0 0-12.32ZM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8Zm6.4-10.85a1.44 1.44 0 1 0 0 2.88 1.44 1.44 0 0 0 0-2.88Z"/></svg></span>
+          <span class="lab">Silk press</span>
+        </a>
+        <a class="g-tile bg6 reveal" href="https://www.instagram.com/rodneys_salon" target="_blank" rel="noopener" aria-label="Kids' cut — see on Instagram">
+          <svg class="wm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M5 21c1-4 3.5-6 7-6s6 2 7 6"/></svg>
+          <span class="cam" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 3.25.15 4.77 1.69 4.92 4.92.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.15 3.23-1.66 4.77-4.92 4.92-1.27.06-1.64.07-4.85.07-3.2 0-3.58-.01-4.85-.07-3.26-.15-4.77-1.7-4.92-4.92-.06-1.27-.07-1.64-.07-4.85s.01-3.58.07-4.85C2.38 3.92 3.9 2.38 7.15 2.23 8.42 2.18 8.8 2.16 12 2.16Zm0 3.68a6.16 6.16 0 1 0 0 12.32 6.16 6.16 0 0 0 0-12.32ZM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8Zm6.4-10.85a1.44 1.44 0 1 0 0 2.88 1.44 1.44 0 0 0 0-2.88Z"/></svg></span>
+          <span class="lab">Kids' cut</span>
+        </a>
+        <a class="g-tile bg3 reveal" href="https://www.instagram.com/rodneys_salon" target="_blank" rel="noopener" aria-label="Glam makeup — see on Instagram">
+          <svg class="wm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 3h6l1 5H8l1-5Z"/><path d="M10 8v12a2 2 0 0 0 4 0V8" opacity=".7"/></svg>
+          <span class="cam" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 3.25.15 4.77 1.69 4.92 4.92.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.15 3.23-1.66 4.77-4.92 4.92-1.27.06-1.64.07-4.85.07-3.2 0-3.58-.01-4.85-.07-3.26-.15-4.77-1.7-4.92-4.92-.06-1.27-.07-1.64-.07-4.85s.01-3.58.07-4.85C2.38 3.92 3.9 2.38 7.15 2.23 8.42 2.18 8.8 2.16 12 2.16Zm0 3.68a6.16 6.16 0 1 0 0 12.32 6.16 6.16 0 0 0 0-12.32ZM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8Zm6.4-10.85a1.44 1.44 0 1 0 0 2.88 1.44 1.44 0 0 0 0-2.88Z"/></svg></span>
+          <span class="lab">Glam makeup</span>
+        </a>
+        <a class="g-tile bg1 reveal" href="https://www.instagram.com/rodneys_salon" target="_blank" rel="noopener" aria-label="Beard sculpt — see on Instagram">
+          <svg class="wm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 6c0 6 1 12 5 12s5-6 5-12"/><path d="M7 6c1.5 2 8.5 2 10 0"/></svg>
+          <span class="cam" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 3.25.15 4.77 1.69 4.92 4.92.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.15 3.23-1.66 4.77-4.92 4.92-1.27.06-1.64.07-4.85.07-3.2 0-3.58-.01-4.85-.07-3.26-.15-4.77-1.7-4.92-4.92-.06-1.27-.07-1.64-.07-4.85s.01-3.58.07-4.85C2.38 3.92 3.9 2.38 7.15 2.23 8.42 2.18 8.8 2.16 12 2.16Zm0 3.68a6.16 6.16 0 1 0 0 12.32 6.16 6.16 0 0 0 0-12.32ZM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8Zm6.4-10.85a1.44 1.44 0 1 0 0 2.88 1.44 1.44 0 0 0 0-2.88Z"/></svg></span>
+          <span class="lab">Beard sculpt</span>
+        </a>
+        <a class="g-tile bg4 reveal" href="https://www.instagram.com/rodneys_salon" target="_blank" rel="noopener" aria-label="Fresh set nails — see on Instagram">
+          <svg class="wm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 11V6a3 3 0 0 1 6 0v5"/><path d="M5 11h14l-1.4 8.4a2 2 0 0 1-2 1.6H8.4a2 2 0 0 1-2-1.6L5 11Z"/></svg>
+          <span class="cam" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 3.25.15 4.77 1.69 4.92 4.92.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.15 3.23-1.66 4.77-4.92 4.92-1.27.06-1.64.07-4.85.07-3.2 0-3.58-.01-4.85-.07-3.26-.15-4.77-1.7-4.92-4.92-.06-1.27-.07-1.64-.07-4.85s.01-3.58.07-4.85C2.38 3.92 3.9 2.38 7.15 2.23 8.42 2.18 8.8 2.16 12 2.16Zm0 3.68a6.16 6.16 0 1 0 0 12.32 6.16 6.16 0 0 0 0-12.32ZM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8Zm6.4-10.85a1.44 1.44 0 1 0 0 2.88 1.44 1.44 0 0 0 0-2.88Z"/></svg></span>
+          <span class="lab">Fresh set</span>
+        </a>
+        <a class="g-tile bg6 reveal" href="https://www.instagram.com/rodneys_salon" target="_blank" rel="noopener" aria-label="Cornrows — see on Instagram">
+          <svg class="wm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4c5 2 11 2 16 0M4 9c5 2 11 2 16 0M4 14c5 2 11 2 16 0M4 19c5 2 11 2 16 0"/></svg>
+          <span class="cam" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 3.25.15 4.77 1.69 4.92 4.92.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.15 3.23-1.66 4.77-4.92 4.92-1.27.06-1.64.07-4.85.07-3.2 0-3.58-.01-4.85-.07-3.26-.15-4.77-1.7-4.92-4.92-.06-1.27-.07-1.64-.07-4.85s.01-3.58.07-4.85C2.38 3.92 3.9 2.38 7.15 2.23 8.42 2.18 8.8 2.16 12 2.16Zm0 3.68a6.16 6.16 0 1 0 0 12.32 6.16 6.16 0 0 0 0-12.32ZM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8Zm6.4-10.85a1.44 1.44 0 1 0 0 2.88 1.44 1.44 0 0 0 0-2.88Z"/></svg></span>
+          <span class="lab">Cornrows</span>
+        </a>
+        <a class="g-tile bg2 reveal" href="https://www.instagram.com/rodneys_salon" target="_blank" rel="noopener" aria-label="Custom wig unit — see on Instagram">
+          <svg class="wm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3c-4 0-7 3-7 8 0 4 1 7 2 9h10c1-2 2-5 2-9 0-5-3-8-7-8Z"/><path d="M9 20v-6M15 20v-6" opacity=".7"/></svg>
+          <span class="cam" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 3.25.15 4.77 1.69 4.92 4.92.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.15 3.23-1.66 4.77-4.92 4.92-1.27.06-1.64.07-4.85.07-3.2 0-3.58-.01-4.85-.07-3.26-.15-4.77-1.7-4.92-4.92-.06-1.27-.07-1.64-.07-4.85s.01-3.58.07-4.85C2.38 3.92 3.9 2.38 7.15 2.23 8.42 2.18 8.8 2.16 12 2.16Zm0 3.68a6.16 6.16 0 1 0 0 12.32 6.16 6.16 0 0 0 0-12.32ZM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8Zm6.4-10.85a1.44 1.44 0 1 0 0 2.88 1.44 1.44 0 0 0 0-2.88Z"/></svg></span>
+          <span class="lab">Custom unit</span>
+        </a>
+        <a class="g-tile bg5 reveal" href="https://www.instagram.com/rodneys_salon" target="_blank" rel="noopener" aria-label="Pedicure — see on Instagram">
+          <svg class="wm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 14c0-5 2-9 6-9s6 4 6 9v3a3 3 0 0 1-3 3H9a3 3 0 0 1-3-3v-3Z"/><path d="M6 15h12" opacity=".5"/></svg>
+          <span class="cam" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 3.25.15 4.77 1.69 4.92 4.92.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.15 3.23-1.66 4.77-4.92 4.92-1.27.06-1.64.07-4.85.07-3.2 0-3.58-.01-4.85-.07-3.26-.15-4.77-1.7-4.92-4.92-.06-1.27-.07-1.64-.07-4.85s.01-3.58.07-4.85C2.38 3.92 3.9 2.38 7.15 2.23 8.42 2.18 8.8 2.16 12 2.16Zm0 3.68a6.16 6.16 0 1 0 0 12.32 6.16 6.16 0 0 0 0-12.32ZM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8Zm6.4-10.85a1.44 1.44 0 1 0 0 2.88 1.44 1.44 0 0 0 0-2.88Z"/></svg></span>
+          <span class="lab">Pedicure</span>
+        </a>
+      </div>
+
+      <p class="gallery-note">
+        Tiles link straight to the live feed — swap them for your favourite posts anytime.
+        <a href="https://www.instagram.com/rodneys_salon" target="_blank" rel="noopener">See the latest on @rodneys_salon →</a>
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TEAM ============ -->
+<section class="view" id="view-team">
+  <div class="section">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <span class="kicker">Meet the Team</span>
+          <h2 class="display">The hands behind the hype</h2>
+          <p>Barbers, stylists and artists who treat every head like a headline. Ask for your favourite by name when you book.</p>
+        </div>
+      </div>
+
+      <div class="team-grid">
+        <div class="team-card reveal">
+          <div class="ph ph-teal"><span class="init">R</span></div>
+          <div class="bio">
+            <h3>Rodney</h3>
+            <div class="role">Founder · Master Barber</div>
+            <p>The name on the door. Precision fades, sharp line-ups and two decades of keeping George Town crisp.</p>
+          </div>
+        </div>
+        <div class="team-card reveal">
+          <div class="ph ph-gold"><span class="init">[+]</span></div>
+          <div class="bio">
+            <h3>[Name]</h3>
+            <div class="role">Senior Stylist · Braids &amp; Installs</div>
+            <p>Knotless queen and lace whisperer. Books up fast — message early for weekend slots.</p>
+          </div>
+        </div>
+        <div class="team-card reveal">
+          <div class="ph ph-coral"><span class="init">[+]</span></div>
+          <div class="bio">
+            <h3>[Name]</h3>
+            <div class="role">Locs &amp; Natural Hair</div>
+            <p>Healthy hair first, always. Retwists, silk presses and curl care with a gentle touch.</p>
+          </div>
+        </div>
+        <div class="team-card reveal">
+          <div class="ph ph-paper"><span class="init">[+]</span></div>
+          <div class="bio">
+            <h3>[Name]</h3>
+            <div class="role">Nails &amp; Makeup Artist</div>
+            <p>The finishing touch. Manis, pedis and glam that photographs as good as it looks.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="cta-band reveal" style="margin-top: 40px;">
+        <h2 class="display">Pick your chair</h2>
+        <p>Tell us who you'd like when you book and we'll line up the right artist for your style.</p>
+        <div class="row">
+          <a class="btn btn-dark" href="#book" data-nav>Book Now</a>
+          <a class="btn btn-line" href="https://www.instagram.com/rodneys_salon" target="_blank" rel="noopener">See their work on IG</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ BOOK ============ -->
+<section class="view" id="view-book">
+  <div class="section">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <span class="kicker">Book</span>
+          <h2 class="display">Lock in your chair</h2>
+          <p>No apps, no logins. Message or call and you're booked — it's that easy.</p>
+        </div>
+      </div>
+
+      <div class="book-grid">
+        <div class="book-main reveal">
+          <h3>Book in under a minute</h3>
+          <p>WhatsApp is the fastest way — send your service, preferred day and time, and we'll confirm your slot.</p>
+
+          <div class="book-btns">
+            <a class="btn btn-wa" href="https://wa.me/13457691248?text=Hi%20Rodney%27s!%20I%27d%20like%20to%20book%3A%0A%0AService%3A%20%0ADay%3A%20%0ATime%3A%20%0AName%3A%20" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2a9.9 9.9 0 0 0-8.4 15.16L2.05 22l4.99-1.56A9.9 9.9 0 1 0 12.04 2Zm5.77 14.06c-.24.68-1.4 1.3-1.93 1.35-.52.05-1.01.24-3.4-.7-2.87-1.14-4.7-4.06-4.84-4.25-.14-.19-1.16-1.55-1.16-2.96 0-1.4.73-2.09 1-2.38.26-.28.57-.35.76-.35h.55c.18 0 .42-.06.65.5.24.57.8 1.97.88 2.11.07.14.12.31.02.5-.1.19-.15.3-.29.47-.14.17-.3.38-.43.5-.14.15-.29.3-.12.58.16.28.73 1.2 1.57 1.95 1.08.96 1.99 1.26 2.27 1.4.28.14.45.12.61-.07.17-.19.7-.82.89-1.1.19-.28.38-.24.64-.14.26.09 1.66.78 1.94.92.29.14.48.21.55.33.07.12.07.68-.16 1.34Z"/></svg>
+              Book on WhatsApp
+            </a>
+            <a class="btn btn-primary" href="tel:+13457691248">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M6.62 10.79a15.05 15.05 0 0 0 6.59 6.59l2.2-2.2a1 1 0 0 1 1.02-.24c1.12.37 2.33.57 3.57.57a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1C10.85 21 3 13.15 3 3.5a1 1 0 0 1 1-1H7.5a1 1 0 0 1 1 1c0 1.24.2 2.45.57 3.57a1 1 0 0 1-.24 1.02l-2.21 2.2Z"/></svg>
+              Call +1 345-769-1248
+            </a>
+          </div>
+
+          <p class="book-alt">
+            Prefer the DMs? Message
+            <a href="https://www.instagram.com/rodneys_salon" target="_blank" rel="noopener">@rodneys_salon</a>
+            on Instagram.
+          </p>
+
+          <div class="steps">
+            <div class="step">
+              <span class="num">01</span>
+              <div><b>Tap WhatsApp or call</b><span>The message template is ready — just fill in the blanks.</span></div>
+            </div>
+            <div class="step">
+              <span class="num">02</span>
+              <div><b>Tell us the style &amp; day</b><span>Send a photo of the look if you have one — we'll confirm price and timing.</span></div>
+            </div>
+            <div class="step">
+              <span class="num">03</span>
+              <div><b>Show up. Walk out legendary.</b><span>Your chair, your artist and your style — locked in.</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <div class="info-card reveal">
+            <h4>
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 22a10 10 0 1 1 0-20 10 10 0 0 1 0 20Zm1-10.41V7a1 1 0 1 0-2 0v5a1 1 0 0 0 .29.7l3 3a1 1 0 0 0 1.42-1.4L13 11.59Z"/></svg>
+              Opening hours
+            </h4>
+            <table class="hours">
+              <tr><td>Monday – Friday</td><td>[PLACEHOLDER]</td></tr>
+              <tr><td>Saturday</td><td>[PLACEHOLDER]</td></tr>
+              <tr><td>Sunday</td><td>[PLACEHOLDER]</td></tr>
+            </table>
+            <span class="walkin">⚡ Walk-ins welcome when a chair is free</span>
+          </div>
+
+          <div class="info-card reveal">
+            <h4>
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7Zm0 9.5A2.5 2.5 0 1 1 12 6a2.5 2.5 0 0 1 0 5.5Z"/></svg>
+              Find us
+            </h4>
+            <p><b>Rodney's Salon and Barber</b><br>[PLACEHOLDER street address]<br>George Town, Grand Cayman<br>Cayman Islands</p>
+          </div>
+
+          <div class="info-card reveal">
+            <h4>
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2Zm0 4-8 5-8-5V6l8 5 8-5v2Z"/></svg>
+              Good to know
+            </h4>
+            <p>Prices are in <b>KYD</b> and confirmed before your appointment. Running late? Send a quick WhatsApp so we can hold your chair.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <div class="fl">Rodney's <em>Salon &amp; Barber</em></div>
+        <p class="tag">Fresh fades, clean cuts, and sharp styles for men, women and kids in George Town, Grand Cayman.</p>
+      </div>
+      <div>
+        <h5>Explore</h5>
+        <ul>
+          <li><a href="#home" data-nav>Home</a></li>
+          <li><a href="#services" data-nav>Services &amp; Prices</a></li>
+          <li><a href="#gallery" data-nav>Gallery</a></li>
+          <li><a href="#team" data-nav>Team</a></li>
+          <li><a href="#book" data-nav>Book</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Reach us</h5>
+        <ul>
+          <li><a href="tel:+13457691248">+1 345-769-1248</a></li>
+          <li><a href="https://wa.me/13457691248" target="_blank" rel="noopener">WhatsApp us</a></li>
+          <li><a href="https://www.instagram.com/rodneys_salon" target="_blank" rel="noopener">@rodneys_salon</a></li>
+          <li>George Town, Grand Cayman</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-base">
+      <span>© <span id="yr">2026</span> Rodney's Salon and Barber · George Town, Grand Cayman</span>
+      <span><span class="stars">★★★★★</span> 4.8 rated by our clients</span>
+    </div>
+  </div>
+</footer>
+
+<!-- ============ MOBILE ACTION BAR ============ -->
+<div class="action-bar" role="navigation" aria-label="Quick booking actions">
+  <a class="btn btn-ghost" href="tel:+13457691248" aria-label="Call +1 345-769-1248">
+    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M6.62 10.79a15.05 15.05 0 0 0 6.59 6.59l2.2-2.2a1 1 0 0 1 1.02-.24c1.12.37 2.33.57 3.57.57a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1C10.85 21 3 13.15 3 3.5a1 1 0 0 1 1-1H7.5a1 1 0 0 1 1 1c0 1.24.2 2.45.57 3.57a1 1 0 0 1-.24 1.02l-2.21 2.2Z"/></svg>
+  </a>
+  <a class="btn btn-wa" href="https://wa.me/13457691248?text=Hi%20Rodney%27s!%20I%27d%20like%20to%20book%20an%20appointment." target="_blank" rel="noopener">
+    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2a9.9 9.9 0 0 0-8.4 15.16L2.05 22l4.99-1.56A9.9 9.9 0 1 0 12.04 2Zm5.77 14.06c-.24.68-1.4 1.3-1.93 1.35-.52.05-1.01.24-3.4-.7-2.87-1.14-4.7-4.06-4.84-4.25-.14-.19-1.16-1.55-1.16-2.96 0-1.4.73-2.09 1-2.38.26-.28.57-.35.76-.35h.55c.18 0 .42-.06.65.5.24.57.8 1.97.88 2.11.07.14.12.31.02.5-.1.19-.15.3-.29.47-.14.17-.3.38-.43.5-.14.15-.29.3-.12.58.16.28.73 1.2 1.57 1.95 1.08.96 1.99 1.26 2.27 1.4.28.14.45.12.61-.07.17-.19.7-.82.89-1.1.19-.28.38-.24.64-.14.26.09 1.66.78 1.94.92.29.14.48.21.55.33.07.12.07.68-.16 1.34Z"/></svg>
+    WhatsApp
+  </a>
+  <a class="btn btn-primary" href="#book" data-nav>Book Now</a>
+</div>
+
+<script>
+(function () {
+  var VIEWS = ['home', 'services', 'gallery', 'team', 'book'];
+  var menu = document.getElementById('mobileMenu');
+  var burger = document.getElementById('burger');
+
+  function currentView() {
+    var h = (location.hash || '#home').replace('#', '');
+    return VIEWS.indexOf(h) > -1 ? h : 'home';
+  }
+
+  function render() {
+    var v = currentView();
+    VIEWS.forEach(function (name) {
+      var el = document.getElementById('view-' + name);
+      if (el) el.classList.toggle('active', name === v);
+    });
+    document.querySelectorAll('[data-nav]').forEach(function (a) {
+      var target = (a.getAttribute('href') || '').replace('#', '');
+      a.classList.toggle('active', target === v);
+    });
+    closeMenu();
+    window.scrollTo({ top: 0, behavior: 'instant' in window ? 'instant' : 'auto' });
+    revealInit();
+  }
+
+  function closeMenu() {
+    menu.classList.remove('open');
+    burger.setAttribute('aria-expanded', 'false');
+  }
+
+  burger.addEventListener('click', function () {
+    var open = menu.classList.toggle('open');
+    burger.setAttribute('aria-expanded', String(open));
+  });
+
+  window.addEventListener('hashchange', render);
+
+  // Scroll-reveal animations
+  var io = null;
+  function revealInit() {
+    var els = document.querySelectorAll('.view.active .reveal');
+    if (!('IntersectionObserver' in window)) {
+      els.forEach(function (el) { el.classList.add('in'); });
+      return;
+    }
+    if (io) io.disconnect();
+    io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) {
+          e.target.classList.add('in');
+          io.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    els.forEach(function (el) {
+      el.classList.remove('in');
+      io.observe(el);
+    });
+  }
+
+  document.getElementById('yr').textContent = new Date().getFullYear();
+  render();
+})();
+</script>
+
+</body>
+</html>
