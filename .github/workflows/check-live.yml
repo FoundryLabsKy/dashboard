@@ -26,4 +26,9 @@ jobs:
             "https://lcgqzvfeqynzfwpmcoye.supabase.co/rest/v1/companies?select=id&limit=1")
           echo "Supabase REST HTTP $code"
           [ "$code" = "200" ]
+          talks=$(curl -s -o /dev/null -w "%{http_code}" \
+            -H "apikey: sb_publishable_wFjOh8cogARpOPpXcZ4nww_SZaG90np" \
+            "https://lcgqzvfeqynzfwpmcoye.supabase.co/rest/v1/companies?select=in_talks,talking_points&limit=1")
+          echo "In Talks columns HTTP $talks"
+          [ "$talks" = "200" ] && echo "In Talks migration applied" || echo "::warning::In Talks migration NOT applied yet — run the Migrate Supabase workflow"
           echo "ALL LIVE CHECKS PASSED"
