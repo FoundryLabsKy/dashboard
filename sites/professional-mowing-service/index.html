@@ -1,0 +1,1310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Professional Mowing Service — Landscaping &amp; Lawn Care in Grand Cayman</title>
+<meta name="description" content="Lawn mowing, landscaping, irrigation, zoysia sod, palms and beach cleaning across Grand Cayman. Restoring the classic manicured Caymanian yard. Call +1 345-946-5085 for a free quote in KYD." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+  /* ============ Design tokens ============ */
+  :root {
+    --palm-950: #0b2e21;
+    --palm-900: #0e3a2a;
+    --palm-800: #14532d;
+    --palm-700: #1b6b41;
+    --palm-600: #238552;
+    --palm-500: #2f9e63;
+    --leaf-400: #5cbb7f;
+    --leaf-200: #bfe6c9;
+    --lime-300: #cde96a;
+    --sand-50:  #fbf8f1;
+    --sand-100: #f5efe2;
+    --sand-200: #ece2cc;
+    --sand-300: #ddcda9;
+    --conch-300: #f6b8bf;
+    --conch-400: #ef97a2;
+    --conch-500: #e2707f;
+    --ink: #12291e;
+    --ink-soft: #3d5449;
+    --ink-faint: #6b7f74;
+    --white: #ffffff;
+    --radius-lg: 20px;
+    --radius-md: 14px;
+    --shadow-soft: 0 10px 30px -12px rgba(11, 46, 33, 0.25);
+    --shadow-lift: 0 20px 45px -18px rgba(11, 46, 33, 0.35);
+    --font-display: "Fraunces", Georgia, "Times New Roman", serif;
+    --font-body: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    --header-h: 66px;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after { animation-duration: 0.001s !important; transition-duration: 0.001s !important; }
+  }
+
+  body {
+    font-family: var(--font-body);
+    color: var(--ink);
+    background: var(--sand-50);
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+    /* Subtle woven-grass texture over the sand background */
+    background-image:
+      radial-gradient(rgba(20, 83, 45, 0.035) 1px, transparent 1.4px);
+    background-size: 22px 22px;
+  }
+
+  img, svg { display: block; max-width: 100%; }
+  a { color: inherit; }
+  button { font: inherit; cursor: pointer; }
+
+  .container { width: min(1120px, 100% - 2.5rem); margin-inline: auto; }
+
+  h1, h2, h3, .display { font-family: var(--font-display); font-weight: 600; line-height: 1.12; letter-spacing: -0.01em; color: var(--palm-950); }
+
+  .eyebrow {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    font-size: 0.78rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--palm-700);
+  }
+  .eyebrow::before { content: ""; width: 26px; height: 2px; background: var(--conch-400); border-radius: 2px; }
+
+  .section { padding: clamp(3.5rem, 8vw, 6rem) 0; }
+  .section-head { max-width: 620px; margin-bottom: clamp(2rem, 5vw, 3.25rem); }
+  .section-head h2 { font-size: clamp(1.85rem, 4.5vw, 2.75rem); margin: 0.6rem 0 0.9rem; }
+  .section-head p { color: var(--ink-soft); font-size: 1.05rem; }
+
+  /* ============ Buttons ============ */
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 0.55rem;
+    padding: 0.85rem 1.6rem; border-radius: 999px; border: 0;
+    font-weight: 600; font-size: 1rem; text-decoration: none;
+    transition: transform 0.18s ease, box-shadow 0.18s ease, background-color 0.18s ease;
+  }
+  .btn:active { transform: translateY(1px); }
+  .btn svg { width: 18px; height: 18px; flex: none; }
+  .btn-primary {
+    background: linear-gradient(135deg, var(--palm-700), var(--palm-800));
+    color: var(--white); box-shadow: var(--shadow-soft);
+  }
+  .btn-primary:hover { box-shadow: var(--shadow-lift); transform: translateY(-2px); }
+  .btn-outline {
+    background: transparent; color: var(--palm-800);
+    box-shadow: inset 0 0 0 2px var(--palm-700);
+  }
+  .btn-outline:hover { background: rgba(20, 83, 45, 0.06); }
+  .btn-light { background: var(--white); color: var(--palm-900); box-shadow: var(--shadow-soft); }
+  .btn-light:hover { transform: translateY(-2px); box-shadow: var(--shadow-lift); }
+  .btn-conch { background: linear-gradient(135deg, var(--conch-400), var(--conch-500)); color: #fff; box-shadow: var(--shadow-soft); }
+  .btn-conch:hover { transform: translateY(-2px); box-shadow: var(--shadow-lift); }
+
+  :is(a, button, input, select, textarea):focus-visible {
+    outline: 3px solid var(--conch-400); outline-offset: 2px; border-radius: 6px;
+  }
+
+  /* ============ Header ============ */
+  .site-header {
+    position: sticky; top: 0; z-index: 60;
+    background: rgba(251, 248, 241, 0.92);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--sand-200);
+  }
+  .header-inner { display: flex; align-items: center; gap: 1rem; height: var(--header-h); }
+  .brand { display: flex; align-items: center; gap: 0.65rem; text-decoration: none; margin-right: auto; }
+  .brand-mark { width: 42px; height: 42px; flex: none; }
+  .brand-name { font-family: var(--font-display); font-weight: 700; font-size: 1.05rem; line-height: 1.15; color: var(--palm-950); }
+  .brand-name small { display: block; font-family: var(--font-body); font-weight: 600; font-size: 0.62rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--palm-700); }
+
+  .main-nav { display: none; align-items: center; gap: 0.25rem; }
+  .main-nav a {
+    text-decoration: none; font-weight: 600; font-size: 0.94rem; color: var(--ink-soft);
+    padding: 0.5rem 0.85rem; border-radius: 999px; transition: color 0.15s, background-color 0.15s;
+  }
+  .main-nav a:hover { color: var(--palm-800); background: rgba(20, 83, 45, 0.07); }
+  .main-nav a[aria-current="page"] { color: var(--palm-800); background: rgba(20, 83, 45, 0.1); }
+
+  .header-cta { display: none; align-items: center; gap: 0.6rem; }
+  .header-phone { display: none; align-items: center; gap: 0.45rem; text-decoration: none; font-weight: 700; color: var(--palm-900); font-size: 0.95rem; white-space: nowrap; }
+  .header-phone svg { width: 17px; height: 17px; color: var(--palm-700); }
+  .header-cta .btn { padding: 0.62rem 1.25rem; font-size: 0.92rem; }
+
+  .nav-toggle {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 44px; height: 44px; border-radius: 12px; border: 1px solid var(--sand-300);
+    background: var(--white); color: var(--palm-900);
+  }
+  .nav-toggle svg { width: 22px; height: 22px; }
+
+  @media (min-width: 960px) {
+    .main-nav, .header-cta { display: inline-flex; }
+    .nav-toggle { display: none; }
+  }
+  @media (min-width: 1100px) { .header-phone { display: inline-flex; } }
+
+  /* Mobile menu */
+  .mobile-menu {
+    position: fixed; inset: 0; z-index: 70; display: none;
+    background: linear-gradient(170deg, var(--palm-950), var(--palm-800));
+    color: var(--sand-50); padding: 1.25rem;
+    flex-direction: column;
+  }
+  .mobile-menu.open { display: flex; }
+  .mobile-menu-top { display: flex; align-items: center; justify-content: space-between; }
+  .mobile-menu nav { display: flex; flex-direction: column; gap: 0.4rem; margin-top: 2.5rem; }
+  .mobile-menu nav a {
+    text-decoration: none; font-family: var(--font-display); font-size: 1.9rem; font-weight: 600;
+    color: var(--sand-50); padding: 0.55rem 0.75rem; border-radius: 12px;
+  }
+  .mobile-menu nav a[aria-current="page"] { color: var(--lime-300); }
+  .mobile-menu-foot { margin-top: auto; display: grid; gap: 0.7rem; padding-bottom: 0.75rem; }
+  .mobile-menu-close { background: rgba(255,255,255,0.12); border: 0; color: #fff; width: 44px; height: 44px; border-radius: 12px; display: grid; place-items: center; }
+  .mobile-menu-close svg { width: 20px; height: 20px; }
+
+  /* Mobile sticky action bar */
+  .action-bar {
+    position: fixed; left: 0; right: 0; bottom: 0; z-index: 55;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 0.6rem;
+    padding: 0.65rem 0.9rem calc(0.65rem + env(safe-area-inset-bottom));
+    background: rgba(251, 248, 241, 0.95); backdrop-filter: blur(10px);
+    border-top: 1px solid var(--sand-200);
+  }
+  .action-bar .btn { padding: 0.8rem 0.5rem; font-size: 0.95rem; }
+  @media (min-width: 960px) { .action-bar { display: none; } }
+  @media (max-width: 959px) { body { padding-bottom: 76px; } }
+
+  /* ============ Hero ============ */
+  .hero { position: relative; overflow: hidden; background: linear-gradient(180deg, #e8f4ec 0%, var(--sand-50) 100%); }
+  .hero-inner { display: grid; gap: 2.25rem; padding: clamp(2.5rem, 6vw, 5rem) 0 0; align-items: center; }
+  .hero-copy h1 { font-size: clamp(2.35rem, 6.5vw, 3.9rem); }
+  .hero-copy h1 em { font-style: italic; color: var(--palm-700); }
+  .hero-copy p.lede { margin: 1.1rem 0 1.7rem; font-size: clamp(1.02rem, 2.5vw, 1.18rem); color: var(--ink-soft); max-width: 34rem; }
+  .hero-ctas { display: flex; flex-wrap: wrap; gap: 0.8rem; }
+  .hero-note { margin-top: 1rem; font-size: 0.88rem; color: var(--ink-faint); display: flex; align-items: center; gap: 0.45rem; }
+  .hero-note svg { width: 15px; height: 15px; color: var(--palm-600); flex: none; }
+  .hero-scene { border-radius: var(--radius-lg) var(--radius-lg) 0 0; overflow: hidden; box-shadow: var(--shadow-lift); line-height: 0; }
+  .hero-scene svg { width: 100%; height: auto; }
+  @media (min-width: 900px) {
+    .hero-inner { grid-template-columns: 1.05fr 1fr; gap: 3.5rem; padding-bottom: clamp(2.5rem, 6vw, 5rem); }
+    .hero-scene { border-radius: var(--radius-lg); }
+  }
+
+  /* Trust strip */
+  .trust-strip { background: var(--palm-950); color: var(--leaf-200); }
+  .trust-strip .container { display: flex; flex-wrap: wrap; gap: 0.5rem 2.25rem; justify-content: center; padding-block: 0.95rem; font-size: 0.88rem; font-weight: 600; }
+  .trust-strip span { display: inline-flex; align-items: center; gap: 0.5rem; }
+  .trust-strip svg { width: 15px; height: 15px; color: var(--lime-300); flex: none; }
+
+  /* ============ Cards / grids ============ */
+  .card-grid { display: grid; gap: 1.25rem; grid-template-columns: 1fr; }
+  @media (min-width: 640px)  { .card-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (min-width: 980px)  { .card-grid.cols-3 { grid-template-columns: repeat(3, 1fr); } .card-grid.cols-4 { grid-template-columns: repeat(4, 1fr); } }
+
+  .service-card {
+    background: var(--white); border-radius: var(--radius-lg); padding: 1.6rem 1.5rem 1.7rem;
+    border: 1px solid var(--sand-200); box-shadow: 0 4px 14px -8px rgba(11,46,33,0.12);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    display: flex; flex-direction: column; gap: 0.7rem;
+  }
+  .service-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lift); }
+  .service-icon {
+    width: 54px; height: 54px; border-radius: 16px; display: grid; place-items: center;
+    background: linear-gradient(140deg, #e5f3e8, #f2fbe6); color: var(--palm-700);
+    border: 1px solid #d8ecd9;
+  }
+  .service-icon svg { width: 28px; height: 28px; }
+  .service-card h3 { font-size: 1.22rem; }
+  .service-card p { color: var(--ink-soft); font-size: 0.96rem; flex-grow: 1; }
+  .service-card .tag { align-self: flex-start; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--palm-700); background: #eaf6ec; border-radius: 999px; padding: 0.25rem 0.7rem; }
+
+  /* ============ Before / After ============ */
+  .ba-card { background: var(--white); border-radius: var(--radius-lg); overflow: hidden; border: 1px solid var(--sand-200); box-shadow: 0 6px 18px -10px rgba(11,46,33,0.18); }
+  .ba-frame { position: relative; aspect-ratio: 4 / 3; overflow: hidden; touch-action: pan-y; }
+  .ba-frame svg, .ba-frame img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  /* The "after" layer is clipped away on the left, so before sits left of the
+     divider and after sits right of it. */
+  .ba-after { clip-path: inset(0 0 0 var(--pos, 55%)); }
+  .ba-divider {
+    position: absolute; top: 0; bottom: 0; left: var(--pos, 55%); width: 3px;
+    background: var(--white); box-shadow: 0 0 0 1px rgba(0,0,0,0.08); transform: translateX(-50%);
+    pointer-events: none;
+  }
+  .ba-handle {
+    position: absolute; top: 50%; left: var(--pos, 55%); transform: translate(-50%, -50%);
+    width: 44px; height: 44px; border-radius: 50%; background: var(--white);
+    display: grid; place-items: center; color: var(--palm-800);
+    box-shadow: 0 4px 14px rgba(11,46,33,0.35); pointer-events: none;
+  }
+  .ba-handle svg { width: 22px; height: 22px; }
+  .ba-range {
+    position: absolute; inset: 0; width: 100%; height: 100%;
+    opacity: 0; cursor: ew-resize; margin: 0; -webkit-appearance: none; appearance: none;
+  }
+  .ba-chip {
+    position: absolute; top: 12px; z-index: 2; font-size: 0.68rem; font-weight: 800; letter-spacing: 0.12em;
+    padding: 0.3rem 0.65rem; border-radius: 999px; color: #fff; pointer-events: none;
+  }
+  .ba-chip.before { left: 12px; background: rgba(18, 41, 30, 0.72); }
+  .ba-chip.after { right: 12px; background: var(--palm-700); }
+  .ba-meta { padding: 1rem 1.2rem 1.15rem; }
+  .ba-meta h3 { font-size: 1.08rem; margin-bottom: 0.2rem; }
+  .ba-meta p { font-size: 0.88rem; color: var(--ink-faint); }
+  .ba-hint { text-align: center; font-size: 0.85rem; color: var(--ink-faint); margin-top: 1.1rem; }
+
+  /* ============ Reviews ============ */
+  .reviews { background: linear-gradient(180deg, var(--palm-950) 0%, var(--palm-900) 100%); color: var(--sand-50); position: relative; overflow: hidden; }
+  .reviews .section-head h2 { color: var(--sand-50); }
+  .reviews .section-head p { color: var(--leaf-200); }
+  .reviews .eyebrow { color: var(--lime-300); }
+  .review-card {
+    background: rgba(255, 255, 255, 0.07); border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: var(--radius-lg); padding: 1.5rem; display: flex; flex-direction: column; gap: 0.85rem;
+    backdrop-filter: blur(4px);
+  }
+  .stars { display: flex; gap: 3px; color: var(--lime-300); }
+  .stars svg { width: 17px; height: 17px; fill: currentColor; }
+  .review-card blockquote { font-size: 0.98rem; line-height: 1.6; color: #eef7ef; flex-grow: 1; }
+  .review-who { display: flex; align-items: center; gap: 0.75rem; }
+  .review-avatar {
+    width: 42px; height: 42px; border-radius: 50%; flex: none;
+    display: grid; place-items: center; font-weight: 700; font-size: 0.95rem;
+    background: linear-gradient(135deg, var(--conch-400), var(--conch-500)); color: #fff;
+  }
+  .review-who strong { display: block; font-size: 0.93rem; }
+  .review-who span { font-size: 0.8rem; color: var(--leaf-200); }
+  .review-note { margin-top: 2rem; text-align: center; font-size: 0.9rem; color: var(--leaf-200); }
+  .review-note a { color: var(--lime-300); font-weight: 600; }
+
+  /* ============ Story ============ */
+  .story-grid { display: grid; gap: 2.5rem; align-items: center; }
+  @media (min-width: 900px) { .story-grid { grid-template-columns: 1fr 1.05fr; gap: 4rem; } }
+  .story-scene { border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-lift); line-height: 0; }
+  .story-copy h2 { font-size: clamp(1.85rem, 4.5vw, 2.6rem); margin: 0.6rem 0 1.1rem; }
+  .story-copy p { color: var(--ink-soft); margin-bottom: 1rem; }
+  .story-copy p strong { color: var(--palm-800); }
+  .story-values { display: grid; gap: 0.9rem; margin-top: 1.6rem; }
+  @media (min-width: 560px) { .story-values { grid-template-columns: repeat(3, 1fr); } }
+  .value-chip { background: var(--white); border: 1px solid var(--sand-200); border-radius: var(--radius-md); padding: 0.9rem 1rem; }
+  .value-chip strong { display: flex; align-items: center; gap: 0.45rem; font-size: 0.92rem; color: var(--palm-900); }
+  .value-chip strong svg { width: 16px; height: 16px; color: var(--conch-500); flex: none; }
+  .value-chip span { font-size: 0.82rem; color: var(--ink-faint); }
+
+  /* ============ CTA band ============ */
+  .cta-band {
+    background:
+      radial-gradient(120% 160% at 8% 0%, rgba(205, 233, 106, 0.16) 0%, transparent 45%),
+      linear-gradient(120deg, var(--palm-800), var(--palm-950));
+    color: var(--sand-50); border-radius: var(--radius-lg);
+    padding: clamp(2.25rem, 5.5vw, 3.75rem); text-align: center;
+    box-shadow: var(--shadow-lift); position: relative; overflow: hidden;
+  }
+  .cta-band h2 { color: var(--sand-50); font-size: clamp(1.7rem, 4.5vw, 2.5rem); margin-bottom: 0.7rem; }
+  .cta-band p { color: var(--leaf-200); max-width: 34rem; margin: 0 auto 1.6rem; }
+  .cta-band .hero-ctas { justify-content: center; }
+
+  /* ============ Quote form ============ */
+  .quote-grid { display: grid; gap: 2.5rem; }
+  @media (min-width: 960px) { .quote-grid { grid-template-columns: 1fr 1.15fr; gap: 3.5rem; align-items: start; } }
+  .contact-panel { display: grid; gap: 1rem; align-content: start; }
+  .contact-tile { background: var(--white); border: 1px solid var(--sand-200); border-radius: var(--radius-md); padding: 1.15rem 1.25rem; display: flex; gap: 0.9rem; align-items: flex-start; }
+  .contact-tile .service-icon { width: 44px; height: 44px; border-radius: 12px; }
+  .contact-tile .service-icon svg { width: 22px; height: 22px; }
+  .contact-tile strong { display: block; font-size: 0.95rem; color: var(--palm-950); }
+  .contact-tile a { font-weight: 700; color: var(--palm-700); text-decoration: none; }
+  .contact-tile a:hover { text-decoration: underline; }
+  .contact-tile p, .contact-tile span { font-size: 0.88rem; color: var(--ink-soft); }
+
+  .quote-form {
+    background: var(--white); border: 1px solid var(--sand-200); border-radius: var(--radius-lg);
+    padding: clamp(1.4rem, 4vw, 2.25rem); box-shadow: var(--shadow-soft);
+  }
+  .quote-form h3 { font-size: 1.45rem; margin-bottom: 0.35rem; }
+  .quote-form > p { color: var(--ink-soft); font-size: 0.93rem; margin-bottom: 1.4rem; }
+  .form-row { display: grid; gap: 1rem; margin-bottom: 1rem; }
+  @media (min-width: 560px) { .form-row.split { grid-template-columns: 1fr 1fr; } }
+  .field label { display: block; font-weight: 600; font-size: 0.88rem; margin-bottom: 0.35rem; color: var(--palm-950); }
+  .field input, .field select, .field textarea {
+    width: 100%; padding: 0.78rem 0.95rem; border-radius: 12px; border: 1.5px solid var(--sand-300);
+    background: var(--sand-50); font: inherit; font-size: 0.97rem; color: var(--ink);
+    transition: border-color 0.15s;
+  }
+  .field input:focus, .field select:focus, .field textarea:focus { border-color: var(--palm-600); outline: none; box-shadow: 0 0 0 3px rgba(47, 158, 99, 0.18); }
+  .field textarea { min-height: 110px; resize: vertical; }
+  fieldset.field { border: 0; }
+  fieldset.field legend { font-weight: 600; font-size: 0.88rem; margin-bottom: 0.5rem; color: var(--palm-950); padding: 0; }
+  .svc-checks { display: grid; gap: 0.5rem; grid-template-columns: 1fr; }
+  @media (min-width: 560px) { .svc-checks { grid-template-columns: 1fr 1fr; } }
+  .svc-checks label {
+    display: flex; align-items: center; gap: 0.55rem; font-size: 0.9rem; font-weight: 500;
+    background: var(--sand-50); border: 1.5px solid var(--sand-200); border-radius: 10px; padding: 0.55rem 0.7rem;
+    cursor: pointer; transition: border-color 0.15s, background-color 0.15s;
+  }
+  .svc-checks label:has(input:checked) { border-color: var(--palm-600); background: #eef8ef; }
+  .svc-checks input { accent-color: var(--palm-700); width: 17px; height: 17px; flex: none; }
+  .form-foot { font-size: 0.82rem; color: var(--ink-faint); margin-top: 0.9rem; }
+  .quote-form .btn { width: 100%; margin-top: 0.5rem; }
+  .form-success { text-align: center; padding: 2.5rem 1rem; display: none; }
+  .form-success.show { display: block; }
+  .form-success .service-icon { margin: 0 auto 1rem; width: 64px; height: 64px; border-radius: 50%; }
+  .form-success .service-icon svg { width: 30px; height: 30px; }
+  .form-success h3 { margin-bottom: 0.5rem; }
+  .form-success p { color: var(--ink-soft); margin-bottom: 1.4rem; }
+
+  /* District pills */
+  .districts { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+  .districts span { font-size: 0.83rem; font-weight: 600; color: var(--palm-800); background: #eaf3ea; border: 1px solid #d8e8d8; padding: 0.3rem 0.8rem; border-radius: 999px; }
+
+  /* ============ Footer ============ */
+  .site-footer { background: var(--palm-950); color: var(--leaf-200); margin-top: clamp(3rem, 7vw, 5rem); }
+  .footer-grid { display: grid; gap: 2.25rem; padding: clamp(2.75rem, 6vw, 4rem) 0 2rem; }
+  @media (min-width: 780px) { .footer-grid { grid-template-columns: 1.4fr 1fr 1fr 1.2fr; } }
+  .site-footer h4 { color: var(--sand-50); font-family: var(--font-display); font-size: 1.02rem; margin-bottom: 0.85rem; }
+  .site-footer ul { list-style: none; display: grid; gap: 0.45rem; }
+  .site-footer a { color: var(--leaf-200); text-decoration: none; font-size: 0.92rem; }
+  .site-footer a:hover { color: var(--lime-300); }
+  .site-footer p { font-size: 0.92rem; }
+  .footer-brand .brand-name { color: var(--sand-50); }
+  .footer-brand .brand-name small { color: var(--lime-300); }
+  .footer-bottom { border-top: 1px solid rgba(255,255,255,0.12); padding: 1.2rem 0 1.4rem; font-size: 0.8rem; color: rgba(191, 230, 201, 0.75); display: flex; flex-wrap: wrap; gap: 0.5rem 1.5rem; justify-content: space-between; }
+
+  /* ============ Page router ============ */
+  main [data-page] { display: none; }
+  main [data-page].active { display: block; }
+
+  /* Reveal on scroll */
+  .reveal { opacity: 0; transform: translateY(18px); transition: opacity 0.6s ease, transform 0.6s ease; }
+  .reveal.in { opacity: 1; transform: none; }
+  @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; } }
+
+  /* Page hero (inner pages) */
+  .page-hero { background: linear-gradient(180deg, #e8f4ec 0%, var(--sand-50) 100%); padding: clamp(2.75rem, 6vw, 4.5rem) 0 clamp(2rem, 4vw, 3rem); border-bottom: 1px solid var(--sand-200); }
+  .page-hero h1 { font-size: clamp(2.1rem, 5.5vw, 3.2rem); margin: 0.6rem 0 0.8rem; }
+  .page-hero p { color: var(--ink-soft); max-width: 38rem; font-size: 1.05rem; }
+
+  .supply-note {
+    margin-top: 2.25rem; background: var(--white); border: 1px solid var(--sand-200);
+    border-left: 4px solid var(--conch-400);
+    border-radius: var(--radius-md); padding: 1.25rem 1.4rem; font-size: 0.95rem; color: var(--ink-soft);
+  }
+  .supply-note strong { color: var(--palm-900); }
+</style>
+</head>
+<body>
+
+<!-- ================= SVG LIBRARY =================
+     All imagery below is hand-drawn placeholder art. Every scene marked
+     "placeholder" should eventually be swapped for a real job photo:
+     replace the <svg class="scene"> with <img src="..." alt="..."> of the
+     same aspect ratio (4:3 for gallery, 16:10 for heroes). -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <linearGradient id="g-sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#cdeef2"/><stop offset="0.7" stop-color="#eef8ef"/><stop offset="1" stop-color="#f7f3e7"/>
+    </linearGradient>
+    <linearGradient id="g-sea" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#59c3c9"/><stop offset="1" stop-color="#2ea3b4"/>
+    </linearGradient>
+    <linearGradient id="g-lawn" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#4aa96a"/><stop offset="1" stop-color="#2f8752"/>
+    </linearGradient>
+    <linearGradient id="g-lawn-dark" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#3c9a5c"/><stop offset="1" stop-color="#237042"/>
+    </linearGradient>
+    <linearGradient id="g-lawn-dry" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#a9a36a"/><stop offset="1" stop-color="#8a8a54"/>
+    </linearGradient>
+    <linearGradient id="g-sand" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f7efdc"/><stop offset="1" stop-color="#eadfc2"/>
+    </linearGradient>
+
+    <!-- Palm tree -->
+    <g id="sym-palm">
+      <path d="M-4 120 C-6 70 -2 40 0 0 L10 1 C10 42 12 72 12 120 Z" fill="#6b4f35"/>
+      <path d="M4 2 C-30 -18 -62 -16 -78 -2 C-50 -10 -22 -4 4 6 Z" fill="#1c6e41"/>
+      <path d="M4 2 C38 -18 68 -14 82 0 C56 -8 28 -3 4 6 Z" fill="#238552"/>
+      <path d="M4 0 C-16 -34 -40 -46 -60 -44 C-38 -34 -14 -18 5 4 Z" fill="#2f9e63"/>
+      <path d="M5 0 C24 -34 48 -44 66 -42 C46 -32 22 -18 5 4 Z" fill="#1c6e41"/>
+      <path d="M4 -2 C0 -30 4 -48 8 -58 C14 -44 14 -22 8 -2 Z" fill="#2f9e63"/>
+      <circle cx="-2" cy="6" r="5" fill="#8a6b43"/><circle cx="9" cy="8" r="5" fill="#75592f"/>
+    </g>
+
+    <!-- Conch shell -->
+    <g id="sym-conch">
+      <path d="M2 14 C-8 10 -10 0 -2 -6 C7 -12 20 -10 24 -2 C27 5 22 13 12 15 Z" fill="#ef97a2"/>
+      <path d="M0 10 C-5 7 -5 1 0 -2 C6 -6 14 -5 17 0 C19 4 15 9 8 10 Z" fill="#f6b8bf"/>
+      <path d="M14 -8 C18 -11 23 -11 26 -8 L24 -2 C21 -5 17 -6 14 -8 Z" fill="#e2707f"/>
+      <circle cx="4" cy="4" r="2.4" fill="#fbdade"/>
+    </g>
+
+    <!-- Hibiscus flower -->
+    <g id="sym-hibiscus">
+      <circle cx="0" cy="-5" r="4.4" fill="#ef7285"/><circle cx="5" cy="-1" r="4.4" fill="#f0839a"/>
+      <circle cx="3" cy="5" r="4.4" fill="#ef7285"/><circle cx="-4" cy="4" r="4.4" fill="#f0839a"/>
+      <circle cx="-6" cy="-2" r="4.4" fill="#ef7285"/><circle cx="0" cy="0" r="2.6" fill="#ffd44d"/>
+    </g>
+
+    <!-- Fruit tree (mango-ish) -->
+    <g id="sym-fruittree">
+      <path d="M-3 60 C-4 30 -2 16 0 0 L6 0 C8 18 9 34 8 60 Z" fill="#7a5a3a"/>
+      <circle cx="2" cy="-14" r="30" fill="#2f8752"/>
+      <circle cx="-18" cy="-4" r="20" fill="#3c9a5c"/>
+      <circle cx="22" cy="-6" r="20" fill="#2a7d4b"/>
+      <circle cx="-8" cy="-28" r="16" fill="#3c9a5c"/>
+      <circle cx="12" cy="-30" r="14" fill="#2a7d4b"/>
+      <circle cx="-12" cy="-10" r="3.2" fill="#ffb347"/><circle cx="14" cy="-16" r="3.2" fill="#ff9447"/>
+      <circle cx="2" cy="2" r="3.2" fill="#ffb347"/><circle cx="20" cy="4" r="3.2" fill="#ff9447"/>
+    </g>
+
+    <!-- Scruffy weed tuft (for "before" scenes) -->
+    <g id="sym-tuft">
+      <path d="M0 0 C-3 -8 -7 -12 -12 -14 C-7 -7 -5 -3 -4 0 Z" fill="#8f9053"/>
+      <path d="M0 0 C0 -10 -1 -16 -4 -20 C0 -14 3 -8 3 0 Z" fill="#7d8a4e"/>
+      <path d="M1 0 C4 -8 8 -12 13 -13 C8 -6 6 -3 5 0 Z" fill="#9a9a5e"/>
+    </g>
+
+    <!-- Croton shrub -->
+    <g id="sym-croton">
+      <ellipse cx="0" cy="0" rx="16" ry="12" fill="#2a7d4b"/>
+      <ellipse cx="-8" cy="-4" rx="8" ry="6" fill="#e0a13c"/>
+      <ellipse cx="7" cy="-5" rx="7" ry="5" fill="#c85c3f"/>
+      <ellipse cx="1" cy="3" rx="7" ry="5" fill="#3c9a5c"/>
+    </g>
+
+    <!-- ============ Icon set (24x24 stroke) ============ -->
+    <g id="i-phone"><path d="M5 4c0-.6.4-1 1-1h2.2c.5 0 .9.3 1 .8l.7 2.8c.1.4 0 .8-.3 1.1L8.2 9.1a12.5 12.5 0 0 0 6.7 6.7l1.4-1.4c.3-.3.7-.4 1.1-.3l2.8.7c.5.1.8.5.8 1V18c0 .6-.4 1-1 1h-1A14 14 0 0 1 5 5V4z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></g>
+    <g id="i-leaf"><path d="M6 18C6 10 11 5 20 4c0 9-4 14-12 14m-2 2c1-4 4-8 9-11" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></g>
+    <g id="i-star"><path d="M12 2.5l2.9 5.9 6.5.9-4.7 4.6 1.1 6.5L12 17.3l-5.8 3.1 1.1-6.5L2.6 9.3l6.5-.9L12 2.5z"/></g>
+    <g id="i-check"><path d="M4 12.5l5 5L20 6.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></g>
+    <g id="i-mower"><path d="M3 13h11l3-6h4M14 13l-2.5 4M4.5 17h9" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><circle cx="5.5" cy="18.5" r="1.8" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="15.5" cy="18.5" r="1.8" fill="none" stroke="currentColor" stroke-width="1.8"/></g>
+    <g id="i-design"><path d="M4 20c0-7 5-12 12-12M4 20h4c6 0 10-4 10-10V8M4 20v-4c0-6 4-10 10-10h2" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><circle cx="18" cy="6" r="2" fill="none" stroke="currentColor" stroke-width="1.8"/></g>
+    <g id="i-drop"><path d="M12 3.5c3.5 4.2 6 7.6 6 10.6a6 6 0 1 1-12 0c0-3 2.5-6.4 6-10.6z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M9.5 14.5a2.6 2.6 0 0 0 2.4 2.6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></g>
+    <g id="i-sod"><path d="M4 15h10a3.5 3.5 0 1 0 0-7H4v7zM4 8v7" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M14 11.5H6M4 19h16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></g>
+    <g id="i-palm"><path d="M12 21c0-6 .5-10 1.5-13" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="M13.5 8C11 5 7.5 4.5 5 6c3-.5 6 .8 8.5 3M13.5 8c1-3.5 4-5 7-4.5-2.8.7-5 2.5-6.5 5.5M13.5 8c-3.5-1-6.5.5-8 3 2.8-1.5 5.5-1.5 8-1" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></g>
+    <g id="i-beach"><path d="M3 19h18M5 19c.5-3.5 2.5-5.5 5-6M13 6.5C15 4.5 18.5 4.5 20.5 7c-2.5-.8-5 0-6.5 1.5M13 6.5c-2.5-.8-5.5.5-6.5 3 2-1.3 4.5-1.3 6.5-.5M13 6.5l2 6.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></g>
+    <g id="i-mound"><path d="M3 18a9 6.5 0 0 1 18 0z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M9 13l1.5-2 1.5 2 1.5-2 1.5 2" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></g>
+    <g id="i-pin"><path d="M12 21s-7-5.5-7-11a7 7 0 1 1 14 0c0 5.5-7 11-7 11z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><circle cx="12" cy="10" r="2.6" fill="none" stroke="currentColor" stroke-width="1.8"/></g>
+    <g id="i-clock"><circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M12 7.5V12l3 2.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></g>
+    <g id="i-mail"><rect x="3.5" y="5.5" width="17" height="13" rx="2.5" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M4.5 7.5l7.5 6 7.5-6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></g>
+    <g id="i-menu"><path d="M4 7h16M4 12h16M4 17h16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></g>
+    <g id="i-close"><path d="M6 6l12 12M18 6L6 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></g>
+    <g id="i-arrows"><path d="M8.5 8L4.5 12l4 4M15.5 8l4 4-4 4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></g>
+    <g id="i-shell"><path d="M12 4c5 0 8.5 3.5 8.5 8 0 4-3 7.5-8.5 7.5S3.5 16 3.5 12c0-4.5 3.5-8 8.5-8z" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M12 4v15.5M6.5 6.5c1.5 3 2 8 1.5 12M17.5 6.5c-1.5 3-2 8-1.5 12" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></g>
+
+    <!-- Brand mark: palm inside a conch-pink ring over lawn stripes -->
+    <g id="brand-mark">
+      <circle cx="24" cy="24" r="22" fill="#0e3a2a"/>
+      <circle cx="24" cy="24" r="22" fill="none" stroke="#ef97a2" stroke-width="2.5"/>
+      <path d="M6 33h36a22 22 0 0 1-36 0z" fill="#2f9e63"/>
+      <path d="M11 36.5h26a22 22 0 0 1-4 3.5H15a22 22 0 0 1-4-3.5z" fill="#278653"/>
+      <path d="M23 32c0-7 .6-11.5 1.8-15" fill="none" stroke="#f5efe2" stroke-width="2" stroke-linecap="round"/>
+      <path d="M24.8 17c-2.8-3.3-6.8-3.9-9.6-2.2 3.4-.6 6.8.9 9.6 3.9M24.8 17c1.1-4 4.6-5.7 8-5.1-3.1.8-5.6 2.8-7.3 6.2M24.8 17c-4-.9-7.3.6-9 3.4 3.2-1.7 6.2-1.7 9-1.1" fill="none" stroke="#cde96a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </g>
+  </defs>
+</svg>
+
+<!-- ================= HEADER ================= -->
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="brand" href="#/" data-link>
+      <svg class="brand-mark" viewBox="0 0 48 48" role="img" aria-label="Professional Mowing Service logo"><use href="#brand-mark"/></svg>
+      <span class="brand-name">Professional Mowing<small>Grand Cayman</small></span>
+    </a>
+    <nav class="main-nav" aria-label="Main">
+      <a href="#/" data-link data-nav="home">Home</a>
+      <a href="#/services" data-link data-nav="services">Services</a>
+      <a href="#/portfolio" data-link data-nav="portfolio">Portfolio</a>
+      <a href="#/story" data-link data-nav="story">Our Story</a>
+      <a href="#/contact" data-link data-nav="contact">Contact</a>
+    </nav>
+    <div class="header-cta">
+      <a class="header-phone" href="tel:+13459465085">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-phone"/></svg>
+        +1&nbsp;345-946-5085
+      </a>
+      <a class="btn btn-primary" href="#/contact" data-link>Get a Free Quote</a>
+    </div>
+    <button class="nav-toggle" aria-label="Open menu" aria-expanded="false" id="navToggle">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-menu"/></svg>
+    </button>
+  </div>
+</header>
+
+<!-- Mobile menu overlay -->
+<div class="mobile-menu" id="mobileMenu" role="dialog" aria-modal="true" aria-label="Menu">
+  <div class="mobile-menu-top">
+    <a class="brand" href="#/" data-link>
+      <svg class="brand-mark" viewBox="0 0 48 48" aria-hidden="true"><use href="#brand-mark"/></svg>
+      <span class="brand-name" style="color:var(--sand-50)">Professional Mowing<small style="color:var(--lime-300)">Grand Cayman</small></span>
+    </a>
+    <button class="mobile-menu-close" aria-label="Close menu" id="navClose">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-close"/></svg>
+    </button>
+  </div>
+  <nav aria-label="Mobile">
+    <a href="#/" data-link data-nav="home">Home</a>
+    <a href="#/services" data-link data-nav="services">Services</a>
+    <a href="#/portfolio" data-link data-nav="portfolio">Portfolio</a>
+    <a href="#/story" data-link data-nav="story">Our Story</a>
+    <a href="#/contact" data-link data-nav="contact">Contact &amp; Quote</a>
+  </nav>
+  <div class="mobile-menu-foot">
+    <a class="btn btn-conch" href="#/contact" data-link>Get a Free Quote</a>
+    <a class="btn btn-light" href="tel:+13459465085">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-phone"/></svg>
+      Call +1 345-946-5085
+    </a>
+  </div>
+</div>
+
+<main id="main">
+
+  <!-- ================================================================
+       PAGE: HOME
+  ================================================================= -->
+  <section data-page="home" class="active">
+    <div class="hero">
+      <div class="container hero-inner">
+        <div class="hero-copy">
+          <span class="eyebrow">Landscaping &amp; Lawn Care · Grand Cayman</span>
+          <h1 style="margin-top:0.7rem">The classic Caymanian yard, <em>beautifully restored</em>.</h1>
+          <p class="lede">Striped lawns, flowering borders, fruit trees and conch-shell edges — grounds kept the way our grandparents kept them, with modern equipment and year-round care. The delight of the owner. The envy of the neighbours.</p>
+          <div class="hero-ctas">
+            <a class="btn btn-primary" href="#/contact" data-link>Get a Free Quote</a>
+            <a class="btn btn-outline" href="tel:+13459465085">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-phone"/></svg>
+              +1 345-946-5085
+            </a>
+          </div>
+          <p class="hero-note">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-check"/></svg>
+            Free site visit · Quotes in KYD · Serving all of Grand Cayman
+          </p>
+        </div>
+        <!-- PLACEHOLDER: swap for a real hero job photo (16:10) -->
+        <div class="hero-scene reveal">
+          <svg viewBox="0 0 800 500" role="img" aria-label="Placeholder illustration of a manicured Caymanian yard with striped lawn, palm trees, hibiscus and a conch shell border — replace with a real job photo">
+            <rect width="800" height="500" fill="url(#g-sky)"/>
+            <circle cx="660" cy="80" r="42" fill="#ffe9a8"/><circle cx="660" cy="80" r="58" fill="#ffe9a8" opacity="0.35"/>
+            <rect y="205" width="800" height="40" fill="url(#g-sea)" opacity="0.85"/>
+            <path d="M0 243 Q100 236 200 243 T400 243 T600 243 T800 243 V255 H0 Z" fill="#fff" opacity="0.7"/>
+            <rect y="245" width="800" height="255" fill="url(#g-lawn)"/>
+            <g opacity="0.35">
+              <path d="M0 245 L800 245 L680 500 L-80 500 Z" fill="none"/>
+              <path d="M120 245 L260 500 L380 500 L200 245 Z" fill="#1e6f41"/>
+              <path d="M360 245 L560 500 L680 500 L440 245 Z" fill="#1e6f41"/>
+              <path d="M600 245 L840 500 L960 500 L680 245 Z" fill="#1e6f41"/>
+            </g>
+            <use href="#sym-palm" transform="translate(120 130) scale(1.15)"/>
+            <use href="#sym-palm" transform="translate(700 118) scale(1.3)"/>
+            <use href="#sym-fruittree" transform="translate(560 195) scale(1.15)"/>
+            <use href="#sym-croton" transform="translate(230 268) scale(1.3)"/>
+            <use href="#sym-croton" transform="translate(640 280) scale(1.1)"/>
+            <use href="#sym-hibiscus" transform="translate(285 258) scale(1.2)"/>
+            <use href="#sym-hibiscus" transform="translate(200 262)"/>
+            <use href="#sym-hibiscus" transform="translate(688 268)"/>
+            <path d="M0 452 H800 V500 H0 Z" fill="url(#g-sand)"/>
+            <path d="M0 452 Q200 444 400 452 T800 452" fill="none" stroke="#fff" stroke-width="5" opacity="0.8"/>
+            <use href="#sym-conch" transform="translate(70 472) scale(1.4)"/>
+            <use href="#sym-conch" transform="translate(210 478) scale(1.2) scale(-1,1)"/>
+            <use href="#sym-conch" transform="translate(340 470) scale(1.5)"/>
+            <use href="#sym-conch" transform="translate(480 478) scale(1.15)"/>
+            <use href="#sym-conch" transform="translate(610 472) scale(1.4) scale(-1,1)"/>
+            <use href="#sym-conch" transform="translate(740 478) scale(1.25)"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+
+    <div class="trust-strip" role="presentation">
+      <div class="container">
+        <span><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-check"/></svg> Homes, businesses &amp; strata</span>
+        <span><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-check"/></svg> Year-round maintenance plans</span>
+        <span><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-check"/></svg> Licensed &amp; insured</span>
+        <span><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-check"/></svg> Quotes in KYD</span>
+      </div>
+    </div>
+
+    <!-- Services preview -->
+    <section class="section" aria-labelledby="home-services-h">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow">What we do</span>
+          <h2 id="home-services-h">Everything your grounds need, one crew</h2>
+          <p>From the weekly cut to full landscape builds — we keep Cayman properties lush, tidy and thriving in every season.</p>
+        </div>
+        <div class="card-grid cols-3">
+          <article class="service-card reveal">
+            <div class="service-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-mower"/></svg></div>
+            <h3>Lawn Mowing &amp; Maintenance</h3>
+            <p>Scheduled cuts, crisp edging, trimming and blow-down. Weekly or fortnightly plans that keep your lawn photo-ready.</p>
+          </article>
+          <article class="service-card reveal">
+            <div class="service-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-design"/></svg></div>
+            <h3>Landscape Design &amp; Upkeep</h3>
+            <p>Flowering borders, native plantings and clean lines — designed for the tropics and maintained with pride.</p>
+          </article>
+          <article class="service-card reveal">
+            <div class="service-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-sod"/></svg></div>
+            <h3>Zoysia Sod Supply</h3>
+            <p>Premium zoysia sod, supplied and installed — the dense, salt-tolerant carpet lawn Cayman yards are famous for.</p>
+          </article>
+        </div>
+        <div style="text-align:center; margin-top:2.25rem">
+          <a class="btn btn-outline" href="#/services" data-link>See all seven services</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Before/After teaser -->
+    <section class="section" style="padding-top:0" aria-labelledby="home-ba-h">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow">Proof, not promises</span>
+          <h2 id="home-ba-h">Drag the slider. See the difference.</h2>
+          <p>Every yard tells the same story: before, and after we've been. Browse the full gallery for more transformations.</p>
+        </div>
+        <div class="card-grid" style="max-width:820px">
+          <div class="ba-card reveal" style="grid-column: 1 / -1;">
+            <div class="ba-frame" data-ba>
+              <!-- PLACEHOLDER "before" — replace with real photo -->
+              <svg viewBox="0 0 800 600" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+                <rect width="800" height="600" fill="#dfe8d8"/>
+                <rect y="230" width="800" height="370" fill="url(#g-lawn-dry)"/>
+                <use href="#sym-tuft" transform="translate(120 380) scale(2.2)"/>
+                <use href="#sym-tuft" transform="translate(300 470) scale(2.8)"/>
+                <use href="#sym-tuft" transform="translate(520 400) scale(2.4)"/>
+                <use href="#sym-tuft" transform="translate(660 500) scale(3)"/>
+                <use href="#sym-tuft" transform="translate(210 540) scale(2.6)"/>
+                <use href="#sym-tuft" transform="translate(450 560) scale(2.2)"/>
+                <ellipse cx="260" cy="330" rx="90" ry="22" fill="#b8ac72" opacity="0.8"/>
+                <ellipse cx="580" cy="460" rx="110" ry="26" fill="#c2b57c" opacity="0.8"/>
+                <use href="#sym-palm" transform="translate(660 150) scale(1.2)" opacity="0.75"/>
+              </svg>
+              <!-- PLACEHOLDER "after" — replace with real photo -->
+              <svg class="ba-after" viewBox="0 0 800 600" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+                <rect width="800" height="600" fill="#e2f2e6"/>
+                <rect y="230" width="800" height="370" fill="url(#g-lawn)"/>
+                <g opacity="0.3">
+                  <path d="M100 230 L240 600 L340 600 L180 230 Z" fill="#1e6f41"/>
+                  <path d="M340 230 L520 600 L620 600 L420 230 Z" fill="#1e6f41"/>
+                  <path d="M580 230 L800 560 L800 600 L740 600 L660 230 Z" fill="#1e6f41"/>
+                </g>
+                <use href="#sym-palm" transform="translate(660 150) scale(1.2)"/>
+                <use href="#sym-croton" transform="translate(150 290) scale(1.5)"/>
+                <use href="#sym-hibiscus" transform="translate(230 280) scale(1.4)"/>
+                <use href="#sym-hibiscus" transform="translate(90 285) scale(1.1)"/>
+                <path d="M0 540 H800 V600 H0 Z" fill="url(#g-sand)"/>
+                <use href="#sym-conch" transform="translate(90 566) scale(1.7)"/>
+                <use href="#sym-conch" transform="translate(280 574) scale(1.5) scale(-1,1)"/>
+                <use href="#sym-conch" transform="translate(460 566) scale(1.8)"/>
+                <use href="#sym-conch" transform="translate(650 574) scale(1.5)"/>
+              </svg>
+              <span class="ba-chip before">Before</span>
+              <span class="ba-chip after">After</span>
+              <div class="ba-divider" aria-hidden="true"></div>
+              <div class="ba-handle" aria-hidden="true"><svg viewBox="0 0 24 24"><use href="#i-arrows"/></svg></div>
+              <input class="ba-range" type="range" min="0" max="100" value="55" aria-label="Reveal before and after comparison" />
+            </div>
+            <div class="ba-meta">
+              <h3>Full lawn renovation — Savannah</h3>
+              <p>Overgrown lot to striped zoysia lawn with conch-shell border. <em>(Placeholder art — real job photos coming.)</em></p>
+            </div>
+          </div>
+        </div>
+        <div style="text-align:center; margin-top:2rem">
+          <a class="btn btn-primary" href="#/portfolio" data-link>View the full gallery</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Reviews -->
+    <section class="reviews section" aria-labelledby="home-reviews-h">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow">Word of mouth</span>
+          <h2 id="home-reviews-h">Neighbours talk. Here's what they say.</h2>
+          <p>Real feedback from the homeowners, businesses and property managers we look after across Grand Cayman.</p>
+        </div>
+        <!-- NOTE: sample testimonials for layout — replace with the client's
+             real customer reviews before launch. -->
+        <div class="card-grid cols-3">
+          <article class="review-card reveal">
+            <div class="stars" role="img" aria-label="5 out of 5 stars">
+              <svg viewBox="0 0 24 24"><use href="#i-star"/></svg><svg viewBox="0 0 24 24"><use href="#i-star"/></svg><svg viewBox="0 0 24 24"><use href="#i-star"/></svg><svg viewBox="0 0 24 24"><use href="#i-star"/></svg><svg viewBox="0 0 24 24"><use href="#i-star"/></svg>
+            </div>
+            <blockquote>"My yard looks like it did when my grandmother kept it — sand swept, shells lined up, grass like a carpet. People slow down when they drive past."</blockquote>
+            <div class="review-who">
+              <span class="review-avatar" aria-hidden="true">E</span>
+              <div><strong>Homeowner</strong><span>South Sound</span></div>
+            </div>
+          </article>
+          <article class="review-card reveal">
+            <div class="stars" role="img" aria-label="5 out of 5 stars">
+              <svg viewBox="0 0 24 24"><use href="#i-star"/></svg><svg viewBox="0 0 24 24"><use href="#i-star"/></svg><svg viewBox="0 0 24 24"><use href="#i-star"/></svg><svg viewBox="0 0 24 24"><use href="#i-star"/></svg><svg viewBox="0 0 24 24"><use href="#i-star"/></svg>
+            </div>
+            <blockquote>"They maintain three of our strata properties. Reliable, tidy, and the grounds have never looked better. Owners actually compliment the landscaping now."</blockquote>
+            <div class="review-who">
+              <span class="review-avatar" aria-hidden="true">P</span>
+              <div><strong>Property Manager</strong><span>Seven Mile corridor</span></div>
+            </div>
+          </article>
+          <article class="review-card reveal">
+            <div class="stars" role="img" aria-label="5 out of 5 stars">
+              <svg viewBox="0 0 24 24"><use href="#i-star"/></svg><svg viewBox="0 0 24 24"><use href="#i-star"/></svg><svg viewBox="0 0 24 24"><use href="#i-star"/></svg><svg viewBox="0 0 24 24"><use href="#i-star"/></svg><svg viewBox="0 0 24 24"><use href="#i-star"/></svg>
+            </div>
+            <blockquote>"New zoysia sod, irrigation, palms — done on schedule and on the KYD quote they gave us. Six months later the lawn is still flawless."</blockquote>
+            <div class="review-who">
+              <span class="review-avatar" aria-hidden="true">B</span>
+              <div><strong>Business Owner</strong><span>George Town</span></div>
+            </div>
+          </article>
+        </div>
+        <p class="review-note">Happy with our work? <a href="tel:+13459465085">Call us</a> and we'll send you a link to leave a review — every one helps a small Caymanian business grow.</p>
+      </div>
+    </section>
+
+    <!-- Story teaser -->
+    <section class="section" aria-labelledby="home-story-h">
+      <div class="container story-grid">
+        <!-- PLACEHOLDER: swap for a photo of a classic Caymanian yard -->
+        <div class="story-scene reveal">
+          <svg viewBox="0 0 700 520" role="img" aria-label="Placeholder illustration of a traditional Caymanian yard with fruit trees and a conch shell and white sand border — replace with a real photo">
+            <rect width="700" height="520" fill="url(#g-sky)"/>
+            <rect y="240" width="700" height="280" fill="url(#g-lawn-dark)"/>
+            <use href="#sym-fruittree" transform="translate(150 190) scale(1.5)"/>
+            <use href="#sym-fruittree" transform="translate(520 205) scale(1.2)"/>
+            <use href="#sym-palm" transform="translate(620 130)"/>
+            <use href="#sym-croton" transform="translate(320 275) scale(1.3)"/>
+            <use href="#sym-hibiscus" transform="translate(390 265) scale(1.3)"/>
+            <use href="#sym-hibiscus" transform="translate(260 268)"/>
+            <path d="M0 440 H700 V520 H0 Z" fill="url(#g-sand)"/>
+            <path d="M0 440 Q175 432 350 440 T700 440" fill="none" stroke="#fff" stroke-width="5" opacity="0.85"/>
+            <use href="#sym-conch" transform="translate(60 468) scale(1.5)"/>
+            <use href="#sym-conch" transform="translate(190 476) scale(1.3) scale(-1,1)"/>
+            <use href="#sym-conch" transform="translate(320 468) scale(1.6)"/>
+            <use href="#sym-conch" transform="translate(450 476) scale(1.3)"/>
+            <use href="#sym-conch" transform="translate(580 470) scale(1.5) scale(-1,1)"/>
+          </svg>
+        </div>
+        <div class="story-copy">
+          <span class="eyebrow">Our story</span>
+          <h2 id="home-story-h">Keeping a Caymanian tradition alive</h2>
+          <p>There was a time when every yard in Cayman was a point of pride — mango and breadfruit trees for shade, hibiscus and crotons for colour, and a border of <strong>pink conch shells set in white sand</strong>, swept clean every morning.</p>
+          <p>We started Professional Mowing Service to bring that standard back — the well-kept grounds that are the delight of the owner and the envy of the neighbours.</p>
+          <a class="btn btn-outline" href="#/story" data-link style="margin-top:0.5rem">Read our story</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA band -->
+    <section class="section" style="padding-top:0">
+      <div class="container">
+        <div class="cta-band reveal">
+          <h2>Ready for a yard the neighbours envy?</h2>
+          <p>Tell us about your property and we'll visit, walk the grounds with you, and send a clear quote in KYD — free, no obligation.</p>
+          <div class="hero-ctas">
+            <a class="btn btn-conch" href="#/contact" data-link>Get a Free Quote</a>
+            <a class="btn btn-light" href="tel:+13459465085">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-phone"/></svg>
+              Call +1 345-946-5085
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </section>
+
+  <!-- ================================================================
+       PAGE: SERVICES
+  ================================================================= -->
+  <section data-page="services">
+    <div class="page-hero">
+      <div class="container">
+        <span class="eyebrow">Services</span>
+        <h1>Seven services. One proud standard.</h1>
+        <p>Whether it's a weekly cut or a full landscape build, every job gets the same care we'd give our own yard. All quotes in Cayman Islands dollars (KYD) after a free site visit.</p>
+      </div>
+    </div>
+    <section class="section">
+      <div class="container">
+        <div class="card-grid cols-3">
+          <article class="service-card reveal">
+            <div class="service-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-mower"/></svg></div>
+            <span class="tag">Most popular</span>
+            <h3>Lawn Mowing &amp; Maintenance</h3>
+            <p>Weekly or fortnightly plans: mowing at the right height for the season, crisp edges along drives and walks, hedge trimming, weeding and full blow-down. We leave stripes, not clippings.</p>
+          </article>
+          <article class="service-card reveal">
+            <div class="service-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-design"/></svg></div>
+            <h3>Landscape Design &amp; Upkeep</h3>
+            <p>Planting plans built for the tropics — flowering borders, crotons, bougainvillea and natives that thrive in salt air. We design it, plant it and keep it looking freshly finished.</p>
+          </article>
+          <article class="service-card reveal">
+            <div class="service-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-drop"/></svg></div>
+            <h3>Irrigation</h3>
+            <p>Installation, repair and dry-season tune-ups. Zoned systems and timers that keep your lawn green through the driest months without wasting a drop.</p>
+          </article>
+          <article class="service-card reveal">
+            <div class="service-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-sod"/></svg></div>
+            <h3>Zoysia Sod Supply</h3>
+            <p>Premium zoysia — dense, low-maintenance and salt-tolerant, the carpet lawn Cayman is known for. Supplied by the pallet or fully installed over graded, prepared ground.</p>
+          </article>
+          <article class="service-card reveal">
+            <div class="service-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-palm"/></svg></div>
+            <h3>Tree &amp; Palm Planting</h3>
+            <p>Coconut and royal palms, fruit trees and shade trees — sourced healthy, planted properly, staked against the wind, and guaranteed a strong start.</p>
+          </article>
+          <article class="service-card reveal">
+            <div class="service-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-beach"/></svg></div>
+            <h3>Beach Cleaning</h3>
+            <p>Seaweed and sargassum removal, raking and debris clearing for private beachfronts, resorts and beachside businesses. Your sand, white again.</p>
+          </article>
+          <article class="service-card reveal">
+            <div class="service-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-mound"/></svg></div>
+            <h3>Mulch, Stone &amp; Soil Supply</h3>
+            <p>Quality mulch, decorative stone and screened topsoil, delivered by the cubic yard anywhere on Grand Cayman — spread and finished by our crew if you'd like.</p>
+          </article>
+          <article class="service-card reveal" style="background:linear-gradient(140deg, var(--palm-800), var(--palm-950)); border:0">
+            <div class="service-icon" style="background:rgba(255,255,255,0.12); border-color:transparent; color:var(--lime-300)"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-shell"/></svg></div>
+            <h3 style="color:var(--sand-50)">The Caymanian Yard Package</h3>
+            <p style="color:var(--leaf-200)">Our signature restoration: fruit trees, flowering borders, white sand paths and a pink conch-shell edge. The full tradition, brought back to life on your property.</p>
+            <a class="btn btn-conch" href="#/contact" data-link style="align-self:flex-start; padding:0.6rem 1.2rem; font-size:0.9rem">Ask about it</a>
+          </article>
+        </div>
+        <p class="supply-note reveal"><strong>How pricing works:</strong> every property is different, so we quote after a free site visit — clear, itemised and in KYD. Maintenance plans are billed monthly; supplies (sod, mulch, stone, soil) are priced per pallet or cubic yard, delivery included.</p>
+        <div style="text-align:center; margin-top:2.5rem" class="hero-ctas" >
+          <a class="btn btn-primary" href="#/contact" data-link>Get a Free Quote</a>
+          <a class="btn btn-outline" href="tel:+13459465085">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-phone"/></svg>
+            Call +1 345-946-5085
+          </a>
+        </div>
+      </div>
+    </section>
+  </section>
+
+  <!-- ================================================================
+       PAGE: PORTFOLIO
+  ================================================================= -->
+  <section data-page="portfolio">
+    <div class="page-hero">
+      <div class="container">
+        <span class="eyebrow">Portfolio</span>
+        <h1>Before &amp; after, all over the island</h1>
+        <p>Drag the slider on each job to see the transformation. These frames are placeholder art — we're photographing recent jobs now, and real before/after photos will appear here.</p>
+      </div>
+    </div>
+    <section class="section">
+      <div class="container">
+        <div class="card-grid" id="galleryGrid">
+          <!-- Gallery cards are generated by script from the template below -->
+        </div>
+        <p class="ba-hint">
+          <svg viewBox="0 0 24 24" aria-hidden="true" style="display:inline-block; width:15px; height:15px; vertical-align:-2px"><use href="#i-arrows"/></svg>
+          Drag anywhere on a photo to compare before and after
+        </p>
+        <div style="text-align:center; margin-top:2.5rem">
+          <a class="btn btn-primary" href="#/contact" data-link>Start your transformation</a>
+        </div>
+      </div>
+    </section>
+  </section>
+
+  <!-- ================================================================
+       PAGE: OUR STORY
+  ================================================================= -->
+  <section data-page="story">
+    <div class="page-hero">
+      <div class="container">
+        <span class="eyebrow">Our story</span>
+        <h1>The yard was always the pride of the house</h1>
+        <p>Before resorts and roundabouts, Cayman kept its beauty at home — in the yard.</p>
+      </div>
+    </div>
+    <section class="section">
+      <div class="container story-grid">
+        <div class="story-copy">
+          <h2 style="font-size:clamp(1.6rem, 4vw, 2.1rem)">Pink shells, white sand, and a standard worth keeping</h2>
+          <p>Ask anyone who grew up here: the classic Caymanian yard was a thing of beauty. Mango, breadfruit and tamarind trees for shade and fruit. Hibiscus, crotons and periwinkle for colour. Paths of <strong>white sand raked smooth</strong>, bordered with <strong>pink conch shells</strong> placed one by one, and grass kept short and even all the way to the road.</p>
+          <p>It wasn't hired out. It was swept, trimmed and tended by the family — because a well-kept yard said something about the people who lived there.</p>
+          <p>Professional Mowing Service exists to keep that standard alive. We bring modern equipment, proper irrigation and premium zoysia sod to the job, but the goal hasn't changed since our grandparents' time: <strong>grounds that are the delight of the owner and the envy of the neighbours.</strong></p>
+          <p>Today we care for family homes, business frontages, strata and beachfront properties across Grand Cayman — every one of them treated like our own yard.</p>
+          <div class="story-values">
+            <div class="value-chip reveal">
+              <strong><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-shell"/></svg> Pride</strong>
+              <span>We're not done until it's photo-ready.</span>
+            </div>
+            <div class="value-chip reveal">
+              <strong><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-clock"/></svg> Reliability</strong>
+              <span>Same crew, on schedule, every visit.</span>
+            </div>
+            <div class="value-chip reveal">
+              <strong><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-leaf"/></svg> Island roots</strong>
+              <span>Plants and methods that belong here.</span>
+            </div>
+          </div>
+        </div>
+        <!-- PLACEHOLDER: swap for team / heritage photo -->
+        <div class="story-scene reveal">
+          <svg viewBox="0 0 700 620" role="img" aria-label="Placeholder illustration of a traditional Caymanian cottage yard with fruit trees, flowers, and a conch-lined sand path — replace with a real photo">
+            <rect width="700" height="620" fill="url(#g-sky)"/>
+            <rect y="270" width="700" height="350" fill="url(#g-lawn)"/>
+            <g>
+              <rect x="250" y="160" width="220" height="120" rx="4" fill="#fdf6ea"/>
+              <path d="M235 165 L360 92 L485 165 Z" fill="#d95f4b"/>
+              <rect x="275" y="200" width="40" height="80" fill="#2e7d64"/>
+              <rect x="340" y="200" width="44" height="44" fill="#bde3ea" stroke="#2e7d64" stroke-width="4"/>
+              <rect x="410" y="200" width="44" height="44" fill="#bde3ea" stroke="#2e7d64" stroke-width="4"/>
+            </g>
+            <use href="#sym-fruittree" transform="translate(110 225) scale(1.4)"/>
+            <use href="#sym-palm" transform="translate(600 160) scale(1.15)"/>
+            <use href="#sym-croton" transform="translate(200 300) scale(1.2)"/>
+            <use href="#sym-hibiscus" transform="translate(505 296) scale(1.25)"/>
+            <use href="#sym-hibiscus" transform="translate(160 306)"/>
+            <path d="M320 620 C325 500 335 400 355 285 L375 285 C395 400 405 500 410 620 Z" fill="url(#g-sand)"/>
+            <use href="#sym-conch" transform="translate(310 430) scale(1.1)"/>
+            <use href="#sym-conch" transform="translate(408 470) scale(1.2) scale(-1,1)"/>
+            <use href="#sym-conch" transform="translate(295 530) scale(1.3)"/>
+            <use href="#sym-conch" transform="translate(425 560) scale(1.3) scale(-1,1)"/>
+            <path d="M0 560 H700 V620 H0 Z" fill="url(#g-sand)"/>
+            <use href="#sym-conch" transform="translate(80 588) scale(1.5)"/>
+            <use href="#sym-conch" transform="translate(220 594) scale(1.3) scale(-1,1)"/>
+            <use href="#sym-conch" transform="translate(520 588) scale(1.5)"/>
+            <use href="#sym-conch" transform="translate(640 594) scale(1.3) scale(-1,1)"/>
+          </svg>
+        </div>
+      </div>
+      <div class="container" style="margin-top:3rem">
+        <div class="cta-band reveal">
+          <h2>Let's restore your yard's pride</h2>
+          <p>One visit is all it takes to see what your grounds could be. Free site walk, free quote, in KYD.</p>
+          <div class="hero-ctas">
+            <a class="btn btn-conch" href="#/contact" data-link>Get a Free Quote</a>
+            <a class="btn btn-light" href="tel:+13459465085">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-phone"/></svg>
+              +1 345-946-5085
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </section>
+
+  <!-- ================================================================
+       PAGE: CONTACT & QUOTE
+  ================================================================= -->
+  <section data-page="contact">
+    <div class="page-hero">
+      <div class="container">
+        <span class="eyebrow">Contact &amp; quote</span>
+        <h1>Get your free quote</h1>
+        <p>Tell us a little about your property and we'll call you back to arrange a free site visit. Prefer to talk now? Tap the number — we answer.</p>
+      </div>
+    </div>
+    <section class="section">
+      <div class="container quote-grid">
+        <div class="contact-panel">
+          <div class="contact-tile reveal">
+            <div class="service-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-phone"/></svg></div>
+            <div>
+              <strong>Call or WhatsApp</strong>
+              <a href="tel:+13459465085">+1 345-946-5085</a>
+              <p>Fastest way to reach us — quotes often same-day.</p>
+            </div>
+          </div>
+          <div class="contact-tile reveal">
+            <div class="service-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-clock"/></svg></div>
+            <div>
+              <strong>Hours</strong>
+              <p>Monday – Saturday, 7:00am – 5:00pm<br/>Emergency storm clean-up: call anytime</p>
+            </div>
+          </div>
+          <div class="contact-tile reveal">
+            <div class="service-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-pin"/></svg></div>
+            <div>
+              <strong>Service area — all of Grand Cayman</strong>
+              <div class="districts" style="margin-top:0.55rem">
+                <span>West Bay</span><span>George Town</span><span>Seven Mile Beach</span><span>South Sound</span><span>Savannah</span><span>Bodden Town</span><span>North Side</span><span>East End</span><span>Rum Point</span>
+              </div>
+            </div>
+          </div>
+          <div class="contact-tile reveal">
+            <div class="service-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-check"/></svg></div>
+            <div>
+              <strong>What to expect</strong>
+              <p>1. We call you back &nbsp;→&nbsp; 2. Free site walk &nbsp;→&nbsp; 3. Clear itemised quote in KYD. No pressure, no obligation.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="quote-form reveal">
+          <form id="quoteForm" novalidate>
+            <h3>Request a free quote</h3>
+            <p>A few details and we'll be in touch — usually the same day.</p>
+            <div class="form-row split">
+              <div class="field">
+                <label for="qf-name">Your name *</label>
+                <input id="qf-name" name="name" type="text" autocomplete="name" required />
+              </div>
+              <div class="field">
+                <label for="qf-phone">Phone *</label>
+                <input id="qf-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="+1 345 …" required />
+              </div>
+            </div>
+            <div class="form-row split">
+              <div class="field">
+                <label for="qf-email">Email</label>
+                <input id="qf-email" name="email" type="email" autocomplete="email" />
+              </div>
+              <div class="field">
+                <label for="qf-type">Property type</label>
+                <select id="qf-type" name="propertyType">
+                  <option>Home</option>
+                  <option>Business / commercial</option>
+                  <option>Strata / managed property</option>
+                  <option>Beachfront</option>
+                  <option>Other</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-row">
+              <fieldset class="field">
+                <legend>What do you need? (tick all that apply)</legend>
+                <div class="svc-checks">
+                  <label><input type="checkbox" name="services" value="Lawn mowing & maintenance" /> Mowing &amp; maintenance</label>
+                  <label><input type="checkbox" name="services" value="Landscape design & upkeep" /> Landscape design</label>
+                  <label><input type="checkbox" name="services" value="Irrigation" /> Irrigation</label>
+                  <label><input type="checkbox" name="services" value="Zoysia sod" /> Zoysia sod</label>
+                  <label><input type="checkbox" name="services" value="Tree & palm planting" /> Trees &amp; palms</label>
+                  <label><input type="checkbox" name="services" value="Beach cleaning" /> Beach cleaning</label>
+                  <label><input type="checkbox" name="services" value="Mulch / stone / soil" /> Mulch, stone or soil</label>
+                  <label><input type="checkbox" name="services" value="Caymanian Yard Package" /> Caymanian Yard Package</label>
+                </div>
+              </fieldset>
+            </div>
+            <div class="form-row">
+              <div class="field">
+                <label for="qf-msg">Tell us about the property</label>
+                <textarea id="qf-msg" name="message" placeholder="Location, approximate size, what you'd like done…"></textarea>
+              </div>
+            </div>
+            <button class="btn btn-primary" type="submit">Send my quote request</button>
+            <p class="form-foot">Quotes are free and provided in Cayman Islands dollars (KYD). We'll only use your details to contact you about your quote.</p>
+          </form>
+          <div class="form-success" id="formSuccess" role="status">
+            <div class="service-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-check"/></svg></div>
+            <h3>Thank you — we've got it!</h3>
+            <p>We'll call you back shortly to arrange your free site visit. In a hurry?</p>
+            <a class="btn btn-primary" href="tel:+13459465085">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-phone"/></svg>
+              Call +1 345-946-5085 now
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </section>
+</main>
+
+<!-- ================= FOOTER ================= -->
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div class="footer-brand">
+      <a class="brand" href="#/" data-link style="margin-bottom:0.9rem">
+        <svg class="brand-mark" viewBox="0 0 48 48" aria-hidden="true"><use href="#brand-mark"/></svg>
+        <span class="brand-name">Professional Mowing<small>Grand Cayman</small></span>
+      </a>
+      <p>Landscaping and lawn care across Grand Cayman — restoring the pride of the classic Caymanian yard, one property at a time.</p>
+    </div>
+    <div>
+      <h4>Explore</h4>
+      <ul>
+        <li><a href="#/" data-link>Home</a></li>
+        <li><a href="#/services" data-link>Services</a></li>
+        <li><a href="#/portfolio" data-link>Portfolio</a></li>
+        <li><a href="#/story" data-link>Our Story</a></li>
+        <li><a href="#/contact" data-link>Contact &amp; Quote</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Services</h4>
+      <ul>
+        <li><a href="#/services" data-link>Mowing &amp; maintenance</a></li>
+        <li><a href="#/services" data-link>Landscape design</a></li>
+        <li><a href="#/services" data-link>Irrigation</a></li>
+        <li><a href="#/services" data-link>Zoysia sod</a></li>
+        <li><a href="#/services" data-link>Trees &amp; palms</a></li>
+        <li><a href="#/services" data-link>Beach cleaning</a></li>
+        <li><a href="#/services" data-link>Mulch, stone &amp; soil</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Get in touch</h4>
+      <ul>
+        <li><a href="tel:+13459465085" style="font-weight:700; color:var(--lime-300)">+1 345-946-5085</a></li>
+        <li>Mon – Sat · 7:00am – 5:00pm</li>
+        <li>Grand Cayman, Cayman Islands</li>
+        <li style="margin-top:0.6rem"><a class="btn btn-conch" href="#/contact" data-link style="padding:0.55rem 1.15rem; font-size:0.88rem">Get a Free Quote</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="container footer-bottom">
+    <span>© <span id="year"></span> Professional Mowing Service · Grand Cayman, Cayman Islands</span>
+    <span>Quotes in KYD · Licensed &amp; insured</span>
+  </div>
+</footer>
+
+<!-- Mobile sticky action bar -->
+<div class="action-bar">
+  <a class="btn btn-outline" href="tel:+13459465085" style="background:var(--white)">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-phone"/></svg>
+    Call now
+  </a>
+  <a class="btn btn-primary" href="#/contact" data-link>Free Quote</a>
+</div>
+
+<script>
+  /* ============ Tiny hash router: #/, #/services, #/portfolio, #/story, #/contact ============ */
+  var PAGES = ["home", "services", "portfolio", "story", "contact"];
+
+  function currentRoute() {
+    var h = (location.hash || "#/").replace(/^#\/?/, "").replace(/\/$/, "");
+    return PAGES.indexOf(h) !== -1 ? h : "home";
+  }
+
+  function renderRoute() {
+    var route = currentRoute();
+    document.querySelectorAll("main [data-page]").forEach(function (sec) {
+      sec.classList.toggle("active", sec.getAttribute("data-page") === route);
+    });
+    document.querySelectorAll("[data-nav]").forEach(function (a) {
+      if (a.getAttribute("data-nav") === route) a.setAttribute("aria-current", "page");
+      else a.removeAttribute("aria-current");
+    });
+    document.title = ({
+      home: "Professional Mowing Service — Landscaping & Lawn Care in Grand Cayman",
+      services: "Services — Professional Mowing Service, Grand Cayman",
+      portfolio: "Before & After Portfolio — Professional Mowing Service",
+      story: "Our Story — Professional Mowing Service, Grand Cayman",
+      contact: "Contact & Free Quote — Professional Mowing Service"
+    })[route];
+    closeMenu();
+    window.scrollTo(0, 0);
+    observeReveals();
+  }
+
+  window.addEventListener("hashchange", renderRoute);
+
+  /* ============ Mobile menu ============ */
+  var menu = document.getElementById("mobileMenu");
+  var toggle = document.getElementById("navToggle");
+  function openMenu() { menu.classList.add("open"); toggle.setAttribute("aria-expanded", "true"); document.body.style.overflow = "hidden"; }
+  function closeMenu() { menu.classList.remove("open"); toggle.setAttribute("aria-expanded", "false"); document.body.style.overflow = ""; }
+  toggle.addEventListener("click", openMenu);
+  document.getElementById("navClose").addEventListener("click", closeMenu);
+  menu.querySelectorAll("a").forEach(function (a) { a.addEventListener("click", closeMenu); });
+  document.addEventListener("keydown", function (e) { if (e.key === "Escape") closeMenu(); });
+
+  /* ============ Gallery: generate before/after cards ============ */
+  // Each entry becomes a draggable before/after card. The `hue` and `flip`
+  // values vary the shared placeholder art per card; when real photos are
+  // ready, replace the SVG pair inside .ba-frame with two <img> tags.
+  var JOBS = [
+    { title: "Full lawn renovation", where: "Savannah", hue: 0, flip: false },
+    { title: "Hedge & border restoration", where: "West Bay", hue: -14, flip: true },
+    { title: "Commercial grounds refresh", where: "George Town", hue: 10, flip: false },
+    { title: "Beachfront clean & replant", where: "Rum Point", hue: 22, flip: true },
+    { title: "Irrigation + new zoysia lawn", where: "South Sound", hue: -8, flip: false },
+    { title: "Palm avenue planting", where: "East End", hue: 16, flip: true }
+  ];
+
+  var beforeScene =
+    '<svg viewBox="0 0 800 600" preserveAspectRatio="xMidYMid slice" aria-hidden="true" style="filter:hue-rotate(HUEdeg) FLIP">' +
+    '<rect width="800" height="600" fill="#dfe8d8"/><rect y="230" width="800" height="370" fill="url(#g-lawn-dry)"/>' +
+    '<use href="#sym-tuft" transform="translate(120 380) scale(2.2)"/><use href="#sym-tuft" transform="translate(300 470) scale(2.8)"/>' +
+    '<use href="#sym-tuft" transform="translate(520 400) scale(2.4)"/><use href="#sym-tuft" transform="translate(660 500) scale(3)"/>' +
+    '<use href="#sym-tuft" transform="translate(210 540) scale(2.6)"/><use href="#sym-tuft" transform="translate(450 560) scale(2.2)"/>' +
+    '<ellipse cx="260" cy="330" rx="90" ry="22" fill="#b8ac72" opacity="0.8"/><ellipse cx="580" cy="460" rx="110" ry="26" fill="#c2b57c" opacity="0.8"/>' +
+    '<use href="#sym-palm" transform="translate(660 150) scale(1.2)" opacity="0.75"/></svg>';
+
+  var afterScene =
+    '<svg class="ba-after" viewBox="0 0 800 600" preserveAspectRatio="xMidYMid slice" aria-hidden="true" style="filter:hue-rotate(HUEdeg) FLIP">' +
+    '<rect width="800" height="600" fill="#e2f2e6"/><rect y="230" width="800" height="370" fill="url(#g-lawn)"/>' +
+    '<g opacity="0.3"><path d="M100 230 L240 600 L340 600 L180 230 Z" fill="#1e6f41"/><path d="M340 230 L520 600 L620 600 L420 230 Z" fill="#1e6f41"/>' +
+    '<path d="M580 230 L800 560 L800 600 L740 600 L660 230 Z" fill="#1e6f41"/></g>' +
+    '<use href="#sym-palm" transform="translate(660 150) scale(1.2)"/><use href="#sym-croton" transform="translate(150 290) scale(1.5)"/>' +
+    '<use href="#sym-hibiscus" transform="translate(230 280) scale(1.4)"/><use href="#sym-hibiscus" transform="translate(90 285) scale(1.1)"/>' +
+    '<path d="M0 540 H800 V600 H0 Z" fill="url(#g-sand)"/>' +
+    '<use href="#sym-conch" transform="translate(90 566) scale(1.7)"/><use href="#sym-conch" transform="translate(280 574) scale(1.5) scale(-1,1)"/>' +
+    '<use href="#sym-conch" transform="translate(460 566) scale(1.8)"/><use href="#sym-conch" transform="translate(650 574) scale(1.5)"/></svg>';
+
+  var grid = document.getElementById("galleryGrid");
+  JOBS.forEach(function (job) {
+    var flip = job.flip ? "scaleX(-1)" : "none";
+    var card = document.createElement("div");
+    card.className = "ba-card reveal";
+    card.innerHTML =
+      '<div class="ba-frame" data-ba>' +
+      beforeScene.replace("HUE", job.hue).replace("FLIP", "transform:" + flip) +
+      afterScene.replace("HUE", job.hue).replace("FLIP", "transform:" + flip) +
+      '<span class="ba-chip before">Before</span><span class="ba-chip after">After</span>' +
+      '<div class="ba-divider" aria-hidden="true"></div>' +
+      '<div class="ba-handle" aria-hidden="true"><svg viewBox="0 0 24 24"><use href="#i-arrows"/></svg></div>' +
+      '<input class="ba-range" type="range" min="0" max="100" value="55" aria-label="Reveal before and after comparison for ' + job.title + '" />' +
+      '</div>' +
+      '<div class="ba-meta"><h3>' + job.title + ' — ' + job.where + '</h3>' +
+      '<p>Placeholder art — replace with real before/after job photos.</p></div>';
+    grid.appendChild(card);
+  });
+
+  /* ============ Before/after sliders ============ */
+  function wireBA(frame) {
+    var range = frame.querySelector(".ba-range");
+    function setPos(v) { frame.style.setProperty("--pos", v + "%"); }
+    range.addEventListener("input", function () { setPos(range.value); });
+    setPos(range.value);
+  }
+  document.querySelectorAll("[data-ba]").forEach(wireBA);
+
+  /* ============ Quote form (static build: shows confirmation; wire to a
+     form service or email backend before launch) ============ */
+  var form = document.getElementById("quoteForm");
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    var name = document.getElementById("qf-name");
+    var phone = document.getElementById("qf-phone");
+    var ok = true;
+    [name, phone].forEach(function (input) {
+      if (!input.value.trim()) { input.style.borderColor = "var(--conch-500)"; ok = false; }
+      else input.style.borderColor = "";
+    });
+    if (!ok) { (name.value.trim() ? phone : name).focus(); return; }
+    form.style.display = "none";
+    document.getElementById("formSuccess").classList.add("show");
+  });
+
+  /* ============ Reveal on scroll ============ */
+  var io = null;
+  if ("IntersectionObserver" in window && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (en.isIntersecting) { en.target.classList.add("in"); io.unobserve(en.target); }
+      });
+    }, { threshold: 0.12 });
+  }
+  function observeReveals() {
+    document.querySelectorAll(".active .reveal, .reveal").forEach(function (el) {
+      if (io && !el.classList.contains("in")) io.observe(el);
+      else el.classList.add("in");
+    });
+  }
+
+  document.getElementById("year").textContent = new Date().getFullYear();
+  renderRoute();
+</script>
+</body>
+</html>
