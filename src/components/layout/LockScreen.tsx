@@ -3,7 +3,8 @@
 import { useEffect, useRef, useState } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 
-// Boot gate: the app asks for an access code once per browser session.
+// Boot gate: the app asks for the access code once per device and then
+// remembers the unlock (cleared only by wiping browser data).
 // The code is never stored in the source — only its SHA-256 digest is,
 // and the entered value is hashed before comparison.
 const CODE_SHA256 = "f354ee99e2bc863ce19d80b843353476394ebc3530a51c9290d629065bacc3b3";
@@ -32,7 +33,9 @@ export function LockScreen({ children }: { children: React.ReactNode }) {
     const frame = requestAnimationFrame(() => {
       let unlocked = false;
       try {
-        unlocked = sessionStorage.getItem(UNLOCK_KEY) === "1";
+        unlocked =
+          localStorage.getItem(UNLOCK_KEY) === "1" ||
+          sessionStorage.getItem(UNLOCK_KEY) === "1";
       } catch {
         // Storage unavailable (rare); fall back to asking for the code.
       }
@@ -53,9 +56,9 @@ export function LockScreen({ children }: { children: React.ReactNode }) {
     const hash = entered ? await sha256Hex(entered) : "";
     if (hash === CODE_SHA256) {
       try {
-        sessionStorage.setItem(UNLOCK_KEY, "1");
+        localStorage.setItem(UNLOCK_KEY, "1");
       } catch {
-        // Session-only unlock still works without storage.
+        // In-memory unlock still works without storage.
       }
       setStatus("open");
     } else {
