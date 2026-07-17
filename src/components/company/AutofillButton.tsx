@@ -32,7 +32,12 @@ export function AutofillButton({ name, onResult, size = "md", className }: Autof
     try {
       const result = await autofillCompany(name.trim(), key);
       onResult(result);
-      toast(`Research done for ${name.trim()}`, "success");
+      toast(
+        result.usedSearch
+          ? `Research done for ${name.trim()}`
+          : `Filled from AI memory — daily web-search limit reached, double-check details`,
+        result.usedSearch ? "success" : "info"
+      );
     } catch (err) {
       toast(
         `Autofill failed: ${err instanceof Error ? err.message : "unknown error"}`,

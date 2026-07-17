@@ -20,6 +20,8 @@ export interface AutofillResult {
   website: string | null;
   contact: string | null;
   summary: string | null;
+  /** False when the web-search quota was exhausted and built-in knowledge was used. */
+  usedSearch: boolean;
 }
 
 interface RawResult {
@@ -58,17 +60,20 @@ function parseJson(text: string): RawResult {
   return JSON.parse(cleaned.slice(start, end + 1)) as RawResult;
 }
 
-export async function autofillCompany(name: string, apiKey: string): Promise<AutofillResult> {
+async function callGemini(
+  apiKey: string,
+  prompt: string,
+  withSearch: boolean
+): Promise<{ ok: boolean; status: number; detail: string; text: string }> {
+  const body: Record<string, unknown> = {
+    contents: [{ parts: [{ text: prompt }] }],
+  };
+  if (withSearch) body.tools = [{ google_search: {} }];
+
   const res = await fetch(ENDPOINT, {
     method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      "x-goog-api-key": apiKey,
-    },
-    body: JSON.stringify({
-      contents: [{ parts: [{ text: buildPrompt(name) }] }],
-      tools: [{ google_search: {} }],
-    }),
+    headers: { "Content-Type": "application/json", "x-goog-api-key": apiKey },
+    body: JSON.stringify(body),
   });
 
   if (!res.ok) {
@@ -79,7 +84,7 @@ export async function autofillCompany(name: string, apiKey: string): Promise<Aut
     } catch {
       // keep the status-code message
     }
-    throw new Error(detail);
+    return { ok: false, status: res.status, detail, text: "" };
   }
 
   const data = await res.json();
@@ -87,11 +92,24 @@ export async function autofillCompany(name: string, apiKey: string): Promise<Aut
     data?.candidates?.[0]?.content?.parts
       ?.map((p: { text?: string }) => p.text ?? "")
       .join("") ?? "";
-  if (!text) throw new Error("Empty response from Gemini");
+  return { ok: true, status: res.status, detail: "", text };
+}
+
+export async function autofillCompany(name: string, apiKey: string): Promise<AutofillResult> {
+  // Web search first; when Google's daily grounding quota runs out (429),
+  // fall back to the model's built-in knowledge so autofill still works.
+  let usedSearch = true;
+  let result = await callGemini(apiKey, buildPrompt(name), true);
+  if (!result.ok) {
+    usedSearch = false;
+    result = await callGemini(apiKey, buildPrompt(name), false);
+  }
+  if (!result.ok) throw new Error(result.detail);
+  if (!result.text) throw new Error("Empty response from Gemini");
 
   let raw: RawResult;
   try {
-    raw = parseJson(text);
+    raw = parseJson(result.text);
   } catch {
     throw new Error("Could not read the research results. Try again.");
   }
@@ -105,6 +123,7 @@ export async function autofillCompany(name: string, apiKey: string): Promise<Aut
     website: raw.website?.trim() || null,
     contact: contactParts.length ? contactParts.join(" · ") : null,
     summary: raw.summary?.trim() || null,
+    usedSearch,
   };
 }
 

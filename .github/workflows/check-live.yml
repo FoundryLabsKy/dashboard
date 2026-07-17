@@ -50,5 +50,12 @@ jobs:
             -d '{"contents":[{"parts":[{"text":"What is the current population of the Cayman Islands? One sentence."}]}],"tools":[{"google_search":{}}]}' \
             "https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-latest:generateContent")
           echo "Gemini search-grounded call HTTP $code2"
-          [ "$code2" = "200" ] || { echo "Gemini search error:"; head -c 500 /tmp/ai2.json; echo; echo "AI SEARCH CHECK FAILED"; exit 1; }
-          echo "AI AUTOFILL KEY WORKS"
+          if [ "$code2" = "200" ]; then
+            echo "AI AUTOFILL KEY WORKS (with web search)"
+          elif [ "$code2" = "429" ]; then
+            echo "::warning::Web-search quota exhausted for today — the app falls back to built-in knowledge"
+            echo "AI AUTOFILL KEY WORKS (fallback mode)"
+          else
+            echo "Gemini search error:"; head -c 500 /tmp/ai2.json; echo
+            echo "AI SEARCH CHECK FAILED"; exit 1
+          fi
