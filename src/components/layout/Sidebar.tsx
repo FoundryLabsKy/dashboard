@@ -18,13 +18,13 @@ import {
 } from "@/components/ui/Icons";
 
 const NAV_ITEMS = [
-  { href: "/", label: "Dashboard", icon: IconGrid },
-  { href: "/todo", label: "To-Do", icon: IconChecklist },
-  { href: "/built", label: "Built", icon: IconHammer },
-  { href: "/talks", label: "In Talks", icon: IconChat },
-  { href: "/income", label: "Income", icon: IconDollar },
-  { href: "/archived", label: "Archived", icon: IconArchive },
-  { href: "/settings", label: "Settings", icon: IconSliders },
+  { href: "/app", label: "Dashboard", icon: IconGrid },
+  { href: "/app/todo", label: "To-Do", icon: IconChecklist },
+  { href: "/app/built", label: "Built", icon: IconHammer },
+  { href: "/app/talks", label: "In Talks", icon: IconChat },
+  { href: "/app/income", label: "Income", icon: IconDollar },
+  { href: "/app/archived", label: "Archived", icon: IconArchive },
+  { href: "/app/settings", label: "Settings", icon: IconSliders },
 ];
 
 const FUTURE_MODULES = [
@@ -42,13 +42,14 @@ const FUTURE_MODULES = [
 ];
 
 function isActive(pathname: string, href: string): boolean {
-  if (href === "/") return pathname === "/" || pathname.startsWith("/company");
+  if (href === "/app")
+    return pathname === "/app" || pathname.startsWith("/app/company");
   return pathname.startsWith(href);
 }
 
 function Wordmark() {
   return (
-    <Link href="/" className="block px-3 pt-1">
+    <Link href="/app" className="block px-3 pt-1">
       <span className="font-display text-xl font-bold tracking-tight text-ink">
         Foundry
         <span className="text-ember">.</span>
@@ -159,7 +160,7 @@ export function Sidebar() {
 
       {/* Mobile: top bar + slide-in drawer */}
       <header className="sticky top-0 z-40 flex items-center justify-between px-4 py-3 backdrop-blur-xl lg:hidden">
-        <Link href="/" className="font-display text-lg font-bold tracking-tight">
+        <Link href="/app" className="font-display text-lg font-bold tracking-tight">
           Foundry<span className="text-ember">.</span>
         </Link>
         <button

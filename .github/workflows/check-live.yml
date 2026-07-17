@@ -6,17 +6,28 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Live site responds and serves the app
+      - name: Marketing site and app both respond
         run: |
           set -euo pipefail
           url="https://foundrylabsky.github.io/dashboard/"
+          # Public marketing site at the root
           code=$(curl -s -o /tmp/page.html -w "%{http_code}" "$url")
           echo "HTTP $code from $url"
           [ "$code" = "200" ]
-          grep -q "Foundry Dashboard" /tmp/page.html && echo "App markup present"
-          for path in todo built income archived company; do
+          grep -q "Foundry Labs" /tmp/page.html && echo "Marketing markup present"
+          for path in services pricing about contact; do
             sub=$(curl -sL -o /dev/null -w "%{http_code}" "${url}${path}/")
             echo "HTTP $sub from ${url}${path}/"
+            [ "$sub" = "200" ]
+          done
+          # Internal dashboard, now served under /app
+          appcode=$(curl -sL -o /tmp/app.html -w "%{http_code}" "${url}app/")
+          echo "HTTP $appcode from ${url}app/"
+          [ "$appcode" = "200" ]
+          grep -q "Foundry Dashboard" /tmp/app.html && echo "App markup present"
+          for path in todo built income archived company; do
+            sub=$(curl -sL -o /dev/null -w "%{http_code}" "${url}app/${path}/")
+            echo "HTTP $sub from ${url}app/${path}/"
             [ "$sub" = "200" ]
           done
       - name: Supabase reachable with app credentials

@@ -25,7 +25,7 @@ export function AutofillButton({ name, onResult, size = "md", className }: Autof
     if (!name.trim() || busy) return;
     if (!key) {
       toast("Add your Gemini API key in Settings first", "error");
-      router.push("/settings");
+      router.push("/app/settings");
       return;
     }
     setBusy(true);

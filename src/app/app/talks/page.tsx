@@ -71,7 +71,7 @@ export default function TalksPage() {
                   <div className="min-w-0">
                     <div className="flex flex-wrap items-center gap-3">
                       <Link
-                        href={`/company?id=${company.id}`}
+                        href={`/app/company?id=${company.id}`}
                         className="truncate font-display text-lg font-bold text-ink transition-colors hover:text-ember"
                       >
                         {company.name}
@@ -102,7 +102,7 @@ export default function TalksPage() {
                       Back to Built
                     </Button>
                     <Link
-                      href={`/company?id=${company.id}`}
+                      href={`/app/company?id=${company.id}`}
                       aria-label={`Open ${company.name}`}
                       className="rounded-lg p-2 text-muted transition-colors hover:text-ink"
                     >

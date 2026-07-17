@@ -33,7 +33,7 @@ export function ClientTable({ clients }: { clients: Company[] }) {
             >
               <td className="px-5 py-3.5">
                 <Link
-                  href={`/company?id=${client.id}`}
+                  href={`/app/company?id=${client.id}`}
                   className="font-semibold text-ink transition-colors hover:text-ember"
                 >
                   {client.name}

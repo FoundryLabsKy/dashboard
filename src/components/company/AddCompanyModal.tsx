@@ -50,7 +50,7 @@ export function AddCompanyModal({ open, onClose }: AddCompanyModalProps) {
       toast(`Added ${company.name}`, "success");
       reset();
       onClose();
-      router.push(`/company?id=${company.id}`);
+      router.push(`/app/company?id=${company.id}`);
     }
   };
 

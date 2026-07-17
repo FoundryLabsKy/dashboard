@@ -75,7 +75,7 @@ export default function ArchivedPage() {
               >
                 <div className="min-w-0 flex-1">
                   <Link
-                    href={`/company?id=${company.id}`}
+                    href={`/app/company?id=${company.id}`}
                     className="block truncate text-sm font-semibold text-ink transition-colors hover:text-ember"
                   >
                     {company.name}

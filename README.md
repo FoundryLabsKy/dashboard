@@ -1,14 +1,37 @@
-# Foundry Dashboard
+# Foundry Labs
 
-The internal operating system for Foundry Labs: track every company through the
-build pipeline (Idea → To-Do → Built → Pitched → Sold → Hosting), preview
-websites, store files, and watch recurring revenue grow.
+This repo hosts two things that ship from one Next.js app:
+
+1. **The public marketing site** (`/`) — the Foundry Labs website: a modern,
+   fully static marketing site for the web-design studio, built to win small
+   local businesses across Grand Cayman.
+2. **The internal dashboard** (`/app`) — the operating system for Foundry Labs:
+   track every company through the build pipeline (Idea → To-Do → Built →
+   Pitched → Sold → Hosting), preview websites, store files, and watch recurring
+   revenue grow.
 
 Built with Next.js (App Router), TypeScript, Tailwind CSS, Framer Motion, and
-Supabase. This is an internal tool with **no authentication** by design —
-anyone with the URL has access.
+Supabase.
 
-## Pages
+## Marketing site (`/`)
+
+The public site lives in the `(marketing)` route group and shares the app's dark
+"forge" design language (ember accents, glass panels).
+
+- **Home** (`/`) — hero, services, example designs, process, pricing, and CTA.
+- **Services** (`/services`) — design, hosting, domains, care, stores, local SEO.
+- **Pricing** (`/pricing`) — flat build + monthly plans, add-ons, and FAQ.
+- **About** (`/about`) — the studio's story and principles.
+- **Contact** (`/contact`) — a quote form (opens the visitor's email client) plus
+  direct email/WhatsApp details.
+
+Marketing copy, pricing, navigation, and FAQs are centralized in
+[`src/lib/site.ts`](src/lib/site.ts).
+
+## Dashboard (`/app`)
+
+The internal tool is gated behind a boot access code (`LockScreen`) and lives
+under `/app`. It has **no server-side authentication** by design.
 
 - **Dashboard** — KPIs (ideas, built, ready to pitch, sold, MRR, revenue closed) and every active company with its pipeline stage. Search, sort, floating Add Company.
 - **To-Do** — rapid idea capture. Checking an item marks it Built and moves it on.

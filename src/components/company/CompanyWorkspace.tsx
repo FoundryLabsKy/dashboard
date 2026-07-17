@@ -75,7 +75,7 @@ export function CompanyWorkspace({ id }: { id: string }) {
           title="Company not found"
           message="It may have been permanently deleted."
           action={
-            <Link href="/">
+            <Link href="/app">
               <Button variant="ghost">
                 <IconArrowLeft className="h-4 w-4" />
                 Back to Dashboard
@@ -305,7 +305,7 @@ export function CompanyWorkspace({ id }: { id: string }) {
         onConfirm={() => {
           void deleteCompany(company.id);
           toast(`Deleted ${company.name}`, "info");
-          router.push("/");
+          router.push("/app");
         }}
         title={`Delete ${company.name}?`}
         message="This permanently removes the company, its notes, domains, and every uploaded file. There is no undo."

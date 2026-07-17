@@ -33,7 +33,7 @@ export function BuiltCard({ company, onEdit, onMarkSold, onArchive }: BuiltCardP
     toast(`${company.name} marked as in talks`, "success");
   };
 
-  const open = () => router.push(`/company?id=${company.id}`);
+  const open = () => router.push(`/app/company?id=${company.id}`);
 
   return (
     <motion.article

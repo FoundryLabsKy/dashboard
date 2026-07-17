@@ -78,6 +78,53 @@ body {
   border-radius: 6px;
 }
 
+/* Molten gradient text for marketing emphasis */
+.text-gradient-ember {
+  background: linear-gradient(120deg, #fbbf24 0%, var(--color-ember) 45%, var(--color-ember-deep) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Faint blueprint grid, used behind the hero */
+.grid-lines {
+  background-image:
+    linear-gradient(to right, rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+  background-size: 56px 56px;
+  -webkit-mask-image: radial-gradient(60% 60% at 50% 30%, #000 0%, transparent 100%);
+  mask-image: radial-gradient(60% 60% at 50% 30%, #000 0%, transparent 100%);
+}
+
+/* Ember-lit hover for feature cards */
+.card-lift {
+  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.3s ease,
+    background-color 0.3s ease;
+}
+.card-lift:hover {
+  transform: translateY(-4px);
+  border-color: rgba(245, 158, 91, 0.28);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+/* Continuous marquee for the trust strip */
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+.marquee-track {
+  animation: marquee 32s linear infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track {
+    animation: none;
+  }
+}
+
 * {
   scrollbar-width: thin;
   scrollbar-color: rgba(255, 255, 255, 0.14) transparent;
