@@ -8,6 +8,10 @@
 <meta property="og:title" content="Rodney's Salon and Barber — George Town, Grand Cayman">
 <meta property="og:description" content="Walk in confident. Walk out legendary. Fades, braids, wigs, locs, nails & makeup. Book on WhatsApp: +1 345-769-1248.">
 <meta property="og:type" content="website">
+<meta property="og:locale" content="en_KY">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Instrument+Serif:ital@1&family=Sora:wght@400;600;700;800&display=swap" rel="stylesheet">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -26,23 +30,46 @@
 }
 </script>
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Anton&family=Sora:wght@400;500;600;700;800&display=swap');
-
+/* ============================================================
+   TOKENS
+   Palette: sea-tinted near-black neutrals (never pure black),
+   teal = brand/CTA accent, gold = proof & prices, WhatsApp
+   green only on WhatsApp actions (semantic).
+   Type scale: 1rem base, ratio 1.2 (0.694 / 0.833 / 1 / 1.2 /
+   1.44 / 1.728) + clamped display sizes.
+   Spacing: 4px grid throughout.
+   ============================================================ */
 :root {
-  --ink: #0a0d10;
-  --coal: #12161c;
-  --coal-2: #171c23;
+  --ink: #0f1216;
+  --coal: #151a20;
+  --coal-2: #1a2027;
   --line: rgba(246, 243, 236, 0.09);
   --paper: #f6f3ec;
   --mute: #9aa4ad;
   --teal: #17e5bd;
+  --teal-bright: #3cf0cd;
   --teal-deep: #0b9c80;
   --gold: #f2b63c;
-  --coral: #ff5e5b;
   --wa: #25d366;
-  --radius: 18px;
-  --bar-h: 66px;
+  --wa-bright: #3fe07c;
+
+  --fs-2xs: 0.694rem;
+  --fs-xs: 0.833rem;
+  --fs-md: 1rem;
+  --fs-lg: 1.2rem;
+  --fs-xl: 1.44rem;
+  --fs-2xl: 1.728rem;
+
+  --r-chip: 999px;
+  --r-tile: 12px;
+  --r-card: 20px;
+
+  --shadow-cta: 0 1px 2px rgba(6, 40, 33, 0.5), 0 8px 24px rgba(23, 229, 189, 0.24);
+  --shadow-wa: 0 1px 2px rgba(4, 32, 14, 0.5), 0 8px 24px rgba(37, 211, 102, 0.22);
+
+  --bar-h: 68px;
   --display: 'Anton', 'Arial Narrow', Impact, sans-serif;
+  --serif: 'Instrument Serif', Georgia, serif;
   --body: 'Sora', -apple-system, 'Segoe UI', Roboto, sans-serif;
 }
 
@@ -51,6 +78,7 @@ html { scroll-behavior: smooth; overflow-x: clip; }
 
 body {
   font-family: var(--body);
+  font-size: var(--fs-md);
   background: var(--ink);
   color: var(--paper);
   line-height: 1.6;
@@ -64,6 +92,28 @@ a { color: inherit; }
 img { max-width: 100%; display: block; }
 button { font-family: inherit; }
 
+:focus-visible {
+  outline: 2px solid var(--teal);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+.skip-link {
+  position: absolute;
+  top: -48px;
+  left: 16px;
+  z-index: 100;
+  background: var(--teal);
+  color: var(--ink);
+  font-weight: 700;
+  font-size: var(--fs-xs);
+  text-decoration: none;
+  padding: 12px 20px;
+  border-radius: 0 0 12px 12px;
+  transition: top .2s;
+}
+.skip-link:focus { top: 0; }
+
 .wrap { width: min(1120px, 100% - 40px); margin-inline: auto; }
 @media (max-width: 560px) { .wrap { width: calc(100% - 32px); } }
 
@@ -72,14 +122,21 @@ button { font-family: inherit; }
   font-family: var(--display);
   font-weight: 400;
   text-transform: uppercase;
-  line-height: 0.96;
+  line-height: 1.04;
   letter-spacing: 0.01em;
+}
+.fl {
+  /* signature flourish: lowercase italic serif inside uppercase display */
+  font-family: var(--serif);
+  font-style: italic;
+  text-transform: lowercase;
+  letter-spacing: 0;
 }
 .kicker {
   display: inline-flex;
   align-items: center;
-  gap: 10px;
-  font-size: 12px;
+  gap: 12px;
+  font-size: var(--fs-xs);
   font-weight: 700;
   letter-spacing: 0.22em;
   text-transform: uppercase;
@@ -87,7 +144,7 @@ button { font-family: inherit; }
 }
 .kicker::before {
   content: "";
-  width: 26px; height: 2px;
+  width: 24px; height: 2px;
   background: var(--teal);
 }
 
@@ -96,7 +153,7 @@ button { font-family: inherit; }
   position: fixed;
   inset: 0 0 auto 0;
   z-index: 60;
-  background: rgba(10, 13, 16, 0.86);
+  background: rgba(15, 18, 22, 0.9);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
   border-bottom: 1px solid var(--line);
@@ -110,17 +167,17 @@ button { font-family: inherit; }
 }
 .logo {
   font-family: var(--display);
-  font-size: 21px;
+  font-size: var(--fs-lg);
   letter-spacing: 0.03em;
   text-transform: uppercase;
   text-decoration: none;
   display: flex;
   align-items: center;
-  gap: 9px;
+  gap: 8px;
   white-space: nowrap;
 }
 .logo .mark {
-  width: 30px; height: 30px;
+  width: 32px; height: 32px;
   border-radius: 8px;
   background: linear-gradient(135deg, var(--teal), var(--teal-deep));
   display: grid;
@@ -128,34 +185,35 @@ button { font-family: inherit; }
   color: var(--ink);
   flex: none;
 }
-.logo .mark svg { width: 17px; height: 17px; }
+.logo .mark svg { width: 18px; height: 18px; }
 .logo em { font-style: normal; color: var(--teal); }
 
 .main-nav { display: flex; align-items: center; gap: 4px; }
 .main-nav a {
   text-decoration: none;
-  font-size: 13.5px;
+  font-size: var(--fs-xs);
   font-weight: 600;
   color: var(--mute);
-  padding: 8px 13px;
-  border-radius: 999px;
+  padding: 8px 12px;
+  border-radius: var(--r-chip);
   transition: color .2s, background .2s;
 }
 .main-nav a:hover { color: var(--paper); }
 .main-nav a.active { color: var(--ink); background: var(--teal); }
 
-.header-actions { display: flex; align-items: center; gap: 10px; }
+.header-actions { display: flex; align-items: center; gap: 8px; }
 .header-phone {
   text-decoration: none;
-  font-size: 13.5px;
+  font-size: var(--fs-xs);
   font-weight: 700;
   color: var(--paper);
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  padding: 9px 14px;
+  min-height: 44px;
+  padding: 8px 16px;
   border: 1px solid var(--line);
-  border-radius: 999px;
+  border-radius: var(--r-chip);
   transition: border-color .2s;
 }
 .header-phone:hover { border-color: var(--teal); }
@@ -165,45 +223,47 @@ button { font-family: inherit; }
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 9px;
+  gap: 8px;
   text-decoration: none;
   border: 0;
   cursor: pointer;
   font-family: var(--body);
   font-weight: 800;
-  font-size: 14.5px;
+  font-size: var(--fs-xs);
   letter-spacing: 0.01em;
-  padding: 14px 24px;
-  border-radius: 999px;
-  transition: transform .15s, box-shadow .2s, background .2s, color .2s, border-color .2s;
+  min-height: 48px;
+  padding: 12px 24px;
+  border-radius: var(--r-chip);
+  transition: transform .15s ease-out, box-shadow .2s ease-out, background .2s, color .2s, border-color .2s;
 }
 .btn:active { transform: scale(0.97); }
-.btn svg { width: 17px; height: 17px; flex: none; }
+.btn svg { width: 16px; height: 16px; flex: none; }
 .btn-primary {
   background: var(--teal);
   color: var(--ink);
-  box-shadow: 0 6px 24px rgba(23, 229, 189, 0.28);
+  box-shadow: var(--shadow-cta);
 }
-.btn-primary:hover { background: #3cf0cd; }
+.btn-primary:hover { background: var(--teal-bright); }
 .btn-wa {
   background: var(--wa);
   color: #06130a;
-  box-shadow: 0 6px 24px rgba(37, 211, 102, 0.25);
+  box-shadow: var(--shadow-wa);
 }
-.btn-wa:hover { background: #3fe07c; }
+.btn-wa:hover { background: var(--wa-bright); }
 .btn-ghost {
   background: transparent;
   color: var(--paper);
   border: 1.5px solid rgba(246, 243, 236, 0.28);
+  box-shadow: none;
 }
 .btn-ghost:hover { border-color: var(--teal); color: var(--teal); }
-.btn-sm { padding: 10px 18px; font-size: 13.5px; }
+.btn-sm { min-height: 44px; padding: 8px 20px; }
 
 .burger {
   display: none;
-  width: 42px; height: 42px;
+  width: 44px; height: 44px;
   border: 1px solid var(--line);
-  border-radius: 12px;
+  border-radius: var(--r-tile);
   background: transparent;
   color: var(--paper);
   cursor: pointer;
@@ -222,10 +282,10 @@ button { font-family: inherit; }
   position: fixed;
   inset: 64px 0 auto 0;
   z-index: 59;
-  background: rgba(10, 13, 16, 0.97);
+  background: rgba(15, 18, 22, 0.97);
   backdrop-filter: blur(16px);
   border-bottom: 1px solid var(--line);
-  padding: 10px 20px 24px;
+  padding: 8px 20px 24px;
   display: none;
 }
 .mobile-menu.open { display: block; }
@@ -236,20 +296,20 @@ button { font-family: inherit; }
   text-decoration: none;
   font-family: var(--display);
   text-transform: uppercase;
-  font-size: 27px;
+  font-size: var(--fs-2xl);
   letter-spacing: 0.02em;
-  padding: 13px 4px;
+  padding: 12px 4px;
   border-bottom: 1px solid var(--line);
   color: var(--paper);
 }
 .mobile-menu a.active { color: var(--teal); }
-.mobile-menu a .arr { color: var(--teal); font-family: var(--body); font-size: 18px; }
-.mobile-menu .menu-cta { display: flex; gap: 10px; margin-top: 18px; }
+.mobile-menu a .arr { color: var(--teal); font-family: var(--body); font-size: var(--fs-lg); }
+.mobile-menu .menu-cta { display: flex; gap: 12px; margin-top: 16px; }
 .mobile-menu .menu-cta .btn { flex: 1; }
 
 /* ---------- Views (pages) ---------- */
 .view { display: none; padding-top: 64px; }
-.view.active { display: block; animation: viewIn .35s ease both; }
+.view.active { display: block; animation: viewIn .3s ease-out both; }
 @keyframes viewIn {
   from { opacity: 0; transform: translateY(12px); }
   to { opacity: 1; transform: none; }
@@ -267,7 +327,7 @@ button { font-family: inherit; }
   top: -220px; right: -180px;
   width: 560px; height: 560px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(23, 229, 189, 0.16), transparent 65%);
+  background: radial-gradient(circle, rgba(23, 229, 189, 0.15), transparent 65%);
   pointer-events: none;
 }
 .hero::after {
@@ -276,7 +336,7 @@ button { font-family: inherit; }
   bottom: -260px; left: -200px;
   width: 520px; height: 520px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(242, 182, 60, 0.1), transparent 65%);
+  background: radial-gradient(circle, rgba(242, 182, 60, 0.09), transparent 65%);
   pointer-events: none;
 }
 .hero-in { position: relative; z-index: 1; }
@@ -284,55 +344,56 @@ button { font-family: inherit; }
 .rating-pill {
   display: inline-flex;
   align-items: center;
-  gap: 9px;
+  gap: 8px;
   background: var(--coal);
   border: 1px solid var(--line);
-  border-radius: 999px;
-  padding: 8px 15px;
-  font-size: 13px;
+  border-radius: var(--r-chip);
+  padding: 8px 16px;
+  font-size: var(--fs-xs);
   font-weight: 600;
-  margin-bottom: 22px;
+  margin-bottom: 24px;
 }
-.rating-pill .stars { display: inline-flex; gap: 1.5px; }
+.rating-pill .stars { display: inline-flex; gap: 2px; }
 .rating-pill .stars svg { width: 14px; height: 14px; color: var(--gold); }
 .rating-pill b { color: var(--gold); font-weight: 800; }
 .rating-pill span { color: var(--mute); }
 
 .hero h1 {
-  font-size: clamp(46px, 9.5vw, 108px);
+  font-size: clamp(2.875rem, 9.5vw, 6.75rem);
+  line-height: 1.0;
   max-width: 11ch;
 }
 .hero h1 .t { color: var(--teal); }
-.hero h1 .o {
-  -webkit-text-stroke: 1.5px rgba(246, 243, 236, 0.75);
-  color: transparent;
+.hero h1 .fl {
+  font-size: 1.06em;
+  color: var(--gold);
 }
 .hero-sub {
   margin-top: 20px;
   max-width: 46ch;
   color: var(--mute);
-  font-size: clamp(15px, 2.4vw, 17.5px);
+  font-size: clamp(0.9375rem, 2.4vw, 1.0625rem);
 }
 .hero-sub b { color: var(--paper); }
 .hero-cta {
   display: flex;
   flex-wrap: wrap;
   gap: 12px;
-  margin-top: 30px;
+  margin-top: 32px;
 }
 .hero-meta {
   display: flex;
   flex-wrap: wrap;
-  gap: 8px 22px;
-  margin-top: 26px;
-  font-size: 13px;
+  gap: 8px 24px;
+  margin-top: 28px;
+  font-size: var(--fs-xs);
   font-weight: 600;
   color: var(--mute);
 }
-.hero-meta span { display: inline-flex; align-items: center; gap: 7px; }
+.hero-meta span { display: inline-flex; align-items: center; gap: 8px; }
 .hero-meta svg { width: 14px; height: 14px; color: var(--teal); }
 @media (max-width: 560px) {
-  .hero { padding: 40px 0 34px; }
+  .hero { padding: 40px 0 32px; }
   .hero-cta .btn { flex: 1 1 100%; }
 }
 
@@ -341,55 +402,56 @@ button { font-family: inherit; }
   background: var(--teal);
   color: var(--ink);
   transform: rotate(-1.2deg) scale(1.02);
-  padding: 11px 0;
+  padding: 12px 0;
   overflow: hidden;
-  margin: 26px 0;
+  margin: 24px 0;
   user-select: none;
 }
 .marquee-track {
   display: flex;
-  gap: 0;
   width: max-content;
   animation: slide 26s linear infinite;
 }
 .marquee-track span {
   font-family: var(--display);
   text-transform: uppercase;
-  font-size: 17px;
+  font-size: var(--fs-md);
   letter-spacing: 0.06em;
   white-space: nowrap;
-  padding-right: 14px;
+  padding-right: 16px;
 }
 @keyframes slide { to { transform: translateX(-50%); } }
 @media (prefers-reduced-motion: reduce) {
   .marquee-track { animation: none; }
   .view.active { animation: none; }
+  .reveal { transition: none; }
 }
 
 /* ---------- Sections ---------- */
-.section { padding: 58px 0; }
+.section { padding: 64px 0; }
 .section-head {
   display: flex;
   flex-wrap: wrap;
   align-items: flex-end;
   justify-content: space-between;
   gap: 16px;
-  margin-bottom: 34px;
+  margin-bottom: 36px;
 }
 .section-head h2 {
-  font-size: clamp(32px, 6vw, 54px);
-  margin-top: 10px;
+  font-size: clamp(2rem, 6vw, 3.375rem);
+  margin-top: 12px;
 }
-.section-head p { color: var(--mute); max-width: 52ch; margin-top: 10px; font-size: 15px; }
+.section-head h2 .fl { color: var(--teal); font-size: 1.06em; }
+.section-head p { color: var(--mute); max-width: 52ch; margin-top: 12px; font-size: var(--fs-md); }
 
-.reveal { opacity: 0; transform: translateY(18px); transition: opacity .6s ease, transform .6s ease; }
+.reveal { opacity: 0; transform: translateY(16px); transition: opacity .5s ease-out, transform .5s ease-out; }
 .reveal.in { opacity: 1; transform: none; }
 
 /* ---------- Service preview cards (home) ---------- */
 .card-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 14px;
+  gap: 16px;
 }
 @media (max-width: 920px) { .card-grid { grid-template-columns: repeat(2, 1fr); } }
 .svc-card {
@@ -398,15 +460,15 @@ button { font-family: inherit; }
   text-decoration: none;
   background: var(--coal);
   border: 1px solid var(--line);
-  border-radius: var(--radius);
-  padding: 22px 20px 20px;
+  border-radius: var(--r-card);
+  padding: 24px 20px 20px;
   overflow: hidden;
-  transition: transform .2s, border-color .2s;
+  transition: transform .2s ease-out, border-color .2s;
 }
 .svc-card:hover { transform: translateY(-4px); border-color: rgba(23, 229, 189, 0.5); }
 .svc-card .ico {
   width: 44px; height: 44px;
-  border-radius: 12px;
+  border-radius: var(--r-tile);
   display: grid;
   place-items: center;
   margin-bottom: 40px;
@@ -417,107 +479,114 @@ button { font-family: inherit; }
   font-family: var(--display);
   font-weight: 400;
   text-transform: uppercase;
-  font-size: 21px;
+  font-size: var(--fs-xl);
+  line-height: 1.15;
   letter-spacing: 0.02em;
 }
-.svc-card p { font-size: 13px; color: var(--mute); margin-top: 6px; }
+.svc-card p { font-size: var(--fs-xs); color: var(--mute); margin-top: 8px; }
 .svc-card .go {
   position: absolute;
-  top: 18px; right: 18px;
+  top: 20px; right: 20px;
   color: var(--mute);
-  font-size: 18px;
-  transition: color .2s, transform .2s;
+  font-size: var(--fs-lg);
+  transition: color .2s, transform .2s ease-out;
 }
 .svc-card:hover .go { color: var(--teal); transform: translate(2px, -2px); }
 .ico-teal { background: linear-gradient(135deg, var(--teal), var(--teal-deep)); }
 .ico-gold { background: linear-gradient(135deg, var(--gold), #c98a12); }
-.ico-coral { background: linear-gradient(135deg, var(--coral), #d13734); }
+.ico-sea { background: linear-gradient(135deg, #6ee9ff, #1585a8); }
 .ico-paper { background: linear-gradient(135deg, var(--paper), #c9c2b4); }
 
-/* ---------- Why band ---------- */
-.why {
+/* ---------- Why (editorial rows, asymmetric) ---------- */
+.why { border-top: 1px solid var(--line); }
+.why-row {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 14px;
+  grid-template-columns: 64px 1fr 1.5fr;
+  gap: 8px 32px;
+  align-items: baseline;
+  padding: 28px 0;
+  border-bottom: 1px solid var(--line);
 }
-@media (max-width: 820px) { .why { grid-template-columns: 1fr; } }
-.why-item {
-  background: var(--coal);
-  border: 1px solid var(--line);
-  border-radius: var(--radius);
-  padding: 24px 22px;
-}
-.why-item .n {
+.why-row .n {
   font-family: var(--display);
-  font-size: 15px;
-  color: var(--teal);
-  letter-spacing: 0.12em;
+  font-size: var(--fs-lg);
+  color: var(--gold);
 }
-.why-item h3 {
+.why-row h3 {
   font-family: var(--display);
   font-weight: 400;
   text-transform: uppercase;
-  font-size: 23px;
-  margin: 10px 0 8px;
+  font-size: clamp(var(--fs-xl), 3.4vw, var(--fs-2xl));
+  line-height: 1.15;
 }
-.why-item p { color: var(--mute); font-size: 14px; }
+.why-row p { color: var(--mute); font-size: var(--fs-md); }
+@media (max-width: 720px) {
+  .why-row { grid-template-columns: 44px 1fr; }
+  .why-row p { grid-column: 2; }
+}
 
 /* ---------- Big CTA band ---------- */
 .cta-band {
   background: linear-gradient(120deg, var(--teal) 0%, #0fd0aa 55%, var(--teal-deep) 100%);
   color: var(--ink);
   border-radius: 24px;
-  padding: clamp(30px, 6vw, 56px);
+  padding: clamp(32px, 6vw, 56px);
   position: relative;
   overflow: hidden;
 }
 .cta-band::after {
   content: "";
   position: absolute;
-  top: -60px; right: -60px;
+  top: -64px; right: -64px;
   width: 240px; height: 240px;
-  border: 26px solid rgba(10, 13, 16, 0.12);
+  border: 28px solid rgba(15, 18, 22, 0.12);
   border-radius: 50%;
 }
-.cta-band h2 { font-size: clamp(32px, 6.5vw, 60px); max-width: 14ch; position: relative; z-index: 1; }
+.cta-band h2 { font-size: clamp(2rem, 6.5vw, 3.75rem); max-width: 14ch; position: relative; z-index: 1; }
+.cta-band h2 .fl { font-size: 1.06em; }
 .cta-band p { margin-top: 12px; font-weight: 600; max-width: 42ch; position: relative; z-index: 1; }
 .cta-band .row { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 24px; position: relative; z-index: 1; }
-.cta-band .btn-dark { background: var(--ink); color: var(--paper); }
-.cta-band .btn-dark:hover { background: #1c232b; }
-.cta-band .btn-line { background: transparent; border: 2px solid rgba(10, 13, 16, 0.6); color: var(--ink); }
-.cta-band .btn-line:hover { background: rgba(10, 13, 16, 0.08); }
+.cta-band .btn-dark { background: var(--ink); color: var(--paper); box-shadow: 0 1px 2px rgba(6, 40, 33, 0.4), 0 8px 24px rgba(9, 12, 15, 0.35); }
+.cta-band .btn-dark:hover { background: #232b34; }
+.cta-band .btn-line { background: transparent; border: 2px solid rgba(15, 18, 22, 0.6); color: var(--ink); box-shadow: none; }
+.cta-band .btn-line:hover { background: rgba(15, 18, 22, 0.08); }
 @media (max-width: 560px) { .cta-band .row .btn { flex: 1 1 100%; } }
 
 /* ---------- Services menu page ---------- */
-.menu-group { margin-bottom: 42px; }
+.menu-group { margin-bottom: 44px; }
 .menu-group-head {
   display: flex;
   align-items: center;
-  gap: 14px;
+  gap: 16px;
   margin-bottom: 8px;
 }
 .menu-group-head h3 {
   font-family: var(--display);
   font-weight: 400;
   text-transform: uppercase;
-  font-size: clamp(23px, 4vw, 30px);
+  font-size: clamp(var(--fs-xl), 4vw, 1.875rem);
+  line-height: 1.15;
   letter-spacing: 0.02em;
   white-space: nowrap;
 }
 .menu-group-head .rule { flex: 1; height: 1px; background: var(--line); }
 .menu-group-head .tag {
-  font-size: 11px;
+  font-size: var(--fs-2xs);
   font-weight: 700;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--ink);
-  background: var(--gold);
-  padding: 4px 10px;
-  border-radius: 999px;
+  color: var(--mute);
+  border: 1px solid var(--line);
+  padding: 4px 12px;
+  border-radius: var(--r-chip);
   white-space: nowrap;
 }
-.menu-group-head .tag.t { background: var(--teal); }
-.menu-group-head .tag.c { background: var(--coral); color: var(--paper); }
+
+@media (max-width: 620px) {
+  .menu-group-head { flex-wrap: wrap; gap: 8px 16px; }
+  .menu-group-head h3 { white-space: normal; }
+  .menu-group-head .rule { display: none; }
+}
 
 .menu-list { display: grid; grid-template-columns: 1fr 1fr; gap: 0 40px; }
 @media (max-width: 820px) { .menu-list { grid-template-columns: 1fr; } }
@@ -525,16 +594,16 @@ button { font-family: inherit; }
   display: grid;
   grid-template-columns: 1fr auto;
   gap: 4px 16px;
-  padding: 17px 2px;
+  padding: 16px 4px;
   border-bottom: 1px solid var(--line);
   align-items: baseline;
 }
 .menu-item .name {
   font-weight: 700;
-  font-size: 15.5px;
+  font-size: var(--fs-md);
   display: flex;
   align-items: baseline;
-  gap: 10px;
+  gap: 12px;
   min-width: 0;
 }
 .menu-item .name::after {
@@ -546,24 +615,24 @@ button { font-family: inherit; }
 }
 .menu-item .price {
   font-family: var(--display);
-  font-size: 16px;
+  font-size: var(--fs-md);
   letter-spacing: 0.04em;
-  color: var(--teal);
+  color: var(--gold);
   white-space: nowrap;
 }
 .menu-item .desc {
   grid-column: 1 / -1;
-  font-size: 13px;
+  font-size: var(--fs-xs);
   color: var(--mute);
 }
 .menu-note {
-  margin-top: 26px;
+  margin-top: 28px;
   background: var(--coal);
   border: 1px solid var(--line);
   border-left: 3px solid var(--gold);
-  border-radius: 12px;
-  padding: 16px 18px;
-  font-size: 14px;
+  border-radius: var(--r-tile);
+  padding: 16px 20px;
+  font-size: var(--fs-xs);
   color: var(--mute);
 }
 .menu-note b { color: var(--paper); }
@@ -576,16 +645,16 @@ button { font-family: inherit; }
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
-  gap: 14px;
+  gap: 16px;
   background: var(--coal);
   border: 1px solid var(--line);
-  border-radius: var(--radius);
+  border-radius: var(--r-card);
   padding: 16px 20px;
-  margin-bottom: 22px;
+  margin-bottom: 24px;
 }
-.ig-bar .who { display: flex; align-items: center; gap: 13px; }
+.ig-bar .who { display: flex; align-items: center; gap: 12px; }
 .ig-bar .av {
-  width: 46px; height: 46px;
+  width: 48px; height: 48px;
   border-radius: 50%;
   background: conic-gradient(from 210deg, #feda75, #fa7e1e, #d62976, #962fbf, #4f5bd5, #feda75);
   display: grid;
@@ -598,30 +667,30 @@ button { font-family: inherit; }
   display: grid;
   place-items: center;
   font-family: var(--display);
-  font-size: 17px;
+  font-size: var(--fs-lg);
   color: var(--teal);
 }
-.ig-bar .handle { font-weight: 800; font-size: 15px; }
-.ig-bar .sub { font-size: 12.5px; color: var(--mute); }
+.ig-bar .handle { font-weight: 800; font-size: var(--fs-md); }
+.ig-bar .sub { font-size: var(--fs-xs); color: var(--mute); }
 
 .gallery-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 10px;
+  gap: 12px;
 }
 @media (max-width: 920px) { .gallery-grid { grid-template-columns: repeat(3, 1fr); } }
 @media (max-width: 620px) { .gallery-grid { grid-template-columns: repeat(2, 1fr); gap: 8px; } }
 .g-tile {
   position: relative;
   aspect-ratio: 1;
-  border-radius: 14px;
+  border-radius: var(--r-tile);
   overflow: hidden;
   display: flex;
   align-items: flex-end;
-  padding: 14px;
+  padding: 16px;
   text-decoration: none;
   border: 1px solid var(--line);
-  transition: transform .2s;
+  transition: transform .2s ease-out;
 }
 .g-tile:hover { transform: scale(1.02); }
 .g-tile .wm {
@@ -637,17 +706,18 @@ button { font-family: inherit; }
   z-index: 1;
   font-family: var(--display);
   text-transform: uppercase;
-  font-size: 15px;
+  font-size: var(--fs-md);
+  line-height: 1.15;
   letter-spacing: 0.05em;
   color: var(--paper);
-  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
 }
 .g-tile .cam {
   position: absolute;
-  top: 10px; right: 10px;
-  width: 26px; height: 26px;
+  top: 12px; right: 12px;
+  width: 28px; height: 28px;
   border-radius: 8px;
-  background: rgba(10, 13, 16, 0.45);
+  background: rgba(15, 18, 22, 0.45);
   display: grid;
   place-items: center;
   color: var(--paper);
@@ -659,23 +729,23 @@ button { font-family: inherit; }
 .bg4 { background: linear-gradient(150deg, #1d2b45, #5b8cff55), var(--coal-2); }
 .bg5 { background: linear-gradient(150deg, #2f1d45, #a45bff55), var(--coal-2); }
 .bg6 { background: linear-gradient(150deg, #103c2c, #2fe07c55), var(--coal-2); }
-.gallery-note { margin-top: 18px; font-size: 13.5px; color: var(--mute); text-align: center; }
+.gallery-note { margin-top: 20px; font-size: var(--fs-xs); color: var(--mute); text-align: center; }
 .gallery-note a { color: var(--teal); font-weight: 700; text-decoration: none; }
 
 /* ---------- Team ---------- */
 .team-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 14px;
+  gap: 16px;
 }
 @media (max-width: 920px) { .team-grid { grid-template-columns: repeat(2, 1fr); } }
 @media (max-width: 520px) { .team-grid { grid-template-columns: 1fr; } }
 .team-card {
   background: var(--coal);
   border: 1px solid var(--line);
-  border-radius: var(--radius);
+  border-radius: var(--r-card);
   overflow: hidden;
-  transition: transform .2s, border-color .2s;
+  transition: transform .2s ease-out, border-color .2s;
 }
 .team-card:hover { transform: translateY(-4px); border-color: rgba(23, 229, 189, 0.4); }
 .team-card .ph {
@@ -686,162 +756,168 @@ button { font-family: inherit; }
 }
 .team-card .ph .init {
   font-family: var(--display);
-  font-size: 64px;
-  color: rgba(10, 13, 16, 0.8);
+  font-size: 4rem;
+  color: rgba(15, 18, 22, 0.8);
 }
-.team-card .bio { padding: 18px 18px 20px; }
+.team-card .bio { padding: 20px 20px 24px; }
 .team-card h3 {
   font-family: var(--display);
   font-weight: 400;
   text-transform: uppercase;
-  font-size: 22px;
+  font-size: var(--fs-xl);
+  line-height: 1.15;
 }
 .team-card .role {
-  font-size: 12px;
+  font-size: var(--fs-2xs);
   font-weight: 700;
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--teal);
   margin: 4px 0 8px;
 }
-.team-card p { font-size: 13.5px; color: var(--mute); }
+.team-card p { font-size: var(--fs-xs); color: var(--mute); }
 .ph-teal { background: linear-gradient(140deg, var(--teal), var(--teal-deep)); }
 .ph-gold { background: linear-gradient(140deg, var(--gold), #c98a12); }
-.ph-coral { background: linear-gradient(140deg, var(--coral), #c23431); }
+.ph-sea { background: linear-gradient(140deg, #6ee9ff, #1585a8); }
 .ph-paper { background: linear-gradient(140deg, var(--paper), #b9b1a0); }
 
 /* ---------- Book page ---------- */
 .book-grid {
   display: grid;
   grid-template-columns: 1.15fr 1fr;
-  gap: 18px;
+  gap: 20px;
   align-items: start;
 }
 @media (max-width: 880px) { .book-grid { grid-template-columns: 1fr; } }
 .book-main {
   background: var(--coal);
   border: 1px solid var(--line);
-  border-radius: 22px;
+  border-radius: 24px;
   padding: clamp(24px, 4.5vw, 40px);
 }
 .book-main h3 {
   font-family: var(--display);
   font-weight: 400;
   text-transform: uppercase;
-  font-size: clamp(26px, 5vw, 38px);
+  font-size: clamp(1.625rem, 5vw, 2.375rem);
+  line-height: 1.1;
 }
-.book-main > p { color: var(--mute); margin-top: 10px; font-size: 15px; }
-.book-btns { display: grid; gap: 11px; margin-top: 24px; }
-.book-btns .btn { width: 100%; padding: 17px 24px; font-size: 15.5px; }
+.book-main > p { color: var(--mute); margin-top: 12px; font-size: var(--fs-md); }
+.book-btns { display: grid; gap: 12px; margin-top: 24px; }
+.book-btns .btn { width: 100%; min-height: 56px; font-size: var(--fs-md); }
 .book-alt {
-  margin-top: 18px;
+  margin-top: 20px;
   text-align: center;
-  font-size: 13.5px;
+  font-size: var(--fs-xs);
   color: var(--mute);
 }
 .book-alt a { color: var(--teal); font-weight: 700; text-decoration: none; }
 
-.steps { display: grid; gap: 0; margin-top: 26px; }
+.steps { display: grid; margin-top: 28px; }
 .step {
   display: flex;
-  gap: 15px;
-  padding: 14px 0;
+  gap: 16px;
+  padding: 16px 0;
   border-top: 1px solid var(--line);
 }
 .step .num {
   font-family: var(--display);
-  font-size: 20px;
+  font-size: var(--fs-lg);
   color: var(--gold);
   flex: none;
   width: 28px;
 }
-.step b { display: block; font-size: 14.5px; }
-.step span { font-size: 13px; color: var(--mute); }
+.step b { display: block; font-size: var(--fs-md); }
+.step span { font-size: var(--fs-xs); color: var(--mute); }
 
 .info-card {
   background: var(--coal);
   border: 1px solid var(--line);
-  border-radius: 22px;
+  border-radius: 24px;
   padding: 24px;
-  margin-bottom: 18px;
+  margin-bottom: 20px;
 }
 .info-card h4 {
   font-family: var(--display);
   font-weight: 400;
   text-transform: uppercase;
-  font-size: 19px;
+  font-size: var(--fs-lg);
+  line-height: 1.15;
   letter-spacing: 0.04em;
   display: flex;
   align-items: center;
-  gap: 10px;
-  margin-bottom: 14px;
+  gap: 12px;
+  margin-bottom: 16px;
 }
-.info-card h4 svg { width: 17px; height: 17px; color: var(--teal); }
-.hours { width: 100%; font-size: 14px; border-collapse: collapse; }
+.info-card h4 svg { width: 16px; height: 16px; color: var(--teal); }
+.hours { width: 100%; font-size: var(--fs-xs); border-collapse: collapse; }
 .hours td { padding: 8px 0; border-bottom: 1px solid var(--line); }
 .hours tr:last-child td { border-bottom: 0; }
 .hours td:last-child { text-align: right; color: var(--mute); }
-.hours .today td { color: var(--teal); font-weight: 700; }
-.info-card p { font-size: 14px; color: var(--mute); }
+.info-card p { font-size: var(--fs-xs); color: var(--mute); }
 .info-card p b { color: var(--paper); }
 .walkin {
   display: inline-flex;
   align-items: center;
   gap: 8px;
   margin-top: 12px;
-  font-size: 12.5px;
+  font-size: var(--fs-2xs);
   font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
   color: var(--gold);
   background: rgba(242, 182, 60, 0.1);
   border: 1px solid rgba(242, 182, 60, 0.3);
-  padding: 7px 13px;
-  border-radius: 999px;
+  padding: 8px 12px;
+  border-radius: var(--r-chip);
 }
+.walkin svg { width: 12px; height: 12px; }
 
 /* ---------- Footer ---------- */
 .site-footer {
   border-top: 1px solid var(--line);
-  padding: 44px 0 30px;
-  margin-top: 30px;
+  padding: 48px 0 32px;
+  margin-top: 32px;
 }
 .footer-grid {
   display: grid;
   grid-template-columns: 1.4fr 1fr 1fr;
-  gap: 30px;
+  gap: 32px;
 }
 @media (max-width: 760px) { .footer-grid { grid-template-columns: 1fr; } }
-.site-footer .fl {
+.site-footer .fl-logo {
   font-family: var(--display);
   text-transform: uppercase;
-  font-size: 24px;
+  font-size: var(--fs-xl);
 }
-.site-footer .fl em { font-style: normal; color: var(--teal); }
-.site-footer .tag { color: var(--mute); font-size: 13.5px; margin-top: 8px; max-width: 34ch; }
-.site-footer h5 {
-  font-size: 12px;
+.site-footer .fl-logo em { font-style: normal; color: var(--teal); }
+.site-footer .tag { color: var(--mute); font-size: var(--fs-xs); margin-top: 8px; max-width: 34ch; }
+.site-footer h2 {
+  font-family: var(--body);
+  font-size: var(--fs-2xs);
   font-weight: 800;
   letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--mute);
   margin-bottom: 12px;
 }
-.site-footer ul { list-style: none; display: grid; gap: 9px; }
+.site-footer ul { list-style: none; display: grid; gap: 8px; }
 .site-footer ul a {
   text-decoration: none;
-  font-size: 14px;
+  font-size: var(--fs-xs);
   color: var(--paper);
   opacity: 0.85;
 }
 .site-footer ul a:hover { color: var(--teal); opacity: 1; }
 .footer-base {
-  margin-top: 34px;
-  padding-top: 18px;
+  margin-top: 36px;
+  padding-top: 20px;
   border-top: 1px solid var(--line);
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  gap: 10px;
-  font-size: 12.5px;
+  gap: 12px;
+  font-size: var(--fs-xs);
   color: var(--mute);
 }
 .footer-base .stars { color: var(--gold); }
@@ -852,21 +928,23 @@ button { font-family: inherit; }
   z-index: 70;
   left: 0; right: 0; bottom: 0;
   height: calc(var(--bar-h) + env(safe-area-inset-bottom));
-  padding: 9px 12px calc(9px + env(safe-area-inset-bottom));
-  background: rgba(10, 13, 16, 0.92);
+  padding: 8px 12px calc(8px + env(safe-area-inset-bottom));
+  background: rgba(15, 18, 22, 0.92);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
   border-top: 1px solid var(--line);
   display: flex;
-  gap: 9px;
+  gap: 8px;
 }
-.action-bar .btn { flex: 1; padding: 12px 10px; font-size: 13.5px; border-radius: 14px; }
+.action-bar .btn { flex: 1; min-height: 52px; padding: 12px 8px; border-radius: 16px; }
 .action-bar .btn-ghost { flex: 0 0 auto; width: 52px; padding: 12px 0; }
 @media (min-width: 921px) { .action-bar { display: none; } }
 @media (max-width: 920px) { body { padding-bottom: calc(var(--bar-h) + env(safe-area-inset-bottom)); } }
 </style>
 </head>
 <body>
+
+<a class="skip-link" href="#main">Skip to content</a>
 
 <!-- ============ HEADER ============ -->
 <header class="site-header">
@@ -887,13 +965,13 @@ button { font-family: inherit; }
     </nav>
 
     <div class="header-actions">
-      <a class="header-phone" href="tel:+13457691248" aria-label="Call Rodney's Salon and Barber">
-        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M6.62 10.79a15.05 15.05 0 0 0 6.59 6.59l2.2-2.2a1 1 0 0 1 1.02-.24c1.12.37 2.33.57 3.57.57a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1C10.85 21 3 13.15 3 3.5a1 1 0 0 1 1-1H7.5a1 1 0 0 1 1 1c0 1.24.2 2.45.57 3.57a1 1 0 0 1-.24 1.02l-2.21 2.2Z"/></svg>
+      <a class="header-phone" href="tel:+13457691248" aria-label="Call Rodney's Salon and Barber at +1 345-769-1248">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.62 10.79a15.05 15.05 0 0 0 6.59 6.59l2.2-2.2a1 1 0 0 1 1.02-.24c1.12.37 2.33.57 3.57.57a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1C10.85 21 3 13.15 3 3.5a1 1 0 0 1 1-1H7.5a1 1 0 0 1 1 1c0 1.24.2 2.45.57 3.57a1 1 0 0 1-.24 1.02l-2.21 2.2Z"/></svg>
         +1 345-769-1248
       </a>
       <a class="btn btn-primary btn-sm header-book" href="#book" data-nav>Book Now</a>
       <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h10"/></svg>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h10"/></svg>
       </button>
     </div>
   </div>
@@ -901,24 +979,24 @@ button { font-family: inherit; }
 
 <!-- Mobile menu -->
 <nav class="mobile-menu" id="mobileMenu" aria-label="Mobile">
-  <a href="#home" data-nav data-view="home">Home <span class="arr">→</span></a>
-  <a href="#services" data-nav data-view="services">Services &amp; Prices <span class="arr">→</span></a>
-  <a href="#gallery" data-nav data-view="gallery">Gallery <span class="arr">→</span></a>
-  <a href="#team" data-nav data-view="team">Team <span class="arr">→</span></a>
-  <a href="#book" data-nav data-view="book">Book <span class="arr">→</span></a>
+  <a href="#home" data-nav data-view="home">Home <span class="arr" aria-hidden="true">→</span></a>
+  <a href="#services" data-nav data-view="services">Services &amp; Prices <span class="arr" aria-hidden="true">→</span></a>
+  <a href="#gallery" data-nav data-view="gallery">Gallery <span class="arr" aria-hidden="true">→</span></a>
+  <a href="#team" data-nav data-view="team">Team <span class="arr" aria-hidden="true">→</span></a>
+  <a href="#book" data-nav data-view="book">Book <span class="arr" aria-hidden="true">→</span></a>
   <div class="menu-cta">
     <a class="btn btn-wa" href="https://wa.me/13457691248?text=Hi%20Rodney%27s!%20I%27d%20like%20to%20book%20an%20appointment." target="_blank" rel="noopener">WhatsApp</a>
     <a class="btn btn-ghost" href="tel:+13457691248">Call</a>
   </div>
 </nav>
 
-<main>
+<main id="main">
 
 <!-- ============ HOME ============ -->
 <section class="view" id="view-home">
   <div class="hero">
     <div class="wrap hero-in">
-      <div class="rating-pill">
+      <p class="rating-pill">
         <span class="stars" aria-hidden="true">
           <svg viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
           <svg viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
@@ -927,11 +1005,11 @@ button { font-family: inherit; }
           <svg viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
         </span>
         <b>4.8</b><span>· Rated by our clients · George Town</span>
-      </div>
+      </p>
 
       <h1 class="display">
         Walk in <span class="t">confident.</span><br>
-        Walk out <span class="o">legendary.</span>
+        Walk out <span class="fl">legendary.</span>
       </h1>
 
       <p class="hero-sub">
@@ -942,26 +1020,26 @@ button { font-family: inherit; }
 
       <div class="hero-cta">
         <a class="btn btn-wa" href="https://wa.me/13457691248?text=Hi%20Rodney%27s!%20I%27d%20like%20to%20book%20an%20appointment." target="_blank" rel="noopener">
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2a9.9 9.9 0 0 0-8.4 15.16L2.05 22l4.99-1.56A9.9 9.9 0 1 0 12.04 2Zm5.77 14.06c-.24.68-1.4 1.3-1.93 1.35-.52.05-1.01.24-3.4-.7-2.87-1.14-4.7-4.06-4.84-4.25-.14-.19-1.16-1.55-1.16-2.96 0-1.4.73-2.09 1-2.38.26-.28.57-.35.76-.35h.55c.18 0 .42-.06.65.5.24.57.8 1.97.88 2.11.07.14.12.31.02.5-.1.19-.15.3-.29.47-.14.17-.3.38-.43.5-.14.15-.29.3-.12.58.16.28.73 1.2 1.57 1.95 1.08.96 1.99 1.26 2.27 1.4.28.14.45.12.61-.07.17-.19.7-.82.89-1.1.19-.28.38-.24.64-.14.26.09 1.66.78 1.94.92.29.14.48.21.55.33.07.12.07.68-.16 1.34Z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2a9.9 9.9 0 0 0-8.4 15.16L2.05 22l4.99-1.56A9.9 9.9 0 1 0 12.04 2Zm5.77 14.06c-.24.68-1.4 1.3-1.93 1.35-.52.05-1.01.24-3.4-.7-2.87-1.14-4.7-4.06-4.84-4.25-.14-.19-1.16-1.55-1.16-2.96 0-1.4.73-2.09 1-2.38.26-.28.57-.35.76-.35h.55c.18 0 .42-.06.65.5.24.57.8 1.97.88 2.11.07.14.12.31.02.5-.1.19-.15.3-.29.47-.14.17-.3.38-.43.5-.14.15-.29.3-.12.58.16.28.73 1.2 1.57 1.95 1.08.96 1.99 1.26 2.27 1.4.28.14.45.12.61-.07.17-.19.7-.82.89-1.1.19-.28.38-.24.64-.14.26.09 1.66.78 1.94.92.29.14.48.21.55.33.07.12.07.68-.16 1.34Z"/></svg>
           Book on WhatsApp
         </a>
         <a class="btn btn-ghost" href="tel:+13457691248">
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M6.62 10.79a15.05 15.05 0 0 0 6.59 6.59l2.2-2.2a1 1 0 0 1 1.02-.24c1.12.37 2.33.57 3.57.57a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1C10.85 21 3 13.15 3 3.5a1 1 0 0 1 1-1H7.5a1 1 0 0 1 1 1c0 1.24.2 2.45.57 3.57a1 1 0 0 1-.24 1.02l-2.21 2.2Z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.62 10.79a15.05 15.05 0 0 0 6.59 6.59l2.2-2.2a1 1 0 0 1 1.02-.24c1.12.37 2.33.57 3.57.57a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1C10.85 21 3 13.15 3 3.5a1 1 0 0 1 1-1H7.5a1 1 0 0 1 1 1c0 1.24.2 2.45.57 3.57a1 1 0 0 1-.24 1.02l-2.21 2.2Z"/></svg>
           Call +1 345-769-1248
         </a>
       </div>
 
       <div class="hero-meta">
         <span>
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7Zm0 9.5A2.5 2.5 0 1 1 12 6a2.5 2.5 0 0 1 0 5.5Z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7Zm0 9.5A2.5 2.5 0 1 1 12 6a2.5 2.5 0 0 1 0 5.5Z"/></svg>
           George Town, Grand Cayman
         </span>
         <span>
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 3.25.15 4.77 1.69 4.92 4.92.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.15 3.23-1.66 4.77-4.92 4.92-1.27.06-1.64.07-4.85.07-3.2 0-3.58-.01-4.85-.07-3.26-.15-4.77-1.7-4.92-4.92-.06-1.27-.07-1.64-.07-4.85s.01-3.58.07-4.85C2.38 3.92 3.9 2.38 7.15 2.23 8.42 2.18 8.8 2.16 12 2.16Zm0 3.68a6.16 6.16 0 1 0 0 12.32 6.16 6.16 0 0 0 0-12.32ZM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8Zm6.4-10.85a1.44 1.44 0 1 0 0 2.88 1.44 1.44 0 0 0 0-2.88Z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 3.25.15 4.77 1.69 4.92 4.92.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.15 3.23-1.66 4.77-4.92 4.92-1.27.06-1.64.07-4.85.07-3.2 0-3.58-.01-4.85-.07-3.26-.15-4.77-1.7-4.92-4.92-.06-1.27-.07-1.64-.07-4.85s.01-3.58.07-4.85C2.38 3.92 3.9 2.38 7.15 2.23 8.42 2.18 8.8 2.16 12 2.16Zm0 3.68a6.16 6.16 0 1 0 0 12.32 6.16 6.16 0 0 0 0-12.32ZM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8Zm6.4-10.85a1.44 1.44 0 1 0 0 2.88 1.44 1.44 0 0 0 0-2.88Z"/></svg>
           @rodneys_salon
         </span>
         <span>
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 22a10 10 0 1 1 0-20 10 10 0 0 1 0 20Zm1-10.41V7a1 1 0 1 0-2 0v5a1 1 0 0 0 .29.7l3 3a1 1 0 0 0 1.42-1.4L13 11.59Z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 22a10 10 0 1 1 0-20 10 10 0 0 1 0 20Zm1-10.41V7a1 1 0 1 0-2 0v5a1 1 0 0 0 .29.7l3 3a1 1 0 0 0 1.42-1.4L13 11.59Z"/></svg>
           Walk-ins welcome
         </span>
       </div>
@@ -980,7 +1058,7 @@ button { font-family: inherit; }
       <div class="section-head reveal">
         <div>
           <span class="kicker">What we do</span>
-          <h2 class="display">Every chair, every style</h2>
+          <h2 class="display">Every chair, <span class="fl">every style.</span></h2>
         </div>
         <a class="btn btn-ghost btn-sm" href="#services" data-nav>Full menu &amp; prices →</a>
       </div>
@@ -1003,7 +1081,7 @@ button { font-family: inherit; }
           <span class="go" aria-hidden="true">↗</span>
         </a>
         <a class="svc-card reveal" href="#services" data-nav>
-          <span class="ico ico-coral" aria-hidden="true">
+          <span class="ico ico-sea" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3c-4 0-7 3-7 8 0 4 1 7 2 9h10c1-2 2-5 2-9 0-5-3-8-7-8Z"/><path d="M12 3v6M9 20v-4M15 20v-4"/></svg>
           </span>
           <h3>Wigs &amp; Installs</h3>
@@ -1027,22 +1105,22 @@ button { font-family: inherit; }
       <div class="section-head reveal">
         <div>
           <span class="kicker">Why Rodney's</span>
-          <h2 class="display">The shop George Town talks about</h2>
+          <h2 class="display">The shop George Town <span class="fl">talks about.</span></h2>
         </div>
       </div>
       <div class="why">
-        <div class="why-item reveal">
-          <div class="n">01</div>
+        <div class="why-row reveal">
+          <span class="n" aria-hidden="true">01</span>
           <h3>Barbershop meets salon</h3>
           <p>Fades on one chair, frontals on the next. Bring the whole family — men, women and kids all leave sharp.</p>
         </div>
-        <div class="why-item reveal">
-          <div class="n">02</div>
+        <div class="why-row reveal">
+          <span class="n" aria-hidden="true">02</span>
           <h3>4.8-star reputation</h3>
           <p>Our clients keep coming back — and keep posting the results. The reviews and the mirror don't lie.</p>
         </div>
-        <div class="why-item reveal">
-          <div class="n">03</div>
+        <div class="why-row reveal">
+          <span class="n" aria-hidden="true">03</span>
           <h3>Easy to book</h3>
           <p>No apps, no accounts. One WhatsApp message or a quick call and your chair is waiting.</p>
         </div>
@@ -1053,7 +1131,7 @@ button { font-family: inherit; }
   <div class="section" style="padding-top: 0;">
     <div class="wrap">
       <div class="cta-band reveal">
-        <h2 class="display">Your next look is one message away</h2>
+        <h2 class="display">Your next look is one <span class="fl">message</span> away</h2>
         <p>Tell us the style and the day — we'll handle the rest. Walk-ins welcome when a chair is free.</p>
         <div class="row">
           <a class="btn btn-dark" href="https://wa.me/13457691248?text=Hi%20Rodney%27s!%20I%27d%20like%20to%20book%20an%20appointment." target="_blank" rel="noopener">Book on WhatsApp</a>
@@ -1071,7 +1149,7 @@ button { font-family: inherit; }
       <div class="section-head">
         <div>
           <span class="kicker">Services &amp; Prices</span>
-          <h2 class="display">The menu</h2>
+          <h2 class="display">The <span class="fl">menu.</span></h2>
           <p>All prices in KYD. Final quotes depend on hair length, density and style — message us on WhatsApp for an exact price before you book.</p>
         </div>
         <a class="btn btn-primary btn-sm" href="#book" data-nav>Book Now</a>
@@ -1081,7 +1159,7 @@ button { font-family: inherit; }
         <div class="menu-group-head">
           <h3>The Chair — Barbering</h3>
           <span class="rule"></span>
-          <span class="tag t">Men · Women · Kids</span>
+          <span class="tag">Men · Women · Kids</span>
         </div>
         <div class="menu-list">
           <div class="menu-item">
@@ -1141,7 +1219,7 @@ button { font-family: inherit; }
         <div class="menu-group-head">
           <h3>Wigs &amp; Installs</h3>
           <span class="rule"></span>
-          <span class="tag c">Lace game strong</span>
+          <span class="tag">Lace game strong</span>
         </div>
         <div class="menu-list">
           <div class="menu-item">
@@ -1203,7 +1281,7 @@ button { font-family: inherit; }
       <div class="section-head">
         <div>
           <span class="kicker">Gallery</span>
-          <h2 class="display">Fresh off the chair</h2>
+          <h2 class="display">Fresh off <span class="fl">the chair.</span></h2>
           <p>The proof is on the feed. Follow @rodneys_salon for daily cuts, transformations and chair-side energy.</p>
         </div>
       </div>
@@ -1297,14 +1375,14 @@ button { font-family: inherit; }
       <div class="section-head">
         <div>
           <span class="kicker">Meet the Team</span>
-          <h2 class="display">The hands behind the hype</h2>
+          <h2 class="display">The hands behind <span class="fl">the hype.</span></h2>
           <p>Barbers, stylists and artists who treat every head like a headline. Ask for your favourite by name when you book.</p>
         </div>
       </div>
 
       <div class="team-grid">
         <div class="team-card reveal">
-          <div class="ph ph-teal"><span class="init">R</span></div>
+          <div class="ph ph-teal"><span class="init" aria-hidden="true">R</span></div>
           <div class="bio">
             <h3>Rodney</h3>
             <div class="role">Founder · Master Barber</div>
@@ -1312,7 +1390,7 @@ button { font-family: inherit; }
           </div>
         </div>
         <div class="team-card reveal">
-          <div class="ph ph-gold"><span class="init">[+]</span></div>
+          <div class="ph ph-gold"><span class="init" aria-hidden="true">[+]</span></div>
           <div class="bio">
             <h3>[Name]</h3>
             <div class="role">Senior Stylist · Braids &amp; Installs</div>
@@ -1320,7 +1398,7 @@ button { font-family: inherit; }
           </div>
         </div>
         <div class="team-card reveal">
-          <div class="ph ph-coral"><span class="init">[+]</span></div>
+          <div class="ph ph-sea"><span class="init" aria-hidden="true">[+]</span></div>
           <div class="bio">
             <h3>[Name]</h3>
             <div class="role">Locs &amp; Natural Hair</div>
@@ -1328,7 +1406,7 @@ button { font-family: inherit; }
           </div>
         </div>
         <div class="team-card reveal">
-          <div class="ph ph-paper"><span class="init">[+]</span></div>
+          <div class="ph ph-paper"><span class="init" aria-hidden="true">[+]</span></div>
           <div class="bio">
             <h3>[Name]</h3>
             <div class="role">Nails &amp; Makeup Artist</div>
@@ -1338,7 +1416,7 @@ button { font-family: inherit; }
       </div>
 
       <div class="cta-band reveal" style="margin-top: 40px;">
-        <h2 class="display">Pick your chair</h2>
+        <h2 class="display">Pick your <span class="fl">chair.</span></h2>
         <p>Tell us who you'd like when you book and we'll line up the right artist for your style.</p>
         <div class="row">
           <a class="btn btn-dark" href="#book" data-nav>Book Now</a>
@@ -1356,7 +1434,7 @@ button { font-family: inherit; }
       <div class="section-head">
         <div>
           <span class="kicker">Book</span>
-          <h2 class="display">Lock in your chair</h2>
+          <h2 class="display">Lock in <span class="fl">your chair.</span></h2>
           <p>No apps, no logins. Message or call and you're booked — it's that easy.</p>
         </div>
       </div>
@@ -1368,11 +1446,11 @@ button { font-family: inherit; }
 
           <div class="book-btns">
             <a class="btn btn-wa" href="https://wa.me/13457691248?text=Hi%20Rodney%27s!%20I%27d%20like%20to%20book%3A%0A%0AService%3A%20%0ADay%3A%20%0ATime%3A%20%0AName%3A%20" target="_blank" rel="noopener">
-              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2a9.9 9.9 0 0 0-8.4 15.16L2.05 22l4.99-1.56A9.9 9.9 0 1 0 12.04 2Zm5.77 14.06c-.24.68-1.4 1.3-1.93 1.35-.52.05-1.01.24-3.4-.7-2.87-1.14-4.7-4.06-4.84-4.25-.14-.19-1.16-1.55-1.16-2.96 0-1.4.73-2.09 1-2.38.26-.28.57-.35.76-.35h.55c.18 0 .42-.06.65.5.24.57.8 1.97.88 2.11.07.14.12.31.02.5-.1.19-.15.3-.29.47-.14.17-.3.38-.43.5-.14.15-.29.3-.12.58.16.28.73 1.2 1.57 1.95 1.08.96 1.99 1.26 2.27 1.4.28.14.45.12.61-.07.17-.19.7-.82.89-1.1.19-.28.38-.24.64-.14.26.09 1.66.78 1.94.92.29.14.48.21.55.33.07.12.07.68-.16 1.34Z"/></svg>
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2a9.9 9.9 0 0 0-8.4 15.16L2.05 22l4.99-1.56A9.9 9.9 0 1 0 12.04 2Zm5.77 14.06c-.24.68-1.4 1.3-1.93 1.35-.52.05-1.01.24-3.4-.7-2.87-1.14-4.7-4.06-4.84-4.25-.14-.19-1.16-1.55-1.16-2.96 0-1.4.73-2.09 1-2.38.26-.28.57-.35.76-.35h.55c.18 0 .42-.06.65.5.24.57.8 1.97.88 2.11.07.14.12.31.02.5-.1.19-.15.3-.29.47-.14.17-.3.38-.43.5-.14.15-.29.3-.12.58.16.28.73 1.2 1.57 1.95 1.08.96 1.99 1.26 2.27 1.4.28.14.45.12.61-.07.17-.19.7-.82.89-1.1.19-.28.38-.24.64-.14.26.09 1.66.78 1.94.92.29.14.48.21.55.33.07.12.07.68-.16 1.34Z"/></svg>
               Book on WhatsApp
             </a>
             <a class="btn btn-primary" href="tel:+13457691248">
-              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M6.62 10.79a15.05 15.05 0 0 0 6.59 6.59l2.2-2.2a1 1 0 0 1 1.02-.24c1.12.37 2.33.57 3.57.57a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1C10.85 21 3 13.15 3 3.5a1 1 0 0 1 1-1H7.5a1 1 0 0 1 1 1c0 1.24.2 2.45.57 3.57a1 1 0 0 1-.24 1.02l-2.21 2.2Z"/></svg>
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.62 10.79a15.05 15.05 0 0 0 6.59 6.59l2.2-2.2a1 1 0 0 1 1.02-.24c1.12.37 2.33.57 3.57.57a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1C10.85 21 3 13.15 3 3.5a1 1 0 0 1 1-1H7.5a1 1 0 0 1 1 1c0 1.24.2 2.45.57 3.57a1 1 0 0 1-.24 1.02l-2.21 2.2Z"/></svg>
               Call +1 345-769-1248
             </a>
           </div>
@@ -1385,15 +1463,15 @@ button { font-family: inherit; }
 
           <div class="steps">
             <div class="step">
-              <span class="num">01</span>
+              <span class="num" aria-hidden="true">01</span>
               <div><b>Tap WhatsApp or call</b><span>The message template is ready — just fill in the blanks.</span></div>
             </div>
             <div class="step">
-              <span class="num">02</span>
+              <span class="num" aria-hidden="true">02</span>
               <div><b>Tell us the style &amp; day</b><span>Send a photo of the look if you have one — we'll confirm price and timing.</span></div>
             </div>
             <div class="step">
-              <span class="num">03</span>
+              <span class="num" aria-hidden="true">03</span>
               <div><b>Show up. Walk out legendary.</b><span>Your chair, your artist and your style — locked in.</span></div>
             </div>
           </div>
@@ -1402,7 +1480,7 @@ button { font-family: inherit; }
         <div>
           <div class="info-card reveal">
             <h4>
-              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 22a10 10 0 1 1 0-20 10 10 0 0 1 0 20Zm1-10.41V7a1 1 0 1 0-2 0v5a1 1 0 0 0 .29.7l3 3a1 1 0 0 0 1.42-1.4L13 11.59Z"/></svg>
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 22a10 10 0 1 1 0-20 10 10 0 0 1 0 20Zm1-10.41V7a1 1 0 1 0-2 0v5a1 1 0 0 0 .29.7l3 3a1 1 0 0 0 1.42-1.4L13 11.59Z"/></svg>
               Opening hours
             </h4>
             <table class="hours">
@@ -1410,12 +1488,15 @@ button { font-family: inherit; }
               <tr><td>Saturday</td><td>[PLACEHOLDER]</td></tr>
               <tr><td>Sunday</td><td>[PLACEHOLDER]</td></tr>
             </table>
-            <span class="walkin">⚡ Walk-ins welcome when a chair is free</span>
+            <span class="walkin">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13 2 4 14h6l-1 8 9-12h-6l1-8Z"/></svg>
+              Walk-ins welcome when a chair is free
+            </span>
           </div>
 
           <div class="info-card reveal">
             <h4>
-              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7Zm0 9.5A2.5 2.5 0 1 1 12 6a2.5 2.5 0 0 1 0 5.5Z"/></svg>
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7Zm0 9.5A2.5 2.5 0 1 1 12 6a2.5 2.5 0 0 1 0 5.5Z"/></svg>
               Find us
             </h4>
             <p><b>Rodney's Salon and Barber</b><br>[PLACEHOLDER street address]<br>George Town, Grand Cayman<br>Cayman Islands</p>
@@ -1423,7 +1504,7 @@ button { font-family: inherit; }
 
           <div class="info-card reveal">
             <h4>
-              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2Zm0 4-8 5-8-5V6l8 5 8-5v2Z"/></svg>
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2Zm0 4-8 5-8-5V6l8 5 8-5v2Z"/></svg>
               Good to know
             </h4>
             <p>Prices are in <b>KYD</b> and confirmed before your appointment. Running late? Send a quick WhatsApp so we can hold your chair.</p>
@@ -1441,11 +1522,11 @@ button { font-family: inherit; }
   <div class="wrap">
     <div class="footer-grid">
       <div>
-        <div class="fl">Rodney's <em>Salon &amp; Barber</em></div>
+        <div class="fl-logo">Rodney's <em>Salon &amp; Barber</em></div>
         <p class="tag">Fresh fades, clean cuts, and sharp styles for men, women and kids in George Town, Grand Cayman.</p>
       </div>
       <div>
-        <h5>Explore</h5>
+        <h2>Explore</h2>
         <ul>
           <li><a href="#home" data-nav>Home</a></li>
           <li><a href="#services" data-nav>Services &amp; Prices</a></li>
@@ -1455,7 +1536,7 @@ button { font-family: inherit; }
         </ul>
       </div>
       <div>
-        <h5>Reach us</h5>
+        <h2>Reach us</h2>
         <ul>
           <li><a href="tel:+13457691248">+1 345-769-1248</a></li>
           <li><a href="https://wa.me/13457691248" target="_blank" rel="noopener">WhatsApp us</a></li>
@@ -1466,7 +1547,7 @@ button { font-family: inherit; }
     </div>
     <div class="footer-base">
       <span>© <span id="yr">2026</span> Rodney's Salon and Barber · George Town, Grand Cayman</span>
-      <span><span class="stars">★★★★★</span> 4.8 rated by our clients</span>
+      <span><span class="stars" aria-hidden="true">★★★★★</span> 4.8 rated by our clients</span>
     </div>
   </div>
 </footer>
@@ -1474,10 +1555,10 @@ button { font-family: inherit; }
 <!-- ============ MOBILE ACTION BAR ============ -->
 <div class="action-bar" role="navigation" aria-label="Quick booking actions">
   <a class="btn btn-ghost" href="tel:+13457691248" aria-label="Call +1 345-769-1248">
-    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M6.62 10.79a15.05 15.05 0 0 0 6.59 6.59l2.2-2.2a1 1 0 0 1 1.02-.24c1.12.37 2.33.57 3.57.57a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1C10.85 21 3 13.15 3 3.5a1 1 0 0 1 1-1H7.5a1 1 0 0 1 1 1c0 1.24.2 2.45.57 3.57a1 1 0 0 1-.24 1.02l-2.21 2.2Z"/></svg>
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.62 10.79a15.05 15.05 0 0 0 6.59 6.59l2.2-2.2a1 1 0 0 1 1.02-.24c1.12.37 2.33.57 3.57.57a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1C10.85 21 3 13.15 3 3.5a1 1 0 0 1 1-1H7.5a1 1 0 0 1 1 1c0 1.24.2 2.45.57 3.57a1 1 0 0 1-.24 1.02l-2.21 2.2Z"/></svg>
   </a>
   <a class="btn btn-wa" href="https://wa.me/13457691248?text=Hi%20Rodney%27s!%20I%27d%20like%20to%20book%20an%20appointment." target="_blank" rel="noopener">
-    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2a9.9 9.9 0 0 0-8.4 15.16L2.05 22l4.99-1.56A9.9 9.9 0 1 0 12.04 2Zm5.77 14.06c-.24.68-1.4 1.3-1.93 1.35-.52.05-1.01.24-3.4-.7-2.87-1.14-4.7-4.06-4.84-4.25-.14-.19-1.16-1.55-1.16-2.96 0-1.4.73-2.09 1-2.38.26-.28.57-.35.76-.35h.55c.18 0 .42-.06.65.5.24.57.8 1.97.88 2.11.07.14.12.31.02.5-.1.19-.15.3-.29.47-.14.17-.3.38-.43.5-.14.15-.29.3-.12.58.16.28.73 1.2 1.57 1.95 1.08.96 1.99 1.26 2.27 1.4.28.14.45.12.61-.07.17-.19.7-.82.89-1.1.19-.28.38-.24.64-.14.26.09 1.66.78 1.94.92.29.14.48.21.55.33.07.12.07.68-.16 1.34Z"/></svg>
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2a9.9 9.9 0 0 0-8.4 15.16L2.05 22l4.99-1.56A9.9 9.9 0 1 0 12.04 2Zm5.77 14.06c-.24.68-1.4 1.3-1.93 1.35-.52.05-1.01.24-3.4-.7-2.87-1.14-4.7-4.06-4.84-4.25-.14-.19-1.16-1.55-1.16-2.96 0-1.4.73-2.09 1-2.38.26-.28.57-.35.76-.35h.55c.18 0 .42-.06.65.5.24.57.8 1.97.88 2.11.07.14.12.31.02.5-.1.19-.15.3-.29.47-.14.17-.3.38-.43.5-.14.15-.29.3-.12.58.16.28.73 1.2 1.57 1.95 1.08.96 1.99 1.26 2.27 1.4.28.14.45.12.61-.07.17-.19.7-.82.89-1.1.19-.28.38-.24.64-.14.26.09 1.66.78 1.94.92.29.14.48.21.55.33.07.12.07.68-.16 1.34Z"/></svg>
     WhatsApp
   </a>
   <a class="btn btn-primary" href="#book" data-nav>Book Now</a>
@@ -1505,7 +1586,7 @@ button { font-family: inherit; }
       a.classList.toggle('active', target === v);
     });
     closeMenu();
-    window.scrollTo({ top: 0, behavior: 'instant' in window ? 'instant' : 'auto' });
+    window.scrollTo(0, 0);
     revealInit();
   }
 
@@ -1517,15 +1598,24 @@ button { font-family: inherit; }
   burger.addEventListener('click', function () {
     var open = menu.classList.toggle('open');
     burger.setAttribute('aria-expanded', String(open));
+    if (open) menu.querySelector('a').focus();
+  });
+
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && menu.classList.contains('open')) {
+      closeMenu();
+      burger.focus();
+    }
   });
 
   window.addEventListener('hashchange', render);
 
   // Scroll-reveal animations
   var io = null;
+  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   function revealInit() {
     var els = document.querySelectorAll('.view.active .reveal');
-    if (!('IntersectionObserver' in window)) {
+    if (reduceMotion || !('IntersectionObserver' in window)) {
       els.forEach(function (el) { el.classList.add('in'); });
       return;
     }
