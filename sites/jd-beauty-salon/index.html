@@ -5,13 +5,19 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>JD Beauty Salon &amp; Barbers — George Town, Grand Cayman</title>
 <meta name="description" content="Beauty salon and barbershop on North Church Street, George Town — steps from the Grand Cayman cruise port. Hair, facials, brows, nails, lashes, massage and men's barbering. Walk-ins welcome. Book on Fresha or call +1 345-945-2822.">
+<meta name="theme-color" content="#FAF6F2">
 <meta property="og:title" content="JD Beauty Salon &amp; Barbers — George Town, Grand Cayman">
 <meta property="og:description" content="Hair, beauty and barbering steps from the George Town cruise port. 4.8-star rated. Walk-ins and visitors welcome.">
 <meta property="og:type" content="website">
+<meta property="og:site_name" content="JD Beauty Salon &amp; Barbers">
+<meta property="og:locale" content="en_KY">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JD Beauty Salon &amp; Barbers — George Town, Grand Cayman">
+<meta name="twitter:description" content="Hair, beauty and barbering steps from the George Town cruise port. Walk-ins and visitors welcome.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&family=Jost:ital,wght@0,300..600;1,300..600&display=swap" rel="stylesheet">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%23A06B4B'/%3E%3Ctext x='32' y='42' font-family='Georgia,serif' font-size='26' fill='%23FAF6F1' text-anchor='middle'%3EJD%3C/text%3E%3C/svg%3E">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..600;1,9..144,400..600&family=Jost:ital,wght@0,400..600;1,400..600&display=swap" rel="stylesheet">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%2396613F'/%3E%3Ctext x='32' y='42' font-family='Georgia,serif' font-size='26' fill='%23FAF6F1' text-anchor='middle'%3EJD%3C/text%3E%3C/svg%3E">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -32,22 +38,30 @@
 }
 </script>
 <style>
+  /* ---------- Design tokens ---------- */
   :root{
-    --ivory:#FAF6F2;
+    /* color — warm espresso/bronze scale, brand-derived (salon + barbershop warmth) */
+    --ivory:#FAF6F2;        /* dominant neutral, warm-tinted */
     --sand:#F2EAE0;
-    --sand-deep:#E9DDCE;
-    --ink:#2C231E;
-    --ink-soft:#54463D;
-    --taupe:#7C6C60;
-    --bronze:#A06B4B;
+    --sand-deep:#E5D8C7;
+    --ink:#2C231E;          /* darkest step — warm near-black, never #000 */
+    --ink-soft:#4E4138;
+    --taupe:#6B5D52;        /* secondary text — 5.2:1 on ivory */
+    --bronze:#96613F;       /* THE accent — CTAs + interactive only */
     --bronze-deep:#7F5236;
     --bronze-soft:#C89B7B;
     --blush:#E8D5C8;
-    --gold:#C9A227;
+    --gold:#C9A227;         /* semantic: rating stars only */
     --white:#FFFFFF;
-    --shadow-sm:0 1px 3px rgba(44,35,30,.07), 0 4px 14px rgba(44,35,30,.05);
-    --shadow-md:0 2px 6px rgba(44,35,30,.08), 0 12px 32px rgba(44,35,30,.09);
-    --radius:18px;
+    /* radius scale — pill CTAs (welcoming), soft-large surfaces, small details */
+    --r-sm:10px;
+    --r-lg:18px;
+    --r-pill:999px;
+    /* elevation — layered: tight key shadow + soft ambient, one light source */
+    --shadow-sm:0 1px 2px rgba(44,35,30,.08), 0 4px 14px rgba(44,35,30,.05);
+    --shadow-md:0 2px 5px rgba(44,35,30,.09), 0 14px 34px rgba(44,35,30,.10);
+    /* spacing — 8px base */
+    --s-1:.5rem; --s-2:1rem; --s-3:1.5rem; --s-4:2rem; --s-5:2.5rem; --s-6:3rem; --s-8:4rem; --s-10:5rem;
     --serif:"Fraunces", Georgia, "Times New Roman", serif;
     --sans:"Jost", "Avenir Next", "Segoe UI", system-ui, sans-serif;
   }
@@ -59,17 +73,17 @@
   }
   body{
     font-family:var(--sans);
-    font-weight:300;
+    font-weight:400;
     color:var(--ink-soft);
     background:var(--ivory);
-    line-height:1.65;
+    line-height:1.6;
     font-size:1.0625rem;
     -webkit-font-smoothing:antialiased;
   }
-  h1,h2,h3,h4{font-family:var(--serif);color:var(--ink);font-weight:400;line-height:1.15}
+  h1,h2,h3{font-family:var(--serif);color:var(--ink);font-weight:400;line-height:1.15}
   img{max-width:100%;display:block}
   a{color:var(--bronze-deep)}
-  .skip-link{position:absolute;left:-999px;top:0;background:var(--ink);color:var(--ivory);padding:.6rem 1rem;z-index:200;border-radius:0 0 8px 0}
+  .skip-link{position:absolute;left:-999px;top:0;background:var(--ink);color:var(--ivory);padding:var(--s-1) var(--s-2);z-index:200;border-radius:0 0 var(--r-sm) 0}
   .skip-link:focus{left:0}
   :focus-visible{outline:2px solid var(--bronze);outline-offset:3px;border-radius:4px}
 
@@ -78,19 +92,17 @@
   /* ---------- Header ---------- */
   .topbar{
     background:var(--ink);color:#EDE4DB;font-size:.85rem;letter-spacing:.04em;
-    padding:.45rem 0;text-align:center;
+    padding:var(--s-1) 0;text-align:center;
   }
   .topbar a{color:#F5EDE4;text-decoration:none;font-weight:400}
   .topbar a:hover{text-decoration:underline}
   header.site{
     position:sticky;top:0;z-index:100;
-    background:rgba(250,246,242,.92);
-    backdrop-filter:blur(12px);
-    -webkit-backdrop-filter:blur(12px);
+    background:var(--ivory);
     border-bottom:1px solid var(--sand-deep);
   }
-  .header-inner{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:.8rem 0}
-  .brand{display:flex;align-items:center;gap:.7rem;text-decoration:none}
+  .header-inner{display:flex;align-items:center;justify-content:space-between;gap:var(--s-2);padding:var(--s-1) 0}
+  .brand{display:flex;align-items:center;gap:.7rem;text-decoration:none;padding:var(--s-1) 0}
   .brand-mark{
     width:44px;height:44px;border-radius:50%;flex:none;
     background:radial-gradient(circle at 32% 28%, var(--bronze-soft), var(--bronze) 58%, var(--bronze-deep));
@@ -98,144 +110,154 @@
     font-family:var(--serif);font-size:1.15rem;letter-spacing:.02em;
     box-shadow:var(--shadow-sm);
   }
-  .brand-name{font-family:var(--serif);font-size:1.18rem;color:var(--ink);line-height:1.1}
-  .brand-name small{display:block;font-family:var(--sans);font-size:.68rem;letter-spacing:.22em;text-transform:uppercase;color:var(--taupe);font-weight:400;margin-top:.15rem}
+  .brand-name{font-family:var(--serif);font-size:1.18rem;color:var(--ink);line-height:1.1;white-space:nowrap}
+  .brand-name small{display:block;font-family:var(--sans);font-size:.68rem;letter-spacing:.22em;text-transform:uppercase;color:var(--taupe);font-weight:500;margin-top:.15rem;white-space:normal}
   nav.primary{display:none}
-  nav.primary ul{display:flex;gap:1.7rem;list-style:none}
+  nav.primary ul{display:flex;gap:1.75rem;list-style:none}
   nav.primary a{
-    text-decoration:none;color:var(--ink-soft);font-weight:400;font-size:.95rem;
-    letter-spacing:.06em;text-transform:uppercase;padding:.4rem 0;
-    border-bottom:2px solid transparent;transition:color .2s, border-color .2s;
+    text-decoration:none;color:var(--ink-soft);font-weight:500;font-size:.92rem;
+    letter-spacing:.06em;text-transform:uppercase;padding:var(--s-1) 0;white-space:nowrap;
+    border-bottom:2px solid transparent;transition:color .2s ease-out, border-color .2s ease-out;
   }
-  nav.primary a{white-space:nowrap}
   nav.primary a:hover{color:var(--bronze-deep)}
   nav.primary a[aria-current="page"]{color:var(--bronze-deep);border-bottom-color:var(--bronze)}
-  .header-cta{display:none;align-items:center;gap:.6rem}
+  .header-cta{display:none;align-items:center;gap:var(--s-1)}
   .menu-btn{
-    display:inline-flex;align-items:center;gap:.5rem;
-    background:none;border:1px solid var(--sand-deep);border-radius:999px;
-    padding:.55rem .95rem;font-family:var(--sans);font-size:.85rem;letter-spacing:.1em;
+    display:inline-flex;align-items:center;gap:var(--s-1);min-height:44px;
+    background:none;border:1px solid var(--sand-deep);border-radius:var(--r-pill);
+    padding:.5rem 1rem;font-family:var(--sans);font-size:.85rem;letter-spacing:.1em;font-weight:500;
     text-transform:uppercase;color:var(--ink);cursor:pointer;
   }
   .menu-btn svg{width:16px;height:16px}
   .mobile-nav{
     display:none;border-top:1px solid var(--sand-deep);background:var(--ivory);
-    padding:1rem 0 1.4rem;
+    padding:var(--s-2) 0 var(--s-3);
   }
   .mobile-nav.open{display:block}
-  .mobile-nav ul{list-style:none;display:grid;gap:.15rem}
+  .mobile-nav ul{list-style:none;display:grid}
   .mobile-nav a{
     display:block;text-decoration:none;color:var(--ink);font-family:var(--serif);
-    font-size:1.35rem;padding:.55rem .2rem;border-bottom:1px solid var(--sand);
+    font-size:1.35rem;padding:.75rem .25rem;border-bottom:1px solid var(--sand);
   }
   .mobile-nav a[aria-current="page"]{color:var(--bronze-deep)}
-  .mobile-nav .mobile-cta{display:flex;gap:.7rem;margin-top:1.1rem;flex-wrap:wrap}
+  .mobile-nav .mobile-cta{display:flex;gap:var(--s-1);margin-top:var(--s-2);flex-wrap:wrap}
 
   /* ---------- Buttons ---------- */
   .btn{
     display:inline-flex;align-items:center;justify-content:center;gap:.55rem;
-    padding:.85rem 1.6rem;border-radius:999px;text-decoration:none;
+    min-height:44px;padding:.875rem 1.5rem;border-radius:var(--r-pill);text-decoration:none;
     font-family:var(--sans);font-weight:500;font-size:.95rem;letter-spacing:.08em;
-    text-transform:uppercase;transition:transform .15s, box-shadow .2s, background .2s;
-    border:1px solid transparent;cursor:pointer;
+    text-transform:uppercase;transition:transform .15s ease-out, box-shadow .2s ease-out, background .2s ease-out, color .2s ease-out, border-color .2s ease-out;
+    border:1px solid transparent;cursor:pointer;white-space:nowrap;
   }
   .btn svg{width:17px;height:17px;flex:none}
+  .btn:active{transform:translateY(0) scale(.98)}
   .btn-primary{background:var(--bronze);color:#fff;box-shadow:var(--shadow-sm)}
   .btn-primary:hover{background:var(--bronze-deep);transform:translateY(-1px);box-shadow:var(--shadow-md)}
   .btn-outline{background:transparent;color:var(--ink);border-color:var(--ink)}
   .btn-outline:hover{background:var(--ink);color:var(--ivory)}
   .btn-light{background:var(--white);color:var(--ink);border-color:var(--sand-deep)}
   .btn-light:hover{border-color:var(--bronze);color:var(--bronze-deep)}
-  .btn-lg{padding:1.05rem 2.1rem;font-size:1rem}
+  .btn-lg{padding:1rem 2rem;font-size:1rem}
 
   /* ---------- Pages (hash router) ---------- */
   html.js .page{display:none}
-  html.js .page.active{display:block;animation:fadein .45s ease}
-  @keyframes fadein{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+  html.js .page.active{display:block;animation:fadein .3s ease-out}
+  @keyframes fadein{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
 
-  section.band{padding:4.2rem 0}
+  section.band{padding:var(--s-8) 0}
   .eyebrow{
-    font-size:.75rem;letter-spacing:.28em;text-transform:uppercase;color:var(--bronze);
-    font-weight:500;margin-bottom:.9rem;display:flex;align-items:center;gap:.8rem;
+    font-size:.75rem;letter-spacing:.28em;text-transform:uppercase;color:var(--taupe);
+    font-weight:500;margin-bottom:var(--s-2);display:flex;align-items:center;gap:.75rem;
   }
-  .eyebrow::before{content:"";width:34px;height:1px;background:var(--bronze)}
+  .eyebrow::before{content:"";width:34px;height:1px;background:var(--bronze-soft)}
   .eyebrow.center{justify-content:center}
-  .eyebrow.center::after{content:"";width:34px;height:1px;background:var(--bronze)}
-  .lede{font-size:1.15rem;color:var(--taupe);max-width:44ch}
+  .eyebrow.center::after{content:"";width:34px;height:1px;background:var(--bronze-soft)}
+  .lede{font-size:1.15rem;color:var(--taupe);max-width:46ch}
+  .page-title{font-size:clamp(2rem,5vw,3rem)}
+  .section-title{font-size:clamp(1.8rem,4.5vw,2.6rem)}
 
   /* ---------- Hero ---------- */
   .hero{
     background:
-      radial-gradient(1000px 480px at 88% -10%, rgba(200,155,123,.25), transparent 60%),
-      radial-gradient(700px 420px at -8% 110%, rgba(232,213,200,.55), transparent 60%),
+      radial-gradient(1000px 480px at 88% -10%, rgba(200,155,123,.22), transparent 60%),
+      radial-gradient(700px 420px at -8% 110%, rgba(232,213,200,.5), transparent 60%),
       linear-gradient(180deg, var(--ivory), var(--sand));
-    padding:4.6rem 0 4.8rem;overflow:hidden;position:relative;
+    padding:var(--s-8) 0 var(--s-10);overflow:hidden;position:relative;
   }
-  .hero-grid{display:grid;gap:2.8rem;align-items:center}
-  .hero h1{font-size:clamp(2.5rem, 6.5vw, 4.1rem);font-weight:350;letter-spacing:-.01em}
-  .hero h1 em{font-style:italic;color:var(--bronze-deep)}
-  .hero p.sub{font-size:1.18rem;color:var(--taupe);max-width:46ch;margin:1.3rem 0 2rem}
-  .hero-ctas{display:flex;flex-wrap:wrap;gap:.85rem;margin-bottom:2rem}
-  .trust-row{display:flex;flex-wrap:wrap;align-items:center;gap:1.1rem 1.8rem;color:var(--ink-soft);font-size:.95rem}
+  .hero-grid{display:grid;gap:var(--s-5);align-items:center}
+  .hero h1{font-size:clamp(2.5rem, 6.5vw, 4.1rem);letter-spacing:-.01em}
+  .hero h1 em{font-style:italic;color:var(--bronze-deep);position:relative;display:inline-block}
+  /* signature detail: hand-drawn underline stroke */
+  .hero h1 em::after{
+    content:"";position:absolute;left:.02em;right:.15em;bottom:-.08em;height:.13em;
+    background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 12' preserveAspectRatio='none'%3E%3Cpath d='M2 9 C 55 2.5, 145 2, 198 6.5' stroke='%2396613F' stroke-width='4.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E") no-repeat center/100% 100%;
+  }
+  .hero p.sub{font-size:1.18rem;color:var(--taupe);max-width:46ch;margin:var(--s-3) 0 var(--s-4)}
+  .hero-ctas{display:flex;flex-wrap:wrap;gap:var(--s-1);margin-bottom:var(--s-4)}
+  .trust-row{display:flex;flex-wrap:wrap;align-items:center;gap:1rem 1.75rem;color:var(--ink-soft);font-size:.95rem}
   .stars{display:inline-flex;align-items:center;gap:.45rem;font-weight:500;color:var(--ink)}
   .stars svg{width:17px;height:17px;fill:var(--gold)}
   .trust-dot{width:4px;height:4px;border-radius:50%;background:var(--bronze-soft);flex:none}
   .hero-card{
-    background:var(--white);border-radius:var(--radius);box-shadow:var(--shadow-md);
-    padding:1.9rem;border:1px solid var(--sand);
+    background:var(--white);border-radius:var(--r-lg);box-shadow:var(--shadow-md);
+    padding:var(--s-4);border:1px solid var(--sand);
   }
-  .hero-card h3{font-size:1.15rem;margin-bottom:1rem;display:flex;align-items:center;gap:.6rem}
-  .hero-card h3 svg{width:19px;height:19px;stroke:var(--bronze)}
+  .hero-card h2{font-size:1.15rem;margin-bottom:var(--s-2);display:flex;align-items:center;gap:.6rem;font-family:var(--serif)}
+  .hero-card h2 svg{width:19px;height:19px;stroke:var(--ink-soft)}
   .hours{list-style:none;font-size:.98rem}
-  .hours li{display:flex;justify-content:space-between;gap:1rem;padding:.42rem 0;border-bottom:1px dashed var(--sand-deep)}
+  .hours li{display:flex;justify-content:space-between;gap:var(--s-2);padding:.5rem 0;border-bottom:1px dashed var(--sand-deep)}
   .hours li:last-child{border-bottom:0}
-  .hours .day{color:var(--ink);font-weight:400}
+  .hours .day{color:var(--ink);font-weight:500}
   .hours .closed{color:var(--taupe);font-style:italic}
-  .hero-card .note{font-size:.85rem;color:var(--taupe);margin-top:.9rem}
+  .hero-card .note{font-size:.875rem;color:var(--taupe);margin-top:var(--s-2)}
 
-  /* ---------- Cards / grids ---------- */
-  .cards{display:grid;gap:1.2rem;margin-top:2.4rem}
-  .card{
-    background:var(--white);border:1px solid var(--sand);border-radius:var(--radius);
-    padding:1.7rem;box-shadow:var(--shadow-sm);transition:transform .2s, box-shadow .2s;
+  /* ---------- Service index (editorial list, not card grid) ---------- */
+  .svc-index{margin-top:var(--s-5);border-top:1px solid var(--sand-deep)}
+  .svc-row{
+    display:grid;grid-template-columns:2.5rem 1fr;gap:.25rem var(--s-3);
+    padding:var(--s-3) 0;border-bottom:1px solid var(--sand-deep);align-items:baseline;
   }
-  .card:hover{transform:translateY(-3px);box-shadow:var(--shadow-md)}
-  .card .icon{
-    width:52px;height:52px;border-radius:14px;display:grid;place-items:center;
-    background:linear-gradient(135deg, var(--blush), var(--sand));margin-bottom:1.1rem;
+  .svc-num{font-family:var(--serif);font-style:italic;font-size:1.05rem;color:var(--taupe);grid-row:span 3}
+  .svc-row h3{font-size:1.45rem}
+  .svc-row p{color:var(--taupe);font-size:.98rem;max-width:52ch;margin-top:.25rem}
+  .svc-row .more{
+    display:inline-block;margin-top:var(--s-1);font-size:.82rem;letter-spacing:.12em;
+    text-transform:uppercase;text-decoration:none;font-weight:500;justify-self:start;
   }
-  .card .icon svg{width:24px;height:24px;stroke:var(--bronze-deep)}
-  .card h3{font-size:1.28rem;margin-bottom:.5rem}
-  .card p{font-size:.97rem;color:var(--taupe)}
-  .card a.more{display:inline-block;margin-top:.8rem;font-size:.85rem;letter-spacing:.12em;text-transform:uppercase;text-decoration:none;font-weight:500}
-  .card a.more:hover{text-decoration:underline}
+  .svc-row .more:hover{text-decoration:underline}
 
-  .strip{
-    background:var(--ink);color:#E9DFD5;padding:3.4rem 0;
+  /* ---------- Ticker band (signature detail) ---------- */
+  .ticker{border-block:1px solid var(--sand-deep);padding:var(--s-2) 0;background:var(--ivory)}
+  .ticker p{
+    font-family:var(--serif);font-style:italic;text-align:center;color:var(--ink);
+    font-size:clamp(1.05rem, 2.5vw, 1.4rem);letter-spacing:.02em;
   }
-  .strip .wrap{display:grid;gap:1.6rem;align-items:center;text-align:center}
-  .strip h2{color:var(--ivory);font-size:clamp(1.6rem,4vw,2.2rem);font-weight:350}
+  .ticker .tick-dot{color:var(--bronze-soft);font-style:normal;padding:0 .35em}
+
+  .strip{background:var(--ink);color:#E9DFD5;padding:var(--s-6) 0}
+  .strip .wrap{display:grid;gap:var(--s-3);align-items:center;text-align:center}
+  .strip h2{color:var(--ivory);font-size:clamp(1.6rem,4vw,2.2rem)}
   .strip h2 em{font-style:italic;color:var(--bronze-soft)}
   .strip p{color:#C9BBAD;max-width:56ch;margin-inline:auto}
-  .strip .btn-primary{background:var(--bronze)}
 
   /* ---------- Price menu ---------- */
-  .menu-group{margin-top:2.6rem}
-  .menu-group h3{
-    font-size:1.55rem;display:flex;align-items:center;gap:.75rem;margin-bottom:.4rem;
+  .menu-group{margin-top:var(--s-5)}
+  .menu-group h2{
+    font-size:1.55rem;display:flex;align-items:center;gap:.75rem;margin-bottom:.5rem;
   }
-  .menu-group h3 svg{width:22px;height:22px;stroke:var(--bronze);flex:none}
-  .menu-group .group-note{font-size:.92rem;color:var(--taupe);margin-bottom:1.1rem}
-  .menu-list{list-style:none;background:var(--white);border:1px solid var(--sand);border-radius:var(--radius);box-shadow:var(--shadow-sm);overflow:hidden}
+  .menu-group h2 svg{width:22px;height:22px;stroke:var(--ink-soft);flex:none}
+  .menu-group .group-note{font-size:.92rem;color:var(--taupe);margin-bottom:var(--s-2)}
+  .menu-list{list-style:none;background:var(--white);border:1px solid var(--sand);border-radius:var(--r-lg);box-shadow:var(--shadow-sm);overflow:hidden}
   .menu-list li{
-    display:flex;align-items:baseline;gap:.8rem;padding:1.05rem 1.4rem;
+    display:flex;align-items:baseline;gap:var(--s-1);padding:var(--s-2) var(--s-3);
     border-bottom:1px solid var(--sand);
   }
   .menu-list li:last-child{border-bottom:0}
-  .menu-list .item{color:var(--ink);font-weight:400}
-  .menu-list .item small{display:block;font-size:.85rem;color:var(--taupe);font-weight:300;margin-top:.1rem}
+  .menu-list .item{color:var(--ink);font-weight:500}
+  .menu-list .item small{display:block;font-size:.875rem;color:var(--taupe);font-weight:400;margin-top:.125rem}
   .menu-list .dots{flex:1;border-bottom:1px dotted var(--sand-deep);transform:translateY(-4px);min-width:24px}
-  .menu-list .price{font-family:var(--serif);color:var(--bronze-deep);white-space:nowrap;font-size:1.02rem}
+  .menu-list .price{font-family:var(--serif);color:var(--ink);white-space:nowrap;font-size:1.02rem}
   @media (max-width:560px){
     .menu-list li{flex-wrap:wrap;justify-content:space-between}
     .menu-list .dots{display:none}
@@ -243,16 +265,16 @@
     .menu-list .price{margin-left:auto}
   }
   .menu-note{
-    margin-top:2.2rem;background:var(--sand);border-radius:var(--radius);padding:1.3rem 1.5rem;
-    font-size:.95rem;color:var(--ink-soft);display:flex;gap:.8rem;align-items:flex-start;
+    margin-top:var(--s-4);background:var(--sand);border-radius:var(--r-lg);padding:var(--s-3);
+    font-size:.95rem;color:var(--ink-soft);display:flex;gap:var(--s-1);align-items:flex-start;
   }
-  .menu-note svg{width:20px;height:20px;stroke:var(--bronze);flex:none;margin-top:.15rem}
+  .menu-note svg{width:20px;height:20px;stroke:var(--ink-soft);flex:none;margin-top:.15rem}
 
   /* ---------- Gallery ---------- */
-  .gallery-grid{display:grid;gap:1rem;margin-top:2.4rem;grid-template-columns:repeat(2,1fr)}
+  .gallery-grid{display:grid;gap:var(--s-2);margin-top:var(--s-4);grid-template-columns:repeat(2,1fr)}
   .g-tile{
-    position:relative;border-radius:var(--radius);overflow:hidden;aspect-ratio:4/5;
-    display:flex;align-items:flex-end;padding:1.1rem;
+    position:relative;border-radius:var(--r-lg);overflow:hidden;aspect-ratio:4/5;
+    display:flex;align-items:flex-end;padding:var(--s-2);
     box-shadow:var(--shadow-sm);border:1px solid var(--sand);
   }
   /* Replace each tile's background with a real photo:
@@ -261,7 +283,7 @@
   .g-1{background:linear-gradient(160deg,#E8D5C8,#C89B7B)}
   .g-2{background:linear-gradient(160deg,#2C231E,#54463D)}
   .g-3{background:linear-gradient(160deg,#F2EAE0,#C9A98F)}
-  .g-4{background:linear-gradient(160deg,#A06B4B,#7F5236)}
+  .g-4{background:linear-gradient(160deg,#96613F,#7F5236)}
   .g-5{background:linear-gradient(160deg,#D9C6B5,#8C6E58)}
   .g-6{background:linear-gradient(160deg,#4A3B31,#2C231E)}
   .g-7{background:linear-gradient(160deg,#EFE3D6,#BE9576)}
@@ -280,34 +302,34 @@
   }
 
   /* ---------- About ---------- */
-  .about-grid{display:grid;gap:2.5rem;margin-top:2.2rem}
-  .about-copy p{margin-bottom:1.15rem;max-width:62ch}
+  .about-grid{display:grid;gap:var(--s-4);margin-top:var(--s-4)}
+  .about-copy p{margin-bottom:var(--s-2);max-width:62ch}
   .about-copy p:last-child{margin-bottom:0}
-  .about-aside{display:grid;gap:1rem;align-content:start}
+  .about-aside{display:grid;gap:var(--s-2);align-content:start}
   .fact{
-    background:var(--white);border:1px solid var(--sand);border-radius:var(--radius);
-    padding:1.35rem 1.5rem;box-shadow:var(--shadow-sm);
+    background:var(--white);border:1px solid var(--sand);border-radius:var(--r-lg);
+    padding:var(--s-3);box-shadow:var(--shadow-sm);
   }
-  .fact .num{font-family:var(--serif);font-size:1.9rem;color:var(--bronze-deep);line-height:1.1}
+  .fact .num{font-family:var(--serif);font-size:1.9rem;color:var(--ink);line-height:1.1}
   .fact .num .star-inline{width:22px;height:22px;fill:var(--gold);vertical-align:-2px;margin-left:.2rem}
   .fact p{font-size:.92rem;color:var(--taupe);margin-top:.25rem}
 
   /* ---------- Book ---------- */
-  .book-grid{display:grid;gap:1.4rem;margin-top:2.4rem}
+  .book-grid{display:grid;gap:var(--s-2);margin-top:var(--s-4)}
   .book-card{
-    background:var(--white);border:1px solid var(--sand);border-radius:var(--radius);
-    padding:2rem 1.8rem;box-shadow:var(--shadow-sm);display:flex;flex-direction:column;gap:1rem;
+    background:var(--white);border:1px solid var(--sand);border-radius:var(--r-lg);
+    padding:var(--s-4);box-shadow:var(--shadow-sm);display:flex;flex-direction:column;gap:var(--s-2);
   }
   .book-card.featured{
     background:linear-gradient(160deg, var(--ink), #453629);color:#E9DFD5;border-color:var(--ink);
   }
-  .book-card.featured h3{color:var(--ivory)}
+  .book-card.featured h2{color:var(--ivory)}
   .book-card.featured p{color:#C9BBAD}
-  .book-card h3{font-size:1.45rem}
+  .book-card h2{font-size:1.45rem}
   .book-card p{font-size:.98rem;color:var(--taupe)}
   .book-card .btn{align-self:flex-start;margin-top:auto}
-  .steps{list-style:none;counter-reset:step;display:grid;gap:1.1rem;margin-top:2rem}
-  .steps li{display:flex;gap:1rem;align-items:flex-start}
+  .steps{list-style:none;counter-reset:step;display:grid;gap:var(--s-2);margin-top:var(--s-4)}
+  .steps li{display:flex;gap:var(--s-2);align-items:flex-start}
   .steps li::before{
     counter-increment:step;content:counter(step);
     width:34px;height:34px;flex:none;border-radius:50%;
@@ -318,53 +340,54 @@
   .steps .step-body{font-size:.97rem;color:var(--taupe)}
 
   /* ---------- Contact ---------- */
-  .contact-grid{display:grid;gap:1.4rem;margin-top:2.4rem}
+  .contact-grid{display:grid;gap:var(--s-2);margin-top:var(--s-4)}
   .contact-card{
-    background:var(--white);border:1px solid var(--sand);border-radius:var(--radius);
-    padding:1.7rem;box-shadow:var(--shadow-sm);
+    background:var(--white);border:1px solid var(--sand);border-radius:var(--r-lg);
+    padding:var(--s-3);box-shadow:var(--shadow-sm);
   }
-  .contact-card h3{font-size:1.2rem;margin-bottom:.7rem;display:flex;align-items:center;gap:.6rem}
-  .contact-card h3 svg{width:19px;height:19px;stroke:var(--bronze);flex:none}
+  .contact-card h2{font-size:1.2rem;margin-bottom:.75rem;display:flex;align-items:center;gap:.6rem}
+  .contact-card h2 svg{width:19px;height:19px;stroke:var(--ink-soft);flex:none}
   .contact-card p, .contact-card li{font-size:.98rem;color:var(--taupe)}
-  .contact-card a{font-weight:400}
+  .contact-card a{font-weight:500}
   .map-note{
-    margin-top:2rem;border-radius:var(--radius);overflow:hidden;border:1px solid var(--sand);
-    background:linear-gradient(135deg, var(--sand), var(--blush));padding:2.6rem 1.8rem;text-align:center;
+    margin-top:var(--s-4);border-radius:var(--r-lg);overflow:hidden;border:1px solid var(--sand);
+    background:linear-gradient(135deg, var(--sand), var(--blush));padding:var(--s-5) var(--s-3);text-align:center;
   }
-  .map-note h3{font-size:1.4rem;margin-bottom:.5rem}
-  .map-note p{color:var(--ink-soft);max-width:52ch;margin:0 auto 1.3rem}
+  .map-note h2{font-size:1.4rem;margin-bottom:.5rem}
+  .map-note p{color:var(--ink-soft);max-width:52ch;margin:0 auto var(--s-3)}
 
   /* ---------- Footer ---------- */
   footer.site{
-    background:var(--ink);color:#B9AB9D;margin-top:4.5rem;padding:3.4rem 0 2rem;font-size:.95rem;
+    background:var(--ink);color:#BFB1A3;margin-top:var(--s-8);padding:var(--s-6) 0 var(--s-4);font-size:.95rem;
   }
-  .footer-grid{display:grid;gap:2.2rem}
-  footer.site h4{color:var(--ivory);font-size:1.05rem;margin-bottom:.8rem;font-weight:400}
-  footer.site ul{list-style:none;display:grid;gap:.45rem}
-  footer.site a{color:#D8CCBF;text-decoration:none}
+  .footer-grid{display:grid;gap:var(--s-4)}
+  footer.site .f-head{color:var(--ivory);font-size:1.05rem;margin-bottom:var(--s-1);font-weight:400;font-family:var(--serif)}
+  footer.site ul{list-style:none;display:grid;gap:.5rem}
+  footer.site a{color:#D8CCBF;text-decoration:none;display:inline-block;padding:.125rem 0}
   footer.site a:hover{color:var(--ivory);text-decoration:underline}
-  .footer-brand .brand-mark{margin-bottom:.9rem}
+  .footer-brand .brand-mark{margin-bottom:var(--s-2)}
   .footer-brand p{max-width:34ch}
   .footer-bottom{
-    border-top:1px solid rgba(255,255,255,.12);margin-top:2.6rem;padding-top:1.4rem;
-    display:flex;flex-wrap:wrap;gap:.6rem 1.5rem;justify-content:space-between;font-size:.85rem;color:#8E8074;
+    border-top:1px solid rgba(255,255,255,.12);margin-top:var(--s-5);padding-top:var(--s-3);
+    display:flex;flex-wrap:wrap;gap:.5rem 1.5rem;justify-content:space-between;font-size:.875rem;color:#A3968A;
   }
 
   /* ---------- Sticky mobile action bar ---------- */
   .action-bar{
     position:fixed;bottom:0;left:0;right:0;z-index:90;
-    display:grid;grid-template-columns:1fr 1fr;gap:.6rem;
-    padding:.65rem .9rem calc(.65rem + env(safe-area-inset-bottom));
-    background:rgba(250,246,242,.95);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+    display:grid;grid-template-columns:1fr 1fr;gap:var(--s-1);
+    padding:.5rem 1rem calc(.5rem + env(safe-area-inset-bottom));
+    background:var(--ivory);
     border-top:1px solid var(--sand-deep);
+    box-shadow:0 -1px 2px rgba(44,35,30,.05), 0 -8px 24px rgba(44,35,30,.07);
   }
-  .action-bar .btn{padding:.8rem .5rem;font-size:.86rem}
+  .action-bar .btn{padding:.75rem .5rem;font-size:.86rem}
   body{padding-bottom:76px}
 
   /* ---------- Desktop ---------- */
   @media (min-width:760px){
-    section.band{padding:5.5rem 0}
-    .cards{grid-template-columns:repeat(2,1fr)}
+    section.band{padding:var(--s-10) 0}
+    .svc-index{display:grid;grid-template-columns:1fr 1fr;column-gap:var(--s-8)}
     .gallery-grid{grid-template-columns:repeat(3,1fr)}
     .book-grid{grid-template-columns:1fr 1fr}
     .contact-grid{grid-template-columns:repeat(2,1fr)}
@@ -377,11 +400,16 @@
   @media (min-width:1000px){
     nav.primary{display:block}
     .header-cta{display:flex}
+    .header-cta .btn-light{display:none}
+    nav.primary ul{gap:1.25rem}
     .menu-btn{display:none}
     .action-bar{display:none}
     body{padding-bottom:0}
-    .cards{grid-template-columns:repeat(3,1fr)}
     .gallery-grid{grid-template-columns:repeat(4,1fr)}
+  }
+  @media (min-width:1280px){
+    .header-cta .btn-light{display:inline-flex}
+    nav.primary ul{gap:1.75rem}
   }
 </style>
 </head>
@@ -475,10 +503,10 @@
           </div>
         </div>
         <aside class="hero-card">
-          <h3>
+          <h2>
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
             Opening hours
-          </h3>
+          </h2>
           <!-- CONFIRM WITH SALON: hours below are standard salon hours pending confirmation -->
           <ul class="hours">
             <li><span class="day">Monday – Friday</span><span>9:00 AM – 6:00 PM</span></li>
@@ -493,44 +521,44 @@
     <section class="band">
       <div class="wrap">
         <p class="eyebrow">What we do</p>
-        <h2 style="font-size:clamp(1.8rem,4.5vw,2.6rem)">One chair for her, one for him,<br>and everything in between.</h2>
-        <div class="cards">
-          <article class="card">
-            <span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M8.1 8.1 20 20M8.1 15.9 20 4"/></svg></span>
+        <h2 class="section-title">One chair for her, one for him,<br>and everything in between.</h2>
+        <div class="svc-index">
+          <div class="svc-row">
+            <span class="svc-num" aria-hidden="true">01</span>
             <h3>Hair &amp; Styling</h3>
             <p>Cuts, blow-drys, deep-conditioning treatments and occasion styling — hair that holds up in island humidity.</p>
             <a class="more" href="#services">See prices</a>
-          </article>
-          <article class="card">
-            <span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M12 3a7 7 0 0 1 7 7c0 4-3 6-3 9H8c0-3-3-5-3-9a7 7 0 0 1 7-7Z"/><path d="M9 21h6"/></svg></span>
+          </div>
+          <div class="svc-row">
+            <span class="svc-num" aria-hidden="true">02</span>
             <h3>Barbering for Men</h3>
             <p>Sharp haircuts, clean fades and beard shape-ups. Gents are just as at home here as the ladies.</p>
             <a class="more" href="#services">See prices</a>
-          </article>
-          <article class="card">
-            <span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><circle cx="12" cy="8" r="5"/><path d="M8.5 7.5c.5 1 2 2 3.5 2s3-1 3.5-2M4 21c1.5-3.5 4.5-5 8-5s6.5 1.5 8 5"/></svg></span>
+          </div>
+          <div class="svc-row">
+            <span class="svc-num" aria-hidden="true">03</span>
             <h3>Facials &amp; Skin</h3>
             <p>Facials tailored to your skin — a calm hour of care, or an express glow before you head back to the ship.</p>
             <a class="more" href="#services">See prices</a>
-          </article>
-          <article class="card">
-            <span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M3 12c3-1.5 6-1.5 9 0s6 1.5 9 0M3 7c3-1.5 6-1.5 9 0s6 1.5 9 0M3 17c3-1.5 6-1.5 9 0s6 1.5 9 0"/></svg></span>
+          </div>
+          <div class="svc-row">
+            <span class="svc-num" aria-hidden="true">04</span>
             <h3>Brows, Lashes &amp; Threading</h3>
             <p>Precise brow shaping, threading and waxing, plus lashes that open up the whole face.</p>
             <a class="more" href="#services">See prices</a>
-          </article>
-          <article class="card">
-            <span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M7 21v-4a5 5 0 0 1 5-5 5 5 0 0 1 5 5v4M9 12V4.5a1.5 1.5 0 0 1 3 0V10m0-4.5v-2a1.5 1.5 0 0 1 3 0V10m0-3.5a1.5 1.5 0 0 1 3 0V13"/></svg></span>
+          </div>
+          <div class="svc-row">
+            <span class="svc-num" aria-hidden="true">05</span>
             <h3>Nail Treatments</h3>
             <p>Manicures and pedicures done properly — tidy, long-lasting and finished to a polish you'll keep admiring.</p>
             <a class="more" href="#services">See prices</a>
-          </article>
-          <article class="card">
-            <span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M12 21c-4-3.5-8-6.6-8-11a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 4.4-4 7.5-8 11h-2Z"/></svg></span>
+          </div>
+          <div class="svc-row">
+            <span class="svc-num" aria-hidden="true">06</span>
             <h3>Massage</h3>
             <p>Unknot the shoulders and slow the day down. The perfect finish to a port day — or a long week.</p>
             <a class="more" href="#services">See prices</a>
-          </article>
+          </div>
         </div>
       </div>
     </section>
@@ -545,10 +573,14 @@
       </div>
     </section>
 
+    <div class="ticker" aria-hidden="true">
+      <p>hair<span class="tick-dot">·</span>brows<span class="tick-dot">·</span>nails<span class="tick-dot">·</span>lashes<span class="tick-dot">·</span>beards<span class="tick-dot">·</span>massage</p>
+    </div>
+
     <section class="band">
       <div class="wrap" style="text-align:center">
         <p class="eyebrow center">Our work</p>
-        <h2 style="font-size:clamp(1.8rem,4.5vw,2.6rem)">Proof is in the mirror.</h2>
+        <h2 class="section-title">Proof is in the mirror.</h2>
         <p class="lede" style="margin:1rem auto 0">A glimpse of what leaves our chairs every day — from fresh fades to flawless nails.</p>
         <div class="gallery-grid" style="text-align:left">
           <!-- [PLACEHOLDER]: swap each tile for a real photo — <img src="..." alt="..."> inside the tile -->
@@ -557,7 +589,7 @@
           <figure class="g-tile g-3"><span class="g-mono" aria-hidden="true">JD</span><figcaption class="g-label">Nail Artistry</figcaption></figure>
           <figure class="g-tile g-4"><span class="g-mono" aria-hidden="true">JD</span><figcaption class="g-label">Brows &amp; Lashes</figcaption></figure>
         </div>
-        <div style="margin-top:2.2rem">
+        <div style="margin-top:2rem">
           <a class="btn btn-outline" href="#gallery">View the full gallery</a>
         </div>
       </div>
@@ -566,14 +598,14 @@
 
   <!-- ================= SERVICES ================= -->
   <section class="page" id="page-services" data-page="services">
-    <section class="band" style="padding-top:3.6rem">
+    <section class="band" style="padding-top:3.5rem">
       <div class="wrap">
         <p class="eyebrow">Services &amp; Prices</p>
-        <h2 style="font-size:clamp(2rem,5vw,3rem)">The menu.</h2>
+        <h1 class="page-title">The menu.</h1>
         <p class="lede" style="margin-top:1rem">Honest prices in Cayman Islands dollars. Every service starts with a quick consultation so you get exactly what you came for.</p>
 
         <div class="menu-group">
-          <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M8.1 8.1 20 20M8.1 15.9 20 4"/></svg>Hair &amp; Styling</h3>
+          <h2><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M8.1 8.1 20 20M8.1 15.9 20 4"/></svg>Hair &amp; Styling</h2>
           <p class="group-note">For all hair types and textures.</p>
           <ul class="menu-list">
             <li><span class="item">Wash, Cut &amp; Style</span><span class="dots" aria-hidden="true"></span><span class="price">[PLACEHOLDER] KYD</span></li>
@@ -584,7 +616,7 @@
         </div>
 
         <div class="menu-group">
-          <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M12 3a7 7 0 0 1 7 7c0 4-3 6-3 9H8c0-3-3-5-3-9a7 7 0 0 1 7-7Z"/><path d="M9 21h6"/></svg>Barbering for Men</h3>
+          <h2><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M12 3a7 7 0 0 1 7 7c0 4-3 6-3 9H8c0-3-3-5-3-9a7 7 0 0 1 7-7Z"/><path d="M9 21h6"/></svg>Barbering for Men</h2>
           <p class="group-note">Classic cuts to modern fades.</p>
           <ul class="menu-list">
             <li><span class="item">Men's Haircut</span><span class="dots" aria-hidden="true"></span><span class="price">[PLACEHOLDER] KYD</span></li>
@@ -594,7 +626,7 @@
         </div>
 
         <div class="menu-group">
-          <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><circle cx="12" cy="8" r="5"/><path d="M8.5 7.5c.5 1 2 2 3.5 2s3-1 3.5-2M4 21c1.5-3.5 4.5-5 8-5s6.5 1.5 8 5"/></svg>Facials</h3>
+          <h2><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><circle cx="12" cy="8" r="5"/><path d="M8.5 7.5c.5 1 2 2 3.5 2s3-1 3.5-2M4 21c1.5-3.5 4.5-5 8-5s6.5 1.5 8 5"/></svg>Facials</h2>
           <p class="group-note">Tailored to your skin on the day.</p>
           <ul class="menu-list">
             <li><span class="item">Signature Facial<small>Cleanse, exfoliate, massage and mask — the full hour.</small></span><span class="dots" aria-hidden="true"></span><span class="price">[PLACEHOLDER] KYD</span></li>
@@ -603,7 +635,7 @@
         </div>
 
         <div class="menu-group">
-          <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M3 12c3-1.5 6-1.5 9 0s6 1.5 9 0M3 7c3-1.5 6-1.5 9 0s6 1.5 9 0"/></svg>Brows &amp; Lashes</h3>
+          <h2><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M3 12c3-1.5 6-1.5 9 0s6 1.5 9 0M3 7c3-1.5 6-1.5 9 0s6 1.5 9 0"/></svg>Brows &amp; Lashes</h2>
           <ul class="menu-list">
             <li><span class="item">Brow Shaping</span><span class="dots" aria-hidden="true"></span><span class="price">[PLACEHOLDER] KYD</span></li>
             <li><span class="item">Lashes — Full Set</span><span class="dots" aria-hidden="true"></span><span class="price">[PLACEHOLDER] KYD</span></li>
@@ -612,7 +644,7 @@
         </div>
 
         <div class="menu-group">
-          <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M4 20 20 4M6.5 6.5 12 12m2 2 3.5 3.5"/><circle cx="5" cy="5" r="2"/><circle cx="19" cy="19" r="2"/></svg>Waxing &amp; Threading</h3>
+          <h2><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M4 20 20 4M6.5 6.5 12 12m2 2 3.5 3.5"/><circle cx="5" cy="5" r="2"/><circle cx="19" cy="19" r="2"/></svg>Waxing &amp; Threading</h2>
           <ul class="menu-list">
             <li><span class="item">Facial Threading<small>Brows, lip, chin or full face.</small></span><span class="dots" aria-hidden="true"></span><span class="price">from [PLACEHOLDER] KYD</span></li>
             <li><span class="item">Facial Waxing</span><span class="dots" aria-hidden="true"></span><span class="price">from [PLACEHOLDER] KYD</span></li>
@@ -621,7 +653,7 @@
         </div>
 
         <div class="menu-group">
-          <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M7 21v-4a5 5 0 0 1 5-5 5 5 0 0 1 5 5v4M9 12V4.5a1.5 1.5 0 0 1 3 0V10m0-4.5v-2a1.5 1.5 0 0 1 3 0V10m0-3.5a1.5 1.5 0 0 1 3 0V13"/></svg>Nail Treatments</h3>
+          <h2><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M7 21v-4a5 5 0 0 1 5-5 5 5 0 0 1 5 5v4M9 12V4.5a1.5 1.5 0 0 1 3 0V10m0-4.5v-2a1.5 1.5 0 0 1 3 0V10m0-3.5a1.5 1.5 0 0 1 3 0V13"/></svg>Nail Treatments</h2>
           <ul class="menu-list">
             <li><span class="item">Classic Manicure</span><span class="dots" aria-hidden="true"></span><span class="price">[PLACEHOLDER] KYD</span></li>
             <li><span class="item">Classic Pedicure</span><span class="dots" aria-hidden="true"></span><span class="price">[PLACEHOLDER] KYD</span></li>
@@ -630,7 +662,7 @@
         </div>
 
         <div class="menu-group">
-          <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M12 21c-4-3.5-8-6.6-8-11a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 4.4-4 7.5-8 11h-2Z"/></svg>Massage</h3>
+          <h2><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M12 21c-4-3.5-8-6.6-8-11a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 4.4-4 7.5-8 11h-2Z"/></svg>Massage</h2>
           <ul class="menu-list">
             <li><span class="item">Relaxation Massage — 30 minutes</span><span class="dots" aria-hidden="true"></span><span class="price">[PLACEHOLDER] KYD</span></li>
             <li><span class="item">Relaxation Massage — 60 minutes</span><span class="dots" aria-hidden="true"></span><span class="price">[PLACEHOLDER] KYD</span></li>
@@ -642,7 +674,7 @@
           <span>Prices are in Cayman Islands dollars (KYD). Don't see what you're looking for? Call us on <a href="tel:+13459452822">+1 345-945-2822</a> — if it's beauty or barbering, chances are we can do it.</span>
         </div>
 
-        <div style="margin-top:2.4rem;display:flex;gap:.85rem;flex-wrap:wrap">
+        <div style="margin-top:2.5rem;display:flex;gap:1rem;flex-wrap:wrap">
           <!-- [PLACEHOLDER]: replace href with the salon's Fresha booking link -->
           <a class="btn btn-primary btn-lg" href="[PLACEHOLDER]">Book on Fresha</a>
           <a class="btn btn-outline btn-lg" href="tel:+13459452822">Call to book</a>
@@ -653,15 +685,15 @@
 
   <!-- ================= BOOK ================= -->
   <section class="page" id="page-book" data-page="book">
-    <section class="band" style="padding-top:3.6rem">
+    <section class="band" style="padding-top:3.5rem">
       <div class="wrap">
         <p class="eyebrow">Book</p>
-        <h2 style="font-size:clamp(2rem,5vw,3rem)">Save your seat.</h2>
+        <h1 class="page-title">Save your seat.</h1>
         <p class="lede" style="margin-top:1rem">Book online in under a minute, call us, or simply walk in — whichever suits your day.</p>
 
         <div class="book-grid">
           <article class="book-card featured">
-            <h3>Book online with Fresha</h3>
+            <h2>Book online with Fresha</h2>
             <p>Pick your service, your time and your stylist or barber, and get an instant confirmation with reminders. It's the easiest way to guarantee your spot.</p>
             <!-- [PLACEHOLDER]: replace href with the salon's Fresha booking link -->
             <a class="btn btn-primary btn-lg" href="[PLACEHOLDER]">
@@ -670,7 +702,7 @@
             </a>
           </article>
           <article class="book-card">
-            <h3>Prefer to talk?</h3>
+            <h2>Prefer to talk?</h2>
             <p>Call us and we'll find a time that works — and answer any questions about services, timing or prices while we're at it.</p>
             <a class="btn btn-outline btn-lg" href="tel:+13459452822">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.13.96.36 1.9.7 2.8a2 2 0 0 1-.45 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.27a2 2 0 0 1 2.1-.45c.9.34 1.84.57 2.8.7a2 2 0 0 1 1.7 2.03Z"/></svg>
@@ -679,14 +711,14 @@
           </article>
         </div>
 
-        <h3 style="font-size:1.6rem;margin-top:3.2rem">Visiting by cruise ship?</h3>
+        <h2 style="font-size:1.6rem;margin-top:3rem">Visiting by cruise ship?</h2>
         <ol class="steps">
           <li><div class="step-body"><strong>Walk up North Church Street</strong>We're in the Bush Centre, a few minutes on foot from the George Town cruise landing — no taxi needed.</div></li>
           <li><div class="step-body"><strong>Tell us your all-aboard time</strong>We'll recommend services that fit comfortably in your window, with time to spare for the walk back.</div></li>
           <li><div class="step-body"><strong>Relax — you're on island time</strong>Step back onto the waterfront freshly cut, polished and glowing.</div></li>
         </ol>
 
-        <div class="menu-note" style="margin-top:2.6rem">
+        <div class="menu-note" style="margin-top:2.5rem">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg>
           <span>Walk-ins are always welcome when a chair is free — booking ahead simply guarantees your time.</span>
         </div>
@@ -696,10 +728,10 @@
 
   <!-- ================= GALLERY ================= -->
   <section class="page" id="page-gallery" data-page="gallery">
-    <section class="band" style="padding-top:3.6rem">
+    <section class="band" style="padding-top:3.5rem">
       <div class="wrap">
         <p class="eyebrow">Gallery</p>
-        <h2 style="font-size:clamp(2rem,5vw,3rem)">Fresh out of the chair.</h2>
+        <h1 class="page-title">Fresh out of the chair.</h1>
         <p class="lede" style="margin-top:1rem">Cuts, colours, nails, brows and beards — real work on real clients, from regulars to visitors who found us straight off the ship.</p>
         <div class="gallery-grid">
           <!-- [PLACEHOLDER]: replace each tile with a real photo — put <img src="..." alt="describe the work"> inside the <figure> and remove the g-mono span -->
@@ -712,9 +744,14 @@
           <figure class="g-tile g-7"><span class="g-mono" aria-hidden="true">JD</span><figcaption class="g-label">Occasion Styling</figcaption></figure>
           <figure class="g-tile g-8"><span class="g-mono" aria-hidden="true">JD</span><figcaption class="g-label">The Salon</figcaption></figure>
         </div>
-        <div class="menu-note" style="margin-top:2.4rem">
+        <div class="menu-note" style="margin-top:2.5rem">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.1-3.1a2 2 0 0 0-2.8 0L6 21"/></svg>
           <span>Follow us on <a href="https://www.facebook.com/jdsalonandbarbers/" rel="noopener">Facebook</a> for our latest work, or come see it in person — we're on North Church Street every day.</span>
+        </div>
+        <div style="margin-top:2.5rem;display:flex;gap:1rem;flex-wrap:wrap">
+          <!-- [PLACEHOLDER]: replace href with the salon's Fresha booking link -->
+          <a class="btn btn-primary btn-lg" href="[PLACEHOLDER]">Book on Fresha</a>
+          <a class="btn btn-outline btn-lg" href="tel:+13459452822">Call to book</a>
         </div>
       </div>
     </section>
@@ -722,10 +759,10 @@
 
   <!-- ================= ABOUT ================= -->
   <section class="page" id="page-about" data-page="about">
-    <section class="band" style="padding-top:3.6rem">
+    <section class="band" style="padding-top:3.5rem">
       <div class="wrap">
         <p class="eyebrow">About us</p>
-        <h2 style="font-size:clamp(2rem,5vw,3rem)">A little salon with a big welcome.</h2>
+        <h1 class="page-title">A little salon with a big welcome.</h1>
         <div class="about-grid">
           <div class="about-copy">
             <p>JD Beauty Salon and Barbers sits in the Bush Centre on North Church Street, right where George Town meets the sea. Step inside and you'll find a calm, friendly space where the trade winds of the waterfront give way to the hum of clippers, the scent of good products and easy conversation.</p>
@@ -748,7 +785,7 @@
             </div>
           </aside>
         </div>
-        <div style="margin-top:2.8rem;display:flex;gap:.85rem;flex-wrap:wrap">
+        <div style="margin-top:2.5rem;display:flex;gap:1rem;flex-wrap:wrap">
           <!-- [PLACEHOLDER]: replace href with the salon's Fresha booking link -->
           <a class="btn btn-primary btn-lg" href="[PLACEHOLDER]">Book on Fresha</a>
           <a class="btn btn-outline btn-lg" href="#contact">Find us</a>
@@ -759,50 +796,50 @@
 
   <!-- ================= CONTACT ================= -->
   <section class="page" id="page-contact" data-page="contact">
-    <section class="band" style="padding-top:3.6rem">
+    <section class="band" style="padding-top:3.5rem">
       <div class="wrap">
         <p class="eyebrow">Contact</p>
-        <h2 style="font-size:clamp(2rem,5vw,3rem)">Come say hello.</h2>
+        <h1 class="page-title">Come say hello.</h1>
         <p class="lede" style="margin-top:1rem">We're easy to find and even easier to talk to.</p>
 
         <div class="contact-grid">
           <div class="contact-card">
-            <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>Where we are</h3>
+            <h2><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>Where we are</h2>
             <p>Bush Centre, North Church Street<br>George Town, Grand Cayman<br>Cayman Islands</p>
-            <p style="margin-top:.7rem"><a href="https://maps.google.com/?q=JD+Beauty+Salon+and+Barbers,+North+Church+Street,+George+Town,+Cayman+Islands" rel="noopener">Open in Google Maps</a></p>
+            <p style="margin-top:.75rem"><a href="https://maps.google.com/?q=JD+Beauty+Salon+and+Barbers,+North+Church+Street,+George+Town,+Cayman+Islands" rel="noopener">Open in Google Maps</a></p>
           </div>
           <div class="contact-card">
-            <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.13.96.36 1.9.7 2.8a2 2 0 0 1-.45 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.27a2 2 0 0 1 2.1-.45c.9.34 1.84.57 2.8.7a2 2 0 0 1 1.7 2.03Z"/></svg>Call or book</h3>
+            <h2><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.13.96.36 1.9.7 2.8a2 2 0 0 1-.45 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.27a2 2 0 0 1 2.1-.45c.9.34 1.84.57 2.8.7a2 2 0 0 1 1.7 2.03Z"/></svg>Call or book</h2>
             <p><a href="tel:+13459452822">+1 345-945-2822</a></p>
-            <p style="margin-top:.7rem">
+            <p style="margin-top:.75rem">
               <!-- [PLACEHOLDER]: replace href with the salon's Fresha booking link -->
               <a href="[PLACEHOLDER]">Book online on Fresha</a>
             </p>
-            <p style="margin-top:.7rem"><a href="https://www.facebook.com/jdsalonandbarbers/" rel="noopener">Facebook — @jdsalonandbarbers</a></p>
+            <p style="margin-top:.75rem"><a href="https://www.facebook.com/jdsalonandbarbers/" rel="noopener">Facebook — @jdsalonandbarbers</a></p>
           </div>
           <div class="contact-card">
-            <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>Opening hours</h3>
+            <h2><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>Opening hours</h2>
             <!-- CONFIRM WITH SALON: hours below are standard salon hours pending confirmation -->
             <ul class="hours">
               <li><span class="day">Monday – Friday</span><span>9:00 AM – 6:00 PM</span></li>
               <li><span class="day">Saturday</span><span>9:00 AM – 6:00 PM</span></li>
               <li><span class="day">Sunday</span><span class="closed">Closed</span></li>
             </ul>
-            <p style="margin-top:.7rem;font-size:.88rem">Holiday hours may vary — call ahead.</p>
+            <p style="margin-top:.75rem;font-size:.875rem">Holiday hours may vary — call ahead.</p>
           </div>
           <div class="contact-card">
-            <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10Z"/><circle cx="12" cy="12" r="10"/></svg>Good to know</h3>
+            <h2><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10Z"/><circle cx="12" cy="12" r="10"/></svg>Good to know</h2>
             <ul style="list-style:none;display:grid;gap:.5rem">
-              <li>· Walk-ins and cruise visitors welcome</li>
-              <li>· Prices in KYD (Cayman Islands dollars)</li>
-              <li>· A short walk from the cruise landing</li>
-              <li>· Men, women and couples all welcome</li>
+              <li>Walk-ins and cruise visitors welcome</li>
+              <li>Prices in KYD (Cayman Islands dollars)</li>
+              <li>A short walk from the cruise landing</li>
+              <li>Men, women and couples all welcome</li>
             </ul>
           </div>
         </div>
 
         <div class="map-note">
-          <h3>Finding us from the cruise port</h3>
+          <h2>Finding us from the cruise port</h2>
           <p>From the George Town cruise landing, follow the waterfront north along North Church Street. The Bush Centre is a few minutes' walk on foot — look for JD Beauty Salon and Barbers.</p>
           <a class="btn btn-primary" href="https://maps.google.com/?q=JD+Beauty+Salon+and+Barbers,+North+Church+Street,+George+Town,+Cayman+Islands" rel="noopener">Get directions</a>
         </div>
@@ -816,11 +853,11 @@
   <div class="wrap footer-grid">
     <div class="footer-brand">
       <span class="brand-mark" aria-hidden="true">JD</span>
-      <h4>JD Beauty Salon &amp; Barbers</h4>
+      <h2 class="f-head">JD Beauty Salon &amp; Barbers</h2>
       <p>Hair, beauty and barbering on the George Town waterfront — for locals, and for visitors with an afternoon to spare.</p>
     </div>
     <div>
-      <h4>Explore</h4>
+      <h2 class="f-head">Explore</h2>
       <ul>
         <li><a href="#home">Home</a></li>
         <li><a href="#services">Services &amp; Prices</a></li>
@@ -831,7 +868,7 @@
       </ul>
     </div>
     <div>
-      <h4>Visit</h4>
+      <h2 class="f-head">Visit</h2>
       <ul>
         <li>Bush Centre, North Church Street</li>
         <li>George Town, Grand Cayman</li>
@@ -840,7 +877,7 @@
       </ul>
     </div>
     <div>
-      <h4>Book your visit</h4>
+      <h2 class="f-head">Book your visit</h2>
       <ul>
         <!-- [PLACEHOLDER]: replace href with the salon's Fresha booking link -->
         <li><a href="[PLACEHOLDER]">Book online on Fresha</a></li>
