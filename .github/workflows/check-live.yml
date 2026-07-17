@@ -5,6 +5,7 @@ jobs:
   check:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v4
       - name: Live site responds and serves the app
         run: |
           set -euo pipefail
