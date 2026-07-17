@@ -4,6 +4,7 @@ import { STAGE_LABELS } from "@/lib/types";
 const STAGE_STYLES: Record<Stage, { dot: string; text: string }> = {
   todo: { dot: "bg-stage-todo", text: "text-stage-todo" },
   built: { dot: "bg-stage-built shadow-[0_0_8px_rgba(91,157,245,0.6)]", text: "text-stage-built" },
+  talks: { dot: "bg-ember shadow-[0_0_8px_rgba(245,158,91,0.6)]", text: "text-ember" },
   sold: { dot: "bg-stage-sold shadow-[0_0_8px_rgba(62,207,142,0.6)]", text: "text-stage-sold" },
   archived: { dot: "bg-faint", text: "text-faint" },
 };

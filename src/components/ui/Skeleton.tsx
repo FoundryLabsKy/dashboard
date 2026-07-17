@@ -3,8 +3,14 @@ export function Skeleton({ className = "" }: { className?: string }) {
 }
 
 export function StatRowSkeleton({ count = 6 }: { count?: number }) {
+  const cols =
+    count >= 7
+      ? "sm:grid-cols-4 xl:grid-cols-7"
+      : count >= 6
+        ? "sm:grid-cols-3 xl:grid-cols-6"
+        : "xl:grid-cols-4";
   return (
-    <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 xl:grid-cols-6">
+    <div className={`grid grid-cols-2 gap-3 ${cols}`}>
       {Array.from({ length: count }, (_, i) => (
         <Skeleton key={i} className="h-[88px]" />
       ))}

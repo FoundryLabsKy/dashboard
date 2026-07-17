@@ -8,8 +8,10 @@ import { formatCurrency } from "@/lib/format";
 import { listItemVariants } from "@/lib/motion";
 import { StatusBadge } from "@/components/ui/StatusBadge";
 import { Button } from "@/components/ui/Button";
-import { IconArchive, IconExternal, IconGlobe, IconPencil } from "@/components/ui/Icons";
+import { IconArchive, IconChat, IconExternal, IconGlobe, IconPencil } from "@/components/ui/Icons";
 import { useBuildPreview } from "@/hooks/useBuildPreview";
+import { useCompanies } from "@/hooks/useCompanies";
+import { useToast } from "@/components/ui/Toast";
 
 interface BuiltCardProps {
   company: Company;
@@ -23,6 +25,13 @@ export function BuiltCard({ company, onEdit, onMarkSold, onArchive }: BuiltCardP
   const reduced = useReducedMotion() ?? false;
   const stage = deriveStage(company);
   const { previewUrl: previewSrc, pitchUrl } = useBuildPreview(company);
+  const { updateCompany } = useCompanies();
+  const { toast } = useToast();
+
+  const startTalks = () => {
+    void updateCompany(company.id, { in_talks: true, built: true });
+    toast(`${company.name} marked as in talks`, "success");
+  };
 
   const open = () => router.push(`/company?id=${company.id}`);
 
@@ -126,6 +135,12 @@ export function BuiltCard({ company, onEdit, onMarkSold, onArchive }: BuiltCardP
             ) : (
               <Button variant="primary" size="sm" onClick={() => onMarkSold(company)}>
                 Mark sold
+              </Button>
+            )}
+            {stage === "built" && (
+              <Button variant="ghost" size="sm" onClick={startTalks} title="Reached out? Track the conversation">
+                <IconChat className="h-4 w-4 text-ember" />
+                In talks
               </Button>
             )}
             {pitchUrl && (

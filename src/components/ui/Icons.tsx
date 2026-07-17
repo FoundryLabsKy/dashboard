@@ -160,6 +160,13 @@ export const IconChevronDown = ({ className }: IconProps) => (
   </svg>
 );
 
+export const IconChat = ({ className }: IconProps) => (
+  <svg {...base(className)}>
+    <path d="M21 12a8 8 0 01-8 8H4l2.3-2.9A8 8 0 1121 12z" />
+    <path d="M8.5 10.5h7M8.5 14h4.5" />
+  </svg>
+);
+
 export const IconSpark = ({ className }: IconProps) => (
   <svg {...base(className)}>
     <path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9z" />

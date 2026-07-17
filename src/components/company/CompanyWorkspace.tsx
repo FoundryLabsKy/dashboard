@@ -4,7 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { motion, useReducedMotion } from "framer-motion";
-import { deriveStage } from "@/lib/types";
+import { deriveStage, talkingPoints } from "@/lib/types";
 import { useCompanies, useCompany } from "@/hooks/useCompanies";
 import { useCompanyFiles } from "@/hooks/useCompanyFiles";
 import { useToast } from "@/components/ui/Toast";
@@ -18,6 +18,7 @@ import { ConfirmDialog } from "@/components/ui/ConfirmDialog";
 import { AutofillButton } from "@/components/company/AutofillButton";
 import { EditCompanyModal } from "@/components/company/EditCompanyModal";
 import { NotesAutosave } from "@/components/company/NotesAutosave";
+import { TalkingPoints } from "@/components/company/TalkingPoints";
 import { DomainList } from "@/components/company/DomainList";
 import { FileSection } from "@/components/company/FileSection";
 import { PitchDeckSection } from "@/components/company/PitchDeckSection";
@@ -26,6 +27,7 @@ import { SoldToggleSection } from "@/components/company/SoldToggleSection";
 import {
   IconArchive,
   IconArrowLeft,
+  IconChat,
   IconCheck,
   IconGlobe,
   IconPencil,
@@ -178,6 +180,48 @@ export function CompanyWorkspace({ id }: { id: string }) {
             </div>
           )}
 
+          {stage === "built" && (
+            <div className="glass flex flex-wrap items-center justify-between gap-4 !border-ember/20 p-5">
+              <div>
+                <h2 className="font-display text-sm font-bold text-ink">Ready to pitch</h2>
+                <p className="mt-1 text-xs text-muted">
+                  Reached out to them? Track the conversation and what to cover.
+                </p>
+              </div>
+              <Button
+                variant="ghost"
+                onClick={() => {
+                  void updateCompany(company.id, { in_talks: true });
+                  toast(`${company.name} marked as in talks`, "success");
+                }}
+              >
+                <IconChat className="h-4 w-4 text-ember" />
+                Mark as in talks
+              </Button>
+            </div>
+          )}
+
+          {stage === "talks" && (
+            <div className="glass flex flex-wrap items-center justify-between gap-4 !border-ember/20 p-5">
+              <div>
+                <h2 className="font-display text-sm font-bold text-ink">In talks</h2>
+                <p className="mt-1 text-xs text-muted">
+                  Conversation is live — the agenda lives in Talking points below.
+                </p>
+              </div>
+              <Button
+                variant="subtle"
+                size="sm"
+                onClick={() => {
+                  void updateCompany(company.id, { in_talks: false });
+                  toast(`${company.name} moved back to Built`, "info");
+                }}
+              >
+                Back to Built
+              </Button>
+            </div>
+          )}
+
           <div className="glass p-5">
             <WebsitePreview company={company} files={files} />
           </div>
@@ -197,6 +241,12 @@ export function CompanyWorkspace({ id }: { id: string }) {
 
         <div className="flex flex-col gap-5">
           <SoldToggleSection company={company} />
+
+          {(stage === "talks" || talkingPoints(company).length > 0) && (
+            <div className="glass p-5">
+              <TalkingPoints company={company} />
+            </div>
+          )}
 
           <div className="glass p-5">
             <DomainList company={company} />

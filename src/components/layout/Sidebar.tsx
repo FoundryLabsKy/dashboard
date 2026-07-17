@@ -7,6 +7,7 @@ import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { useCompanies } from "@/hooks/useCompanies";
 import {
   IconArchive,
+  IconChat,
   IconChecklist,
   IconDollar,
   IconGrid,
@@ -20,6 +21,7 @@ const NAV_ITEMS = [
   { href: "/", label: "Dashboard", icon: IconGrid },
   { href: "/todo", label: "To-Do", icon: IconChecklist },
   { href: "/built", label: "Built", icon: IconHammer },
+  { href: "/talks", label: "In Talks", icon: IconChat },
   { href: "/income", label: "Income", icon: IconDollar },
   { href: "/archived", label: "Archived", icon: IconArchive },
   { href: "/settings", label: "Settings", icon: IconSliders },

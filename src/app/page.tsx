@@ -44,12 +44,13 @@ export default function DashboardPage() {
       />
 
       {loading ? (
-        <StatRowSkeleton />
+        <StatRowSkeleton count={7} />
       ) : (
-        <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 xl:grid-cols-6">
+        <div className="grid grid-cols-2 gap-3 sm:grid-cols-4 xl:grid-cols-7">
           <StatCard label="Total ideas" value={kpis.totalIdeas} />
           <StatCard label="Websites built" value={kpis.websitesBuilt} accent="built" />
           <StatCard label="Ready to pitch" value={kpis.readyToPitch} accent="built" />
+          <StatCard label="In talks" value={kpis.inTalks} accent="ember" />
           <StatCard label="Sold" value={kpis.soldCount} accent="sold" />
           <StatCard
             label="Monthly recurring"

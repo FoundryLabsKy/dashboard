@@ -4,6 +4,7 @@ export interface Kpis {
   totalIdeas: number;
   websitesBuilt: number;
   readyToPitch: number;
+  inTalks: number;
   soldCount: number;
   mrr: number;
   totalRevenue: number;
@@ -18,7 +19,8 @@ export function computeKpis(companies: Company[]): Kpis {
   return {
     totalIdeas: active.length,
     websitesBuilt: active.filter((c) => c.built || c.sold).length,
-    readyToPitch: active.filter((c) => c.built && !c.sold).length,
+    readyToPitch: active.filter((c) => c.built && !c.in_talks && !c.sold).length,
+    inTalks: active.filter((c) => c.in_talks && !c.sold).length,
     soldCount: sold.length,
     mrr: sold.reduce((sum, c) => sum + (c.monthly_fee ?? 0), 0),
     totalRevenue,

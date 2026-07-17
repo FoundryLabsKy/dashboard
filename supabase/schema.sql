@@ -16,6 +16,8 @@ create table if not exists companies (
   notes text not null default '',
   potential_domains jsonb not null default '[]',
   built boolean not null default false,
+  in_talks boolean not null default false,
+  talking_points jsonb not null default '[]',
   sold boolean not null default false,
   archived boolean not null default false,
   final_domain text,
@@ -27,6 +29,8 @@ create table if not exists companies (
 
 -- Safe to re-run on an existing project.
 alter table companies add column if not exists pitch_url text;
+alter table companies add column if not exists in_talks boolean not null default false;
+alter table companies add column if not exists talking_points jsonb not null default '[]';
 
 -- App-wide settings (e.g. the Gemini API key for AI autofill).
 create table if not exists settings (

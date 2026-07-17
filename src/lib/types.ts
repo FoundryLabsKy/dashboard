@@ -1,3 +1,9 @@
+export interface TalkingPoint {
+  id: string;
+  text: string;
+  done: boolean;
+}
+
 export interface Company {
   id: string;
   name: string;
@@ -9,6 +15,8 @@ export interface Company {
   notes: string;
   potential_domains: string[];
   built: boolean;
+  in_talks: boolean;
+  talking_points: TalkingPoint[];
   sold: boolean;
   archived: boolean;
   final_domain: string | null;
@@ -43,20 +51,27 @@ export interface SoldInfo {
   final_url: string;
 }
 
-export type Stage = "todo" | "built" | "sold" | "archived";
+export type Stage = "todo" | "built" | "talks" | "sold" | "archived";
 
 export type SortKey = "newest" | "oldest" | "alpha" | "sold";
 
 export function deriveStage(c: Company): Stage {
   if (c.archived) return "archived";
   if (c.sold) return "sold";
+  if (c.in_talks) return "talks";
   if (c.built) return "built";
   return "todo";
+}
+
+/** Talking points with a fallback for records created before the field existed. */
+export function talkingPoints(c: Company): TalkingPoint[] {
+  return c.talking_points ?? [];
 }
 
 export const STAGE_LABELS: Record<Stage, string> = {
   todo: "To Build",
   built: "Ready to Pitch",
+  talks: "In Talks",
   sold: "Sold",
   archived: "Archived",
 };
