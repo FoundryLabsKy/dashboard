@@ -22,6 +22,7 @@ import { TalkingPoints } from "@/components/company/TalkingPoints";
 import { DomainList } from "@/components/company/DomainList";
 import { FileSection } from "@/components/company/FileSection";
 import { PitchDeckSection } from "@/components/company/PitchDeckSection";
+import { SalesScriptSection } from "@/components/company/SalesScriptSection";
 import { WebsitePreview } from "@/components/company/WebsitePreview";
 import { SoldToggleSection } from "@/components/company/SoldToggleSection";
 import {
@@ -229,6 +230,12 @@ export function CompanyWorkspace({ id }: { id: string }) {
           <div className="glass p-5">
             <PitchDeckSection company={company} files={files} />
           </div>
+
+          {(stage === "built" || stage === "talks") && (
+            <div className="glass p-5">
+              <SalesScriptSection company={company} />
+            </div>
+          )}
 
           <div className="glass p-5">
             <NotesAutosave

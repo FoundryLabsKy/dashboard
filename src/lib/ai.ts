@@ -127,6 +127,66 @@ export async function autofillCompany(name: string, apiKey: string): Promise<Aut
   };
 }
 
+export interface ScriptInput {
+  name: string;
+  industry: string | null;
+  contact: string | null;
+  website: string | null;
+  notes: string;
+  potential_domains: string[];
+}
+
+function buildScriptPrompt(c: ScriptInput): string {
+  const facts = [
+    `Company: ${c.name}`,
+    c.industry ? `Industry: ${c.industry}` : null,
+    c.website ? `Their current website: ${c.website}` : "They have no real website today.",
+    c.contact ? `Contact: ${c.contact}` : null,
+    c.potential_domains.length ? `Domain we'd put them on: ${c.potential_domains[0]}` : null,
+    c.notes.trim() ? `Our notes: ${c.notes.trim()}` : null,
+  ]
+    .filter(Boolean)
+    .join("\n");
+
+  return `You write sales scripts for Foundry Labs, a small Cayman Islands web studio. Our model: we BUILD a business a brand-new website up front, then pitch it — the owner gets to see the finished site before paying. One-time price plus ~$30/month hosting and management.
+
+Research this business and its current web presence (look the website up if one is listed — note what's weak: dated design, not mobile friendly, hard to find on Google, missing info, or no site at all):
+
+${facts}
+
+Now write a short spoken sales script (200-280 words) the founder can read on a call or in person. Friendly, confident, local, zero corporate jargon. Structure it with these exact section labels on their own lines:
+
+OPENER — one warm line introducing yourself and why you're reaching out
+HOOK — one or two specific observations about their current web presence and what it's costing them
+PITCH — the benefits of the new site (mobile, Google visibility, trust, more customers), tied to their business specifically
+OFFER — the kicker: we already built the site, it's ready to look at right now, no obligation
+CLOSE — ask for two minutes to show them, mention simple one-time price + small monthly hosting
+IF THEY HESITATE — one reassuring line to handle the most likely objection
+
+Output only the script text with those labels. No markdown, no preamble.`;
+}
+
+export interface ScriptResult {
+  script: string;
+  usedSearch: boolean;
+}
+
+export async function generatePitchScript(
+  input: ScriptInput,
+  apiKey: string
+): Promise<ScriptResult> {
+  let usedSearch = true;
+  let result = await callGemini(apiKey, buildScriptPrompt(input), true);
+  if (!result.ok) {
+    usedSearch = false;
+    result = await callGemini(apiKey, buildScriptPrompt(input), false);
+  }
+  if (!result.ok) throw new Error(result.detail);
+  const script = result.text.trim();
+  if (!script) throw new Error("Empty response from Gemini");
+  return { script, usedSearch };
+}
+
 /** Quick round-trip to confirm a key works. Returns the model's reply text. */
 export async function testGeminiKey(apiKey: string): Promise<string> {
   const res = await fetch(ENDPOINT, {

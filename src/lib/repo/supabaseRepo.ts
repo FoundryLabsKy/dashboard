@@ -55,6 +55,7 @@ export const supabaseRepo: CompanyRepo = {
     if (files?.length) {
       await supabase.storage.from(BUCKET).remove(files.map((f) => f.storage_path));
     }
+    await supabase.from("settings").delete().eq("key", `pitch_script:${id}`);
     const { error } = await supabase.from("companies").delete().eq("id", id);
     if (error) throw error;
   },

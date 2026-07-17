@@ -176,6 +176,9 @@ export const localRepo: CompanyRepo = {
       COMPANIES_KEY,
       loadCompanies().filter((c) => c.id !== id)
     );
+    const settings = readJson<Record<string, string>>(SETTINGS_KEY, {});
+    delete settings[`pitch_script:${id}`];
+    writeJson(SETTINGS_KEY, settings);
     const files = readJson<CompanyFile[]>(FILES_KEY, []);
     const doomed = files.filter((f) => f.company_id === id);
     await Promise.all(doomed.map((f) => deleteBlob(f.storage_path).catch(() => undefined)));
