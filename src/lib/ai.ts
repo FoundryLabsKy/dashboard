@@ -12,8 +12,29 @@ export function embeddedGeminiKey(): string {
   return atob(EMBEDDED_KEY_B64);
 }
 
-const ENDPOINT =
-  "https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-latest:generateContent";
+// Primary model plus a lighter fallback — the free tier's flash model gets
+// overloaded (503) at peak times while flash-lite rarely does.
+const MODELS = ["gemini-flash-latest", "gemini-flash-lite-latest"];
+
+function endpoint(model: string): string {
+  return `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent`;
+}
+
+const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
+
+/** Turn a raw Gemini error into something a human can act on. */
+export function friendlyAiError(detail: string): string {
+  if (/high demand|UNAVAILABLE|overloaded/i.test(detail)) {
+    return "Google's AI is busy right now — wait a minute and try again.";
+  }
+  if (/quota|RESOURCE_EXHAUSTED|rate/i.test(detail)) {
+    return "Today's free AI limit is used up — it resets daily, or add a fresh key in Settings.";
+  }
+  if (/API key not valid|API_KEY_INVALID|PERMISSION_DENIED/i.test(detail)) {
+    return "The API key was rejected — paste a fresh key from aistudio.google.com/apikey in Settings.";
+  }
+  return detail;
+}
 
 export interface AutofillResult {
   industry: string | null;
@@ -63,14 +84,15 @@ function parseJson(text: string): RawResult {
 async function callGemini(
   apiKey: string,
   prompt: string,
-  withSearch: boolean
+  withSearch: boolean,
+  model: string
 ): Promise<{ ok: boolean; status: number; detail: string; text: string }> {
   const body: Record<string, unknown> = {
     contents: [{ parts: [{ text: prompt }] }],
   };
   if (withSearch) body.tools = [{ google_search: {} }];
 
-  const res = await fetch(ENDPOINT, {
+  const res = await fetch(endpoint(model), {
     method: "POST",
     headers: { "Content-Type": "application/json", "x-goog-api-key": apiKey },
     body: JSON.stringify(body),
@@ -95,21 +117,39 @@ async function callGemini(
   return { ok: true, status: res.status, detail: "", text };
 }
 
-export async function autofillCompany(name: string, apiKey: string): Promise<AutofillResult> {
-  // Web search first; when Google's daily grounding quota runs out (429),
-  // fall back to the model's built-in knowledge so autofill still works.
-  let usedSearch = true;
-  let result = await callGemini(apiKey, buildPrompt(name), true);
-  if (!result.ok) {
-    usedSearch = false;
-    result = await callGemini(apiKey, buildPrompt(name), false);
+/**
+ * The resilience ladder: try both models with web search, then both
+ * without; if everything failed (e.g. peak-time overload), pause once
+ * and run the ladder again before giving up.
+ */
+async function callWithFallback(
+  apiKey: string,
+  prompt: string
+): Promise<{ text: string; usedSearch: boolean }> {
+  const attempts = [
+    ...MODELS.map((model) => ({ model, search: true })),
+    ...MODELS.map((model) => ({ model, search: false })),
+  ];
+  let lastDetail = "Unknown error";
+  for (let round = 0; round < 2; round++) {
+    for (const attempt of attempts) {
+      const result = await callGemini(apiKey, prompt, attempt.search, attempt.model);
+      if (result.ok && result.text) {
+        return { text: result.text, usedSearch: attempt.search };
+      }
+      if (!result.ok) lastDetail = result.detail;
+    }
+    if (round === 0) await sleep(2500);
   }
-  if (!result.ok) throw new Error(result.detail);
-  if (!result.text) throw new Error("Empty response from Gemini");
+  throw new Error(friendlyAiError(lastDetail));
+}
+
+export async function autofillCompany(name: string, apiKey: string): Promise<AutofillResult> {
+  const { text, usedSearch } = await callWithFallback(apiKey, buildPrompt(name));
 
   let raw: RawResult;
   try {
-    raw = parseJson(result.text);
+    raw = parseJson(text);
   } catch {
     throw new Error("Could not read the research results. Try again.");
   }
@@ -175,37 +215,24 @@ export async function generatePitchScript(
   input: ScriptInput,
   apiKey: string
 ): Promise<ScriptResult> {
-  let usedSearch = true;
-  let result = await callGemini(apiKey, buildScriptPrompt(input), true);
-  if (!result.ok) {
-    usedSearch = false;
-    result = await callGemini(apiKey, buildScriptPrompt(input), false);
-  }
-  if (!result.ok) throw new Error(result.detail);
-  const script = result.text.trim();
+  const { text, usedSearch } = await callWithFallback(apiKey, buildScriptPrompt(input));
+  const script = text.trim();
   if (!script) throw new Error("Empty response from Gemini");
   return { script, usedSearch };
 }
 
 /** Quick round-trip to confirm a key works. Returns the model's reply text. */
 export async function testGeminiKey(apiKey: string): Promise<string> {
-  const res = await fetch(ENDPOINT, {
-    method: "POST",
-    headers: { "Content-Type": "application/json", "x-goog-api-key": apiKey },
-    body: JSON.stringify({
-      contents: [{ parts: [{ text: "Reply with the single word: ready" }] }],
-    }),
-  });
-  if (!res.ok) {
-    let detail = `HTTP ${res.status}`;
-    try {
-      const err = await res.json();
-      detail = err?.error?.message ?? detail;
-    } catch {
-      // keep the status-code message
-    }
-    throw new Error(detail);
+  let lastDetail = "Unknown error";
+  for (const model of MODELS) {
+    const result = await callGemini(
+      apiKey,
+      "Reply with the single word: ready",
+      false,
+      model
+    );
+    if (result.ok) return result.text;
+    lastDetail = result.detail;
   }
-  const data = await res.json();
-  return data?.candidates?.[0]?.content?.parts?.[0]?.text ?? "";
+  throw new Error(friendlyAiError(lastDetail));
 }
