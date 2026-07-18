@@ -96,63 +96,94 @@ export const SERVICES: Service[] = [
   },
 ];
 
-export type Plan = {
-  key: string;
-  name: string;
-  tagline: string;
-  build: string;
-  monthly: string;
-  featured?: boolean;
-  features: string[];
+// One simple model: a one-time build price, then a flat monthly fee that
+// bundles hosting, the domain, and ongoing maintenance. Prices in dollars.
+export const STANDARD = {
+  name: "Your website",
+  price: "450",
+  cadence: "one-time",
+  tagline:
+    "A beautiful, custom-built website that makes your business look established from the very first tap.",
+  includes: [
+    "Custom design built around your brand",
+    "Mobile-first and lightning fast",
+    "Contact form & click-to-call",
+    "Google Maps, hours & directions",
+    "Photo gallery & services section",
+    "Social media links",
+    "Set up to be found on Google",
+    "Live in about 7 days",
+  ],
 };
 
-// Prices are in Cayman Islands dollars (CI$) and shown as starting points.
-export const PLANS: Plan[] = [
+export const CARE = {
+  name: "Hosting, domain & care",
+  price: "30",
+  cadence: "per month",
+  tagline: "We keep it online, secure, and up to date — you never touch a thing.",
+  includes: [
+    "Fast, secure managed hosting",
+    "Your domain name included",
+    "SSL certificate & daily backups",
+    "24/7 uptime monitoring",
+    "Unlimited small edits & updates",
+    "A real person on WhatsApp",
+    "Cancel anytime — no contracts",
+  ],
+};
+
+export type AddOn = { name: string; price: string; note: string };
+
+export const ADD_ONS: AddOn[] = [
   {
-    key: "launch",
-    name: "Launch",
-    tagline: "A sharp single-page presence to get found fast.",
-    build: "450",
-    monthly: "25",
-    features: [
-      "One-page website",
-      "Mobile-first responsive design",
-      "Contact form & click-to-call",
-      "Google Maps & business hours",
-      "Hosting, SSL & backups included",
-      "Live in 7 days",
-    ],
+    name: "Business email",
+    price: "$8/mo per inbox",
+    note: "A professional you@yourbusiness.ky address on your own domain.",
   },
   {
-    key: "growth",
-    name: "Growth",
-    tagline: "A complete multi-page site for a growing business.",
-    build: "850",
-    monthly: "45",
-    featured: true,
-    features: [
-      "Up to 6 custom pages",
-      "Everything in Launch",
-      "Photo gallery & services pages",
-      "Local SEO & Google Business setup",
-      "Business email address",
-      "Unlimited small edits",
-    ],
+    name: "Extra pages",
+    price: "from $60 each",
+    note: "Grow beyond the standard site with menus, team, or service pages.",
   },
   {
-    key: "commerce",
-    name: "Commerce",
-    tagline: "Sell products or take bookings online.",
-    build: "1,600",
-    monthly: "75",
-    features: [
-      "Everything in Growth",
-      "Online store or booking system",
-      "Secure card payments",
-      "Inventory & order management",
-      "Delivery / pickup options",
-      "Priority same-day support",
-    ],
+    name: "Online booking",
+    price: "from $150",
+    note: "Let customers reserve tables, rooms, or appointments online.",
+  },
+  {
+    name: "Online store & payments",
+    price: "from $250",
+    note: "Sell products with a secure card checkout and order management.",
+  },
+  {
+    name: "Google Business & local SEO",
+    price: "from $120",
+    note: "Show up on Google Maps and in local search results.",
+  },
+  {
+    name: "Copywriting",
+    price: "from $40/page",
+    note: "We write clear, persuasive words so you don't have to.",
+  },
+  {
+    name: "Logo & brand kit",
+    price: "from $250",
+    note: "A polished logo, colours, and fonts to tie everything together.",
+  },
+  {
+    name: "On-site photography",
+    price: "from $150",
+    note: "Professional photos of your space, team, and products.",
+  },
+  {
+    name: "WhatsApp chat button",
+    price: "$30 one-time",
+    note: "A tap-to-chat button so customers reach you instantly.",
+  },
+  {
+    name: "Extra domain",
+    price: "from $40/yr",
+    note: "Register an additional .ky or .com and point it to your site.",
   },
 ];
 
@@ -229,27 +260,27 @@ export const SHOWCASE = [
 
 export const FAQS = [
   {
-    q: "How much does a website really cost?",
-    a: "Most small-business sites start at CI$450 to build plus a low flat monthly fee that covers hosting, security, backups, and edits. You get one clear quote up front — no hourly billing, no surprises.",
+    q: "How much does a website cost?",
+    a: "It's simple: $450 to design and build your website, then $30 a month for hosting, your domain, and maintenance. One clear price up front — no hourly billing, no surprises.",
+  },
+  {
+    q: "What does the $30 a month cover?",
+    a: "Everything to keep your site online and looked after: fast secure hosting, your domain name, SSL, daily backups, uptime monitoring, and unlimited small edits whenever you need them. Cancel anytime.",
   },
   {
     q: "How long does it take?",
-    a: "Most sites launch within 7 days of you approving the design. Larger stores or booking systems can take a little longer, and we'll always tell you the timeline before we start.",
+    a: "Most sites launch within about 7 days of you approving the design. We'll always confirm the timeline before we start.",
   },
   {
     q: "Do I own my website and domain?",
-    a: "Completely. Your domain is registered in your name, your content is yours, and you can take your site elsewhere at any time. We believe in earning your business every month, not trapping you.",
-  },
-  {
-    q: "I already have a website — can you take it over?",
-    a: "Usually, yes. We can move your existing site onto our managed hosting, or rebuild it fresh if it's dated. Either way, we handle the migration so there's no downtime.",
+    a: "Yes. Your domain is registered in your name and your content is yours. You can take your site elsewhere at any time — we'd rather earn your business every month than trap you.",
   },
   {
     q: "What if I need changes after launch?",
-    a: "Just message us. Small edits — new hours, a menu update, a promo banner — are included on every plan and usually done the same day.",
+    a: "Just message us. Small edits — new hours, a fresh photo, a promo — are included in your monthly fee and usually done the same day.",
   },
   {
-    q: "Why are you cheaper than everyone else?",
-    a: "We're a lean, local team with modern tooling and no bloated overhead. We pass those savings straight to you, and we make it up by keeping clients happy for the long haul.",
+    q: "Can I add more later, like email or a shop?",
+    a: "Absolutely. Business email, online booking, an online store, and more are available as simple add-ons whenever you're ready. Start small and grow when it suits you.",
   },
 ];

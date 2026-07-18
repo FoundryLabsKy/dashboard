@@ -1,6 +1,6 @@
 import Link from "next/link";
 import type { ComponentType, SVGProps } from "react";
-import { GUARANTEES, PLANS, PROCESS, SERVICES, SHOWCASE, SITE } from "@/lib/site";
+import { CARE, GUARANTEES, PROCESS, SERVICES, SHOWCASE, SITE, STANDARD } from "@/lib/site";
 import { Reveal } from "@/components/site/Reveal";
 import { BrowserFrame } from "@/components/site/BrowserFrame";
 import {
@@ -43,8 +43,8 @@ const TRUST_WORDS = [
 
 const HERO_STATS = [
   { value: "7-day", label: "average launch" },
-  { value: "CI$450", label: "starting price" },
-  { value: "100%", label: "managed for you" },
+  { value: "$450", label: "flat build price" },
+  { value: "$30/mo", label: "hosted & maintained" },
 ];
 
 export default function HomePage() {
@@ -316,54 +316,70 @@ export default function HomePage() {
           </div>
         </Reveal>
 
-        <div className="mt-12 grid gap-5 lg:grid-cols-3">
-          {PLANS.map((plan, i) => (
-            <Reveal key={plan.key} delay={0.05 * i}>
-              <div
-                className={`glass relative flex h-full flex-col p-7 ${
-                  plan.featured ? "border-ember/40 ember-glow" : ""
-                }`}
-              >
-                {plan.featured && (
-                  <span className="absolute right-6 top-6 rounded-full bg-ember px-2.5 py-1 font-mono text-[10px] uppercase tracking-[0.15em] text-void">
-                    Most popular
-                  </span>
-                )}
-                <h3 className="font-display text-xl font-semibold text-ink">
-                  {plan.name}
-                </h3>
-                <p className="mt-1.5 min-h-10 text-sm text-muted">{plan.tagline}</p>
-                <div className="mt-5 flex items-baseline gap-1">
-                  <span className="font-mono text-sm text-faint">CI$</span>
-                  <span className="font-display text-4xl font-bold text-ink">
-                    {plan.build}
-                  </span>
-                </div>
-                <p className="mt-1 text-sm text-muted">
-                  then CI${plan.monthly}/mo hosting &amp; care
-                </p>
-                <ul className="mt-6 flex flex-1 flex-col gap-2.5">
-                  {plan.features.slice(0, 4).map((f) => (
-                    <li key={f} className="flex items-start gap-2.5 text-sm text-ink/90">
-                      <IconCheck className="mt-0.5 h-4 w-4 shrink-0 text-ember" />
-                      {f}
-                    </li>
-                  ))}
-                </ul>
-                <Link
-                  href="/contact"
-                  className={`mt-7 inline-flex items-center justify-center gap-2 rounded-xl px-4 py-3 text-sm font-semibold transition-opacity ${
-                    plan.featured
-                      ? "ember-glow bg-ember text-void hover:opacity-90"
-                      : "border border-white/12 bg-white/[0.04] text-ink hover:bg-white/[0.08]"
-                  }`}
-                >
-                  Start with {plan.name}
-                </Link>
+        <div className="mt-12 grid gap-5 md:grid-cols-2">
+          {/* Build */}
+          <Reveal>
+            <div className="glass ember-glow flex h-full flex-col border-ember/40 p-8">
+              <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-ember">
+                {STANDARD.name}
+              </p>
+              <div className="mt-3 flex items-baseline gap-1">
+                <span className="font-mono text-base text-faint">$</span>
+                <span className="font-display text-5xl font-bold text-ink">
+                  {STANDARD.price}
+                </span>
+                <span className="ml-2 text-sm text-muted">{STANDARD.cadence}</span>
               </div>
-            </Reveal>
-          ))}
+              <p className="mt-3 text-sm leading-relaxed text-muted">
+                A complete custom website — designed, built, and launched for you in
+                about a week.
+              </p>
+              <ul className="mt-6 flex flex-1 flex-col gap-2.5">
+                {STANDARD.includes.slice(0, 4).map((f) => (
+                  <li key={f} className="flex items-start gap-2.5 text-sm text-ink/90">
+                    <IconCheck className="mt-0.5 h-4 w-4 shrink-0 text-ember" />
+                    {f}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </Reveal>
+
+          {/* Care */}
+          <Reveal delay={0.08}>
+            <div className="glass flex h-full flex-col p-8">
+              <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-stage-built">
+                {CARE.name}
+              </p>
+              <div className="mt-3 flex items-baseline gap-1">
+                <span className="font-mono text-base text-faint">$</span>
+                <span className="font-display text-5xl font-bold text-ink">
+                  {CARE.price}
+                </span>
+                <span className="ml-2 text-sm text-muted">{CARE.cadence}</span>
+              </div>
+              <p className="mt-3 text-sm leading-relaxed text-muted">
+                We host it, secure it, and keep it updated — your domain and edits
+                included. Cancel anytime.
+              </p>
+              <ul className="mt-6 flex flex-1 flex-col gap-2.5">
+                {CARE.includes.slice(0, 4).map((f) => (
+                  <li key={f} className="flex items-start gap-2.5 text-sm text-ink/90">
+                    <IconCheck className="mt-0.5 h-4 w-4 shrink-0 text-stage-built" />
+                    {f}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </Reveal>
         </div>
+
+        <Reveal>
+          <p className="mt-6 text-center text-sm text-faint">
+            Want business email, online booking, or a shop? Add them on whenever
+            you’re ready.
+          </p>
+        </Reveal>
       </section>
 
       {/* ───────────────────────── Final CTA ───────────────────────── */}
