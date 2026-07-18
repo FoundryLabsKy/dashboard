@@ -1,5 +1,10 @@
 import type { Metadata } from "next";
-import { Bricolage_Grotesque, Instrument_Sans, Spline_Sans_Mono } from "next/font/google";
+import {
+  Bricolage_Grotesque,
+  Fraunces,
+  Instrument_Sans,
+  Spline_Sans_Mono,
+} from "next/font/google";
 import "./globals.css";
 
 const bricolage = Bricolage_Grotesque({
@@ -15,6 +20,13 @@ const instrument = Instrument_Sans({
 const splineMono = Spline_Sans_Mono({
   variable: "--font-spline-mono",
   subsets: ["latin"],
+});
+
+// Editorial display face for the public site.
+const fraunces = Fraunces({
+  variable: "--font-fraunces",
+  subsets: ["latin"],
+  axes: ["SOFT", "WONK", "opsz"],
 });
 
 const SITE_URL = "https://foundrylabs.ky";
@@ -60,12 +72,9 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${bricolage.variable} ${instrument.variable} ${splineMono.variable} h-full antialiased`}
+      className={`${bricolage.variable} ${instrument.variable} ${splineMono.variable} ${fraunces.variable} h-full antialiased`}
     >
-      <body className="min-h-full">
-        <div className="forge-atmosphere" aria-hidden />
-        {children}
-      </body>
+      <body className="min-h-full">{children}</body>
     </html>
   );
 }

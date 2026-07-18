@@ -2,9 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import type { ComponentType, SVGProps } from "react";
 import { PROCESS, SERVICES } from "@/lib/site";
-import { Reveal } from "@/components/site/Reveal";
 import {
-  IconArrowRight,
   IconCart,
   IconChart,
   IconCheck,
@@ -33,118 +31,117 @@ export default function ServicesPage() {
   return (
     <>
       {/* Hero */}
-      <section className="relative overflow-hidden border-b border-white/8">
-        <div className="grid-lines pointer-events-none absolute inset-0" aria-hidden />
-        <div
-          className="pointer-events-none absolute -top-32 left-1/2 h-[28rem] w-[28rem] -translate-x-1/2 rounded-full bg-ember/10 blur-[110px]"
-          aria-hidden
-        />
-        <div className="mx-auto w-full max-w-4xl px-5 py-20 text-center sm:px-8 lg:py-24">
-          <Reveal>
-            <p className="font-mono text-[11px] uppercase tracking-[0.25em] text-ember">
-              Services
-            </p>
-          </Reveal>
-          <Reveal delay={0.06}>
-            <h1 className="mt-4 font-display text-4xl font-bold leading-[1.08] tracking-tight text-ink sm:text-5xl">
-              One team for your whole{" "}
-              <span className="text-gradient-ember">online presence.</span>
-            </h1>
-          </Reveal>
-          <Reveal delay={0.12}>
-            <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-muted">
-              You run the business. We handle the website, the hosting, the domain,
-              the email, and every update in between — so you never have to think
-              about the technical side again.
-            </p>
-          </Reveal>
+      <section className="border-b border-line pt-[4.5rem]">
+        <div className="mx-auto w-full max-w-5xl px-5 py-20 sm:px-8">
+          <p className="kicker">Services</p>
+          <h1 className="mt-5 max-w-3xl font-editorial text-[clamp(2rem,7.5vw,3.75rem)] font-semibold leading-[1.03] tracking-[-0.01em] text-graphite">
+            One team for your whole
+            <span className="italic text-rust"> online presence.</span>
+          </h1>
+          <p className="mt-7 max-w-2xl text-lg leading-relaxed text-graphite-soft">
+            You run the business. We handle the website, the hosting, the domain, the
+            email, and every update in between — so you never have to think about the
+            technical side again.
+          </p>
         </div>
       </section>
 
-      {/* Detailed services */}
-      <section className="mx-auto w-full max-w-5xl px-5 py-16 sm:px-8">
-        <div className="flex flex-col gap-4">
-          {SERVICES.map((service, i) => {
-            const Icon = SERVICE_ICONS[service.key];
-            return (
-              <Reveal key={service.key} delay={0.03 * i}>
-                <div className="glass grid gap-6 p-8 md:grid-cols-[auto_1fr_1fr] md:items-start">
-                  <span className="flex h-14 w-14 items-center justify-center rounded-2xl bg-ember/12 text-ember">
+      {/* Detailed services — alternating editorial rows */}
+      <section className="mx-auto w-full max-w-5xl px-5 sm:px-8">
+        {SERVICES.map((service, i) => {
+          const Icon = SERVICE_ICONS[service.key];
+          return (
+            <div
+              key={service.key}
+              className="grid gap-6 border-b border-line py-14 md:grid-cols-[0.9fr_1.1fr] md:gap-12"
+            >
+              <div>
+                <div className="flex items-center gap-4">
+                  <span className="font-mono text-sm text-graphite-faint">
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                  <span className="text-rust">
                     <Icon className="h-7 w-7" />
                   </span>
-                  <div>
-                    <h2 className="font-display text-2xl font-semibold text-ink">
-                      {service.title}
-                    </h2>
-                    <p className="mt-2 max-w-md text-muted">{service.blurb}</p>
-                  </div>
-                  <ul className="flex flex-col gap-3 md:pt-1">
-                    {service.points.map((point) => (
-                      <li key={point} className="flex items-start gap-3 text-sm text-ink/90">
-                        <IconCheck className="mt-0.5 h-4 w-4 shrink-0 text-ember" />
-                        {point}
-                      </li>
-                    ))}
-                  </ul>
                 </div>
-              </Reveal>
-            );
-          })}
-        </div>
+                <h2 className="mt-4 font-editorial text-3xl font-semibold tracking-tight text-graphite">
+                  {service.title}
+                </h2>
+                <p className="mt-3 max-w-sm text-graphite-soft">{service.blurb}</p>
+              </div>
+              <ul className="grid content-start gap-3 sm:grid-cols-1 md:pt-1">
+                {service.points.map((point) => (
+                  <li
+                    key={point}
+                    className="flex items-start gap-3 border-t border-line pt-3 text-[0.95rem] text-graphite-soft first:border-t-0 first:pt-0"
+                  >
+                    <IconCheck className="mt-0.5 h-4 w-4 shrink-0 text-rust" />
+                    {point}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          );
+        })}
       </section>
 
-      {/* Process */}
-      <section className="mx-auto w-full max-w-5xl px-5 py-12 sm:px-8">
-        <Reveal>
-          <h2 className="font-display text-3xl font-bold tracking-tight text-ink sm:text-4xl">
-            A simple, five-step way of working.
-          </h2>
-          <p className="mt-4 max-w-2xl text-muted">
-            No drawn-out timelines or agency runaround. Here’s exactly how a project
-            goes from idea to live.
-          </p>
-        </Reveal>
-        <ol className="mt-10 flex flex-col gap-4">
-          {PROCESS.map((step, i) => (
-            <Reveal key={step.step} delay={0.04 * i}>
-              <li className="glass flex flex-col gap-4 p-6 sm:flex-row sm:items-center">
-                <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-ember/25 font-mono text-sm text-ember">
+      {/* Process — dark forge band */}
+      <section className="mt-4 bg-graphite text-paper">
+        <div className="mx-auto w-full max-w-5xl px-5 py-24 sm:px-8">
+          <div className="max-w-2xl">
+            <p className="font-mono text-[0.6875rem] uppercase tracking-[0.24em] text-rust-tint">
+              How it works
+            </p>
+            <h2 className="mt-4 font-editorial text-4xl font-semibold leading-[1.05] tracking-tight text-paper">
+              A simple, five-step way of working.
+            </h2>
+            <p className="mt-5 text-paper/70">
+              No drawn-out timelines or agency runaround. Here’s exactly how a project
+              goes from idea to live.
+            </p>
+          </div>
+          <ol className="mt-14 flex flex-col">
+            {PROCESS.map((step) => (
+              <li
+                key={step.step}
+                className="grid gap-3 border-t border-white/12 py-7 sm:grid-cols-[auto_1fr] sm:gap-10"
+              >
+                <span className="font-editorial text-2xl font-semibold text-rust-tint">
                   {step.step}
                 </span>
                 <div>
-                  <h3 className="font-display text-lg font-semibold text-ink">
+                  <h3 className="font-editorial text-xl font-semibold text-paper">
                     {step.title}
                   </h3>
-                  <p className="mt-1 text-sm leading-relaxed text-muted">{step.body}</p>
+                  <p className="mt-1.5 max-w-xl text-[0.95rem] leading-relaxed text-paper/70">
+                    {step.body}
+                  </p>
                 </div>
               </li>
-            </Reveal>
-          ))}
-        </ol>
+            ))}
+          </ol>
+        </div>
       </section>
 
       {/* CTA */}
-      <section className="mx-auto w-full max-w-5xl px-5 py-10 sm:px-8">
-        <Reveal>
-          <div className="glass flex flex-col items-center gap-6 px-8 py-12 text-center sm:flex-row sm:justify-between sm:text-left">
-            <div>
-              <h2 className="font-display text-2xl font-bold text-ink">
-                Not sure which service you need?
-              </h2>
-              <p className="mt-2 max-w-md text-muted">
-                Tell us what you’re trying to do and we’ll point you the right way —
-                free, no obligation.
-              </p>
-            </div>
-            <Link
-              href="/contact"
-              className="ember-glow inline-flex shrink-0 items-center gap-2 rounded-xl bg-ember px-6 py-3.5 text-sm font-semibold text-void transition-opacity hover:opacity-90"
-            >
-              Talk to us
-              <IconArrowRight className="h-4 w-4" />
-            </Link>
+      <section className="mx-auto w-full max-w-5xl px-5 py-20 sm:px-8">
+        <div className="flex flex-col items-start gap-5 sm:flex-row sm:items-center sm:justify-between">
+          <div>
+            <h2 className="font-editorial text-3xl font-semibold text-graphite">
+              Not sure which service you need?
+            </h2>
+            <p className="mt-2 max-w-md text-graphite-soft">
+              Tell us what you’re trying to do and we’ll point you the right way —
+              free, no obligation.
+            </p>
           </div>
-        </Reveal>
+          <Link
+            href="/contact"
+            className="btn-primary inline-flex shrink-0 items-center px-6 py-3.5 text-sm font-semibold"
+          >
+            Talk to us
+          </Link>
+        </div>
       </section>
     </>
   );

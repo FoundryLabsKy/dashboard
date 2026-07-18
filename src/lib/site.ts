@@ -237,24 +237,21 @@ export const GUARANTEES = [
 export const SHOWCASE = [
   {
     name: "Salt & Reef",
-    kind: "Seafront restaurant",
+    kind: "Seafront restaurant & bar",
     url: "saltandreef.ky",
-    accent: "#f59e5b",
-    hue: "from-amber-500/25",
+    accent: "#9c3d22",
   },
   {
     name: "Ridley & Co.",
-    kind: "Law & advisory",
+    kind: "Law & advisory chambers",
     url: "ridleyco.ky",
-    accent: "#5b9df5",
-    hue: "from-sky-500/25",
+    accent: "#264c5b",
   },
   {
     name: "Bluewater Divers",
-    kind: "Dive & watersports",
+    kind: "Dive & watersports charters",
     url: "bluewaterdivers.ky",
-    accent: "#3ecf8e",
-    hue: "from-emerald-500/25",
+    accent: "#0e6e63",
   },
 ];
 

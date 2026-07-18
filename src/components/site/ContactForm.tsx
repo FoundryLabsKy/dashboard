@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { SITE } from "@/lib/site";
-import { IconArrowRight, IconCheck } from "./SiteIcons";
+import { IconCheck } from "./SiteIcons";
 
 const SERVICES = [
   "A new website",
@@ -13,28 +13,55 @@ const SERVICES = [
   "Not sure yet",
 ];
 
-const inputClass =
-  "mt-2 w-full rounded-xl border border-white/10 bg-white/[0.04] px-4 py-3 text-sm text-ink placeholder:text-faint transition-colors focus:border-ember/50 focus:outline-none";
-const labelClass = "block text-sm font-medium text-ink";
+type Errors = Partial<Record<"name" | "email", string>>;
+
+const fieldClass =
+  "mt-2 w-full rounded-md border bg-paper-raised px-3.5 py-2.5 text-[0.95rem] text-graphite placeholder:text-graphite-faint transition-colors focus:outline-none";
+const labelClass = "block text-sm font-medium text-graphite";
+
+function validEmail(value: string) {
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+}
 
 export function ContactForm() {
+  const [errors, setErrors] = useState<Errors>({});
   const [sent, setSent] = useState(false);
+
+  const check = (field: "name" | "email", value: string): string | undefined => {
+    if (field === "name" && !value.trim()) return "Please tell us your name.";
+    if (field === "email") {
+      if (!value.trim()) return "We need an email to reply to.";
+      if (!validEmail(value)) return "That email doesn't look right.";
+    }
+    return undefined;
+  };
+
+  const onBlur = (field: "name" | "email") => (e: React.FocusEvent<HTMLInputElement>) => {
+    setErrors((prev) => ({ ...prev, [field]: check(field, e.target.value) }));
+  };
 
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const data = new FormData(e.currentTarget);
-    const name = String(data.get("name") || "").trim();
+    const name = String(data.get("name") || "");
+    const email = String(data.get("email") || "");
+    const nameErr = check("name", name);
+    const emailErr = check("email", email);
+    if (nameErr || emailErr) {
+      setErrors({ name: nameErr, email: emailErr });
+      return;
+    }
+
     const business = String(data.get("business") || "").trim();
-    const email = String(data.get("email") || "").trim();
     const phone = String(data.get("phone") || "").trim();
     const service = String(data.get("service") || "").trim();
     const message = String(data.get("message") || "").trim();
 
-    const subject = `Website enquiry — ${business || name || "New enquiry"}`;
+    const subject = `Website enquiry — ${business || name.trim()}`;
     const body = [
-      `Name: ${name}`,
+      `Name: ${name.trim()}`,
       `Business: ${business}`,
-      `Email: ${email}`,
+      `Email: ${email.trim()}`,
       phone ? `Phone: ${phone}` : null,
       `Interested in: ${service}`,
       "",
@@ -50,82 +77,123 @@ export function ContactForm() {
   };
 
   return (
-    <form onSubmit={onSubmit} className="glass p-7 sm:p-8">
-      <div className="grid gap-5 sm:grid-cols-2">
-        <div>
-          <label htmlFor="name" className={labelClass}>
-            Your name
-          </label>
-          <input id="name" name="name" required className={inputClass} placeholder="Jane Ebanks" />
-        </div>
-        <div>
-          <label htmlFor="business" className={labelClass}>
-            Business name
-          </label>
-          <input
-            id="business"
-            name="business"
-            className={inputClass}
-            placeholder="Salt & Reef"
-          />
-        </div>
-        <div>
-          <label htmlFor="email" className={labelClass}>
-            Email
-          </label>
-          <input
-            id="email"
-            name="email"
-            type="email"
-            required
-            className={inputClass}
-            placeholder="you@business.ky"
-          />
-        </div>
-        <div>
-          <label htmlFor="phone" className={labelClass}>
-            Phone <span className="text-faint">(optional)</span>
-          </label>
-          <input id="phone" name="phone" className={inputClass} placeholder="+1 (345) …" />
-        </div>
+    <form onSubmit={onSubmit} noValidate className="flex flex-col gap-5">
+      <div>
+        <label htmlFor="name" className={labelClass}>
+          Your name
+        </label>
+        <input
+          id="name"
+          name="name"
+          required
+          autoComplete="name"
+          onBlur={onBlur("name")}
+          aria-invalid={!!errors.name}
+          aria-describedby={errors.name ? "name-error" : undefined}
+          className={`${fieldClass} ${
+            errors.name ? "border-err" : "border-line focus:border-rust"
+          }`}
+          placeholder="Jane Ebanks"
+        />
+        {errors.name && (
+          <p id="name-error" className="mt-1.5 text-sm text-err">
+            {errors.name}
+          </p>
+        )}
       </div>
 
-      <div className="mt-5">
+      <div>
+        <label htmlFor="business" className={labelClass}>
+          Business name <span className="text-graphite-faint">(optional)</span>
+        </label>
+        <input
+          id="business"
+          name="business"
+          autoComplete="organization"
+          className={`${fieldClass} border-line focus:border-rust`}
+          placeholder="Salt & Reef"
+        />
+      </div>
+
+      <div>
+        <label htmlFor="email" className={labelClass}>
+          Email
+        </label>
+        <input
+          id="email"
+          name="email"
+          type="email"
+          required
+          autoComplete="email"
+          onBlur={onBlur("email")}
+          aria-invalid={!!errors.email}
+          aria-describedby={errors.email ? "email-error" : undefined}
+          className={`${fieldClass} ${
+            errors.email ? "border-err" : "border-line focus:border-rust"
+          }`}
+          placeholder="you@business.ky"
+        />
+        {errors.email && (
+          <p id="email-error" className="mt-1.5 text-sm text-err">
+            {errors.email}
+          </p>
+        )}
+      </div>
+
+      <div>
+        <label htmlFor="phone" className={labelClass}>
+          Phone <span className="text-graphite-faint">(optional)</span>
+        </label>
+        <input
+          id="phone"
+          name="phone"
+          type="tel"
+          autoComplete="tel"
+          className={`${fieldClass} border-line focus:border-rust`}
+          placeholder="+1 (345) …"
+        />
+      </div>
+
+      <div>
         <label htmlFor="service" className={labelClass}>
           What can we help with?
         </label>
-        <select id="service" name="service" className={inputClass} defaultValue={SERVICES[0]}>
+        <select
+          id="service"
+          name="service"
+          defaultValue={SERVICES[0]}
+          className={`${fieldClass} border-line focus:border-rust`}
+        >
           {SERVICES.map((s) => (
-            <option key={s} value={s} className="bg-void-raised">
+            <option key={s} value={s}>
               {s}
             </option>
           ))}
         </select>
       </div>
 
-      <div className="mt-5">
+      <div>
         <label htmlFor="message" className={labelClass}>
-          Tell us a little about it
+          Tell us a little about it <span className="text-graphite-faint">(optional)</span>
         </label>
         <textarea
           id="message"
           name="message"
           rows={4}
-          className={`${inputClass} resize-none`}
+          className={`${fieldClass} resize-none border-line focus:border-rust`}
           placeholder="What does your business do, and what would you like your website to achieve?"
         />
       </div>
 
       <button
         type="submit"
-        className="ember-glow mt-6 inline-flex w-full items-center justify-center gap-2 rounded-xl bg-ember px-5 py-3.5 text-sm font-semibold text-void transition-opacity hover:opacity-90 sm:w-auto"
+        className="btn-primary mt-1 inline-flex items-center justify-center px-5 py-3 text-sm font-semibold"
       >
         Send enquiry
-        <IconArrowRight className="h-4 w-4" />
       </button>
 
       {sent && (
-        <p className="mt-4 inline-flex items-center gap-2 text-sm text-stage-sold">
+        <p className="inline-flex items-center gap-2 text-sm text-ok">
           <IconCheck className="h-4 w-4" />
           Opening your email app — if nothing happens, write to {SITE.email}.
         </p>

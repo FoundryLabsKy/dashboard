@@ -11,5 +11,10 @@ export default function DashboardLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  return <AppShell>{children}</AppShell>;
+  return (
+    <div className="forge-scope">
+      <div className="forge-atmosphere" aria-hidden />
+      <AppShell>{children}</AppShell>
+    </div>
+  );
 }

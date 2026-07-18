@@ -1,13 +1,17 @@
 import Link from "next/link";
 
+// Foundry monogram: a graphite plate struck with a molten rust pour —
+// the forge identity, drawn rather than defaulted.
 export function LogoMark({ className = "" }: { className?: string }) {
   return (
     <span
-      className={`relative inline-flex h-9 w-9 items-center justify-center rounded-xl border border-white/12 bg-void-raised ${className}`}
+      className={`relative inline-flex h-9 w-9 items-center justify-center rounded-[7px] bg-graphite ${className}`}
       aria-hidden
     >
-      <span className="font-display text-lg font-bold leading-none text-ink">F</span>
-      <span className="absolute bottom-1.5 right-1.5 h-1.5 w-1.5 rounded-full bg-ember shadow-[0_0_8px_1px_rgba(245,158,91,0.7)]" />
+      <span className="font-editorial text-lg font-semibold leading-none text-paper">
+        F
+      </span>
+      <span className="absolute -bottom-px left-1/2 h-[3px] w-5 -translate-x-1/2 rounded-full bg-rust" />
     </span>
   );
 }
@@ -26,12 +30,12 @@ export function Wordmark({
       aria-label="Foundry Labs home"
     >
       <LogoMark />
-      <span className="leading-tight">
-        <span className="block font-display text-lg font-bold tracking-tight text-ink">
-          Foundry<span className="text-ember">.</span>
+      <span className="leading-none">
+        <span className="block font-editorial text-[1.3rem] font-semibold tracking-tight text-graphite">
+          Foundry Labs
         </span>
-        <span className="block font-mono text-[9px] uppercase tracking-[0.3em] text-faint">
-          Labs · Cayman
+        <span className="mt-1 block font-mono text-[9px] uppercase tracking-[0.28em] text-graphite-muted">
+          Grand Cayman
         </span>
       </span>
     </Link>

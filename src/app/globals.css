@@ -16,12 +16,47 @@
   --font-display: var(--font-bricolage);
   --font-sans: var(--font-instrument);
   --font-mono: var(--font-spline-mono);
+  --font-editorial: var(--font-fraunces);
 
   --radius-panel: 1.25rem;
+
+  /* ── Editorial light system (public marketing site) ──
+     Forge identity translated to daylight: graphite ink + molten rust,
+     warm paper. Deliberately not the cream + serif + sage cliché. */
+  --color-paper: #f0ede5;
+  --color-paper-raised: #faf8f3;
+  --color-paper-sunken: #e5e0d4;
+  --color-graphite: #201d19;
+  --color-graphite-soft: #433e37;
+  --color-graphite-muted: #5f594e;
+  --color-graphite-faint: #635d51;
+  --color-line: #d8d2c5;
+  --color-line-strong: #c3bcac;
+  --color-rust: #a83a19;
+  --color-rust-deep: #872e11;
+  --color-rust-tint: #e7c9a6;
+  --color-forge-blue: #2f5d6e;
+  --color-ok: #3f7d4e;
+  --color-warn: #a76c14;
+  --color-err: #b03325;
 }
 
 :root {
+  color-scheme: light;
+}
+
+/* Dashboard keeps the dark forge scheme. When a dashboard scope is on the
+   page, the whole document goes dark so overflow/overscroll never reveals the
+   light marketing body. Marketing pages have no .forge-scope and stay paper. */
+.forge-scope {
   color-scheme: dark;
+  min-height: 100vh;
+  background-color: var(--color-void);
+  color: var(--color-ink);
+}
+html:has(.forge-scope),
+html:has(.forge-scope) body {
+  background-color: var(--color-void);
 }
 
 html,
@@ -30,10 +65,11 @@ body {
 }
 
 body {
-  background-color: var(--color-void);
-  color: var(--color-ink);
+  background-color: var(--color-paper);
+  color: var(--color-graphite-soft);
   font-family: var(--font-sans), system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
 }
 
 /* Ambient forge atmosphere: soft ember + cool glows fixed behind everything */
@@ -73,72 +109,142 @@ body {
 }
 
 :focus-visible {
-  outline: 2px solid var(--color-ember);
+  outline: 2px solid var(--color-rust);
   outline-offset: 2px;
+  border-radius: 3px;
+}
+.forge-scope :focus-visible {
+  outline-color: var(--color-ember);
   border-radius: 6px;
 }
 
-/* Molten gradient text for marketing emphasis */
-.text-gradient-ember {
-  background: linear-gradient(120deg, #fbbf24 0%, var(--color-ember) 45%, var(--color-ember-deep) 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+/* ─────────────────────────────────────────────────────────────
+   Editorial light system — component vocabulary for the site.
+   Elevation is layered from one top light source and used sparingly;
+   the design leans on hairline rules and type, not heavy shadows.
+   ───────────────────────────────────────────────────────────── */
+:root {
+  --shadow-sm: 0 1px 2px rgba(32, 29, 25, 0.05), 0 1px 1px rgba(32, 29, 25, 0.04);
+  --shadow-md: 0 2px 4px rgba(32, 29, 25, 0.05), 0 10px 22px -10px rgba(32, 29, 25, 0.16);
+  --shadow-lg: 0 4px 8px rgba(32, 29, 25, 0.06), 0 22px 48px -16px rgba(32, 29, 25, 0.22);
 }
 
-/* Faint blueprint grid, used behind the hero */
-.grid-lines {
+/* Display type: Fraunces, dialed to an editorial optical setting */
+.font-editorial {
+  font-family: var(--font-editorial), Georgia, "Times New Roman", serif;
+  font-optical-sizing: auto;
+  font-variation-settings: "SOFT" 0, "WONK" 0, "opsz" 40;
+}
+
+/* Kicker / eyebrow — small caps mono, the site's technical signature */
+.kicker {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 0.6875rem;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--color-rust);
+}
+
+/* Surfaces */
+.site-card {
+  background: var(--color-paper-raised);
+  border: 1px solid var(--color-line);
+  border-radius: 10px;
+}
+.site-card-flat {
+  border: 1px solid var(--color-line);
+  border-radius: 10px;
+}
+.site-hover {
+  transition: box-shadow 0.25s ease, transform 0.25s ease, border-color 0.25s ease;
+}
+.site-hover:hover {
+  transform: translateY(-3px);
+  border-color: var(--color-line-strong);
+  box-shadow: var(--shadow-md);
+}
+
+/* Hairline rule */
+.hr-forge {
+  height: 1px;
+  background: var(--color-line);
+}
+
+/* A short accent tick — the molten "forge line" used as a signature mark */
+.forge-tick {
+  display: inline-block;
+  width: 2.25rem;
+  height: 3px;
+  border-radius: 2px;
+  background: var(--color-rust);
+}
+
+/* Buttons */
+.btn-primary {
+  background: var(--color-rust);
+  color: #fdf7f2;
+  border: 1px solid var(--color-rust);
+  border-radius: 6px;
+  box-shadow: var(--shadow-sm);
+  transition: background-color 0.2s ease, box-shadow 0.2s ease;
+}
+.btn-primary:hover {
+  background: var(--color-rust-deep);
+  box-shadow: var(--shadow-md);
+}
+.btn-ghost {
+  background: transparent;
+  color: var(--color-graphite);
+  border: 1px solid var(--color-line-strong);
+  border-radius: 6px;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+.btn-ghost:hover {
+  background: rgba(32, 29, 25, 0.04);
+  border-color: var(--color-graphite-faint);
+}
+
+/* Underline-grow link */
+.link-forge {
+  background-image: linear-gradient(var(--color-rust), var(--color-rust));
+  background-size: 0% 1.5px;
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  transition: background-size 0.25s ease;
+}
+.link-forge:hover {
+  background-size: 100% 1.5px;
+}
+
+/* Faint blueprint grid for section texture (light) */
+.blueprint {
   background-image:
-    linear-gradient(to right, rgba(255, 255, 255, 0.04) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
-  background-size: 56px 56px;
-  -webkit-mask-image: radial-gradient(60% 60% at 50% 30%, #000 0%, transparent 100%);
-  mask-image: radial-gradient(60% 60% at 50% 30%, #000 0%, transparent 100%);
-}
-
-/* Ember-lit hover for feature cards */
-.card-lift {
-  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.3s ease,
-    background-color 0.3s ease;
-}
-.card-lift:hover {
-  transform: translateY(-4px);
-  border-color: rgba(245, 158, 91, 0.28);
-  background: rgba(255, 255, 255, 0.05);
-}
-
-/* Continuous marquee for the trust strip */
-@keyframes marquee {
-  from {
-    transform: translateX(0);
-  }
-  to {
-    transform: translateX(-50%);
-  }
-}
-.marquee-track {
-  animation: marquee 32s linear infinite;
-}
-@media (prefers-reduced-motion: reduce) {
-  .marquee-track {
-    animation: none;
-  }
+    linear-gradient(to right, rgba(32, 29, 25, 0.045) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(32, 29, 25, 0.045) 1px, transparent 1px);
+  background-size: 60px 60px;
 }
 
 * {
   scrollbar-width: thin;
-  scrollbar-color: rgba(255, 255, 255, 0.14) transparent;
+  scrollbar-color: rgba(32, 29, 25, 0.2) transparent;
 }
 *::-webkit-scrollbar {
   width: 8px;
   height: 8px;
 }
 *::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.14);
+  background: rgba(32, 29, 25, 0.2);
   border-radius: 4px;
 }
 *::-webkit-scrollbar-track {
   background: transparent;
+}
+.forge-scope,
+.forge-scope * {
+  scrollbar-color: rgba(255, 255, 255, 0.14) transparent;
+}
+.forge-scope *::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.14);
 }
 
 @media (prefers-reduced-motion: reduce) {

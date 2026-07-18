@@ -1,28 +1,19 @@
-"use client";
+import type { ReactNode } from "react";
 
-import { motion, useReducedMotion, type HTMLMotionProps } from "framer-motion";
-
-type RevealProps = HTMLMotionProps<"div"> & {
+// Content on the marketing site renders statically and immediately — no
+// scroll-triggered fade-in (better LCP, works without JS, and avoids the
+// "everything fades up" AI-site tell). This stays a thin passthrough so the
+// call sites can keep their structure; motion lives only in real interactions
+// (hover, the mobile menu, the FAQ accordion, header-on-scroll).
+export function Reveal({
+  children,
+  className,
+}: {
+  children: ReactNode;
+  className?: string;
   delay?: number;
   y?: number;
-};
-
-// Fades and lifts its children into view the first time they're scrolled to.
-export function Reveal({ delay = 0, y = 16, children, ...props }: RevealProps) {
-  const reduced = useReducedMotion() ?? false;
-  return (
-    <motion.div
-      initial={reduced ? { opacity: 0 } : { opacity: 0, y }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-80px" }}
-      transition={
-        reduced
-          ? { duration: 0 }
-          : { duration: 0.5, ease: [0.22, 1, 0.36, 1], delay }
-      }
-      {...props}
-    >
-      {children}
-    </motion.div>
-  );
+}) {
+  if (className) return <div className={className}>{children}</div>;
+  return <>{children}</>;
 }
