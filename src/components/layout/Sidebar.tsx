@@ -14,7 +14,6 @@ import {
   IconHammer,
   IconLock,
   IconSliders,
-  IconWallet,
   IconX,
 } from "@/components/ui/Icons";
 
@@ -25,7 +24,6 @@ const NAV_ITEMS = [
   { href: "/talks", label: "In Talks", icon: IconChat },
   { href: "/income", label: "Income", icon: IconDollar },
   { href: "/archived", label: "Archived", icon: IconArchive },
-  { href: "/spending", label: "Spending", icon: IconWallet },
   { href: "/settings", label: "Settings", icon: IconSliders },
 ];
 

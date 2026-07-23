@@ -1,9 +1,7 @@
-"use client";
-
 /**
- * Personal spending tracker — fully self-contained module.
+ * Ledger — personal spending tracker. The entire app lives in this file:
  * Home (quick add + budget), Spending (analytics + history), Settings
- * (favorites, budget, currency, Anthropic key). All data lives in
+ * (favorites, budget, currency, Anthropic key). Data persists in
  * localStorage; categorization runs client-side against the Anthropic API.
  */
 
@@ -54,8 +52,8 @@ const CATEGORY_COLOR: Record<string, string> = {
   Shopping: "#008300",
   Subscriptions: "#9085e9",
   Health: "#e66767",
-  [UNCATEGORIZED]: "#5c6678",
-  Other: "#939db0",
+  [UNCATEGORIZED]: "#5b6b6f",
+  Other: "#93a3a6",
 };
 
 const CURRENCIES = ["USD", "KYD", "EUR", "GBP", "CAD", "AUD", "JPY"];
@@ -160,7 +158,7 @@ function useSpendingStore() {
 
   useEffect(() => {
     let cancelled = false;
-    // Deferred so hydration completes against the prerendered skeleton first.
+    // Deferred so the first paint renders the skeleton without jank.
     Promise.resolve().then(() => {
       if (cancelled) return;
       setPurchases(loadLS<Purchase[]>(LS.purchases, []));
@@ -369,7 +367,7 @@ function BudgetBar({
       <div className="mt-2 h-2.5 overflow-hidden rounded-full bg-white/[0.06]">
         <motion.div
           className="h-full rounded-full"
-          style={{ backgroundColor: over ? "var(--color-danger)" : "var(--color-ember)" }}
+          style={{ backgroundColor: over ? "var(--color-danger)" : "var(--color-accent)" }}
           initial={{ width: 0 }}
           animate={{ width: `${pct}%` }}
           transition={{ type: "spring", stiffness: 90, damping: 20 }}
@@ -421,7 +419,7 @@ function HomeTab({
 
   return (
     <div className="flex flex-col gap-5">
-      <div className="glass p-6">
+      <div className="card p-6">
         <p className="font-mono text-[11px] uppercase tracking-[0.25em] text-faint">
           Spent today
         </p>
@@ -435,7 +433,7 @@ function HomeTab({
         </div>
       </div>
 
-      <div className="glass p-6">
+      <div className="card p-6">
         <h2 className="font-display text-base font-bold text-ink">Quick add</h2>
         {favorites.length === 0 ? (
           <p className="mt-2 text-sm text-faint">
@@ -449,7 +447,7 @@ function HomeTab({
                 type="button"
                 onClick={() => quickAdd(fav)}
                 whileTap={{ scale: 0.93 }}
-                className="glass-hover relative overflow-hidden rounded-xl border border-white/10 bg-white/[0.04] px-4 py-3.5 text-left transition-colors"
+                className="card-hover relative overflow-hidden rounded-xl border border-white/10 bg-white/[0.04] px-4 py-3.5 text-left transition-colors"
               >
                 <AnimatePresence>
                   {tapped === fav.id && (
@@ -459,12 +457,12 @@ function HomeTab({
                       animate={{ opacity: 0, scale: 2.4 }}
                       exit={{ opacity: 0 }}
                       transition={{ duration: 0.5, ease: "easeOut" }}
-                      className="pointer-events-none absolute inset-0 rounded-xl bg-ember"
+                      className="pointer-events-none absolute inset-0 rounded-xl bg-accent"
                     />
                   )}
                 </AnimatePresence>
                 <span className="block truncate text-sm font-medium text-ink">{fav.name}</span>
-                <span className="mt-0.5 block font-mono text-[13px] text-ember">
+                <span className="mt-0.5 block font-mono text-[13px] text-accent">
                   {formatMoney(fav.price, settings.currency)}
                 </span>
               </motion.button>
@@ -473,7 +471,7 @@ function HomeTab({
         )}
       </div>
 
-      <div className="glass p-6">
+      <div className="card p-6">
         <h2 className="font-display text-base font-bold text-ink">Log a purchase</h2>
         <form onSubmit={manualAdd} className="mt-4 flex flex-col gap-3 sm:flex-row">
           <input
@@ -481,7 +479,7 @@ function HomeTab({
             onChange={(e) => setName(e.target.value)}
             placeholder="What did you buy?"
             aria-label="Item name"
-            className="flex-1 rounded-xl border border-white/10 bg-white/[0.04] px-3.5 py-2.5 text-sm text-ink placeholder:text-faint transition-colors focus:border-ember/50 focus:outline-none"
+            className="flex-1 rounded-xl border border-white/10 bg-white/[0.04] px-3.5 py-2.5 text-sm text-ink placeholder:text-faint transition-colors focus:border-accent/50 focus:outline-none"
           />
           <input
             value={price}
@@ -489,12 +487,12 @@ function HomeTab({
             inputMode="decimal"
             placeholder="0.00"
             aria-label="Price"
-            className="w-full rounded-xl border border-white/10 bg-white/[0.04] px-3.5 py-2.5 font-mono text-sm text-ink placeholder:text-faint transition-colors focus:border-ember/50 focus:outline-none sm:w-32"
+            className="w-full rounded-xl border border-white/10 bg-white/[0.04] px-3.5 py-2.5 font-mono text-sm text-ink placeholder:text-faint transition-colors focus:border-accent/50 focus:outline-none sm:w-32"
           />
           <motion.button
             type="submit"
             whileTap={{ scale: 0.96 }}
-            className="ember-glow rounded-xl bg-ember px-5 py-2.5 text-sm font-semibold text-void transition-colors hover:bg-ember-deep"
+            className="glow rounded-xl bg-accent px-5 py-2.5 text-sm font-semibold text-void transition-colors hover:bg-accent-deep"
           >
             Add
           </motion.button>
@@ -583,7 +581,7 @@ function DonutChart({ slices, total, currency }: { slices: Slice[]; total: numbe
 
 function InsightTile({ label, value, sub }: { label: string; value: string; sub?: string }) {
   return (
-    <div className="glass p-4">
+    <div className="card p-4">
       <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-faint">{label}</p>
       <p className="mt-1 truncate font-display text-lg font-bold text-ink">{value}</p>
       {sub && <p className="mt-0.5 truncate text-[12px] text-muted">{sub}</p>}
@@ -623,7 +621,7 @@ function EditModal({
       onClick={onClose}
     >
       <motion.div
-        className="glass w-full max-w-md p-6"
+        className="card w-full max-w-md p-6"
         initial={{ y: 40, opacity: 0, scale: 0.97 }}
         animate={{ y: 0, opacity: 1, scale: 1 }}
         exit={{ y: 40, opacity: 0, scale: 0.97 }}
@@ -637,7 +635,7 @@ function EditModal({
             <input
               value={name}
               onChange={(e) => setName(e.target.value)}
-              className="mt-1.5 w-full rounded-xl border border-white/10 bg-white/[0.04] px-3.5 py-2.5 text-sm text-ink focus:border-ember/50 focus:outline-none"
+              className="mt-1.5 w-full rounded-xl border border-white/10 bg-white/[0.04] px-3.5 py-2.5 text-sm text-ink focus:border-accent/50 focus:outline-none"
             />
           </label>
           <label className="text-[13px] font-medium text-muted">
@@ -646,7 +644,7 @@ function EditModal({
               value={price}
               onChange={(e) => setPrice(e.target.value)}
               inputMode="decimal"
-              className="mt-1.5 w-full rounded-xl border border-white/10 bg-white/[0.04] px-3.5 py-2.5 font-mono text-sm text-ink focus:border-ember/50 focus:outline-none"
+              className="mt-1.5 w-full rounded-xl border border-white/10 bg-white/[0.04] px-3.5 py-2.5 font-mono text-sm text-ink focus:border-accent/50 focus:outline-none"
             />
           </label>
           <label className="text-[13px] font-medium text-muted">
@@ -654,7 +652,7 @@ function EditModal({
             <select
               value={category}
               onChange={(e) => setCategory(e.target.value)}
-              className="mt-1.5 w-full rounded-xl border border-white/10 bg-white/[0.04] px-3.5 py-2.5 text-sm text-ink focus:border-ember/50 focus:outline-none [&>option]:bg-void"
+              className="mt-1.5 w-full rounded-xl border border-white/10 bg-white/[0.04] px-3.5 py-2.5 text-sm text-ink focus:border-accent/50 focus:outline-none [&>option]:bg-void"
             >
               {ALL_CATEGORIES.map((c) => (
                 <option key={c} value={c}>
@@ -673,7 +671,7 @@ function EditModal({
             </button>
             <button
               type="submit"
-              className="rounded-xl bg-ember px-5 py-2.5 text-sm font-semibold text-void transition-colors hover:bg-ember-deep"
+              className="rounded-xl bg-accent px-5 py-2.5 text-sm font-semibold text-void transition-colors hover:bg-accent-deep"
             >
               Save
             </button>
@@ -768,7 +766,7 @@ function SpendingTab({ store }: { store: ReturnType<typeof useSpendingStore> }) 
 
   return (
     <div className="flex flex-col gap-5">
-      <div className="glass p-6">
+      <div className="card p-6">
         <div className="flex flex-wrap items-end justify-between gap-4">
           <div>
             <p className="font-mono text-[11px] uppercase tracking-[0.25em] text-faint">
@@ -784,7 +782,7 @@ function SpendingTab({ store }: { store: ReturnType<typeof useSpendingStore> }) 
             <div className="text-right">
               <p
                 className={`font-mono text-sm font-semibold ${
-                  delta > 0 ? "text-danger" : "text-stage-sold"
+                  delta > 0 ? "text-danger" : "text-good"
                 }`}
               >
                 {delta > 0 ? "▲" : "▼"} {formatMoney(Math.abs(delta), settings.currency)}
@@ -797,7 +795,7 @@ function SpendingTab({ store }: { store: ReturnType<typeof useSpendingStore> }) 
       </div>
 
       {slices.length > 0 ? (
-        <div className="glass p-6">
+        <div className="card p-6">
           <h2 className="font-display text-base font-bold text-ink">By category</h2>
           <div className="mt-4 flex flex-col items-center gap-6 sm:flex-row">
             <DonutChart slices={slices} total={monthTotal} currency={settings.currency} />
@@ -818,7 +816,7 @@ function SpendingTab({ store }: { store: ReturnType<typeof useSpendingStore> }) 
           </div>
         </div>
       ) : (
-        <div className="glass p-8 text-center text-sm text-faint">
+        <div className="card p-8 text-center text-sm text-faint">
           No purchases yet this month — log one from Home.
         </div>
       )}
@@ -847,7 +845,7 @@ function SpendingTab({ store }: { store: ReturnType<typeof useSpendingStore> }) 
         </div>
       )}
 
-      <div className="glass p-6">
+      <div className="card p-6">
         <h2 className="font-display text-base font-bold text-ink">History</h2>
         <div className="mt-4 flex flex-col gap-3 sm:flex-row">
           <input
@@ -855,13 +853,13 @@ function SpendingTab({ store }: { store: ReturnType<typeof useSpendingStore> }) 
             onChange={(e) => setSearch(e.target.value)}
             placeholder="Search purchases…"
             aria-label="Search purchases"
-            className="flex-1 rounded-xl border border-white/10 bg-white/[0.04] px-3.5 py-2.5 text-sm text-ink placeholder:text-faint transition-colors focus:border-ember/50 focus:outline-none"
+            className="flex-1 rounded-xl border border-white/10 bg-white/[0.04] px-3.5 py-2.5 text-sm text-ink placeholder:text-faint transition-colors focus:border-accent/50 focus:outline-none"
           />
           <select
             value={filter}
             onChange={(e) => setFilter(e.target.value)}
             aria-label="Filter by category"
-            className="rounded-xl border border-white/10 bg-white/[0.04] px-3.5 py-2.5 text-sm text-ink focus:border-ember/50 focus:outline-none [&>option]:bg-void"
+            className="rounded-xl border border-white/10 bg-white/[0.04] px-3.5 py-2.5 text-sm text-ink focus:border-accent/50 focus:outline-none [&>option]:bg-void"
           >
             <option value="All">All categories</option>
             {ALL_CATEGORIES.map((c) => (
@@ -1006,7 +1004,7 @@ function SettingsTab({ store }: { store: ReturnType<typeof useSpendingStore> }) 
 
   return (
     <div className="flex flex-col gap-5">
-      <div className="glass p-6">
+      <div className="card p-6">
         <h2 className="font-display text-base font-bold text-ink">Favorites</h2>
         <p className="mt-1 text-sm text-muted">
           Shown as one-tap quick add buttons on Home.
@@ -1054,7 +1052,7 @@ function SettingsTab({ store }: { store: ReturnType<typeof useSpendingStore> }) 
             onChange={(e) => setFavName(e.target.value)}
             placeholder="Item name"
             aria-label="Favorite name"
-            className="flex-1 rounded-xl border border-white/10 bg-white/[0.04] px-3.5 py-2.5 text-sm text-ink placeholder:text-faint focus:border-ember/50 focus:outline-none"
+            className="flex-1 rounded-xl border border-white/10 bg-white/[0.04] px-3.5 py-2.5 text-sm text-ink placeholder:text-faint focus:border-accent/50 focus:outline-none"
           />
           <input
             value={favPrice}
@@ -1062,11 +1060,11 @@ function SettingsTab({ store }: { store: ReturnType<typeof useSpendingStore> }) 
             inputMode="decimal"
             placeholder="0.00"
             aria-label="Favorite price"
-            className="w-full rounded-xl border border-white/10 bg-white/[0.04] px-3.5 py-2.5 font-mono text-sm text-ink placeholder:text-faint focus:border-ember/50 focus:outline-none sm:w-28"
+            className="w-full rounded-xl border border-white/10 bg-white/[0.04] px-3.5 py-2.5 font-mono text-sm text-ink placeholder:text-faint focus:border-accent/50 focus:outline-none sm:w-28"
           />
           <button
             type="submit"
-            className="rounded-xl bg-ember px-5 py-2.5 text-sm font-semibold text-void transition-colors hover:bg-ember-deep"
+            className="rounded-xl bg-accent px-5 py-2.5 text-sm font-semibold text-void transition-colors hover:bg-accent-deep"
           >
             {editingFav ? "Save" : "Add"}
           </button>
@@ -1086,7 +1084,7 @@ function SettingsTab({ store }: { store: ReturnType<typeof useSpendingStore> }) 
         </form>
       </div>
 
-      <div className="glass p-6">
+      <div className="card p-6">
         <h2 className="font-display text-base font-bold text-ink">Budget & currency</h2>
         <div className="mt-4 flex flex-col gap-3 sm:flex-row sm:items-end">
           <label className="flex-1 text-[13px] font-medium text-muted">
@@ -1096,7 +1094,7 @@ function SettingsTab({ store }: { store: ReturnType<typeof useSpendingStore> }) 
               onChange={(e) => setBudgetDraft(e.target.value)}
               onBlur={saveBudget}
               inputMode="decimal"
-              className="mt-1.5 w-full rounded-xl border border-white/10 bg-white/[0.04] px-3.5 py-2.5 font-mono text-sm text-ink focus:border-ember/50 focus:outline-none"
+              className="mt-1.5 w-full rounded-xl border border-white/10 bg-white/[0.04] px-3.5 py-2.5 font-mono text-sm text-ink focus:border-accent/50 focus:outline-none"
             />
           </label>
           <label className="text-[13px] font-medium text-muted">
@@ -1104,7 +1102,7 @@ function SettingsTab({ store }: { store: ReturnType<typeof useSpendingStore> }) 
             <select
               value={settings.currency}
               onChange={(e) => setSettings({ ...settings, currency: e.target.value })}
-              className="mt-1.5 w-full rounded-xl border border-white/10 bg-white/[0.04] px-3.5 py-2.5 text-sm text-ink focus:border-ember/50 focus:outline-none [&>option]:bg-void sm:w-32"
+              className="mt-1.5 w-full rounded-xl border border-white/10 bg-white/[0.04] px-3.5 py-2.5 text-sm text-ink focus:border-accent/50 focus:outline-none [&>option]:bg-void sm:w-32"
             >
               {CURRENCIES.map((c) => (
                 <option key={c} value={c}>
@@ -1116,7 +1114,7 @@ function SettingsTab({ store }: { store: ReturnType<typeof useSpendingStore> }) 
         </div>
       </div>
 
-      <div className="glass p-6">
+      <div className="card p-6">
         <h2 className="font-display text-base font-bold text-ink">AI categorization</h2>
         <p className="mt-1 text-sm text-muted">
           Purchases are auto-sorted into categories with the Anthropic API. Without a key,
@@ -1130,11 +1128,11 @@ function SettingsTab({ store }: { store: ReturnType<typeof useSpendingStore> }) 
             onChange={(e) => setKeyDraft(e.target.value)}
             placeholder="sk-ant-…"
             aria-label="Anthropic API key"
-            className="flex-1 rounded-xl border border-white/10 bg-white/[0.04] px-3.5 py-2.5 font-mono text-sm text-ink placeholder:text-faint focus:border-ember/50 focus:outline-none"
+            className="flex-1 rounded-xl border border-white/10 bg-white/[0.04] px-3.5 py-2.5 font-mono text-sm text-ink placeholder:text-faint focus:border-accent/50 focus:outline-none"
           />
           <button
             type="submit"
-            className="rounded-xl bg-ember px-5 py-2.5 text-sm font-semibold text-void transition-colors hover:bg-ember-deep"
+            className="rounded-xl bg-accent px-5 py-2.5 text-sm font-semibold text-void transition-colors hover:bg-accent-deep"
           >
             {keySaved ? "Saved ✓" : "Save key"}
           </button>
@@ -1147,12 +1145,47 @@ function SettingsTab({ store }: { store: ReturnType<typeof useSpendingStore> }) 
   );
 }
 
-/* ---------------------------------- page ----------------------------------- */
+/* ---------------------------------- shell ----------------------------------- */
 
 const TABS = ["Home", "Spending", "Settings"] as const;
 type Tab = (typeof TABS)[number];
 
-export default function SpendingTrackerPage() {
+function TabIcon({ tab }: { tab: Tab }) {
+  const props = {
+    width: 20,
+    height: 20,
+    viewBox: "0 0 24 24",
+    fill: "none",
+    stroke: "currentColor",
+    strokeWidth: 1.8,
+    strokeLinecap: "round" as const,
+    strokeLinejoin: "round" as const,
+    "aria-hidden": true,
+  };
+  if (tab === "Home")
+    return (
+      <svg {...props}>
+        <path d="M3 11l9-8 9 8" />
+        <path d="M5 9.5V20a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V9.5" />
+      </svg>
+    );
+  if (tab === "Spending")
+    return (
+      <svg {...props}>
+        <circle cx="12" cy="12" r="9" />
+        <path d="M12 3v9l6.4 6.3" />
+      </svg>
+    );
+  return (
+    <svg {...props}>
+      <path d="M4 7h10M18 7h2M4 17h2M10 17h10" />
+      <circle cx="16" cy="7" r="2" />
+      <circle cx="8" cy="17" r="2" />
+    </svg>
+  );
+}
+
+export default function App() {
   const store = useSpendingStore();
   const [tab, setTab] = useState<Tab>("Home");
   const [undo, setUndo] = useState<Purchase | null>(null);
@@ -1172,54 +1205,65 @@ export default function SpendingTrackerPage() {
 
   return (
     <>
-      <div className="mb-6 flex flex-wrap items-end justify-between gap-4 pt-4 lg:pt-0">
-        <div>
-          <h1 className="font-display text-3xl font-bold tracking-tight text-ink">Spending</h1>
-          <p className="mt-1.5 text-sm text-muted">Track every purchase, stay on budget.</p>
-        </div>
-        <nav
-          aria-label="Spending tracker sections"
-          className="flex rounded-xl border border-white/10 bg-white/[0.04] p-1"
-        >
+      <div className="atmosphere" aria-hidden />
+      <main className="mx-auto min-h-screen w-full max-w-2xl px-4 pt-6 pb-32 sm:px-6">
+        <header className="mb-6 flex items-baseline justify-between">
+          <h1 className="font-display text-2xl font-bold tracking-tight text-ink">
+            Ledger<span className="text-accent">.</span>
+          </h1>
+          <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-faint">
+            {tab}
+          </span>
+        </header>
+
+        {!store.loaded ? (
+          <div className="card h-64 animate-pulse" />
+        ) : (
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={tab}
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -8 }}
+              transition={{ duration: 0.22, ease: "easeOut" }}
+            >
+              {tab === "Home" && <HomeTab store={store} onAdded={handleAdded} />}
+              {tab === "Spending" && <SpendingTab store={store} />}
+              {tab === "Settings" && <SettingsTab store={store} />}
+            </motion.div>
+          </AnimatePresence>
+        )}
+      </main>
+
+      <nav
+        aria-label="Main"
+        className="fixed bottom-0 left-1/2 z-40 w-full max-w-2xl -translate-x-1/2 px-4 pb-[max(1rem,env(safe-area-inset-bottom))] sm:px-6"
+      >
+        <div className="card flex justify-around p-1.5">
           {TABS.map((t) => (
             <button
               key={t}
               type="button"
               onClick={() => setTab(t)}
-              className={`relative rounded-lg px-4 py-1.5 text-sm font-medium transition-colors ${
-                tab === t ? "text-ink" : "text-muted hover:text-ink"
+              className={`relative flex flex-1 flex-col items-center gap-0.5 rounded-xl px-3 py-2 text-[11px] font-medium transition-colors ${
+                tab === t ? "text-accent" : "text-muted hover:text-ink"
               }`}
             >
               {tab === t && (
                 <motion.span
-                  layoutId="spending-tab-pill"
-                  className="absolute inset-0 rounded-lg border border-white/10 bg-white/[0.08]"
+                  layoutId="tab-pill"
+                  className="absolute inset-0 rounded-xl border border-white/10 bg-white/[0.06]"
                   transition={{ type: "spring", stiffness: 400, damping: 34 }}
                 />
               )}
+              <span className="relative">
+                <TabIcon tab={t} />
+              </span>
               <span className="relative">{t}</span>
             </button>
           ))}
-        </nav>
-      </div>
-
-      {!store.loaded ? (
-        <div className="glass h-64 animate-pulse" />
-      ) : (
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={tab}
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -8 }}
-            transition={{ duration: 0.22, ease: "easeOut" }}
-          >
-            {tab === "Home" && <HomeTab store={store} onAdded={handleAdded} />}
-            {tab === "Spending" && <SpendingTab store={store} />}
-            {tab === "Settings" && <SettingsTab store={store} />}
-          </motion.div>
-        </AnimatePresence>
-      )}
+        </div>
+      </nav>
 
       <AnimatePresence>
         {undo && (
@@ -1228,17 +1272,17 @@ export default function SpendingTrackerPage() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 24 }}
             transition={{ type: "spring", stiffness: 300, damping: 26 }}
-            className="fixed bottom-6 left-1/2 z-50 -translate-x-1/2"
+            className="fixed bottom-24 left-1/2 z-50 -translate-x-1/2"
           >
-            <div className="glass flex items-center gap-4 px-5 py-3">
-              <span className="text-sm text-ink">
+            <div className="card flex items-center gap-4 px-5 py-3">
+              <span className="text-sm whitespace-nowrap text-ink">
                 Added <span className="font-medium">{undo.name}</span> ·{" "}
                 <span className="font-mono">{formatMoney(undo.price, store.settings.currency)}</span>
               </span>
               <button
                 type="button"
                 onClick={undoAdd}
-                className="text-sm font-semibold text-ember transition-colors hover:text-ember-deep"
+                className="text-sm font-semibold text-accent transition-colors hover:text-accent-deep"
               >
                 Undo
               </button>
