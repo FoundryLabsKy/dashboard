@@ -174,6 +174,13 @@ export const IconSpark = ({ className }: IconProps) => (
   </svg>
 );
 
+export const IconWallet = ({ className }: IconProps) => (
+  <svg {...base(className)}>
+    <path d="M3 7a2 2 0 0 1 2-2h13a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+    <path d="M20 11h-4a2 2 0 0 0 0 4h4" />
+  </svg>
+);
+
 export const IconSliders = ({ className }: IconProps) => (
   <svg {...base(className)}>
     <path d="M4 7h10M18 7h2M4 17h2M10 17h10" />
