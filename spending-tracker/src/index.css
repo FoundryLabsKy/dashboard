@@ -1,24 +1,84 @@
 @import "tailwindcss";
 
-@theme {
-  --color-void: #0a0d12;
-  --color-ink: #edf4f1;
-  --color-muted: #93a3a6;
-  --color-faint: #5b6b6f;
-  --color-accent: #2ee6a8;
-  --color-accent-deep: #1db486;
-  --color-danger: #f26d7e;
-  --color-good: #3ecf8e;
+/*
+ * Semantic color roles (iOS system palette), adaptive to light/dark.
+ * Components reference roles, never raw hex.
+ */
+:root {
+  color-scheme: light dark;
 
-  --font-display: "Space Grotesk", system-ui, sans-serif;
-  --font-sans: "Karla", system-ui, sans-serif;
-  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+  --system-background: #ffffff;
+  --system-grouped-background: #f2f2f7;
+  --secondary-grouped-background: #ffffff;
+  --tertiary-fill: rgba(118, 118, 128, 0.12);
+  --label: #000000;
+  --secondary-label: rgba(60, 60, 67, 0.72); /* nudged from Apple's 0.6 to pass 4.5:1 at 13px */
+  --tertiary-label: rgba(60, 60, 67, 0.3);
+  --separator: rgba(60, 60, 67, 0.29);
+  --accent: #007aff;
+  --accent-fill: #0066cc; /* darker fill so 17px white text passes 4.5:1 */
+  --system-red: #ff3b30;
+  --system-green: #34c759;
+  --red-text: #d70015; /* accessible red for small text / text-on-red fills */
+  --green-text: #248a3d;
+  --destructive-fill: #d70015;
+  --glass-bg: rgba(249, 249, 249, 0.72);
+  --glass-highlight: rgba(255, 255, 255, 0.6);
+  --sheet-shadow: 0 -8px 40px rgba(0, 0, 0, 0.12);
+  --card-shadow: 0 0 0 rgba(0, 0, 0, 0);
 
-  --radius-panel: 1.25rem;
+  /* Categorical data palette, validated for the light surface */
+  --cat-food: #2a78d6;
+  --cat-drinks: #eb6834;
+  --cat-groceries: #1baf7a;
+  --cat-transport: #eda100;
+  --cat-entertainment: #e87ba4;
+  --cat-shopping: #008300;
+  --cat-subscriptions: #4a3aa7;
+  --cat-health: #e34948;
+  --cat-none: rgba(60, 60, 67, 0.3);
+  --cat-other: rgba(60, 60, 67, 0.6);
 }
 
-:root {
-  color-scheme: dark;
+@media (prefers-color-scheme: dark) {
+  :root {
+    --system-background: #000000;
+    --system-grouped-background: #000000;
+    --secondary-grouped-background: #1c1c1e;
+    --tertiary-fill: rgba(118, 118, 128, 0.24);
+    --label: #ffffff;
+    --secondary-label: rgba(235, 235, 245, 0.6);
+    --tertiary-label: rgba(235, 235, 245, 0.3);
+    --separator: rgba(84, 84, 88, 0.6);
+    --accent: #0a84ff;
+    --accent-fill: #0066cc;
+    --system-red: #ff453a;
+    --system-green: #30d158;
+    --red-text: #ff453a;
+    --green-text: #30d158;
+    --destructive-fill: #d70015;
+    --glass-bg: rgba(30, 30, 30, 0.68);
+    --glass-highlight: rgba(255, 255, 255, 0.12);
+    --sheet-shadow: 0 -8px 40px rgba(0, 0, 0, 0.6);
+
+    /* Same hues stepped for the dark surface */
+    --cat-food: #3987e5;
+    --cat-drinks: #d95926;
+    --cat-groceries: #199e70;
+    --cat-transport: #c98500;
+    --cat-entertainment: #d55181;
+    --cat-shopping: #008300;
+    --cat-subscriptions: #9085e9;
+    --cat-health: #e66767;
+    --cat-none: rgba(235, 235, 245, 0.3);
+    --cat-other: rgba(235, 235, 245, 0.6);
+  }
+}
+
+@theme {
+  --font-sans: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display",
+    system-ui, "Helvetica Neue", sans-serif;
+  --font-mono: ui-monospace, "SF Mono", SFMono-Regular, Menlo, monospace;
 }
 
 html,
@@ -27,67 +87,81 @@ body {
 }
 
 body {
-  background-color: var(--color-void);
-  color: var(--color-ink);
-  font-family: var(--font-sans), system-ui, sans-serif;
+  background-color: var(--system-grouped-background);
+  color: var(--label);
+  font-family: var(--font-sans);
+  font-size: 17px;
+  line-height: 1.29;
   -webkit-font-smoothing: antialiased;
+  -webkit-tap-highlight-color: transparent;
 }
 
-/* Ambient glow behind everything */
-.atmosphere {
-  position: fixed;
-  inset: 0;
-  z-index: -1;
-  pointer-events: none;
-  background:
-    radial-gradient(44rem 30rem at 85% -10%, rgba(46, 230, 168, 0.06), transparent 60%),
-    radial-gradient(50rem 36rem at -15% 112%, rgba(57, 135, 229, 0.05), transparent 60%),
-    var(--color-void);
-}
-
-/* Card panel language */
-.card {
-  background: rgba(255, 255, 255, 0.035);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  backdrop-filter: blur(20px);
-  border-radius: var(--radius-panel);
+/* Liquid Glass approximation — navigation/control layer ONLY */
+.glass-bar {
+  background: var(--glass-bg);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  backdrop-filter: blur(20px) saturate(180%);
   box-shadow:
-    0 1px 0 rgba(255, 255, 255, 0.04) inset,
-    0 12px 32px -16px rgba(0, 0, 0, 0.55);
+    inset 0 1px 0 var(--glass-highlight),
+    0 8px 24px rgba(0, 0, 0, 0.1);
 }
 
-.card-hover {
-  transition: border-color 0.25s ease, background-color 0.25s ease;
+/* Solid fallback when transparency is reduced or blur unsupported */
+@media (prefers-reduced-transparency: reduce) {
+  .glass-bar {
+    background: var(--secondary-grouped-background);
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
 }
-.card-hover:hover {
-  background: rgba(255, 255, 255, 0.055);
-  border-color: rgba(255, 255, 255, 0.13);
+@supports not (backdrop-filter: blur(1px)) {
+  .glass-bar {
+    background: var(--secondary-grouped-background);
+  }
 }
 
-.glow {
-  box-shadow: 0 0 24px -6px rgba(46, 230, 168, 0.4);
+/* Inset grouped card */
+.grouped-card {
+  background: var(--secondary-grouped-background);
+  border-radius: 28px;
 }
+
+/* Semantic role utilities */
+.t-label { color: var(--label); }
+.t-secondary { color: var(--secondary-label); }
+.t-tertiary { color: var(--tertiary-label); }
+.t-accent { color: var(--accent); }
+.t-red { color: var(--red-text); }
+.t-green { color: var(--green-text); }
+.bg-fill { background: var(--tertiary-fill); }
+.bg-accent-c { background: var(--accent-fill); }
+.bg-red-c { background: var(--destructive-fill); }
+.hairline {
+  border-color: var(--separator);
+  border-bottom-width: 0.5px;
+}
+
+/* Touch-down response for plain (non-motion) buttons — :active fires on touch start */
+.pressable:active { opacity: 0.4; }
+.row-press:active { background: var(--tertiary-fill); }
+
+button { touch-action: manipulation; }
+
+input::placeholder { color: var(--tertiary-label); }
+
+.tabular { font-variant-numeric: tabular-nums; }
 
 :focus-visible {
-  outline: 2px solid var(--color-accent);
+  outline: 2px solid var(--accent);
   outline-offset: 2px;
-  border-radius: 6px;
+  border-radius: 8px;
 }
 
-* {
-  scrollbar-width: thin;
-  scrollbar-color: rgba(255, 255, 255, 0.14) transparent;
-}
-*::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
-}
-*::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.14);
-  border-radius: 4px;
-}
-*::-webkit-scrollbar-track {
-  background: transparent;
+input,
+select,
+button {
+  font-family: inherit;
+  color: inherit;
 }
 
 @media (prefers-reduced-motion: reduce) {
