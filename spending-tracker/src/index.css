@@ -1,0 +1,101 @@
+@import "tailwindcss";
+
+@theme {
+  --color-void: #0a0d12;
+  --color-ink: #edf4f1;
+  --color-muted: #93a3a6;
+  --color-faint: #5b6b6f;
+  --color-accent: #2ee6a8;
+  --color-accent-deep: #1db486;
+  --color-danger: #f26d7e;
+  --color-good: #3ecf8e;
+
+  --font-display: "Space Grotesk", system-ui, sans-serif;
+  --font-sans: "Karla", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+
+  --radius-panel: 1.25rem;
+}
+
+:root {
+  color-scheme: dark;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  background-color: var(--color-void);
+  color: var(--color-ink);
+  font-family: var(--font-sans), system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Ambient glow behind everything */
+.atmosphere {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(44rem 30rem at 85% -10%, rgba(46, 230, 168, 0.06), transparent 60%),
+    radial-gradient(50rem 36rem at -15% 112%, rgba(57, 135, 229, 0.05), transparent 60%),
+    var(--color-void);
+}
+
+/* Card panel language */
+.card {
+  background: rgba(255, 255, 255, 0.035);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(20px);
+  border-radius: var(--radius-panel);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.04) inset,
+    0 12px 32px -16px rgba(0, 0, 0, 0.55);
+}
+
+.card-hover {
+  transition: border-color 0.25s ease, background-color 0.25s ease;
+}
+.card-hover:hover {
+  background: rgba(255, 255, 255, 0.055);
+  border-color: rgba(255, 255, 255, 0.13);
+}
+
+.glow {
+  box-shadow: 0 0 24px -6px rgba(46, 230, 168, 0.4);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.14) transparent;
+}
+*::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+*::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.14);
+  border-radius: 4px;
+}
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

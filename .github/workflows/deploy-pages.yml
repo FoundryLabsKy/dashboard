@@ -39,6 +39,15 @@ jobs:
           cp -r dist/. ../out/pack-tracker/
         env:
           PACK_TRACKER_BASE: ${{ steps.pages.outputs.base_path }}/pack-tracker/
+      - name: Build Spending Tracker
+        working-directory: spending-tracker
+        run: |
+          npm ci
+          npm run build
+          mkdir -p ../out/spending-tracker
+          cp -r dist/. ../out/spending-tracker/
+        env:
+          SPENDING_TRACKER_BASE: ${{ steps.pages.outputs.base_path }}/spending-tracker/
       - uses: actions/upload-pages-artifact@v3
         with:
           path: out
