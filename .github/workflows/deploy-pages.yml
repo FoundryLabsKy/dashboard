@@ -30,6 +30,15 @@ jobs:
       - run: npm run build
         env:
           NEXT_PUBLIC_BASE_PATH: ${{ steps.pages.outputs.base_path }}
+      - name: Build Pack Tracker
+        working-directory: pack-tracker
+        run: |
+          npm ci
+          npm run build
+          mkdir -p ../out/pack-tracker
+          cp -r dist/. ../out/pack-tracker/
+        env:
+          PACK_TRACKER_BASE: ${{ steps.pages.outputs.base_path }}/pack-tracker/
       - uses: actions/upload-pages-artifact@v3
         with:
           path: out
