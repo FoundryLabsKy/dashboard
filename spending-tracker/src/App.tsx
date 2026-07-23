@@ -672,6 +672,7 @@ function HistoryRow({
   onDelete: () => void;
 }) {
   const x = useMotionValue(0);
+  const reduced = useReducedMotion() ?? false;
   const OPEN = -88;
   // Hidden at rest so it can't peek through the card's rounded corners,
   // and stretched during overshoot so no gap opens behind the row.
@@ -679,7 +680,9 @@ function HistoryRow({
   const actionWidth = useTransform(x, (v) => `${Math.max(88, -v)}px`);
 
   const settle = (target: number) =>
-    animate(x, target, { type: "spring", duration: 0.35, bounce: 0 });
+    reduced
+      ? animate(x, target, { duration: 0 })
+      : animate(x, target, { type: "spring", duration: 0.35, bounce: 0 });
 
   return (
     <li className="relative overflow-hidden">
@@ -691,9 +694,9 @@ function HistoryRow({
           tapHaptic();
           onDelete();
         }}
-        className="bg-red-c pressable absolute inset-y-0 right-0 text-[15px] font-normal text-white"
+        className="bg-red-c press-parent absolute inset-y-0 right-0 text-[15px] font-normal text-white"
       >
-        Delete
+        <span className="press-label">Delete</span>
       </motion.button>
       <motion.div
         drag="x"
@@ -761,11 +764,32 @@ function EditSheet({
   const [price, setPrice] = useState(String(purchase.price));
   const [category, setCategory] = useState(purchase.category);
   const y = useMotionValue(0);
+  const reducedSheet = useReducedMotion() ?? false;
   const panelRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") onClose();
+      if (e.key === "Escape") {
+        onClose();
+        return;
+      }
+      // Minimal focus trap: keep Tab cycling inside the sheet.
+      if (e.key === "Tab" && panelRef.current) {
+        const focusables = panelRef.current.querySelectorAll<HTMLElement>(
+          "button, input, select",
+        );
+        if (focusables.length === 0) return;
+        const first = focusables[0];
+        const last = focusables[focusables.length - 1];
+        const current = document.activeElement;
+        if (e.shiftKey && (current === first || !panelRef.current.contains(current))) {
+          e.preventDefault();
+          last.focus();
+        } else if (!e.shiftKey && (current === last || !panelRef.current.contains(current))) {
+          e.preventDefault();
+          first.focus();
+        }
+      }
     };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
@@ -798,7 +822,8 @@ function EditSheet({
           if (project(info.offset.y, info.velocity.y) > height / 2) {
             onClose();
           } else {
-            animate(y, 0, { type: "spring", duration: 0.4, bounce: 0 });
+            if (reducedSheet) animate(y, 0, { duration: 0 });
+            else animate(y, 0, { type: "spring", duration: 0.4, bounce: 0 });
           }
         }}
         initial={{ y: "100%" }}

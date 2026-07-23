@@ -15,12 +15,12 @@
   --secondary-label: rgba(60, 60, 67, 0.72); /* nudged from Apple's 0.6 to pass 4.5:1 at 13px */
   --tertiary-label: rgba(60, 60, 67, 0.3);
   --separator: rgba(60, 60, 67, 0.29);
-  --accent: #007aff;
-  --accent-fill: #0066cc; /* darker fill so 17px white text passes 4.5:1 */
+  --accent: #0066cc; /* darkened from #007aff so accent text passes 4.5:1 on white */
+  --accent-fill: #0066cc;
   --system-red: #ff3b30;
   --system-green: #34c759;
   --red-text: #d70015; /* accessible red for small text / text-on-red fills */
-  --green-text: #248a3d;
+  --green-text: #1d7832;
   --destructive-fill: #d70015;
   --glass-bg: rgba(249, 249, 249, 0.72);
   --glass-highlight: rgba(255, 255, 255, 0.6);
@@ -144,6 +144,8 @@ body {
 /* Touch-down response for plain (non-motion) buttons — :active fires on touch start */
 .pressable:active { opacity: 0.4; }
 .row-press:active { background: var(--tertiary-fill); }
+/* For buttons whose own opacity is animation-driven: dim an inner label instead */
+.press-parent:active .press-label { opacity: 0.4; }
 
 button { touch-action: manipulation; }
 
@@ -151,10 +153,17 @@ input::placeholder { color: var(--tertiary-label); }
 
 .tabular { font-variant-numeric: tabular-nums; }
 
-:focus-visible {
+/* Focus ring for keyboard navigation on controls; text fields rely on the
+   caret and fill, matching iOS (no ring on field presentation/autofocus). */
+button:focus-visible,
+select:focus-visible,
+a:focus-visible {
   outline: 2px solid var(--accent);
   outline-offset: 2px;
   border-radius: 8px;
+}
+input:focus-visible {
+  outline: none;
 }
 
 input,
