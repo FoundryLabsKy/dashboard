@@ -122,7 +122,6 @@ export default function Timeline() {
       )}
 
       <Sheet open={editing !== null} onClose={() => setEditing(null)} label="Edit purchase">
-        <div className="mx-auto mb-4 h-[5px] w-9 rounded-full bg-fill sm:hidden" aria-hidden />
         <h2 className="text-center text-[20px] font-semibold tracking-tight">Edit purchase</h2>
         {editing && (
           <p className="mt-1.5 text-center text-[15px] text-label-secondary">
@@ -138,7 +137,7 @@ export default function Timeline() {
               value={brand}
               onChange={(e) => setBrand(e.target.value)}
               aria-label="Brand"
-              className="h-[52px] w-full rounded-[14px] bg-fill px-4 text-[17px] outline-none focus-visible:ring-1 focus-visible:ring-accent/40"
+              className="h-[52px] w-full rounded-[14px] bg-fill px-4 text-[17px] outline-none"
             />
           </label>
           <label className="block">
@@ -150,7 +149,7 @@ export default function Timeline() {
               value={price}
               onChange={(e) => setPrice(e.target.value.replace(/[^0-9.]/g, ""))}
               aria-label="Price"
-              className="h-[52px] w-full rounded-[14px] bg-fill px-4 text-[17px] outline-none focus-visible:ring-1 focus-visible:ring-accent/40"
+              className="h-[52px] w-full rounded-[14px] bg-fill px-4 text-[17px] outline-none"
             />
           </label>
         </div>

@@ -79,7 +79,6 @@ export default function Home() {
       </p>
 
       <Sheet open={confirmOpen} onClose={() => setConfirmOpen(false)} label="Confirm purchase">
-        <div className="mx-auto mb-4 h-[5px] w-9 rounded-full bg-fill sm:hidden" aria-hidden />
         <h2 className="text-center text-[20px] font-semibold tracking-tight">
           Did you buy another pack?
         </h2>

@@ -83,7 +83,7 @@ export default function Onboarding() {
                 onChange={(e) => setBrand(e.target.value)}
                 placeholder="Marlboro Red"
                 aria-label="Preferred brand"
-                className="mt-8 h-[52px] rounded-[14px] bg-fill px-4 text-[17px] outline-none placeholder:text-label-tertiary focus-visible:ring-1 focus-visible:ring-accent/40"
+                className="mt-8 h-[52px] rounded-[14px] bg-fill px-4 text-[17px] outline-none placeholder:text-label-tertiary"
               />
             </motion.div>
           )}
@@ -134,7 +134,7 @@ export default function Onboarding() {
                   onChange={(e) => setCustomSize(e.target.value.replace(/\D/g, ""))}
                   placeholder="e.g. 10"
                   aria-label="Custom pack size"
-                  className="mt-3 h-[52px] rounded-[14px] bg-fill px-4 text-[17px] outline-none placeholder:text-label-tertiary focus-visible:ring-1 focus-visible:ring-accent/40"
+                  className="mt-3 h-[52px] rounded-[14px] bg-fill px-4 text-[17px] outline-none placeholder:text-label-tertiary"
                 />
               )}
             </motion.div>
@@ -153,7 +153,7 @@ export default function Onboarding() {
                 onChange={(e) => setPrice(e.target.value.replace(/[^0-9.]/g, ""))}
                 placeholder="9.50"
                 aria-label="Typical price"
-                className="mt-8 h-[52px] rounded-[14px] bg-fill px-4 text-[17px] outline-none placeholder:text-label-tertiary focus-visible:ring-1 focus-visible:ring-accent/40"
+                className="mt-8 h-[52px] rounded-[14px] bg-fill px-4 text-[17px] outline-none placeholder:text-label-tertiary"
               />
             </motion.div>
           )}
@@ -196,7 +196,7 @@ export default function Onboarding() {
                 }
                 placeholder="e.g. NZD"
                 aria-label="Currency code"
-                className="h-[52px] rounded-[14px] bg-fill px-4 text-[17px] tracking-[0.08em] outline-none placeholder:tracking-normal placeholder:text-label-tertiary focus-visible:ring-1 focus-visible:ring-accent/40"
+                className="h-[52px] rounded-[14px] bg-fill px-4 text-[17px] tracking-[0.08em] outline-none placeholder:tracking-normal placeholder:text-label-tertiary"
               />
             </motion.div>
           )}
@@ -207,7 +207,7 @@ export default function Onboarding() {
           whileTap={{ scale: 0.97 }}
           transition={{ type: "spring", stiffness: 500, damping: 30 }}
           disabled={!canContinue}
-          className="h-[52px] w-full rounded-[14px] bg-accent text-[17px] font-semibold text-white disabled:bg-fill disabled:text-label-tertiary"
+          className="h-[52px] w-full rounded-[14px] bg-accent text-[17px] font-semibold text-white disabled:bg-fill disabled:text-label-secondary"
         >
           {step === 3 ? "Done" : "Continue"}
         </motion.button>

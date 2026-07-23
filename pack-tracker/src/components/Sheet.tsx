@@ -42,6 +42,7 @@ export default function Sheet({ open, onClose, children, label }: SheetProps) {
             transition={{ type: "spring", stiffness: 420, damping: 38 }}
             className="relative w-full max-w-md rounded-t-[20px] bg-card p-6 pb-[max(1.5rem,env(safe-area-inset-bottom))] shadow-[0_-8px_40px_rgba(0,0,0,0.18)] sm:rounded-[20px] sm:pb-6"
           >
+            <div className="mx-auto mb-4 h-[5px] w-9 rounded-full bg-fill sm:hidden" aria-hidden />
             {children}
           </motion.div>
         </div>
