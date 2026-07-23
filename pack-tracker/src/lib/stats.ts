@@ -74,8 +74,11 @@ export function computeStats(purchases: Purchase[], now: Date = new Date()): Sta
   // At least one day of history so single-purchase averages stay finite.
   const elapsedDays = Math.max(1, (nowMs - first) / DAY_MS);
 
-  const averageWeeklySpend = totalSpent / (elapsedDays / 7);
-  const averageMonthlySpend = totalSpent / (elapsedDays / 30.44);
+  // Never extrapolate from less than one period of history: in the first
+  // week the "weekly average" is simply what's been spent so far, becoming a
+  // true rate once at least a full week (or month) has elapsed.
+  const averageWeeklySpend = totalSpent / (Math.max(7, elapsedDays) / 7);
+  const averageMonthlySpend = totalSpent / (Math.max(30.44, elapsedDays) / 30.44);
 
   const totalPacks = sorted.length;
   const packsThisMonth = sorted.filter((p) => isSameMonth(p.timestamp, now)).length;
