@@ -1,0 +1,25 @@
+name = "lockedapi"
+main = "worker.js"
+compatibility_date = "2024-11-01"
+
+# KV namespace holding beta data, caches, deploy version, rate-limit counters.
+# Bound in code as env.BETADATA. Fill in the id from:
+#   npx wrangler kv namespace list
+[[kv_namespaces]]
+binding = "BETADATA"
+id = "REPLACE_WITH_YOUR_BETADATA_KV_ID"
+
+# Non-secret config. Secrets (below) are set with `wrangler secret put`, never here.
+[vars]
+ASCEND_HOST = "edb-with-videos-and-images-by-ascendapi.p.rapidapi.com"
+
+# Secrets to set once (do NOT commit values):
+#   wrangler secret put SUPABASE_URL
+#   wrangler secret put SUPABASE_SERVICE_KEY
+#   wrangler secret put GROQ_KEY
+#   wrangler secret put USDA_KEY          (optional; falls back to DEMO_KEY)
+#   wrangler secret put ALLOWED_ORIGINS   (comma-separated prod origins)
+#   wrangler secret put YT_KEY            (NEW rotated YouTube Data API key)
+#   wrangler secret put ASCEND_KEY        (NEW rotated RapidAPI key)
+#   wrangler secret put ADMIN_SECRET      (new random string; gates /beta-* admin routes)
+#   wrangler secret put DEPLOY_HOOK_SECRET (optional; gates /deploy-notify)
