@@ -40,10 +40,11 @@ describe("computeStats — empty and single-purchase edge cases", () => {
     expect(s.averageWeeklySpend).toBeGreaterThan(0);
   });
 
-  it("a purchase made this instant still yields finite averages", () => {
+  it("a purchase made this instant is not extrapolated into a weekly rate", () => {
     const s = computeStats([p(NOW.toISOString(), 10)], NOW);
-    // elapsedDays clamps to 1, so weekly avg = 10 / (1/7) = 70
-    expect(s.averageWeeklySpend).toBeCloseTo(70, 5);
+    // Less than a week of history: the "average" is just what was spent.
+    expect(s.averageWeeklySpend).toBeCloseTo(10, 5);
+    expect(s.averageMonthlySpend).toBeCloseTo(10, 5);
     expect(s.averageDaysPerPack).toBeCloseTo(1, 5);
   });
 });
@@ -73,12 +74,24 @@ describe("computeStats — money", () => {
     expect(s.spentThisYear).toBe(10);
   });
 
-  it("computes weekly and monthly averages over elapsed time", () => {
+  it("computes weekly averages over elapsed time once a week has passed", () => {
     // Two purchases, first 14 days before NOW → elapsed = 14 days = 2 weeks.
     const purchases = [p("2026-06-01T12:00:00", 10), p("2026-06-10T12:00:00", 10)];
     const s = computeStats(purchases, NOW);
     expect(s.averageWeeklySpend).toBeCloseTo(20 / 2, 5);
-    expect(s.averageMonthlySpend).toBeCloseTo(20 / (14 / 30.44), 5);
+    // Under a month of history: monthly average is total spend, not a projection.
+    expect(s.averageMonthlySpend).toBeCloseTo(20, 5);
+  });
+
+  it("computes a true monthly average once a month has passed", () => {
+    // First purchase ~61 days (2 months) before NOW, 30 spent in total.
+    const purchases = [
+      p("2026-04-15T12:00:00", 10),
+      p("2026-05-15T12:00:00", 10),
+      p("2026-06-14T12:00:00", 10),
+    ];
+    const s = computeStats(purchases, NOW);
+    expect(s.averageMonthlySpend).toBeCloseTo(30 / (61 / 30.44), 2);
   });
 });
 
