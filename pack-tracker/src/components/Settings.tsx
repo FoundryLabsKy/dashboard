@@ -56,13 +56,13 @@ export default function Settings() {
   };
 
   const field =
-    "h-[52px] w-full rounded-[14px] bg-fill px-4 text-[17px] outline-none focus:ring-2 focus:ring-accent/60";
+    "h-[52px] w-full rounded-[14px] bg-fill px-4 text-[17px] outline-none focus-visible:ring-1 focus-visible:ring-accent/40";
   const label =
     "mb-1.5 block px-1 text-[13px] font-semibold tracking-[0.04em] text-label-secondary uppercase";
 
   return (
     <div className="mx-auto w-full max-w-md px-5 pt-[max(3.5rem,env(safe-area-inset-top))] pb-32">
-      <h1 className="px-1 text-[34px] font-bold tracking-tight">Settings</h1>
+      <h1 className="px-4 text-[34px] font-bold tracking-tight">Settings</h1>
 
       <div className="mt-4 space-y-3 rounded-[16px] bg-card p-4">
         <label className="block">
@@ -105,7 +105,7 @@ export default function Settings() {
           whileTap={{ scale: 0.97 }}
           onClick={save}
           disabled={!dirty || !valid}
-          className="h-[52px] w-full rounded-[16px] bg-accent text-[17px] font-semibold text-white disabled:opacity-40"
+          className="h-[52px] w-full rounded-[14px] bg-accent text-[17px] font-semibold text-white disabled:bg-fill disabled:text-label-tertiary"
         >
           {saved ? "Saved" : "Save Changes"}
         </motion.button>
@@ -133,7 +133,7 @@ export default function Settings() {
           type="button"
           whileTap={{ scale: 0.98 }}
           onClick={() => setConfirmErase(true)}
-          className="flex min-h-[52px] w-full items-center border-t border-separator px-4 text-left text-[17px] text-destructive"
+          className="relative flex min-h-[52px] w-full items-center px-4 text-left text-[17px] text-destructive before:absolute before:top-0 before:right-0 before:left-4 before:h-px before:bg-separator"
         >
           Erase All Data
         </motion.button>
@@ -157,7 +157,7 @@ export default function Settings() {
               eraseEverything();
               setConfirmErase(false);
             }}
-            className="h-[52px] w-full rounded-[16px] bg-destructive text-[17px] font-semibold text-white"
+            className="h-[52px] w-full rounded-[14px] bg-destructive text-[17px] font-semibold text-white"
           >
             Erase Everything
           </motion.button>
@@ -165,7 +165,7 @@ export default function Settings() {
             type="button"
             whileTap={{ scale: 0.97 }}
             onClick={() => setConfirmErase(false)}
-            className="h-[52px] w-full rounded-[16px] bg-fill text-[17px] font-semibold text-accent"
+            className="h-[52px] w-full rounded-[14px] bg-fill text-[17px] font-semibold text-accent"
           >
             Cancel
           </motion.button>

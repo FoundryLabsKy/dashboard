@@ -56,7 +56,7 @@ export default function Timeline() {
 
   return (
     <div className="mx-auto w-full max-w-md px-5 pt-[max(3.5rem,env(safe-area-inset-top))] pb-32">
-      <h1 className="px-1 text-[34px] font-bold tracking-tight">Timeline</h1>
+      <h1 className="px-4 text-[34px] font-bold tracking-tight">Timeline</h1>
 
       {purchases.length === 0 ? (
         <div className="mt-16 text-center">
@@ -69,7 +69,7 @@ export default function Timeline() {
         <div className="mt-4 space-y-6">
           {groups.map((group) => (
             <section key={group.label}>
-              <h2 className="px-1 pb-2 text-[13px] font-semibold tracking-[0.06em] text-label-secondary uppercase">
+              <h2 className="px-4 pb-2 text-[13px] font-semibold tracking-[0.06em] text-label-secondary uppercase">
                 {group.label}
               </h2>
               <div className="overflow-hidden rounded-[16px] bg-card">
@@ -85,7 +85,9 @@ export default function Timeline() {
                       transition={{ type: "spring", stiffness: 380, damping: 36 }}
                       onClick={() => openEditor(p)}
                       className={`block w-full text-left ${
-                        i > 0 ? "border-t border-separator" : ""
+                        i > 0
+                          ? "relative before:absolute before:top-0 before:right-0 before:left-4 before:h-px before:bg-separator"
+                          : ""
                       }`}
                     >
                       <span className="flex min-h-[56px] items-center justify-between px-4 py-3">
@@ -136,7 +138,7 @@ export default function Timeline() {
               value={brand}
               onChange={(e) => setBrand(e.target.value)}
               aria-label="Brand"
-              className="h-[52px] w-full rounded-[14px] bg-fill px-4 text-[17px] outline-none focus:ring-2 focus:ring-accent/60"
+              className="h-[52px] w-full rounded-[14px] bg-fill px-4 text-[17px] outline-none focus-visible:ring-1 focus-visible:ring-accent/40"
             />
           </label>
           <label className="block">
@@ -148,7 +150,7 @@ export default function Timeline() {
               value={price}
               onChange={(e) => setPrice(e.target.value.replace(/[^0-9.]/g, ""))}
               aria-label="Price"
-              className="h-[52px] w-full rounded-[14px] bg-fill px-4 text-[17px] outline-none focus:ring-2 focus:ring-accent/60"
+              className="h-[52px] w-full rounded-[14px] bg-fill px-4 text-[17px] outline-none focus-visible:ring-1 focus-visible:ring-accent/40"
             />
           </label>
         </div>
@@ -157,7 +159,7 @@ export default function Timeline() {
             type="button"
             whileTap={{ scale: 0.97 }}
             onClick={save}
-            className="h-[52px] w-full rounded-[16px] bg-accent text-[17px] font-semibold text-white"
+            className="h-[52px] w-full rounded-[14px] bg-accent text-[17px] font-semibold text-white"
           >
             Save
           </motion.button>
@@ -165,7 +167,7 @@ export default function Timeline() {
             type="button"
             whileTap={{ scale: 0.97 }}
             onClick={remove}
-            className="h-[52px] w-full rounded-[16px] bg-fill text-[17px] font-semibold text-destructive"
+            className="h-[52px] w-full rounded-[14px] bg-fill text-[17px] font-semibold text-destructive"
           >
             Delete Entry
           </motion.button>

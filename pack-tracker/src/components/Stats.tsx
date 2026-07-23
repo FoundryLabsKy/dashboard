@@ -10,6 +10,7 @@ interface StatItem {
   value: number;
   money?: boolean;
   decimals?: number;
+  suffix?: string;
 }
 
 interface Section {
@@ -55,7 +56,7 @@ export default function Stats() {
       items: [
         { label: "Total packs", value: stats.totalPacks },
         { label: "This month", value: stats.packsThisMonth },
-        { label: "Longest gap", value: stats.longestGapDays, decimals: 0 },
+        { label: "Longest gap", value: stats.longestGapDays, suffix: " days" },
         { label: "Avg days per pack", value: stats.averageDaysPerPack, decimals: 1 },
       ],
     },
@@ -73,7 +74,7 @@ export default function Stats() {
 
   return (
     <div className="mx-auto w-full max-w-md px-5 pt-[max(3.5rem,env(safe-area-inset-top))] pb-32">
-      <h1 className="px-1 text-[34px] font-bold tracking-tight">Statistics</h1>
+      <h1 className="px-4 text-[34px] font-bold tracking-tight">Statistics</h1>
       {purchases.length === 0 ? (
         <div className="mt-16 text-center">
           <p className="text-[17px] font-semibold">No packs logged yet</p>
@@ -85,7 +86,7 @@ export default function Stats() {
         <motion.div variants={container} initial="initial" animate="animate" className="mt-4 space-y-7">
           {sections.map((section) => (
             <section key={section.title}>
-              <h2 className="px-1 pb-2 text-[13px] font-semibold tracking-[0.06em] text-label-secondary uppercase">
+              <h2 className="px-4 pb-2 text-[13px] font-semibold tracking-[0.06em] text-label-secondary uppercase">
                 {section.title}
               </h2>
               <div className="overflow-hidden rounded-[16px] bg-card">
@@ -94,19 +95,23 @@ export default function Stats() {
                     key={item.label}
                     variants={rise}
                     className={`flex min-h-[52px] items-center justify-between px-4 py-3 ${
-                      i > 0 ? "border-t border-separator" : ""
+                      i > 0
+                        ? "relative before:absolute before:top-0 before:right-0 before:left-4 before:h-px before:bg-separator"
+                        : ""
                     }`}
                   >
                     <span className="text-[17px]">{item.label}</span>
                     <AnimatedNumber
                       value={item.value}
-                      format={
-                        item.money
-                          ? money
+                      cacheKey={`${section.title}:${item.label}`}
+                      format={(n) => {
+                        const base = item.money
+                          ? money(n)
                           : item.decimals === 1
-                            ? oneDecimal
-                            : int
-                      }
+                            ? oneDecimal(n)
+                            : int(n);
+                        return item.suffix ? `${base}${item.suffix}` : base;
+                      }}
                       className="text-[17px] font-semibold"
                     />
                   </motion.div>
@@ -114,7 +119,7 @@ export default function Stats() {
               </div>
             </section>
           ))}
-          <p className="px-1 text-[13px] text-label-tertiary">
+          <p className="px-4 text-[13px] text-label-tertiary">
             Cigarette count is packs × pack size. Forecast projects your last 30 days of
             spending across a year.
           </p>

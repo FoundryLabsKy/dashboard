@@ -86,7 +86,7 @@ export default function TabBar({ tab, onChange }: TabBarProps) {
               onClick={() => onChange(t.id)}
               aria-current={active ? "page" : undefined}
               className={`flex min-h-[50px] flex-1 flex-col items-center justify-center gap-0.5 pt-1.5 pb-1 ${
-                active ? "text-accent" : "text-label-tertiary"
+                active ? "text-accent" : "text-label-secondary"
               }`}
             >
               {t.icon(active)}

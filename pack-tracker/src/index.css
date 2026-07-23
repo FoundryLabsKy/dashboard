@@ -1,8 +1,8 @@
 @import "tailwindcss";
 
 @theme {
-  --font-sans: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display",
-    "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-sans: -apple-system, BlinkMacSystemFont, system-ui, "SF Pro Text",
+    "SF Pro Display", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
 
   --color-accent: var(--ios-blue);
   --color-destructive: var(--ios-red);
@@ -27,6 +27,7 @@
   --ios-label: #000000;
   --ios-label-secondary: rgba(60, 60, 67, 0.6);
   --ios-label-tertiary: rgba(60, 60, 67, 0.3);
+  --buy-glow: rgba(0, 122, 255, 0.35);
   color-scheme: light dark;
 }
 
@@ -42,6 +43,7 @@
     --ios-label: #ffffff;
     --ios-label-secondary: rgba(235, 235, 245, 0.6);
     --ios-label-tertiary: rgba(235, 235, 245, 0.3);
+    --buy-glow: rgba(10, 132, 255, 0.22);
   }
 }
 

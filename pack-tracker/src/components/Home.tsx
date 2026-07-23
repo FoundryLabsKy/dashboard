@@ -49,7 +49,7 @@ export default function Home() {
           whileTap={{ scale: 0.94 }}
           transition={{ type: "spring", stiffness: 400, damping: 22 }}
           onClick={() => setConfirmOpen(true)}
-          className="relative flex h-56 w-56 items-center justify-center rounded-full bg-accent text-white shadow-[0_18px_50px_-12px_rgba(0,122,255,0.55)]"
+          className="relative flex h-56 w-56 items-center justify-center rounded-full bg-accent text-white shadow-[0_12px_32px_-10px_var(--buy-glow)]"
         >
           <span className="flex flex-col items-center gap-1">
             <svg width="34" height="34" viewBox="0 0 24 24" fill="none" aria-hidden>
@@ -92,7 +92,7 @@ export default function Home() {
             whileTap={{ scale: 0.97 }}
             transition={{ type: "spring", stiffness: 500, damping: 30 }}
             onClick={confirm}
-            className="h-[52px] w-full rounded-[16px] bg-accent text-[17px] font-semibold text-white"
+            className="h-[52px] w-full rounded-[14px] bg-accent text-[17px] font-semibold text-white"
           >
             Yes
           </motion.button>
@@ -101,7 +101,7 @@ export default function Home() {
             whileTap={{ scale: 0.97 }}
             transition={{ type: "spring", stiffness: 500, damping: 30 }}
             onClick={() => setConfirmOpen(false)}
-            className="h-[52px] w-full rounded-[16px] bg-fill text-[17px] font-semibold text-accent"
+            className="h-[52px] w-full rounded-[14px] bg-fill text-[17px] font-semibold text-accent"
           >
             Cancel
           </motion.button>
