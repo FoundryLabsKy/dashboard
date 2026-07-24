@@ -1,0 +1,19 @@
+{
+  "name": "LOCKED",
+  "short_name": "LOCKED",
+  "description": "Track. Train. Dominate. Workout, nutrition and progress tracking with an AI coach.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#080809",
+  "theme_color": "#080809",
+  "icons": [
+    {
+      "src": "/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

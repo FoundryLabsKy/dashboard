@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LOCKED — Admin Dashboard</title>
+<style>
+  :root{
+    --bg:#080809;--surface:#111113;--card:#18181B;--border:#242428;
+    --text:#F5F5F5;--muted:#9CA3AF;--accent:#F97316;--green:#22C55E;
+    --red:#EF4444;--blue:#3B82F6;--amber:#F59E0B;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--text);font-family:'DM Sans',-apple-system,BlinkMacSystemFont,sans-serif;font-size:14px;min-height:100vh}
+  h1,h2{font-family:'Barlow Condensed',sans-serif;letter-spacing:.03em}
+  @import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800;900&family=DM+Sans:wght@400;500;600;700&display=swap');
+  .wrap{max-width:1100px;margin:0 auto;padding:32px 20px 80px}
+  header{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px}
+  header h1{font-size:34px;font-weight:900;color:var(--accent)}
+  header .sub{color:var(--muted);font-size:12px;letter-spacing:.12em}
+  .banner{background:#7C3A0E22;border:1px solid #7C3A0E66;color:#FDBA74;border-radius:10px;padding:10px 14px;font-size:12px;margin:14px 0;line-height:1.5}
+  .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin:18px 0}
+  .stat{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:14px 16px}
+  .stat .n{font-family:'Barlow Condensed',sans-serif;font-size:30px;font-weight:800;line-height:1}
+  .stat .l{color:var(--muted);font-size:11px;letter-spacing:.08em;margin-top:4px;text-transform:uppercase}
+  .bar{display:flex;gap:10px;margin:14px 0;flex-wrap:wrap}
+  input[type=text],input[type=password]{background:var(--card);border:1px solid var(--border);color:var(--text);border-radius:10px;padding:10px 14px;font-size:14px;flex:1;min-width:220px;outline:none}
+  input:focus{border-color:var(--accent)}
+  button{background:var(--card);border:1px solid var(--border);color:var(--text);border-radius:10px;padding:10px 16px;font-size:13px;font-weight:600;cursor:pointer;transition:transform .15s ease,background .15s ease}
+  button:hover{background:#202024}
+  button:active{transform:scale(.97)}
+  button.primary{background:linear-gradient(135deg,#F97316,#EA580C);border:none;color:#fff}
+  button.danger{border-color:#7F1D1D;color:#FCA5A5}
+  button.small{padding:5px 10px;font-size:11px;border-radius:8px}
+  table{width:100%;border-collapse:collapse;margin-top:8px}
+  th{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);text-align:left;padding:8px 10px;border-bottom:1px solid var(--border)}
+  td{padding:10px;border-bottom:1px solid var(--border);vertical-align:middle}
+  tr:hover td{background:#101012}
+  .pill{display:inline-block;border-radius:999px;padding:3px 11px;font-size:11px;font-weight:700}
+  .pill.pro{background:#22C55E1f;color:var(--green);border:1px solid #22C55E44}
+  .pill.trial{background:#F59E0B1f;color:var(--amber);border:1px solid #F59E0B44}
+  .pill.free{background:#9CA3AF1f;color:var(--muted);border:1px solid #9CA3AF33}
+  .pill.unknown{background:#3B82F61f;color:var(--blue);border:1px solid #3B82F644}
+  .pill.yes{background:#22C55E1f;color:var(--green)}
+  .pill.no{background:#EF44441f;color:var(--red)}
+  .muted{color:var(--muted);font-size:12px}
+  .mono{font-family:ui-monospace,monospace;font-size:11px;color:var(--muted)}
+  .actions{display:flex;gap:6px;flex-wrap:wrap}
+  #keyGate{position:fixed;inset:0;background:rgba(0,0,0,.7);backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:center;z-index:50}
+  #keyGate .box{background:var(--surface);border:1px solid var(--border);border-radius:20px;padding:30px;max-width:460px;width:92%}
+  #keyGate h2{font-size:24px;font-weight:800;margin-bottom:8px}
+  #keyGate p{color:var(--muted);font-size:13px;line-height:1.6;margin-bottom:14px}
+  #toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:var(--card);border:1px solid var(--border);border-radius:12px;padding:12px 20px;font-size:13px;display:none;z-index:60}
+  details{margin-top:4px}
+  summary{cursor:pointer;font-size:11px;color:var(--muted)}
+  pre{background:#0c0c0e;border:1px solid var(--border);border-radius:8px;padding:10px;font-size:10px;overflow:auto;max-height:160px;margin-top:6px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div>
+      <h1>LOCKED ADMIN</h1>
+      <div class="sub">ACCOUNTS · SUBSCRIPTIONS · ACCESS</div>
+    </div>
+    <div style="display:flex;gap:8px">
+      <button onclick="loadAll()">↻ Refresh</button>
+      <button class="danger" onclick="forgetKey()">Forget key</button>
+    </div>
+  </header>
+
+  <div class="banner">
+    ⚠ <b>Local use only.</b> This file uses your Supabase <b>service_role</b> key — it can read and modify every account.
+    Never deploy this file or share the key. Passwords are stored hashed by Supabase and <b>cannot be viewed by anyone</b>;
+    use "Set PW" or "Reset email" to change them.
+  </div>
+
+  <div class="stats" id="stats"></div>
+
+  <div class="bar">
+    <input type="text" id="search" placeholder="Search email or user id…" oninput="render()">
+  </div>
+
+  <table>
+    <thead><tr>
+      <th>Email</th><th>Status</th><th>Confirmed</th><th>Created</th><th>Last sign-in</th><th>Actions</th>
+    </tr></thead>
+    <tbody id="rows"><tr><td colspan="6" class="muted">Loading…</td></tr></tbody>
+  </table>
+
+  <div id="schemaNote" class="muted" style="margin-top:18px"></div>
+</div>
+
+<div id="keyGate" style="display:none">
+  <div class="box">
+    <h2>SERVICE ROLE KEY</h2>
+    <p>Paste your Supabase <b>service_role</b> key (Supabase dashboard → Project Settings → API → service_role).
+    It is stored only in this browser's localStorage on this machine.</p>
+    <input type="password" id="keyInput" placeholder="eyJhbGciOi…" style="width:100%;margin-bottom:12px">
+    <button class="primary" style="width:100%" onclick="saveKey()">Unlock dashboard</button>
+  </div>
+</div>
+
+<div id="toast"></div>
+
+<script>
+var SUPABASE_URL = "https://fwimdnukebbrwpwdyjbv.supabase.co";
+var KEY_STORE = "lk_admin_service_key";
+var key = localStorage.getItem(KEY_STORE) || "";
+var users = [];            /* GoTrue users */
+var subs = {};             /* user_id -> subscription row */
+var subTable = null;       /* discovered table name */
+var subCols = [];          /* discovered column names */
+var statusCol = null, userCol = null;
+
+function toast(msg){
+  var t=document.getElementById("toast");
+  t.textContent=msg; t.style.display="block";
+  clearTimeout(t._h); t._h=setTimeout(function(){t.style.display="none";},2600);
+}
+function hdrs(){ return {"apikey":key,"Authorization":"Bearer "+key,"Content-Type":"application/json"}; }
+
+function saveKey(){
+  var v=document.getElementById("keyInput").value.trim();
+  if(!v){toast("Paste the key first");return;}
+  key=v; localStorage.setItem(KEY_STORE,v);
+  document.getElementById("keyGate").style.display="none";
+  loadAll();
+}
+function forgetKey(){
+  localStorage.removeItem(KEY_STORE); key="";
+  document.getElementById("keyGate").style.display="flex";
+}
+
+/* ---- Load users (GoTrue admin API) ---- */
+async function loadUsers(){
+  var all=[], page=1;
+  while(page<=10){
+    var r=await fetch(SUPABASE_URL+"/auth/v1/admin/users?page="+page+"&per_page=200",{headers:hdrs()});
+    if(!r.ok) throw new Error("admin/users "+r.status+" — is the service_role key correct?");
+    var d=await r.json();
+    var batch=d.users||d||[];
+    all=all.concat(batch);
+    if(batch.length<200) break;
+    page++;
+  }
+  users=all;
+}
+
+/* ---- Discover subscription storage via OpenAPI schema ---- */
+async function discoverSchema(){
+  subTable=null; subCols=[]; statusCol=null; userCol=null;
+  try{
+    var r=await fetch(SUPABASE_URL+"/rest/v1/",{headers:hdrs()});
+    var spec=await r.json();
+    var defs=spec.definitions||{};
+    var names=Object.keys(defs);
+    /* prefer tables that look subscription-ish */
+    var cand=names.filter(function(n){return /sub|plan|tier|billing|entitle/i.test(n);});
+    if(cand.length===0) cand=names.filter(function(n){return /profile|user/i.test(n);});
+    for(var i=0;i<cand.length;i++){
+      var cols=Object.keys(defs[cand[i]].properties||{});
+      var sc=cols.find(function(c){return /^(status|plan|tier|subscription_status|sub_status)$/i.test(c);});
+      var uc=cols.find(function(c){return /^(user_id|uid|owner|profile_id)$/i.test(c);})||(cols.indexOf("id")>-1?"id":null);
+      if(sc&&uc){subTable=cand[i];subCols=cols;statusCol=sc;userCol=uc;break;}
+    }
+    var note=document.getElementById("schemaNote");
+    if(subTable){
+      note.innerHTML="Subscription source: table <b>"+subTable+"</b> (status column: <b>"+statusCol+"</b>, user column: <b>"+userCol+"</b>). Columns: "+subCols.join(", ");
+    }else{
+      note.innerHTML="⚠ No subscription-like table found in Supabase (tables visible: "+(names.join(", ")||"none")+").<br>"+
+        "If the Cloudflare Worker keeps subscription state in KV instead, upgrades from this dashboard won't reach the app — tell Claude and we'll add an admin endpoint to the worker.";
+    }
+  }catch(e){
+    document.getElementById("schemaNote").textContent="Schema discovery failed: "+e.message;
+  }
+}
+
+/* ---- Load subscription rows ---- */
+async function loadSubs(){
+  subs={};
+  if(!subTable) return;
+  var r=await fetch(SUPABASE_URL+"/rest/v1/"+subTable+"?select=*",{headers:hdrs()});
+  if(!r.ok) return;
+  var rows=await r.json();
+  rows.forEach(function(row){ subs[row[userCol]]=row; });
+}
+
+function subStatus(u){
+  var row=subs[u.id];
+  if(!row) return {label:"free",cls:"free",row:null};
+  var s=String(row[statusCol]||"").toLowerCase();
+  if(/pro|paid|active|premium/.test(s)) return {label:s||"pro",cls:"pro",row:row};
+  if(/trial/.test(s)){
+    var ends=row.trial_ends_at||row.expires_at||row.ends_at||null;
+    var extra="";
+    if(ends){var dl=Math.ceil((new Date(ends)-Date.now())/864e5);extra=" ("+dl+"d left)";}
+    return {label:"trial"+extra,cls:"trial",row:row};
+  }
+  if(/free|cancel|expired|none/.test(s)||s==="") return {label:s||"free",cls:"free",row:row};
+  return {label:s,cls:"unknown",row:row};
+}
+
+/* ---- Mutations ---- */
+async function setStatus(uid,val){
+  if(!subTable){toast("No subscription table found — see note at bottom");return;}
+  var body={}; body[userCol]=uid; body[statusCol]=val;
+  if(subCols.indexOf("updated_at")>-1) body.updated_at=new Date().toISOString();
+  if(val==="trial"&&subCols.indexOf("trial_ends_at")>-1){
+    body.trial_ends_at=new Date(Date.now()+14*864e5).toISOString();
+  }
+  var r=await fetch(SUPABASE_URL+"/rest/v1/"+subTable+"?on_conflict="+userCol,{
+    method:"POST",
+    headers:Object.assign(hdrs(),{"Prefer":"resolution=merge-duplicates,return=representation"}),
+    body:JSON.stringify(body)
+  });
+  if(!r.ok){var t=await r.text();toast("Update failed: "+t.slice(0,120));return;}
+  toast("Set to "+val);
+  await loadSubs(); render();
+}
+
+async function setPassword(uid,email){
+  var pw=prompt("New password for "+email+" (min 6 chars):");
+  if(!pw) return;
+  var r=await fetch(SUPABASE_URL+"/auth/v1/admin/users/"+uid,{
+    method:"PUT",headers:hdrs(),body:JSON.stringify({password:pw})
+  });
+  if(!r.ok){toast("Failed: "+r.status);return;}
+  toast("Password updated");
+}
+
+async function sendReset(email){
+  var r=await fetch(SUPABASE_URL+"/auth/v1/recover",{
+    method:"POST",headers:hdrs(),body:JSON.stringify({email:email})
+  });
+  toast(r.ok?"Reset email sent":"Failed: "+r.status);
+}
+
+async function deleteUser(uid,email){
+  if(!confirm("Permanently delete "+email+"? This removes their auth account."))return;
+  var r=await fetch(SUPABASE_URL+"/auth/v1/admin/users/"+uid,{method:"DELETE",headers:hdrs()});
+  if(!r.ok){toast("Delete failed: "+r.status);return;}
+  toast("Deleted "+email);
+  await loadUsers(); render();
+}
+
+/* ---- Render ---- */
+function fmtDate(s){ if(!s)return "—"; var d=new Date(s); return d.toLocaleDateString()+" "+d.toLocaleTimeString([], {hour:"2-digit",minute:"2-digit"}); }
+
+function render(){
+  var q=(document.getElementById("search").value||"").toLowerCase();
+  var tb=document.getElementById("rows"); tb.innerHTML="";
+  var counts={total:0,pro:0,trial:0,free:0};
+  users.forEach(function(u){
+    var st=subStatus(u);
+    counts.total++;
+    if(st.cls==="pro")counts.pro++; else if(st.cls==="trial")counts.trial++; else counts.free++;
+    if(q && (u.email||"").toLowerCase().indexOf(q)<0 && u.id.indexOf(q)<0) return;
+    var tr=document.createElement("tr");
+    tr.innerHTML=
+      "<td><div>"+(u.email||"<i>no email</i>")+"</div><div class='mono'>"+u.id.slice(0,8)+"…</div>"+
+        (st.row?"<details><summary>raw row</summary><pre>"+JSON.stringify(st.row,null,1)+"</pre></details>":"")+"</td>"+
+      "<td><span class='pill "+st.cls+"'>"+st.label+"</span></td>"+
+      "<td><span class='pill "+(u.email_confirmed_at?"yes'>✓":"no'>✗")+"</span></td>"+
+      "<td class='muted'>"+fmtDate(u.created_at)+"</td>"+
+      "<td class='muted'>"+fmtDate(u.last_sign_in_at)+"</td>"+
+      "<td><div class='actions'>"+
+        "<button class='small' onclick=\"setStatus('"+u.id+"','pro')\">↑ Pro</button>"+
+        "<button class='small' onclick=\"setStatus('"+u.id+"','trial')\">Trial</button>"+
+        "<button class='small' onclick=\"setStatus('"+u.id+"','free')\">↓ Free</button>"+
+        "<button class='small' onclick=\"setPassword('"+u.id+"','"+(u.email||"")+"')\">Set PW</button>"+
+        "<button class='small' onclick=\"sendReset('"+(u.email||"")+"')\">Reset email</button>"+
+        "<button class='small danger' onclick=\"deleteUser('"+u.id+"','"+(u.email||"")+"')\">Delete</button>"+
+      "</div></td>";
+    tb.appendChild(tr);
+  });
+  if(!tb.children.length) tb.innerHTML="<tr><td colspan='6' class='muted'>No matching users.</td></tr>";
+  document.getElementById("stats").innerHTML=
+    "<div class='stat'><div class='n'>"+counts.total+"</div><div class='l'>Accounts</div></div>"+
+    "<div class='stat'><div class='n' style='color:var(--green)'>"+counts.pro+"</div><div class='l'>Pro / Paid</div></div>"+
+    "<div class='stat'><div class='n' style='color:var(--amber)'>"+counts.trial+"</div><div class='l'>Trial</div></div>"+
+    "<div class='stat'><div class='n' style='color:var(--muted)'>"+counts.free+"</div><div class='l'>Free</div></div>";
+}
+
+async function loadAll(){
+  try{
+    document.getElementById("rows").innerHTML="<tr><td colspan='6' class='muted'>Loading…</td></tr>";
+    await loadUsers();
+    await discoverSchema();
+    await loadSubs();
+    render();
+  }catch(e){
+    document.getElementById("rows").innerHTML="<tr><td colspan='6' style='color:var(--red)'>"+e.message+"</td></tr>";
+  }
+}
+
+if(key){ loadAll(); } else { document.getElementById("keyGate").style.display="flex"; }
+</script>
+</body>
+</html>
