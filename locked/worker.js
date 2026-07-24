@@ -564,6 +564,27 @@ export default {
     /* ============================================================
        ROUTE: GET /beta-status
        ============================================================ */
+    /* ============================================================
+       ROUTE: GET /sync-status  (admin)
+       Returns, per user, which sync keys exist in cloud storage and
+       when each was last updated — values are never returned. Used to
+       diagnose device-migration gaps (e.g. calendar/coach memory).
+       ============================================================ */
+    if (path === "/sync-status" && request.method === "GET") {
+      try {
+        var ssDenied = requireAdmin(request); if (ssDenied) return ssDenied;
+        var ssRows = await sbAPI("/user_data?select=user_id,key,updated_at&order=user_id,key", "GET");
+        var ssOut = {};
+        (ssRows || []).forEach(function(r) {
+          if (!ssOut[r.user_id]) ssOut[r.user_id] = {};
+          ssOut[r.user_id][r.key] = r.updated_at;
+        });
+        return new Response(JSON.stringify({ users: ssOut }), { headers: H });
+      } catch (err) {
+        return new Response(JSON.stringify({ error: err.message }), { status: 500, headers: H });
+      }
+    }
+
     if (path === "/beta-status" && request.method === "GET") {
       try {
         var statusDenied = requireAdmin(request); if (statusDenied) return statusDenied;

@@ -7,7 +7,7 @@ compatibility_date = "2024-11-01"
 #   npx wrangler kv namespace list
 [[kv_namespaces]]
 binding = "BETADATA"
-id = "REPLACE_WITH_YOUR_BETADATA_KV_ID"
+id = "4d2b8aa9f568417e9ef35db50a4bb919"
 
 # Non-secret config. Secrets (below) are set with `wrangler secret put`, never here.
 [vars]
